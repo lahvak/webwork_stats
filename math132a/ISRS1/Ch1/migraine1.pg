@@ -1,0 +1,97 @@
+# DESCRIPTION
+# ISRS 1.8.1. problem 1
+# ENDDESCRIPTION
+
+## DBsubject('Statistics')
+## DBchapter('Introduction to Data')
+## DBsection('Case Study')
+## KEYWORDS('study', 'groups', 'evidence')
+## TitleText1('Introductory Statistics with Randomization and Simulation')
+## EditionText1('1')
+## AuthorText1('Diez, Barr, Cetinkaya-Rundel')
+## Section1('')
+## Problem1('Migraine and acupuncture')
+## Author('Jan Hlavacek')
+## Institution('SVSU')
+
+DOCUMENT();
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+"PGessaymacros.pl",
+"PGML.pl",
+"PGcourse.pl",
+"niceTables.pl",
+);
+
+
+# make sure we're in the context we want
+Context("Numeric");
+$showPartialCorrectAnswers = 1;
+
+$rate1 = Compute("23")->with(
+            tolType => 'absolute',
+            tolerance => 0.5);
+
+$rate2 = Compute("4")->with(
+            tolType => 'absolute',
+            tolerance => 0.5);
+
+$difrate = Compute("19")->with(
+            tolType => 'absolute',
+            tolerance => 0.5);
+
+TEXT(beginproblem());
+BEGIN_PGML
+A migraine is a particularly painful type of headache, which patients sometimes
+wish to treat with acupuncture. To determine whether acupuncture relieves
+migraine pain, researchers conducted a randomized controlled study where 89
+females diagnosed with migraine headaches were randomly assigned to one of two
+groups: treatment or control. 43 patients in the treatment group received
+acupuncture that is specifically designed to treat migraines. 46 patients in
+the control group received placebo acupuncture (needle insertion at nonacupoint
+locations). 24 hours after patients received acupuncture, they were asked if
+they were pain free. Results are summarized in the contingency table below.
+(G. Allais et al. "Ear acupuncture in the treatment of migraine attacks: a randomized trial on the
+efficacy of appropriate versus inappropriate acupoints". In: _Neurological Sci._ 32.1 (2011), pp. 173-175.)
+END_PGML
+BEGIN_TEXT
+\{
+DataTable(
+  [
+    ['',['Pain free',i=>1,colspan=>2,headerrow=>1],''],
+    [['Group',i=>1,headerrow=>1,midrule=>1], 'Yes', 'No', 'Total'],
+    [['Treatment',header=>'row'], '10', '13', '43'],
+    [['Control',header=>'row',midrule=>1], '2', '44', '46'],
+    [['Total',header=>'row'], '12', '77', '89']
+  ], 
+  caption => 'Contingency table for the acupuncture experiment',
+);
+\}
+END_TEXT
+BEGIN_PGML
+* What percent of patients in the treatment group were pain free 24 hours after receiving acupuncture (round to the nearest %)? [__________]{$rate1}%
+* What percent in the control group (round to the nearest %)?
+[__________]{$rate2}%
+* What was the difference, in percent, between the pain reduction rate in the
+two groups (again, round to the nearest %)? [__________]{$difrate}%
+* At first glance, does acupuncture appear to be an effective treatment for migraines? Explain your reasoning.  
+  [@ ANS(essay_cmp); essay_box(5,50) @]*
+* Do the data provide convincing evidence that there is a real pain reduction for those patients in the treatment group? Or do you think that the observed difference might just be due to chance?  
+  [@ ANS(essay_cmp); essay_box(5,50) @]*
+END_PGML
+
+
+BEGIN_PGML_SOLUTION
+* Percent pain free in the **treatment** group: [:: 10/43 = .23 = 23 ::]%.
+* Percent pain free in the **control** group: [:: 2/46 = .04 = 4 ::]%.
+* The difference is [:: .23 - .04 = .19 = 19 ::]%.
+* At the first glance it appears that the patients in the treatment group are
+  much more likely to experience pain reduction, compared to the patients in the
+  control group.
+* The difference between the rates is big, so it does look like acupuncture
+  does have a positive effect on migraine pain.  On the other hand, it is
+  possible that the differences in the rates are purely due to chance.
+END_PGML_SOLUTION
+
+ENDDOCUMENT();

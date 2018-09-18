@@ -1,0 +1,96 @@
+# DESCRIPTION
+# ISRS 1.8.1. problem 2
+# ENDDESCRIPTION
+
+## DBsubject('Statistics')
+## DBchapter('Introduction to Data')
+## DBsection('Case Study')
+## KEYWORDS('study', 'groups', 'evidence')
+## TitleText1('Introductory Statistics with Randomization and Simulation')
+## EditionText1('1')
+## AuthorText1('Diez, Barr, Cetinkaya-Rundel')
+## Section1('')
+## Problem1('Sinusitis and antibiotics')
+## Author('Jan Hlavacek')
+## Institution('SVSU')
+
+DOCUMENT();
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+"PGessaymacros.pl",
+"PGML.pl",
+"PGcourse.pl",
+"niceTables.pl",
+"parserPopUp.pl",
+"parserOneOf.pl",
+);
+
+
+# make sure we're in the context we want
+Context("Numeric");
+$showPartialCorrectAnswers = 1;
+
+$rate1 = Compute("78")->with(
+            tolType => 'absolute',
+            tolerance => 0.5);
+
+$rate2 = Compute("80")->with(
+            tolType => 'absolute',
+            tolerance => 0.5);
+
+$pop = PopUp(["?","antibiotic","symptomatic","none"],"none");
+
+TEXT(beginproblem());
+BEGIN_PGML
+Researchers studying the effect of antibiotic treatment for acute sinusitis
+compared to symptomatic treatments randomly assigned 166 adults diagnosed with
+acute sinusitis to one of two groups: treatment or control. Study participants
+received either a 10-day course of amoxicillin (an antibiotic) or a placebo
+similar in appearance and taste. The placebo consisted of symptomatic
+treatments such as acetaminophen, nasal decongestants, etc. At the end of the
+10-day period patients were asked if they experienced significant improvement
+in symptoms. The distribution of responses are summarized below.
+(J.M. Garbutt et al. "Amoxicillin for Acute Rhinosinusitis: A Randomized Controlled Trial". In:
+JAMA: _The Journal of the American Medical Association_ 307.7 (2012), pp. 685-692.)
+END_PGML
+BEGIN_TEXT
+\{
+DataTable(
+  [
+    ['',['Improvement',i=>1,colspan=>2,headerrow=>1],''],
+    [['Group',i=>1,headerrow=>1,midrule=>1], 'Yes', 'No', 'Total'],
+    [['Treatment',header=>'row'], '66', '19', '85'],
+    [['Control',header=>'row',midrule=>1], '65', '16', '81'],
+    [['Total',header=>'row'], '131', '35', '166']
+  ], 
+  caption => 'Self reported significant improvement of symptoms',
+);
+\}
+END_TEXT
+BEGIN_PGML
+* What percent of patients in the treatment group experienced a significant improvement of symptoms (round to the nearest %)? [__________]{$rate1}%
+* What percent in the control group (round to the nearest %)?  [__________]{$rate2}%
+* Based on your findings above, which treatment appears to be more effective for sinusitis? [@ $pop->menu() @]*
+* Explain your reasoning:  
+  [@ ANS(essay_cmp); essay_box(5,50) @]*
+* Do the data provide convincing evidence that there is a difference in the
+  improvement rates of sinusitis symptoms? Or do you think that the observed
+  difference might just be due to chance?  Explain your reasoning:  
+  [@ ANS(essay_cmp); essay_box(5,50) @]*
+END_PGML
+
+Context()->strings->add("?"=>{}, 'antibiotic'=>{}, 'symptomatic'=>{}, 'none'=>{});
+ANS(OneOf('symptomatic','none')->cmp());
+
+BEGIN_PGML_SOLUTION
+* Percent of patients with self reported significant improvement of symptoms in the **treatment** group: [:: 66/85 = 0.78 = 78 ::]%.
+* Percent of patients with self reported significant improvement of symptoms in the **control** group: [:: 65/81 = 0.8 = 80 ::]%.
+* At the first glance, the symptomatic treatment seems to be slightly more effective than the antibiotic treatment.  However, the difference is very small, so it is quite possible that it happened entirely due to chance.
+* Even if the two treatments had the same effect on the improvement rates of sinusitis
+  symptoms, typically we would not get the exact same rates in symptom improvement
+  in each group. The difference of 2%, which separates the groups by just one or two
+  successful treatments, seems like it could be due to just chance. 
+END_PGML_SOLUTION
+
+ENDDOCUMENT();

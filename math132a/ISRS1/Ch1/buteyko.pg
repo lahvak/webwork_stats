@@ -1,0 +1,101 @@
+# DESCRIPTION
+# ISRS 1.8.2. problem 3b
+# ENDDESCRIPTION
+
+## DBsubject('Statistics')
+## DBchapter('Introduction to Data')
+## DBsection('Data basics')
+## KEYWORDS('study', 'groups', 'evidence', 'data')
+## TitleText1('Introductory Statistics with Randomization and Simulation')
+## EditionText1('1')
+## AuthorText1('Diez, Barr, Cetinkaya-Rundel')
+## Section1('')
+## Problem1('Migraine and acupuncture')
+## Author('Jan Hlavacek')
+## Institution('SVSU')
+
+DOCUMENT();
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+"PGchoicemacros.pl",
+"PGML.pl",
+"PGcourse.pl",
+"parserRadioButtons.pl",
+
+);
+
+
+# make sure we're in the context we want
+Context("Numeric");
+$showPartialCorrectAnswers = 1;
+
+$cases = RadioButtons([
+            "different methods of improving quality of live of asthma patients",
+            "asthma symptoms",
+            "600 asthma patients aged 18-69",
+            "quality of life, activity, asthma symptoms, and medication reduction",
+            "reduction in asthma symptoms and an improvement in quality of life",
+            "all asthma patients",
+            "none of the above"
+            ], 
+            "600 asthma patients aged 18-69",
+            last=>"none of the above");
+
+$variables = new_checkbox_multiple_choice();
+$variables->qa("Which of the following were variables in the study (select all that apply)?",
+                "quality of life", "activity", "asthma symptoms", "whether or not the patient practiced Buteyko method",
+                "medication reduction");
+$variables->extra("age", "effectiveness of Buteyko method", "nationality of the patients", "average improvement in quality of life");
+
+
+$question = RadioButtons([
+            "Can asthma be cured?",
+            "Is Buteyko method more efficient for younger patients than older patients?",
+            "Do asthmatic patients who practice Buteyko method experience improvement in their condition?",
+            "Is there a association between quality of life and asthma symptoms?",
+            ], 
+            "Do asthmatic patients who practice Buteyko method experience improvement in their condition?");
+
+
+TEXT(beginproblem());
+BEGIN_PGML
+The Buteyko method is a shallow breathing technique developed by Konstantin
+Buteyko, a Russian doctor, in 1952. Anecdotal evidence suggests that the
+Buteyko method can reduce asthma symptoms and improve quality of life. In a
+scientific study to determine the effectiveness of this method, researchers
+recruited 600 asthma patients aged 18-69 who relied on medication for asthma
+treatment. These patients were split into two research groups: one practiced
+the Buteyko method and the other did not. Patients were scored on quality of
+life, activity, asthma symptoms, and medication reduction on a scale from 0 to
+10. On average, the participants in the Buteyko group experienced a significant
+reduction in asthma symptoms and an improvement in quality of life.
+(J. McGowan. "Health Education: Does the Buteyko Institute Method make a difference?" In: _Thorax_
+58 (2003))
+
+* What are the cases (observational units) in this study?  
+  [@ $cases->buttons() @]*
+
+* [@ $variables->print_q() @]*  
+  [@ $variables->print_a() @]*
+
+* What is the main research question in the study?  
+  [@ $question->buttons() @]*
+
+END_PGML
+
+$showPartialCorrectAnswers = 0;
+
+ANS( $cases->cmp() );
+ANS( checkbox_cmp( $variables->correct_ans() ) );
+ANS( $question->cmp() );
+
+
+BEGIN_PGML_SOLUTION
+* The cases are the "600 asthma patients aged 18-69".
+* The variables are "quality of life", "activity", "asthma symptoms", 
+  "whether or not the patient practiced Buteyko method", "medication reduction".
+* The research question is: "Do asthmatic patients who practice Buteyko method experience improvement in their condition?".
+END_PGML_SOLUTION
+
+ENDDOCUMENT();
