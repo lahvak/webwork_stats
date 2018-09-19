@@ -53,7 +53,7 @@ rserve_eval("start <- $start");
 rserve_eval('data <- data.frame(price = rep(centers, counts))');
 
 $ggcmd = <<'GG_END';
-ggplot(data, aes(x=x)) + 
+ggplot(data, aes(x=price)) + 
     geom_histogram(binwidth = width, boundary = start) + 
     theme_grey(base_size = 12)
 GG_END
