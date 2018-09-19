@@ -32,7 +32,7 @@ $mean = random(-2, 2, .5);
 $img = rserve_start_plot('png');
 rserve_eval('library(ggplot2)');
 rserve_eval('data <- data.frame(x = rnorm(50, mean = ' . $mean . '))');
-rserve_eval('ggplot(data, aes(x=x)) + geom_hist()');
+rserve_eval('ggplot(data, aes(x=x)) + geom_histogram()');
 $image_path = rserve_finish_plot($img);
 
 BEGIN_PGML
