@@ -59,6 +59,11 @@ foreach my $i (@rights) {
     $rtotal += $i;
 }
 
+$rpercent = Compute(100*$rtotal/$total)->with(
+  tolType => 'absolute',
+  tolerance => 2,
+);
+
 $ctrstr = join ',', @centers;
 $ctsstr = join ',', @counts;
 
@@ -90,7 +95,7 @@ The histogram below shows the distribution of prices of [$total] randomly select
 
 * How many products had price less than [$lbound]? [__________]{$ltotal}
 
-* How many products had price at least [$rbound]? [__________]{$rtotal}
+* What percent of the products had price at least [$rbound]? [__________]{$rpercent}
 
 END_PGML
 
