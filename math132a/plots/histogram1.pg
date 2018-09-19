@@ -35,7 +35,7 @@ do {$ind2 = random(2, $number - 2, 1);} until ($ind1 != $ind2);
 @counts = ();
 for (my $i=0; $i < $number; $i++) {
     push @centers, ($start + $i*$width + 0.5*$width);
-    push @counts, random(5*$i, 7*$i, 1);
+    push @counts, random(5+5*$i, 7+7*$i, 1);
 }
 
 @lefts = @counts[0..($ind1-1)];
