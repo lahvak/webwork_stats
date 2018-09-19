@@ -38,16 +38,16 @@ for (my $i=0; $i < $number; $i++) {
     push @counts, random(5*$i, 7*$i, 1);
 }
 
-$lefts = @centers[0..($ind1-1)];
-$rights = @centers[$ind2..$#centers];
+$lefts = @counts[0..($ind1-1)];
+$rights = @counts[$ind2..$#counts];
+
+$lbound = ($centers[$ind1 - 1] + $centers[$ind1])/2;
+$rbound = ($centers[$ind2 - 1] + $centers[$ind2])/2;
 
 $total = 0;
 foreach my $i (@counts) {
    $total += $i;
 }
-
-$lbound = ($centers[$ind1 - 1] + $centers[$ind1])/2;
-$rbound = ($centers[$ind2 - 1] + $centers[$ind2])/2;
 
 $ltotal = 0;
 foreach my $i ($lefts) {
