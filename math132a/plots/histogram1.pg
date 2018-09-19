@@ -28,6 +28,8 @@ Context("Numeric");
 $start = random(10,50,1);
 $width = random(2,8,1);
 $number = random(7,10,1);
+$ind1 = random(2, $number - 2, 1);
+do {$ind2 = random(2, $number - 2, 1);} until ($ind1 != $ind2);
 
 @centers = ();
 @counts = ();
@@ -36,9 +38,25 @@ for (my $i=0; $i < $number; $i++) {
     push @counts, random(5*$i, 7*$i, 1);
 }
 
+$lefts = @centers[0..($ind1-1)];
+$rights = @centers[$ind2..$#centers];
+
 $total = 0;
 foreach my $i (@counts) {
    $total += $i;
+}
+
+$lbound = ($centers[$ind1 - 1] + $centers[$ind1])/2;
+$rbound = ($centers[$ind2 - 1] + $centers[$ind2])/2;
+
+$ltotal = 0;
+foreach my $i ($lefts) {
+    $ltotal += $i;
+}
+
+$rtotal = 0;
+foreach my $i ($rights) {
+    $rtotal += $i;
 }
 
 $ctrstr = join ',', @centers;
@@ -70,6 +88,10 @@ The histogram below shows the distribution of prices of [$total] randomly select
 [@ image($image_path, width=>500, height=>300) @]*
 
 *  What is the _binwidth_ of this histogram?  [___________]{$width}
+
+* How many products had price less than [$lbound]? [__________]{$ltotal}
+
+* How many products had price at least [$rbound]? [__________]{$rtotal}
 
 END_PGML
 
