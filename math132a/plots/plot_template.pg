@@ -15,16 +15,14 @@
 DOCUMENT();
 
 loadMacros(
-   "PGstandard.pl",     # Standard macros for PG language
+   "PGstandard.pl",
    "MathObjects.pl",
    "PGML.pl",
    "RserveClient.pl",
 );
 
-# Print problem number and point value (weight) for the problem
 TEXT(beginproblem());
 
-#  Setup
 Context("Numeric");
 
 $mean = random(-2, 2, .5);
