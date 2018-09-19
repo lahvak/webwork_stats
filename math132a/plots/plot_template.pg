@@ -29,10 +29,17 @@ Context("Numeric");
 
 $mean = random(-2, 2, .5);
 
-$img = rserve_start_plot('png', 500, 300);
 rserve_eval('library(ggplot2)');
 rserve_eval('data <- data.frame(x = rnorm(50, mean = ' . $mean . '))');
-rserve_eval('print(ggplot(data, aes(x=x)) + geom_histogram() + theme_grey(base_size = 12))');
+
+$ggcmd = <<'GG_END';
+ggplot(data, aes(x=x)) + 
+    geom_histogram() + 
+    theme_grey(base_size = 12)
+GG_END
+
+$img = rserve_start_plot('png', 500, 300);
+rserve_eval("print($ggcmd)");
 $image_path = rserve_finish_plot($img);
 
 BEGIN_PGML
