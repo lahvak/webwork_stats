@@ -41,9 +41,6 @@ for (my $i=0; $i < $number; $i++) {
 @lefts = @counts[0..($ind1-1)];
 @rights = @counts[$ind2..$#counts];
 
-$leftdiag = join ',', @lefts;
-$rightdiag = join ',', @rights;
-
 $lbound = ($centers[$ind1 - 1] + $centers[$ind1])/2;
 $rbound = ($centers[$ind2 - 1] + $centers[$ind2])/2;
 
@@ -94,8 +91,6 @@ The histogram below shows the distribution of prices of [$total] randomly select
 * How many products had price less than [$lbound]? [__________]{$ltotal}
 
 * How many products had price at least [$rbound]? [__________]{$rtotal}
-
-[$ind1] [$ind2] [$leftdiag] [$rightdiag]
 
 END_PGML
 
