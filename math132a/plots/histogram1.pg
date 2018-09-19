@@ -38,11 +38,11 @@ for (my $i=0; $i < $number; $i++) {
     push @counts, random(5*$i, 7*$i, 1);
 }
 
-$lefts = @counts[0..($ind1-1)];
-$rights = @counts[$ind2..$#counts];
+@lefts = @counts[0..($ind1-1)];
+@rights = @counts[$ind2..$#counts];
 
 $lbound = ($centers[$ind1 - 1] + $centers[$ind1])/2;
-$rbound = ($centers[$ind2 - 1] + $centers[$ind2])/2;
+$rbound = ($centers[$ind2] + $centers[$ind2+1])/2;
 
 $total = 0;
 foreach my $i (@counts) {
@@ -50,12 +50,12 @@ foreach my $i (@counts) {
 }
 
 $ltotal = 0;
-foreach my $i ($lefts) {
+foreach my $i (@lefts) {
     $ltotal += $i;
 }
 
 $rtotal = 0;
-foreach my $i ($rights) {
+foreach my $i (@rights) {
     $rtotal += $i;
 }
 
