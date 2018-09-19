@@ -92,15 +92,17 @@ $image_path = rserve_finish_plot($img);
 
 BEGIN_PGML
 
-The histogram below shows the distribution of prices of [$total] randomly selected products:
+The histogram below shows the distribution of prices (in dollars) of [$total] randomly selected products:
 
 [@ image($image_path, width=>500, height=>300) @]*
 
-*  What is the _binwidth_ of this histogram?  [___________]{$width}
+* What is the _bin width_ of this histogram?  [___________]{$width}
 
-* How many products had price less than [$lbound]? [__________]{$lsum}
+* How many bins are there? [__________]{$number}
 
-* What percent of the products had price at least [$rbound]? [__________]{$rpercent}
+* How many products had price less than [$lbound] dollars? [__________]{$lsum}
+
+* What percent of the products had price at least [$rbound] dollars? [__________]{$rpercent}
 
 END_PGML
 
