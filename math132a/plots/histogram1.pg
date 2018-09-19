@@ -36,7 +36,7 @@ for (my $i=0; $i < $number; $i++) {
     push @counts, random(5*$i, 7*$i, 1);
 }
 
-$total = sum $counts;
+$total = sum @counts;
 
 $ctrstr = join ',', @centers;
 $ctsstr = join ',', @counts;
