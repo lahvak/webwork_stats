@@ -66,7 +66,7 @@ $rpercent = Compute(100*$rtotal/$total)->with(
 
 $lsum = Compute($ltotal)->with(
   tolType => 'absolute',
-  tolerance => 5,
+  tolerance => 2*$ind1,
 );
 
 $ctrstr = join ',', @centers;
