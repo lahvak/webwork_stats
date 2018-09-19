@@ -93,7 +93,7 @@ The histogram below shows the distribution of prices of [$total] randomly select
 
 * How many products had price at least [$rbound]? [__________]{$rtotal}
 
-[$int1] [$int2] [@lefts] [@rights]
+[$ind1] [$ind2] [@lefts] [@rights]
 
 END_PGML
 
