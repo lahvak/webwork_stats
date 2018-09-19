@@ -30,7 +30,9 @@ Context("Numeric");
 $mean = random(-2, 2, .5);
 
 $img = rserve_start_plot('png');
-rserve_eval('curve(dnorm(x, mean=' . $mean . '), xlim=c(-4, 4)); 0');
+rserve_eval('library(ggplot2)');
+rserve_eval('data <- data.frame(x = rnorm(50, mean = ' . $mean . '))');
+rserve_eval('ggplot(data, aes(x=x)) + geom_hist()');
 $image_path = rserve_finish_plot($img);
 
 BEGIN_PGML
