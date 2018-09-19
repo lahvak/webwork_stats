@@ -1,0 +1,44 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter()
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(3)
+## KEYWORDS('plotting')
+##ENDDESCRIPTION
+
+# File Created: 09/18/2018 
+# Location: SVSU
+# Course: General Statistics
+
+DOCUMENT();
+
+loadMacros(
+   "PGstandard.pl",     # Standard macros for PG language
+   "MathObjects.pl",
+   "PGML.pl",
+   "RserveClient.pl",
+);
+
+# Print problem number and point value (weight) for the problem
+TEXT(beginproblem());
+
+#  Setup
+Context("Numeric");
+
+$mean = random(-2, 2, .5);
+
+$img = rserve_start_plot('png');
+rserve_eval('curve(dnorm(x, mean=' . $mean . '), xlim=c(-4, 4)); 0');
+$image_path = rserve_finish_plot($img);
+
+BEGIN_PGML
+
+What is the mean of the normal distribution shown in the figure below:
+[_________]{$mean}
+
+[@ image($image_path, width=>300, height=>300) @]*:
+END_PGML
+
+ENDDOCUMENT();
