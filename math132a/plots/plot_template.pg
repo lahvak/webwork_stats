@@ -40,7 +40,7 @@ BEGIN_PGML
 What is the mean of the normal distribution shown in the figure below:
 [_________]{$mean}
 
-[@ image($image_path, width=>300, height=>300) @]*:
+[@ image($image_path, width=>500, height=>300) @]*
 END_PGML
 
 ENDDOCUMENT();
