@@ -54,7 +54,8 @@ rserve_eval('data <- data.frame(price = rep(centers, counts))');
 
 $ggcmd = <<'GG_END';
 ggplot(data, aes(x=price)) + 
-    geom_histogram(binwidth = width, boundary = start) + 
+    geom_histogram(binwidth = width, boundary = start, color="black") + 
+    scale_x_continuous(breaks = centers) +
     theme_grey(base_size = 12)
 GG_END
 
