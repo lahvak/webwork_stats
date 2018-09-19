@@ -45,7 +45,7 @@ $leftdiag = join ',', @lefts;
 $rightdiag = join ',', @rights;
 
 $lbound = ($centers[$ind1 - 1] + $centers[$ind1])/2;
-$rbound = ($centers[$ind2] + $centers[$ind2+1])/2;
+$rbound = ($centers[$ind2 - 1] + $centers[$ind2])/2;
 
 $total = 0;
 foreach my $i (@counts) {
