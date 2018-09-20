@@ -18,6 +18,7 @@ loadMacros(
    "PGstandard.pl",
    "MathObjects.pl",
    "PGML.pl",
+   "parserPopUp.pl",
    "RserveClient.pl",
 );
 
