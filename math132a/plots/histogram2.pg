@@ -1,0 +1,101 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Visualization)
+## DBsection(Histograms)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(3)
+## KEYWORDS('plotting', 'histogram')
+##ENDDESCRIPTION
+
+# File Created: 09/18/2018 
+# Location: SVSU
+# Course: General Statistics
+
+DOCUMENT();
+
+loadMacros(
+   "PGstandard.pl",
+   "MathObjects.pl",
+   "PGML.pl",
+   "RserveClient.pl",
+);
+
+TEXT(beginproblem());
+
+Context("Numeric");
+
+$start = random(10,50,1);
+$width = random(2,8,1);
+$number = random(9,11,1);
+
+$reverse = list_random(0,1);
+
+@centers = ();
+@counts = ();
+for (my $i=0; $i < $number; $i++) {
+    push @centers, ($start + $i*$width + 0.5*$width);
+    push @counts, ceil(random(1.7^$i, 1.7^$i + $i, 1));
+}
+
+$counts[-1] = ceil($counts[-1]/4);
+$counts[-2] = ceil($counts[-1]/2);
+
+if $reverse {
+    @counts = reverse @counts;
+    $skewans = "skewed to the left"
+} else {
+    $skewans = "skewed to the right"
+}
+
+$skew = PopUp(
+  ["?","skewed to the right", "skewed to the left"],
+  $skewans
+);
+
+$total = 0;
+foreach my $i (@counts) {
+   $total += $i;
+}
+
+$ctrstr = join ',', @centers;
+$ctsstr = join ',', @counts;
+
+rserve_eval('library(ggplot2)');
+rserve_eval("centers <- c($ctrstr)");
+rserve_eval("counts <- c($ctsstr)");
+rserve_eval("width <- $width");
+rserve_eval("start <- $start");
+rserve_eval('data <- data.frame(price = rep(centers, counts))');
+
+$ggcmd = <<'GG_END';
+ggplot(data, aes(x=price)) + 
+    geom_histogram(binwidth = width, boundary = start, color="black") + 
+    scale_x_continuous(breaks = centers) +
+    theme_grey(base_size = 12)
+GG_END
+
+$img = rserve_start_plot('png', 500, 300);
+rserve_eval("print($ggcmd)");
+$image_path = rserve_finish_plot($img);
+
+BEGIN_PGML
+
+The histogram below shows the distribution of prices (in dollars) of [$total] randomly selected products:
+
+[@ image($image_path, width=>500, height=>300) @]*
+
+* The variable is [@ $skew->menu() @]*.
+
+END_PGML
+
+#Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( $skew->cmp() );
+
+ENDDOCUMENT();
+
