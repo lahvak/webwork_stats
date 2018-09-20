@@ -36,7 +36,7 @@ $reverse = list_random(0,1);
 @counts = ();
 for (my $i=0; $i < $number; $i++) {
     push @centers, ($start + $i*$width + 0.5*$width);
-    push @counts, random(3*ceil(1.7^$i), 3*ceil(1.7^$i) + $i, 1);
+    push @counts, random(3*ceil(1.7**$i), 3*ceil(1.7**$i) + $i, 1);
 }
 
 $counts[-1] = ceil($counts[-1]/4);
