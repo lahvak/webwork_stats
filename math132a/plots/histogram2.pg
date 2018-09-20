@@ -89,7 +89,7 @@ $image_path = rserve_finish_plot($img);
 
 BEGIN_PGML
 
-The histogram below shows the distribution of prices (in dollars) of [$total] randomly selected products:
+A histogram of a numerical variable is given:
 
 [@ image($image_path, width=>500, height=>300) @]*
 
