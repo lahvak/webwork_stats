@@ -41,7 +41,7 @@ for (my $i=0; $i < $number; $i++) {
 $counts[-1] = ceil($counts[-1]/4);
 $counts[-2] = ceil($counts[-1]/2);
 
-if $reverse {
+if ($reverse) {
     @counts = reverse @counts;
     $skewans = "skewed to the left"
 } else {
