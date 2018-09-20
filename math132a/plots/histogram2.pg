@@ -36,22 +36,29 @@ $reverse = list_random(0,1);
 @counts = ();
 for (my $i=0; $i < $number; $i++) {
     push @centers, ($start + $i*$width + 0.5*$width);
-    push @counts, random(3*ceil(1.7**$i), 3*ceil(1.7**$i) + $i, 1);
+    push @counts, random(3*ceil(1.5**$i), 3*ceil(1.5**$i) + $i, 1);
 }
 
-$counts[-1] = ceil($counts[-1]/4);
+$counts[-1] = ceil($counts[-1]/8);
 $counts[-2] = ceil($counts[-2]/2);
 
 if ($reverse) {
     @counts = reverse @counts;
-    $skewans = "skewed to the right"
+    $skewans = "skewed to the right";
+    $dirans = "larger";
 } else {
-    $skewans = "skewed to the left"
+    $skewans = "skewed to the left";
+    $dirans = "smaller";
 }
 
 $skew = PopUp(
   ["?","skewed to the right", "skewed to the left"],
   $skewans
+);
+
+$dir = PopUp(
+  ["?","smaller", "larger"],
+  $dirans
 );
 
 $total = 0;
@@ -88,6 +95,8 @@ The histogram below shows the distribution of prices (in dollars) of [$total] ra
 
 * The variable is [@ $skew->menu() @]*.
 
+* The mean is likely to be [@ $dir->menu() @]* than the median.
+
 END_PGML
 
 #Answer evaluation
@@ -97,6 +106,7 @@ install_problem_grader(~~&std_problem_grader);
 $showPartialCorrectAnswers = 1;
 
 ANS( $skew->cmp() );
+ANS( $dir->cmp() );
 
 ENDDOCUMENT();
 
