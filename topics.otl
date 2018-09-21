@@ -2,3 +2,14 @@ Topics for statistics questions
 Intro
 	Type of variables
 	Reading bar graphs and histograms
+304 stuff
+	Probability spaces
+		Describe a sample space of an experiment
+		Given a collection of events, do they form a sigma field?
+			If they don't, what events are missing?
+		Design a collection of observable events
+		 Given a sample space, plus info about indistinguishable elements,
+		 come up with minimal collection of observable events.
+		Finite spaces
+			Given probabilities of all outcomes, find probabilities of events
+			Probabilities in spaces with equally likely outcomes
