@@ -136,7 +136,7 @@ ANS( checkbox_cmp( $mc->correct_ans() ) );
 #  Solution
 
 BEGIN_PGML_SOLUTION
-Since the two dice are _indistinguishable_ from each other, any event that contains an outcome [` (a,b) `] for $a \neq b$
+Since the two dice are _indistinguishable_ from each other, any event that contains an outcome [` (a,b) `] for [` a \neq b `]
 must also contain the outcome [` (b,a) `].
 
 The following are observable events:
