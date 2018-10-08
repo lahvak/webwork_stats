@@ -359,11 +359,11 @@ Since the two quarters are _indistinguishable_ from each other, any event that c
 
 The following are observable events:
 
-[$obsstr]
+[$obsstr]*
 
 The following are not:
 
-[$nonobsstr]
+[$nonobsstr]*
 
 The correct answer is [$mc->correct_ans()].
 END_PGML_SOLUTION
