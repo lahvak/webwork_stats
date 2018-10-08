@@ -36,9 +36,7 @@ TEXT(beginproblem());
 ###########################
 #  Setup
 
-# Observable events:
-
-# permutation of sides
+$showPartialCorrectAnswers = 1;
 
 @sspace = 1..5;
 
