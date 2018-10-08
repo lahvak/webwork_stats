@@ -91,7 +91,7 @@ END_PGML
 #  Solution
 
 BEGIN_PGML_SOLUTION
-Let [` A = [$e1] `] and [` B = [$e2] `].
+Let [` A = [$given1] `] and [` B = [$given2] `].
 
 * The complement of [` A `] which is [` [$required1] `] must be an event.
 
