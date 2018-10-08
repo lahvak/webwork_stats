@@ -1,0 +1,108 @@
+## DESCRIPTION
+## Probability spaces: observable events
+## ENDDESCRIPTION
+
+## KEYWORDS('probability', 'probability space', 'events')
+
+## DBsubject(Probability)
+## DBchapter(Probability Axioms)
+## DBsection(Observabel Events)
+## Date(10/07/2018)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## TitleText1('')
+## EditionText1('')
+## AuthorText1('')
+## Section1('')
+## Problem1('')
+
+
+###########################
+#  Initialization
+
+DOCUMENT();  
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGchoicemacros.pl",
+  "PGML.pl",
+  "PGcourse.pl"
+);
+
+TEXT(beginproblem());
+
+
+###########################
+#  Setup
+
+# Observable events:
+
+# permutation of sides
+
+@sspace = 1:5;
+
+@slice = NchooseK(5,5);
+@perm = @sspace[@slice];
+
+$part = random(0,1);
+
+Context{"Interval");
+
+if ($part) {
+    $e1 = Compute("{$perm[0]}");
+    $e2 = Compute("{$perm[1], $perm[2]}");
+    $e3 = Compute("{$perm[3], $perm[4]}");
+    } else {
+    $e1 = Compute("{$perm[0]}");
+    $e2 = Compute("{$perm[1]}");
+    $e3 = Compute("{perm[2], $perm[3], $perm[4]}");
+    }
+
+$given1 = $e1;
+$given2 = $e1 + $e2;
+
+$required1 = $e2 + $e3;
+$required2 = $e3;
+$required3 = $e1 + $e3;
+$required4 = $e2;
+$required5 = $e1 + $e2 + $e3;
+
+$ans = Compute("$required1, $required2, $required3, $required4, $required5");
+
+###########################
+#  Main text
+
+BEGIN_PGML
+The sample space of an experiment is [` S = \{ [@sspace] \} `].  Three of the observable events are
+[` \emptyset `], [` [$given1] `] and [` [$given2] `].
+
+List the *remaining* observable events that are necessary to obtain the smallest [` \sigma `]-field of subsets 
+of [` S `] containing the three given events: [________________________________________________]{$ans}.
+
+(Write the events as sets of numbers, separate them by commas.)
+END_PGML
+
+
+############################
+#  Answer evaluation
+
+############################
+#  Solution
+
+BEGIN_PGML_SOLUTION
+Let [` A = [$e1] `] and [` B = [$e2] `].
+
+* The complement of [` A `] which is [` [$required1] `] must be an event.
+
+* The complement of [` B `] which is [` [$required2] `] must be an event.
+
+* The union [` A \cup [$required2] = [$required3] `] must be an event.
+
+* The complement of [` [$required3] `] which is [` [$required4] `] must be an event.
+
+* Finally, the entire sample space [` S `] must be an event.
+
+No other subset is needed.
+END_PGML_SOLUTION
+ENDDOCUMENT();
