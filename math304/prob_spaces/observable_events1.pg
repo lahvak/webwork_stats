@@ -1,0 +1,155 @@
+## DESCRIPTION
+## Probability spaces: observable events
+## ENDDESCRIPTION
+
+## KEYWORDS('probability', 'probability space', 'events')
+
+## DBsubject(Probability)
+## DBchapter(Probability Axioms)
+## DBsection(Observabel Events)
+## Date(10/07/2018)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## TitleText1('')
+## EditionText1('')
+## AuthorText1('')
+## Section1('')
+## Problem1('')
+
+
+###########################
+#  Initialization
+
+DOCUMENT();  
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGchoicemacros.pl",
+  "PGML.pl",
+  "PGcourse.pl"
+);
+
+TEXT(beginproblem());
+
+
+###########################
+#  Setup
+
+# Observable events:
+
+# permutation of sides
+
+@slice = NchooseK(6,6);
+@sides = (1..6)[@slice];
+
+$a = $sides[0];
+$b = $sides[1];
+$c = $sides[2];
+$d = $sides[3];
+$e = $sides[4];
+$f = $sides[5];
+
+@observables = (
+    "\(\{($a,$a)\}\)",
+    "\(\{($a,$a),($b,$b)\}\)",
+    "\(\{($a,$a),($b,$b),($c,$c)\}\)",
+    "\(\{($a,$a),($b,$b),($c,$c),($d,$d)\}\)",
+    "\(\{($a,$a),($b,$b),($c,$c),($d,$d),($e,$e)\}\)",
+    "\(\{($a,$a),($b,$b),($c,$c),($d,$d),($e,$e),($f,$f)\}\)",
+    "\(\{($a,$a),($b,$c),($c,$b)\}\)",
+    "\(\{($a,$a),($b,$c),($b,$b),($c,$b)\}\)",
+    "\(\{($a,$a),($a,$c),($b,$b),($c,$d),($c,$c)\}\)",
+    "\(\{($a,$a),($f,$d),($b,$b),($d,$f),($c,$c)\}\)",
+    "\(\{($a,$a),($b,$e),($b,$b),($c,$c),($e,$b),($d,$d)\}\)",
+    "\(\{($c,$b),($a,$a),($b,$c),($d,$e),($e,$d)\}\)",
+    "\(\{($a,$b),($a,$a),($c,$d),($b,$b),($d,$c),($b,$a)\}\)",
+    "\(\{($a,$a),($b,$c),($b,$b),($c,$c),($c,$b)\}\)",
+    "\(\{($e,$f),($a,$a),($b,$c),($b,$b),($f,$e),($c,$c),($c,$b)\}\)",
+    "\(\{($a,$b),($c,$d),($d,$c),($a,$e),($e,$a),($b,$a)\}\)",
+    "\(\{($a,$b),($b,$a)\}\)",
+    );
+
+@nonobservables = (
+    "\(\($c,$d)",
+    "\(\{($a,$a),($c,$d)\}\)",
+    "\(\{($a,$a),($b,$b),($a,$b)\}\)",
+    "\(\{($a,$a),($a,$c),($b,$b),($c,$b),($c,$c)\}\)",
+    "\(\{($f,$e),($a,$a),($e,$f),($b,$b),($c,$d),($c,$c),($d,$d)\}\)",
+    "\(\{($a,$a),($b,$e),($c,$c),($e,$d),($e,$e)\}\)",
+    "\(\{($a,$b),($b,$c),($c,$d),($d,$e),($e,$f),($f,$a)\}\)",
+    "\(\{($a,$a),($b,$c),($c,$b),($a,$c)\}\)",
+    "\(\{($a,$a),($b,$c),($b,$b),($e,$f),($c,$b)\}\)",
+    "\(\{($a,$e),($a,$c),($b,$b),($c,$d),($c,$c)\}\)",
+    "\(\{($e,$a),($f,$d),($b,$b),($d,$f),($c,$c)\}\)",
+    "\(\{($e,$a),($b,$e),($c,$b),($c,$c),($e,$b),($d,$d)\}\)",
+    );
+
+$obsnum = random(3,7);
+$nonobsnum = 10 - $obsnum;
+
+@obsindex = NchooseK($#observables, $obsnum);
+@nonobsindex = NchooseK($#nonobservables, $nonobsnum);
+
+@obschoices = @observables[@obsindex];
+@nonobschoices = @nonobservables[@nonobsindex];
+
+$obsstr = join("<BR>", @obschoices);
+$nonobsstr = join("<BR>", @nonobschoices);
+
+$mc = new_checkbox_multiple_choice();
+
+$mc -> qa (
+"Select all events that are observable.",
+@obschoices
+);
+
+$mc -> extra(@nonobschoices);
+
+###########################
+#  Main text
+
+BEGIN_PGML
+An experiment consists of two indistinguishable six sided dice. The sample space for
+this experiment can be modelled with the set
+
+>>[` S = \{1,2,3,4,5,6\}^2 `]<<
+
+Which of the following subsets of [` S `] are observable events in this experiment?
+
+[@ $mc -> print_q() @]***
+[@ $mc -> print_a() @]***
+END_PGML
+
+
+############################
+#  Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 0;
+
+ANS( checkbox_cmp( $mc->correct_ans() ) );
+
+
+############################
+#  Solution
+
+BEGIN_PGML_SOLUTION
+Since the two dice are _indistinguishable_ from each other, any event that contains an outcome [` (a,b) `] for $a \neq b$
+must also contain the outcome [` (b,a) `].
+
+The following are observable events:
+
+[$obsstr]*
+
+The following are not:
+
+[$nonobsstr]*
+
+The correct answer is [$mc->correct_ans()].
+END_PGML_SOLUTION
+
+COMMENT('MathObject version. Uses PGML.');
+
+ENDDOCUMENT();
