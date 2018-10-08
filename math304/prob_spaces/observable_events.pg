@@ -329,7 +329,7 @@ BEGIN_PGML
 An experiment consists of tossing three coins: two completely indistinguishable quarters and one penny.  The sample space for
 this experiment can be modelled with the following set:
 
->>[` S = `]{TTt, TTh, THt, THh, HTt, HTh, HHt, HHh}<<
+>>[` S = {}`]{TTt, TTh, THt, THh, HTt, HTh, HHt, HHh}<<
 
 where for example *THt* means _tail_ on the first quarter, _head_ on the second quarter, and _tail_ on the penny.
 
