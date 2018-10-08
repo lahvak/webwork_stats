@@ -56,7 +56,7 @@ if ($part) {
     } else {
     $e1 = Compute("{$perm[0]}");
     $e2 = Compute("{$perm[1]}");
-    $e3 = Compute("{perm[2], $perm[3], $perm[4]}");
+    $e3 = Compute("{$perm[2], $perm[3], $perm[4]}");
     }
 
 $given1 = $e1;
