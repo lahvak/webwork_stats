@@ -48,6 +48,7 @@ TEXT(beginproblem());
 $part = random(0,1);
 
 Context("Interval");
+Context()->constants->add(S => Compute("{1,2,3,4,5}"));
 
 if ($part) {
     $e1 = Compute("{$perm[0]}");
