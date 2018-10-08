@@ -74,7 +74,7 @@ $ans = Compute("$required1, $required2, $required3, $required4, $required5");
 #  Main text
 
 BEGIN_PGML
-The sample space of an experiment is [` S = \{ [@sspace] \} `].  Three of the observable events are
+The sample space of an experiment is [` S = \{1, 2, 3, 4, 5\} `].  Three of the observable events are
 [` \emptyset `], [` [$given1] `] and [` [$given2] `].
 
 List the *remaining* observable events that are necessary to obtain the smallest [` \sigma `]-field of subsets 
