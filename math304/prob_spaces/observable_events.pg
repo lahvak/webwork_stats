@@ -1,0 +1,373 @@
+## DESCRIPTION
+## Probability spaces: observable events
+## ENDDESCRIPTION
+
+## KEYWORDS('probability', 'probability space', 'events')
+
+## DBsubject(Probability)
+## DBchapter(Probability Axioms)
+## DBsection(Observabel Events)
+## Date(10/07/2018)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## TitleText1('')
+## EditionText1('')
+## AuthorText1('')
+## Section1('')
+## Problem1('')
+
+
+###########################
+#  Initialization
+
+DOCUMENT();  
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGchoicemacros.pl",
+  "PGML.pl",
+  "PGcourse.pl"
+);
+
+TEXT(beginproblem());
+
+
+###########################
+#  Setup
+
+# Observable events:
+
+@observables = (
+    '{HHt}',
+    '{TTh}',
+    '{TTt}',
+    '{HHh}',
+    '{HHt, TTh}',
+    '{HHt, TTt}',
+    '{HHt, HHh}',
+    '{THt, HTt}',
+    '{HTh, THh}',
+    '{TTh, TTt}',
+    '{TTh, HHh}',
+    '{TTt, HHh}',
+    '{HHt, THt, HTt}',
+    '{HTh, HHt, THh}',
+    '{HHt, TTh, TTt}',
+    '{HHt, TTh, HHh}',
+    '{HHt, TTt, HHh}',
+    '{THt, TTh, HTt}',
+    '{TTt, THt, HTt}',
+    '{THt, HTt, HHh}',
+    '{HTh, THh, TTh}',
+    '{HTh, THh, TTt}',
+    '{HTh, THh, HHh}',
+    '{TTh, TTt, HHh}',
+    '{HHt, THt, TTh, HTt}',
+    '{TTt, HHt, THt, HTt}',
+    '{HHt, THt, HTt, HHh}',
+    '{HTh, HHt, THh, TTh}',
+    '{HTh, HHt, THh, TTt}',
+    '{HTh, HHt, THh, HHh}',
+    '{HHt, TTh, TTt, HHh}',
+    '{HTh, THt, HTt, THh}',
+    '{TTt, THt, TTh, HTt}',
+    '{THt, TTh, HTt, HHh}',
+    '{TTt, THt, HTt, HHh}',
+    '{HTh, THh, TTh, TTt}',
+    '{HTh, THh, TTh, HHh}',
+    '{HTh, THh, TTt, HHh}',
+    '{HTh, HHt, THt, HTt, THh}',
+    '{TTt, HHt, THt, TTh, HTt}',
+    '{HHt, THt, TTh, HTt, HHh}',
+    '{TTt, HHt, THt, HTt, HHh}',
+    '{HTh, HHt, THh, TTh, TTt}',
+    '{HTh, HHt, THh, TTh, HHh}',
+    '{HTh, HHt, THh, TTt, HHh}',
+    '{HTh, THt, TTh, HTt, THh}',
+    '{HTh, THt, HTt, TTt, THh}',
+    '{HTh, HHh, THt, HTt, THh}',
+    '{TTt, THt, TTh, HTt, HHh}',
+    '{HTh, THh, TTh, TTt, HHh}',
+    '{HHt, THt, HTh, THh, TTh, HTt}',
+    '{HHt, THt, HTh, THh, HTt, TTt}',
+    '{HHt, THt, HTh, THh, HTt, HHh}',
+    '{HHt, THt, TTh, HTt, TTt, HHh}',
+    '{HHt, HTh, THh, TTh, TTt, HHh}',
+    '{THt, HTh, THh, TTh, HTt, TTt}',
+    '{THt, HTh, THh, TTh, HTt, HHh}',
+    '{THt, HTh, THh, HTt, TTt, HHh}',
+    '{HHt, THt, HTh, THh, TTh, HTt, TTt}',
+    '{HHt, THt, HTh, THh, TTh, HTt, HHh}',
+    '{HHt, THt, HTh, THh, HTt, TTt, HHh}',
+    '{THt, HTh, THh, TTh, HTt, TTt, HHh}',
+    '{HHt, THt, HTh, THh, TTh, HTt, TTt, HHh}',
+    );
+
+# Non-observable events
+
+@nonobservables = (
+    '{THt}',
+    '{HTh}',
+    '{THh}',
+    '{HTt}',
+    '{HHt, THt}',
+    '{HTh, HHt}',
+    '{HHt, THh}',
+    '{HHt, HTt}',
+    '{HTh, THt}',
+    '{THt, THh}',
+    '{THt, TTh}',
+    '{THt, TTt}',
+    '{THt, HHh}',
+    '{HTh, TTh}',
+    '{HTh, HTt}',
+    '{HTh, TTt}',
+    '{HTh, HHh}',
+    '{THh, TTh}',
+    '{THh, HTt}',
+    '{THh, TTt}',
+    '{THh, HHh}',
+    '{TTh, HTt}',
+    '{TTt, HTt}',
+    '{HTt, HHh}',
+    '{HTh, HHt, THt}',
+    '{HHt, THt, THh}',
+    '{HHt, THt, TTh}',
+    '{HHt, THt, TTt}',
+    '{HHt, THt, HHh}',
+    '{HTh, HHt, TTh}',
+    '{HTh, HHt, HTt}',
+    '{HTh, HHt, TTt}',
+    '{HTh, HHt, HHh}',
+    '{HHt, THh, TTh}',
+    '{HHt, THh, HTt}',
+    '{HHt, THh, TTt}',
+    '{HHt, THh, HHh}',
+    '{HHt, TTh, HTt}',
+    '{TTt, HHt, HTt}',
+    '{HHt, HTt, HHh}',
+    '{HTh, THt, THh}',
+    '{HTh, THt, TTh}',
+    '{HTh, THt, HTt}',
+    '{HTh, THt, TTt}',
+    '{HTh, THt, HHh}',
+    '{THt, TTh, THh}',
+    '{THt, HTt, THh}',
+    '{THt, TTt, THh}',
+    '{HHh, THt, THh}',
+    '{THt, TTh, TTt}',
+    '{THt, TTh, HHh}',
+    '{THt, TTt, HHh}',
+    '{HTh, THh, HTt}',
+    '{HTh, TTh, HTt}',
+    '{HTh, TTh, TTt}',
+    '{HTh, TTh, HHh}',
+    '{HTh, HTt, TTt}',
+    '{HTh, HTt, HHh}',
+    '{HTh, TTt, HHh}',
+    '{THh, TTh, HTt}',
+    '{THh, TTh, TTt}',
+    '{THh, TTh, HHh}',
+    '{TTt, THh, HTt}',
+    '{THh, HTt, HHh}',
+    '{THh, TTt, HHh}',
+    '{TTt, TTh, HTt}',
+    '{TTh, HTt, HHh}',
+    '{TTt, HTt, HHh}',
+    '{HTh, HHt, THt, THh}',
+    '{HTh, HHt, THt, TTh}',
+    '{HTh, HHt, THt, HTt}',
+    '{HTh, HHt, THt, TTt}',
+    '{HTh, HHt, THt, HHh}',
+    '{HHt, THt, TTh, THh}',
+    '{HHt, THt, HTt, THh}',
+    '{HHt, THt, TTt, THh}',
+    '{HHt, THt, HHh, THh}',
+    '{HHt, THt, TTh, TTt}',
+    '{HHt, THt, TTh, HHh}',
+    '{HHt, THt, TTt, HHh}',
+    '{HTh, HHt, THh, HTt}',
+    '{HTh, HHt, TTh, HTt}',
+    '{HTh, HHt, TTh, TTt}',
+    '{HTh, HHt, TTh, HHh}',
+    '{HTh, HHt, HTt, TTt}',
+    '{HTh, HHt, HTt, HHh}',
+    '{HTh, HHt, TTt, HHh}',
+    '{HHt, THh, TTh, HTt}',
+    '{HHt, THh, TTh, TTt}',
+    '{HHt, THh, TTh, HHh}',
+    '{TTt, HHt, THh, HTt}',
+    '{HHt, THh, HTt, HHh}',
+    '{HHt, THh, TTt, HHh}',
+    '{TTt, HHt, TTh, HTt}',
+    '{HHt, TTh, HTt, HHh}',
+    '{TTt, HHt, HTt, HHh}',
+    '{HTh, THt, TTh, THh}',
+    '{HTh, THt, TTt, THh}',
+    '{HTh, HHh, THt, THh}',
+    '{HTh, THt, TTh, HTt}',
+    '{HTh, THt, TTh, TTt}',
+    '{HTh, THt, TTh, HHh}',
+    '{HTh, THt, HTt, TTt}',
+    '{HTh, THt, HTt, HHh}',
+    '{HTh, THt, TTt, HHh}',
+    '{THt, TTh, HTt, THh}',
+    '{THt, TTh, TTt, THh}',
+    '{HHh, THt, TTh, THh}',
+    '{TTt, THt, HTt, THh}',
+    '{HHh, THt, HTt, THh}',
+    '{HHh, THt, TTt, THh}',
+    '{THt, TTh, TTt, HHh}',
+    '{HTh, THh, TTh, HTt}',
+    '{HTh, THh, HTt, TTt}',
+    '{HTh, THh, HTt, HHh}',
+    '{HTh, TTh, HTt, TTt}',
+    '{HTh, TTh, HTt, HHh}',
+    '{HTh, TTh, TTt, HHh}',
+    '{HTh, HTt, TTt, HHh}',
+    '{TTt, THh, TTh, HTt}',
+    '{THh, TTh, HTt, HHh}',
+    '{THh, TTh, TTt, HHh}',
+    '{TTt, THh, HTt, HHh}',
+    '{TTt, TTh, HTt, HHh}',
+    '{HTh, HHt, THt, TTh, THh}',
+    '{HTh, HHt, THt, TTt, THh}',
+    '{HTh, HHt, THt, HHh, THh}',
+    '{HTh, HHt, THt, TTh, HTt}',
+    '{HTh, HHt, THt, TTh, TTt}',
+    '{HTh, HHt, THt, TTh, HHh}',
+    '{HTh, HHt, THt, HTt, TTt}',
+    '{HTh, HHt, THt, HTt, HHh}',
+    '{HTh, HHt, THt, TTt, HHh}',
+    '{HHt, THt, TTh, HTt, THh}',
+    '{HHt, THt, TTh, TTt, THh}',
+    '{HHt, THt, TTh, HHh, THh}',
+    '{TTt, HHt, THt, HTt, THh}',
+    '{HHt, THt, HHh, HTt, THh}',
+    '{HHt, THt, HHh, TTt, THh}',
+    '{HHt, THt, TTh, TTt, HHh}',
+    '{HTh, HHt, THh, TTh, HTt}',
+    '{HTh, HHt, THh, HTt, TTt}',
+    '{HTh, HHt, THh, HTt, HHh}',
+    '{HTh, HHt, TTh, HTt, TTt}',
+    '{HTh, HHt, TTh, HTt, HHh}',
+    '{HTh, HHt, TTh, TTt, HHh}',
+    '{HTh, HHt, HTt, TTt, HHh}',
+    '{TTt, HHt, THh, TTh, HTt}',
+    '{HHt, THh, TTh, HTt, HHh}',
+    '{HHt, THh, TTh, TTt, HHh}',
+    '{TTt, HHt, THh, HTt, HHh}',
+    '{TTt, HHt, TTh, HTt, HHh}',
+    '{HTh, THt, TTh, TTt, THh}',
+    '{HTh, HHh, THt, TTh, THh}',
+    '{HTh, HHh, THt, TTt, THh}',
+    '{HTh, THt, TTh, HTt, TTt}',
+    '{HTh, THt, TTh, HTt, HHh}',
+    '{HTh, THt, TTh, TTt, HHh}',
+    '{HTh, THt, HTt, TTt, HHh}',
+    '{TTt, THt, TTh, HTt, THh}',
+    '{HHh, THt, TTh, HTt, THh}',
+    '{HHh, THt, TTh, TTt, THh}',
+    '{TTt, HHh, THt, HTt, THh}',
+    '{HTh, THh, TTh, HTt, TTt}',
+    '{HTh, THh, TTh, HTt, HHh}',
+    '{HTh, THh, HTt, TTt, HHh}',
+    '{HTh, TTh, HTt, TTt, HHh}',
+    '{TTt, THh, TTh, HTt, HHh}',
+    '{HHt, THt, HTh, THh, TTh, TTt}',
+    '{HHt, THt, HTh, THh, TTh, HHh}',
+    '{HHt, THt, HTh, THh, TTt, HHh}',
+    '{HHt, THt, HTh, TTh, HTt, TTt}',
+    '{HHt, THt, HTh, TTh, HTt, HHh}',
+    '{HHt, THt, HTh, TTh, TTt, HHh}',
+    '{HHt, THt, HTh, HTt, TTt, HHh}',
+    '{HHt, THt, THh, TTh, HTt, TTt}',
+    '{HHt, THt, THh, TTh, HTt, HHh}',
+    '{HHt, THt, THh, TTh, TTt, HHh}',
+    '{HHt, THt, THh, HTt, TTt, HHh}',
+    '{HHt, HTh, THh, TTh, HTt, TTt}',
+    '{HHt, HTh, THh, TTh, HTt, HHh}',
+    '{HHt, HTh, THh, HTt, TTt, HHh}',
+    '{HHt, HTh, TTh, HTt, TTt, HHh}',
+    '{HHt, THh, TTh, HTt, TTt, HHh}',
+    '{THt, HTh, THh, TTh, TTt, HHh}',
+    '{THt, HTh, TTh, HTt, TTt, HHh}',
+    '{THt, THh, TTh, HTt, TTt, HHh}',
+    '{HTh, THh, TTh, HTt, TTt, HHh}',
+    '{HHt, THt, HTh, THh, TTh, TTt, HHh}',
+    '{HHt, THt, HTh, TTh, HTt, TTt, HHh}',
+    '{HHt, THt, THh, TTh, HTt, TTt, HHh}',
+    '{HHt, HTh, THh, TTh, HTt, TTt, HHh}',
+    );
+
+$obsnum = random(3,7);
+$nonobsnum = 10 - $obsnum;
+
+@obsindex = NchooseK($#observables, $obsnum);
+@nonobsindex = NchooseK($#nonobservables, $nonobsnum);
+
+@obschoices = @observables[@obsindex];
+@nonobschoices = @nonobservables[@nonobsindex];
+
+$obsstr = join("<BR>", @obschoices);
+$nonobsstr = join("<BR>", @nonobschoices);
+
+$mc = new_checkbox_multiple_choice();
+
+$mc -> qa (
+"Select all events that are observable.",
+@obschoices
+);
+
+$mc -> extra(@nonobschoices);
+
+###########################
+#  Main text
+
+BEGIN_PGML
+An experiment consists of tossing three coins: two completely indistinguishable quarters and one penny.  The sample space for
+this experiment can be modelled with the following set:
+
+>>[` S = `]{TTt, TTh, THt, THh, HTt, HTh, HHt, HHh}<<
+
+where for example *THt* means _tail_ on the first quarter, _head_ on the second quarter, and _tail_ on the penny.
+
+Which of the following subsets of [` S `] are observable events in this experiment?
+
+[@ $mc -> print_q() @]***
+[@ $mc -> print_a() @]***
+END_PGML
+
+
+############################
+#  Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 0;
+
+ANS( checkbox_cmp( $mc->correct_ans() ) );
+
+
+############################
+#  Solution
+
+BEGIN_PGML_SOLUTION
+Since the two quarters are _indistinguishable_ from each other, any event that contains an outcome *HTs* must also contain the outcome
+*THs* and vice versa, where *s* is one of *t* or *h*.
+
+The following are observable events:
+
+[$obsstr]
+
+The following are not:
+
+[$nonobsstr]
+
+The correct answer is [$mc->correct_ans()].
+END_PGML_SOLUTION
+
+COMMENT('MathObject version. Uses PGML.');
+
+ENDDOCUMENT();
