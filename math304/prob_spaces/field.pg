@@ -103,5 +103,7 @@ Let [` A = [$given1] `] and [` B = [$given2] `].
 * Finally, the entire sample space [` S `] must be an event.
 
 No other subset is needed.
+
+The correct answer is [` [$ans] `].
 END_PGML_SOLUTION
 ENDDOCUMENT();
