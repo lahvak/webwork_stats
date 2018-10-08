@@ -47,7 +47,7 @@ TEXT(beginproblem());
 
 $part = random(0,1);
 
-Context{"Interval");
+Context("Interval");
 
 if ($part) {
     $e1 = Compute("{$perm[0]}");
