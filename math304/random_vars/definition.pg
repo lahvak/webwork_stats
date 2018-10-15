@@ -81,8 +81,6 @@ $E = Compute("{}, $e1, $e2, $e3, $e4, $e5, $e6, $e7");
 @mapnames = "XYZW";
 @mapindex = NchooseK(4,4);
 @mapnameslist = @mapnames[@mapindex];
-@maps = [@g0od, @alwaysgood, @bad, @alwaysbad];
-@maplist[@mapindex] = @maps;
 
 if ($mapindex[0] == 0) {
         @mapX = @good;
