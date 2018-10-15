@@ -76,7 +76,7 @@ $e5 = $e2 + $e3;
 $e6 = $e1 + $e3;
 $e7 = $e1 + $e2 + $e3;
 
-$E = Compute("{{}, $e1, $e2, $e3, $e4, $e5, $e6, $e7}");
+$E = Compute("{}, $e1, $e2, $e3, $e4, $e5, $e6, $e7");
 
 @mapnames = "XYZW";
 @mapindex = NchooseK(4,4);
@@ -94,7 +94,8 @@ $E = Compute("{{}, $e1, $e2, $e3, $e4, $e5, $e6, $e7}");
 #  Main text
 
 BEGIN_PGML
-The sample space of an experiment is [` S = \{1, 2, 3, 4, 5\} `].  The collection of observable events is [` \mathcal{E} = [$E] `].
+The sample space of an experiment is [` S = \{1, 2, 3, 4, 5\} `].  The collection of observable events is 
+[` \mathcal{E} = \left\{ [$E] \right\} `].
 
 [@ DataTable( [@sspace, @good] ) @]***
 
