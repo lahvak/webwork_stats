@@ -106,7 +106,7 @@ $E = Compute("{}, $e1, $e2, $e3, $e4, $e5, $e6, $e7");
 @maplist = @maps[@mapindex];
 
 sub RVVals {
-    my %RV = %{$_[0]};
+    my %RV = @_;
 
     return [$RV{$sspace[0]},
           $RV{$sspace[1]},
@@ -120,7 +120,7 @@ sub RVVals {
 %mapZ = %$maplist[$mapsmap{'Z'}];
 %mapW = %$maplist[$mapsmap{'W'}];
 
-@xvals = RVVals(\%mapX);
+@xvals = RVVals(%mapX);
 
 ###########################
 #  Main text
