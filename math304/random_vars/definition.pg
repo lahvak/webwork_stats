@@ -1,0 +1,145 @@
+## DESCRIPTION
+## Probability spaces: observable events
+## ENDDESCRIPTION
+
+## KEYWORDS('probability', 'probability space', 'random variable', 'definition')
+
+## DBsubject(Probability)
+## DBchapter(Random Variables)
+## DBsection(Definition of random variable)
+## Date(10/12/2018)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## TitleText1('')
+## EditionText1('')
+## AuthorText1('')
+## Section1('')
+## Problem1('')
+
+
+###########################
+#  Initialization
+
+DOCUMENT();  
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGchoicemacros.pl",
+  "PGML.pl",
+  "PGcourse.pl",
+  "niceTables.pl"
+);
+
+TEXT(beginproblem());
+
+
+###########################
+#  Setup
+
+$showPartialCorrectAnswers = 1;
+
+@sspace = 1..5;
+
+@slice = NchooseK(5,5);
+@perm = @sspace[@slice];
+
+$part = random(0,1);
+
+@range = 1..20;
+@outslice = NchooseK(20,5);
+@outputs = @range[@outslice];
+
+Context("Interval");
+
+%map1 = ($perm[0] => $outputs[0], 
+         $perm[1] => $outputs[1],
+         $perm[2] => $outputs[1],
+         $perm[3] => $outputs[2],
+         $perm[4] => $outputs[2],
+         );
+%map2 = ($perm[0] => $outputs[4], 
+         $perm[1] => $outputs[3],
+         $perm[2] => $outputs[2],
+         $perm[3] => $outputs[2],
+         $perm[4] => $outputs[2],
+         );
+%alwaysgood = ($perm[0] => $outputs[2], 
+         $perm[1] => $outputs[3],
+         $perm[2] => $outputs[3],
+         $perm[3] => $outputs[3],
+         $perm[4] => $outputs[3],
+         );
+%alwaysbad = ($perm[0] => $outputs[4], 
+         $perm[1] => $outputs[2],
+         $perm[2] => $outputs[2],
+         $perm[3] => $outputs[2],
+         $perm[4] => $outputs[1],
+         );
+
+if ($part) {
+    $e1 = Compute("{$perm[0]}");
+    $e2 = Compute("{$perm[1], $perm[2]}");
+    $e3 = Compute("{$perm[3], $perm[4]}");
+    %good = %map1;
+    %bad = %map2;
+    } else {
+    $e1 = Compute("{$perm[0]}");
+    $e2 = Compute("{$perm[1]}");
+    $e3 = Compute("{$perm[2], $perm[3], $perm[4]}");
+    %good = %map2;
+    %bad = %map1;
+    } else {
+    }
+
+$e4 = $e1 + $e2;
+$e5 = $e2 + $e3;
+$e6 = $e1 + $e3;
+$e7 = $e1 + $e2 + $e3;
+
+$E = Compute("{}, $e1, $e2, $e3, $e4, $e5, $e6, $e7");
+
+@mapnames = "XYZW";
+@mapindex = NchooseK(4,4);
+@mapnameslist = @mapnames[@mapindex];
+@mapsmap = @mapindex{@mapnames};
+@maps = (%good, %alwaysgood, %bad, %alwaysbad);
+@maplist = @maps[@mapindex];
+
+sub printRV {
+    my %RV = @_;
+
+    DataTable(
+        [@sspace,
+         [$RV{$sspace[0]},
+          $RV{$sspace[1]},
+          $RV{$sspace[2]},
+          $RV{$sspace[3]},
+          $RV{$sspace[4]}]])
+}
+
+%mapX = %$maplist[$mapsmap{'X'}]
+%mapY = %$maplist[$mapsmap{'Y'}]
+%mapZ = %$maplist[$mapsmap{'Z'}]
+%mapW = %$maplist[$mapsmap{'W'}]
+
+###########################
+#  Main text
+
+BEGIN_PGML
+The sample space of an experiment is [` S = \{1, 2, 3, 4, 5\} `].  The collection of observable events is [` \mathcal{E} = [$E] `].
+
+[@ printRV(\%mapX) @]***
+
+END_PGML
+
+
+############################
+#  Answer evaluation
+
+############################
+#  Solution
+
+BEGIN_PGML_SOLUTION
+END_PGML_SOLUTION
+ENDDOCUMENT();
