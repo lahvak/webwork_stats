@@ -61,13 +61,13 @@ if ($part) {
     $e1 = Compute("{$perm[0]}");
     $e2 = Compute("{$perm[1], $perm[2]}");
     $e3 = Compute("{$perm[3], $perm[4]}");
-    $good = \@map1;
+    $g0od = \@map1;
     $bad = \@map2;
     } else {
     $e1 = Compute("{$perm[0]}");
     $e2 = Compute("{$perm[1]}");
     $e3 = Compute("{$perm[2], $perm[3], $perm[4]}");
-    $good = \@map2;
+    $g0od = \@map2;
     $bad = \@map1;
     };
 
@@ -81,10 +81,10 @@ $E = Compute("{}, $e1, $e2, $e3, $e4, $e5, $e6, $e7");
 @mapnames = "XYZW";
 @mapindex = NchooseK(4,4);
 @mapnameslist = @mapnames[@mapindex];
-@maps = ($good, \@alwaysgood, $bad, \@alwaysbad);
+@maps = ($g0od, \@alwaysgood, $bad, \@alwaysbad);
 @maplist[@mapindex] = @maps;
 
-@mapX = @$good; #$maplist[0];
+@mapX = @$g0od; #$maplist[0];
 @mapY = $maplist[1];
 @mapZ = $maplist[2];
 @mapW = $maplist[3];
