@@ -115,13 +115,13 @@ sub printRV {
           $RV{$sspace[1]},
           $RV{$sspace[2]},
           $RV{$sspace[3]},
-          $RV{$sspace[4]}]])
-}
+          $RV{$sspace[4]}]]);
+};
 
-%mapX = %$maplist[$mapsmap{'X'}]
-%mapY = %$maplist[$mapsmap{'Y'}]
-%mapZ = %$maplist[$mapsmap{'Z'}]
-%mapW = %$maplist[$mapsmap{'W'}]
+%mapX = %$maplist[$mapsmap{'X'}];
+%mapY = %$maplist[$mapsmap{'Y'}];
+%mapZ = %$maplist[$mapsmap{'Z'}];
+%mapW = %$maplist[$mapsmap{'W'}];
 
 ###########################
 #  Main text
