@@ -84,10 +84,10 @@ $E = Compute("{}, $e1, $e2, $e3, $e4, $e5, $e6, $e7");
 @maps = ($g0od, \@alwaysgood, $bad, \@alwaysbad);
 @maplist[@mapindex] = @maps;
 
-@mapX = \@map1; #$maplist[0];
-@mapY = $maplist[1];
-@mapZ = $maplist[2];
-@mapW = $maplist[3];
+@MapX = @{ $g0od }; #$maplist[0];
+@MapY = $maplist[1];
+@MapZ = $maplist[2];
+@MapW = $maplist[3];
 
 ###########################
 #  Main text
@@ -96,7 +96,7 @@ BEGIN_PGML
 The sample space of an experiment is [` S = \{1, 2, 3, 4, 5\} `].  The collection of observable events is 
 [` \mathcal{E} = \left\{ [$E] \right\} `].
 
-[@ DataTable( [[["\\(s\\)", midrule=>1], 1,2,3,4,5], ["\\(X\\)",$mapX->[0], $mapX->[1], $mapX->[2], $mapX->[3], $mapX->[4]]],
+[@ DataTable( [[["\\(s\\)", midrule=>1], 1,2,3,4,5], ["\\(X\\)", $MapX[0], $MapX[1], $MapX[2], $MapX[3], $MapX[4]]],
              align => 'c|c|c|c|c|c') @]***
 
 END_PGML
