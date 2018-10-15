@@ -53,22 +53,41 @@ $part = random(0,1);
 Context("Interval");
 
 @map1[@slice] = @outputs[(0,1,1,2,2)]; 
+@outs1 = @outputs[(0,1,2)];
 @map2[@slice] = @outputs[(4,3,2,2,2)]; 
+@outs2 = @outputs[(4,3,2)];
 @alwaysgood[@slice] = @outputs[(2,3,3,3,3)]; 
+@outsag = @outputs[(2,3)];
+$inag1 = Compute("{$perm[0]}");
+$inag2 = Compute("{$perm[1], $perm[2], $perm[3], $perm[4]}");
 @alwaysbad[@slice] = @outputs[(0,2,2,2,1)]; 
+@outsab = @outputs[(0,2,1)];
+$inab1 = Compute("{$perm[0]}");
+$inab2 = Compute("{$perm[1], $perm[2], $perm[3]}");
+$inab3 = Compute("{$perm[4]}");
 
 if ($part) {
     $e1 = Compute("{$perm[0]}");
     $e2 = Compute("{$perm[1], $perm[2]}");
     $e3 = Compute("{$perm[3], $perm[4]}");
     @good = @map1;
+    @outsgood = @outs1;
     @bad = @map2;
+    @outsbad = @outs2;
+    $inb1 = Compute("{$perm[0]}");
+    $inb2 = Compute("{$perm[1]}");
+    $inb3 = Compute("{$perm[2], $perm[3], $perm[4]}");
     } else {
     $e1 = Compute("{$perm[0]}");
     $e2 = Compute("{$perm[1]}");
     $e3 = Compute("{$perm[2], $perm[3], $perm[4]}");
     @good = @map2;
+    @outsgood = @outs2;
     @bad = @map1;
+    @outsbad = @outs1;
+    $inb1 = Compute("{$perm[0]}");
+    $inb2 = Compute("{$perm[1], $perm[2]}");
+    $inb3 = Compute("{$perm[3], $perm[4]}");
     };
 
 $e4 = $e1 + $e2;
@@ -197,6 +216,18 @@ ANS( checkbox_cmp( $mc->correct_ans() ) );
 
 ############################
 #  Solution
+
+According to the definition of random variable, a function [` F\colon S \to \mathbb{R} `] is a random variable
+if for every [` y \in \mathbb{R} `], the set [` F^{-1}\left(\left(-\infty, y\right]\right) `] is in the collection
+of observable events [` \mathcal{E} `].
+
+For a function [` F `] with finitely many possible values, it is easy to prove
+(exercise) that the necessary and sufficient condition for being 
+a random variable is that [` F^{-1}({x}) \in \mathcal{E} `] for each [` x \in F(S) `].
+
+The function [` [$mapnamelist[0]] `] is a random variable.  The possible values are [` [$outsgood[0]] `], [` [$outsgood[1]] `] and
+[` [$outsgood[2]] `].  [` [$mapnameslist[0]]^{-1}([$outsgood[0]]) = [$e1] `], [` [$mapnameslist[0]]^{-1}([$outsgood[1]]) = [$e2] `] and 
+[` [$mapnameslist[0]]^{-1}([$outsgood[2]]) = [$e3] `].  All of those are in [` \mathcal{E} `].
 
 BEGIN_PGML_SOLUTION
 END_PGML_SOLUTION
