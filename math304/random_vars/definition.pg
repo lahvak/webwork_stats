@@ -84,7 +84,7 @@ $E = Compute("{}, $e1, $e2, $e3, $e4, $e5, $e6, $e7");
 @maps = ($g0od, \@alwaysgood, $bad, \@alwaysbad);
 @maplist[@mapindex] = @maps;
 
-@MapX = @{ $g0od }; #$maplist[0];
+~~@MapX = ~~@{ $g0od }; #$maplist[0];
 @MapY = $maplist[1];
 @MapZ = $maplist[2];
 @MapW = $maplist[3];
