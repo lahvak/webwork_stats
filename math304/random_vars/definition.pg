@@ -224,11 +224,22 @@ of observable events [` \mathcal{E} `].
 
 For a function [` F `] with finitely many possible values, it is easy to prove
 (exercise) that the necessary and sufficient condition for being 
-a random variable is that [` F^{-1}({x}) \in \mathcal{E} `] for each [` x \in F(S) `].
+a random variable is that [` F^{-1}(\{x\}) \in \mathcal{E} `] for each [` x \in F(S) `].
 
 The function [` [$mapnamelist[0]] `] is a random variable.  The possible values are [` [$outsgood[0]] `], [` [$outsgood[1]] `] and
 [` [$outsgood[2]] `].  [` [$mapnameslist[0]]^{-1}([$outsgood[0]]) = [$e1] `], [` [$mapnameslist[0]]^{-1}([$outsgood[1]]) = [$e2] `] and 
 [` [$mapnameslist[0]]^{-1}([$outsgood[2]]) = [$e3] `].  All of those are in [` \mathcal{E} `].
 
+The function [` [$mapnamelist[1]] `] is a random variable.  The possible values are [` [$outsag[0]] `] and [` [$outsag[1]] `].
+[` [$mapnameslist[1]]^{-1}([$outsag[0]]) = [$inag1] `] and [` [$mapnameslist[1]]^{-1}([$outsag[1]]) = [$inag2] `].
+Both of those are in [` \mathcal{E} `].
+
+The function [` [$mapnamelist[2]] `] is *not* a random variable.  The possible values are [` [$outsbad[0]] `], [` [$outsbad[1]] `] and
+[` [$outsbad[2]] `].  [` [$mapnameslist[2]]^{-1}([$outsbad[0]]) = [$inb1] `], [` [$mapnameslist[2]]^{-1}([$outsbad[1]]) = [$inb2] `] and 
+[` [$mapnameslist[2]]^{-1}([$outsbad[2]]) = [$inb3] `].  Out of those, [` [$inb2] `] and [` [$inb3] `] are *not* in [` \mathcal{E} `].
+
+The function [` [$mapnamelist[3]] `] is *not* a random variable.  The possible values are [` [$outsab[0]] `], [` [$outsab[1]] `] and
+[` [$outsab[2]] `].  [` [$mapnameslist[3]]^{-1}([$outsab[0]]) = [$inab1] `], [` [$mapnameslist[3]]^{-1}([$outsab[1]]) = [$inab2] `] and 
+[` [$mapnameslist[3]]^{-1}([$outsab[2]]) = [$inab3] `].  Out of those, [` [$inab2] `] and [` [$inab3] `] are *not* in [` \mathcal{E} `].
 END_PGML_SOLUTION
 ENDDOCUMENT();
