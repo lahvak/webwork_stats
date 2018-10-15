@@ -217,6 +217,7 @@ ANS( checkbox_cmp( $mc->correct_ans() ) );
 ############################
 #  Solution
 
+BEGIN_PGML_SOLUTION
 According to the definition of random variable, a function [` F\colon S \to \mathbb{R} `] is a random variable
 if for every [` y \in \mathbb{R} `], the set [` F^{-1}\left(\left(-\infty, y\right]\right) `] is in the collection
 of observable events [` \mathcal{E} `].
@@ -229,6 +230,5 @@ The function [` [$mapnamelist[0]] `] is a random variable.  The possible values 
 [` [$outsgood[2]] `].  [` [$mapnameslist[0]]^{-1}([$outsgood[0]]) = [$e1] `], [` [$mapnameslist[0]]^{-1}([$outsgood[1]]) = [$e2] `] and 
 [` [$mapnameslist[0]]^{-1}([$outsgood[2]]) = [$e3] `].  All of those are in [` \mathcal{E} `].
 
-BEGIN_PGML_SOLUTION
 END_PGML_SOLUTION
 ENDDOCUMENT();
