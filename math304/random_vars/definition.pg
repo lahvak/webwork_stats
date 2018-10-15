@@ -89,8 +89,7 @@ if ($part) {
     $e3 = Compute("{$perm[2], $perm[3], $perm[4]}");
     %good = %map2;
     %bad = %map1;
-    } else {
-    }
+    };
 
 $e4 = $e1 + $e2;
 $e5 = $e2 + $e3;
