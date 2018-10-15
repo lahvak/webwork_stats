@@ -82,12 +82,12 @@ $E = Compute("{}, $e1, $e2, $e3, $e4, $e5, $e6, $e7");
 @mapindex = NchooseK(4,4);
 @mapnameslist = @mapnames[@mapindex];
 @maps = (\@good, \@alwaysgood, \@bad, \@alwaysbad);
-@maplist = @maps[@mapindex];
+@maplist[@mapindex] = @maps;
 
-@mapX = @$maplist[$mapindex[0]];
-@mapY = @$maplist[$mapindex[1]];
-@mapZ = @$maplist[$mapindex[2]];
-@mapW = @$maplist[$mapindex[3]];
+@mapX = $maplist[0];
+@mapY = $maplist[1];
+@mapZ = $maplist[2];
+@mapW = $maplist[3];
 
 ###########################
 #  Main text
