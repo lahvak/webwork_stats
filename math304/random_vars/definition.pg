@@ -108,7 +108,7 @@ $E = Compute("{}, $e1, $e2, $e3, $e4, $e5, $e6, $e7");
 sub printRV {
     my %RV = @_;
 
-    DataTable(
+    return DataTable(
         [@sspace,
          [$RV{$sspace[0]},
           $RV{$sspace[1]},
