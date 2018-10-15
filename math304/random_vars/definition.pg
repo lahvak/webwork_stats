@@ -102,7 +102,7 @@ Maplist0: [$maplist[0]]
 
 Maplist0->0: [$maplist[0]->[0]]
 
-[@ DataTable( [[["\\(s\\)", midrule=>1], 1,2,3,4,5], ["\\(X\\)",[$mapX->[0]], [$mapX->[1]], [$mapX->[2]], [$mapX->[3]], [$mapX->[4]]]],
+[@ DataTable( [[["\\(s\\)", midrule=>1], 1,2,3,4,5], ["\\(X\\)",[$mapX[0]], [$mapX[1]], [$mapX[2]], [$mapX[3]], [$mapX[4]]]],
              align => 'c|c|c|c|c|c') @]***
 
 END_PGML
