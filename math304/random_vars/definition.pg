@@ -61,14 +61,14 @@ if ($part) {
     $e1 = Compute("{$perm[0]}");
     $e2 = Compute("{$perm[1], $perm[2]}");
     $e3 = Compute("{$perm[3], $perm[4]}");
-    $g0od = \@map1;
-    $bad = \@map2;
+    @g0od = @map1;
+    @bad = @map2;
     } else {
     $e1 = Compute("{$perm[0]}");
     $e2 = Compute("{$perm[1]}");
     $e3 = Compute("{$perm[2], $perm[3], $perm[4]}");
-    $g0od = \@map2;
-    $bad = \@map1;
+    @g0od = @map2;
+    @bad = @map1;
     };
 
 $e4 = $e1 + $e2;
@@ -81,13 +81,11 @@ $E = Compute("{}, $e1, $e2, $e3, $e4, $e5, $e6, $e7");
 @mapnames = "XYZW";
 @mapindex = NchooseK(4,4);
 @mapnameslist = @mapnames[@mapindex];
-@maps = ($g0od, \@alwaysgood, $bad, \@alwaysbad);
-@maplist[@mapindex] = @maps;
 
-~~@MapX = ~~@{ $g0od }; #$maplist[0];
-@MapY = $maplist[1];
-@MapZ = $maplist[2];
-@MapW = $maplist[3];
+@mapX = @g0od; #$maplist[0];
+@mapY = $maplist[1];
+@mapZ = $maplist[2];
+@mapW = $maplist[3];
 
 ###########################
 #  Main text
@@ -96,7 +94,7 @@ BEGIN_PGML
 The sample space of an experiment is [` S = \{1, 2, 3, 4, 5\} `].  The collection of observable events is 
 [` \mathcal{E} = \left\{ [$E] \right\} `].
 
-[@ DataTable( [[["\\(s\\)", midrule=>1], 1,2,3,4,5], ["\\(X\\)", $MapX[0], $MapX[1], $MapX[2], $MapX[3], $MapX[4]]],
+[@ DataTable( [[["\\(s\\)", midrule=>1], 1,2,3,4,5], ["\\(X\\)",$mapX[0], $mapX[1], $mapX[2], $mapX[3], $mapX[4]]],
              align => 'c|c|c|c|c|c') @]***
 
 END_PGML
