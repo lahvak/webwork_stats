@@ -52,10 +52,10 @@ $part = random(0,1);
 
 Context("Interval");
 
-$map1[@perm] = @outputs[(0,1,1,2,2)]; 
-$map2[@perm] = @outputs[(4,3,2,2,2)]; 
-$alwaysgood[@perm] = @outputs[(2,3,3,3,3)]; 
-$alwaysbad[@perm] = @outputs[(0,2,2,2,1)]; 
+@map1[@perm] = @outputs[(0,1,1,2,2)]; 
+@map2[@perm] = @outputs[(4,3,2,2,2)]; 
+@alwaysgood[@perm] = @outputs[(2,3,3,3,3)]; 
+@alwaysbad[@perm] = @outputs[(0,2,2,2,1)]; 
 
 if ($part) {
     $e1 = Compute("{$perm[0]}");
