@@ -102,20 +102,8 @@ $E = Compute("{}, $e1, $e2, $e3, $e4, $e5, $e6, $e7");
 @mapindex = NchooseK(4,4);
 @mapnameslist = @mapnames[@mapindex];
 @mapsmap = @mapindex{@mapnames};
-@maps = (%good, %alwaysgood, %bad, %alwaysbad);
+@maps = (\%good, \%alwaysgood, \%bad, \%alwaysbad);
 @maplist = @maps[@mapindex];
-
-sub RVVals {
-    my %RV = @_;
-
-    return (
-          $RV{$sspace[0]},
-          $RV{$sspace[1]},
-          $RV{$sspace[2]},
-          $RV{$sspace[3]},
-          $RV{$sspace[4]}
-          );
-};
 
 %mapX = %$maplist[$mapsmap{'X'}];
 %mapY = %$maplist[$mapsmap{'Y'}];
