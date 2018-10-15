@@ -96,7 +96,7 @@ BEGIN_PGML
 The sample space of an experiment is [` S = \{1, 2, 3, 4, 5\} `].  The collection of observable events is 
 [` \mathcal{E} = \left\{ [$E] \right\} `].
 
-[@ DataTable( [@sspace, @good] ) @]***
+[@ DataTable( [[1,2,3,4,5], [$good[0], $good[1], $good[2], $good[3], $good[4]] ) @]***
 
 [@ DataTable( [@sspace, @mapX] ) @]***
 
