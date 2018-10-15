@@ -52,43 +52,23 @@ $part = random(0,1);
 
 Context("Interval");
 
-my %map1{Int} = ($perm[0] => $outputs[0], 
-         $perm[1] => $outputs[1],
-         $perm[2] => $outputs[1],
-         $perm[3] => $outputs[2],
-         $perm[4] => $outputs[2],
-         );
-my %map2{Int} = ($perm[0] => $outputs[4], 
-         $perm[1] => $outputs[3],
-         $perm[2] => $outputs[2],
-         $perm[3] => $outputs[2],
-         $perm[4] => $outputs[2],
-         );
-my %alwaysgood{Int} = ($perm[0] => $outputs[2], 
-         $perm[1] => $outputs[3],
-         $perm[2] => $outputs[3],
-         $perm[3] => $outputs[3],
-         $perm[4] => $outputs[3],
-         );
-my %alwaysbad{Int} = ($perm[0] => $outputs[4], 
-         $perm[1] => $outputs[2],
-         $perm[2] => $outputs[2],
-         $perm[3] => $outputs[2],
-         $perm[4] => $outputs[1],
-         );
+$map1[@perm] = @outputs[(0,1,1,2,2)]; 
+$map2[@perm] = @outputs[(4,3,2,2,2)]; 
+$alwaysgood[@perm] = @outputs[(2,3,3,3,3)]; 
+$alwaysbad[@perm] = @outputs[(0,2,2,2,1)]; 
 
 if ($part) {
     $e1 = Compute("{$perm[0]}");
     $e2 = Compute("{$perm[1], $perm[2]}");
     $e3 = Compute("{$perm[3], $perm[4]}");
-    %good = %map1;
-    %bad = %map2;
+    @good = @map1;
+    @bad = @map2;
     } else {
     $e1 = Compute("{$perm[0]}");
     $e2 = Compute("{$perm[1]}");
     $e3 = Compute("{$perm[2], $perm[3], $perm[4]}");
-    %ood = %map2;
-    %bad = %map1;
+    @good = @map2;
+    @bad = @map1;
     };
 
 $e4 = $e1 + $e2;
@@ -96,21 +76,19 @@ $e5 = $e2 + $e3;
 $e6 = $e1 + $e3;
 $e7 = $e1 + $e2 + $e3;
 
-$E = Compute("{}, $e1, $e2, $e3, $e4, $e5, $e6, $e7");
+$E = Compute("{{}, $e1, $e2, $e3, $e4, $e5, $e6, $e7}");
 
 @mapnames = "XYZW";
 @mapindex = NchooseK(4,4);
 @mapnameslist = @mapnames[@mapindex];
 @mapsmap = @mapindex{@mapnames};
-@maps = (\%good, \%alwaysgood, \%bad, \%alwaysbad);
+@maps = (\@good, \@alwaysgood, \@bad, \@alwaysbad);
 @maplist = @maps[@mapindex];
 
-my %mapX{Int} = %$maplist[$mapsmap{'X'}];
-my %mapY{Int} = %$maplist[$mapsmap{'Y'}];
-my %mapZ{Int} = %$maplist[$mapsmap{'Z'}];
-my %mapW{Int} = %$maplist[$mapsmap{'W'}];
-
-@xvals = @mapX{@sspace};
+@mapX = @$maplist[$mapsmap{'X'}];
+@mapY = @$maplist[$mapsmap{'Y'}];
+@mapZ = @$maplist[$mapsmap{'Z'}];
+@mapW = @$maplist[$mapsmap{'W'}];
 
 ###########################
 #  Main text
@@ -118,12 +96,9 @@ my %mapW{Int} = %$maplist[$mapsmap{'W'}];
 BEGIN_PGML
 The sample space of an experiment is [` S = \{1, 2, 3, 4, 5\} `].  The collection of observable events is [` \mathcal{E} = [$E] `].
 
-[$xvals[0]] [$xvals[1]] [$xvals[4]]
+[@ DataTable( [@sspace, @good] ) @]***
 
-[$mapX[0]]
-[$mapX[1]]
-
-[@ DataTable( [@sspace, @xvals] ) @]***
+[@ DataTable( [@sspace, @mapX] ) @]***
 
 END_PGML
 
