@@ -81,13 +81,68 @@ $E = Compute("{}, $e1, $e2, $e3, $e4, $e5, $e6, $e7");
 @mapnames = "XYZW";
 @mapindex = NchooseK(4,4);
 @mapnameslist = @mapnames[@mapindex];
-@maps = [[@g0od], [@alwaysgood], [@bad], [@alwaysbad]];
+@maps = [@g0od, @alwaysgood, @bad, @alwaysbad];
 @maplist[@mapindex] = @maps;
 
-@mapX = @maplist[0];
-@mapY = @maplist[1];
-@mapZ = @maplist[2];
-@mapW = @maplist[3];
+switch ($mapindex[0]) { #Good
+    case 0 {
+        @mapX = @good;
+    }
+    case 1 {
+        @mapY = @good;
+    }
+    case 2 {
+        @mapZ = @good;
+    }
+    case 3 {
+        @mapW = @good;
+    }
+}
+
+switch ($mapindex[1]) { #Good
+    case 0 {
+        @mapX = @alwaysgood;
+    }
+    case 1 {
+        @mapY = @alwaysgood;
+    }
+    case 2 {
+        @mapZ = @alwaysgood;
+    }
+    case 3 {
+        @mapW = @alwaysgood;
+    }
+}
+
+switch ($mapindex[2]) { #Bad
+    case 0 {
+        @mapX = @bad;
+    }
+    case 1 {
+        @mapY = @bad;
+    }
+    case 2 {
+        @mapZ = @bad;
+    }
+    case 3 {
+        @mapW = @bad;
+    }
+}
+
+switch ($mapindex[3]) { #Bad
+    case 0 {
+        @mapX = @alwaysbad;
+    }
+    case 1 {
+        @mapY = @alwaysbad;
+    }
+    case 2 {
+        @mapZ = @alwaysbad;
+    }
+    case 3 {
+        @mapW = @alwaysbad;
+    }
+}
 
 ###########################
 #  Main text
