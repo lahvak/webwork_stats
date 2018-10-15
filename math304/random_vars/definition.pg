@@ -141,10 +141,10 @@ $mc = new_checkbox_multiple_choice();
 
 $mc -> qa (
 "Which of the functions are random variables for this experiment?",
-[$mapnameslist[0], $mapnameslist[1]]
+$mapnameslist[0], $mapnameslist[1]
 );
 
-$mc -> extra([$mapnameslist[2], $mapnameslist[3]]);
+$mc -> extra($mapnameslist[2], $mapnameslist[3]);
 
 
 ###########################
