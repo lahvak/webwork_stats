@@ -86,13 +86,13 @@ if ($mapindex[0] == 0) {
         @RVX = @good;
     }
 if ($mapindex[0] == 1) {
-        @mapY = @good;
+        @RVY = @good;
     }
 if ($mapindex[0] == 2) {
-        @mapZ = @good;
+        @RVZ = @good;
     }
 if ($mapindex[0] == 3) {
-        @mapW = @good;
+        @RVW = @good;
     }
 }
 
@@ -100,13 +100,13 @@ if ($mapindex[1] == 0) {
         @RVX = @alwaysgood;
     }
 if ($mapindex[1] == 1) {
-        @mapY = @alwaysgood;
+        @RVY = @alwaysgood;
     }
 if ($mapindex[1] == 2) {
-        @mapZ = @alwaysgood;
+        @RVZ = @alwaysgood;
     }
 if ($mapindex[1] == 3) {
-        @mapW = @alwaysgood;
+        @RVW = @alwaysgood;
     }
 }
 
@@ -114,13 +114,13 @@ if ($mapindex[2] == 0) {
         @RVX = @bad;
     }
 if ($mapindex[2] == 1) {
-        @mapY = @bad;
+        @RVY = @bad;
     }
 if ($mapindex[2] == 2) {
-        @mapZ = @bad;
+        @RVZ = @bad;
     }
 if ($mapindex[2] == 3) {
-        @mapW = @bad;
+        @RVW = @bad;
     }
 }
 
@@ -128,13 +128,13 @@ if ($mapindex[3] == 0) {
         @RVX = @alwaysbad;
     }
 if ($mapindex[3] == 1) {
-        @mapY = @alwaysbad;
+        @RVY = @alwaysbad;
     }
 if ($mapindex[3] == 2) {
-        @mapZ = @alwaysbad;
+        @RVZ = @alwaysbad;
     }
 if ($mapindex[3] == 3) {
-        @mapW = @alwaysbad;
+        @RVW = @alwaysbad;
     }
 }
 
