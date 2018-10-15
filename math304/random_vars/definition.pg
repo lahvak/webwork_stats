@@ -128,7 +128,7 @@ sub RVVals {
 BEGIN_PGML
 The sample space of an experiment is [` S = \{1, 2, 3, 4, 5\} `].  The collection of observable events is [` \mathcal{E} = [$E] `].
 
-[@ @xvals @]***
+[@ DataTable( [@sspace, @xvals] ) @]***
 
 END_PGML
 
