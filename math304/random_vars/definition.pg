@@ -52,25 +52,25 @@ $part = random(0,1);
 
 Context("Interval");
 
-%map1{Int} = ($perm[0] => $outputs[0], 
+my %map1{Int} = ($perm[0] => $outputs[0], 
          $perm[1] => $outputs[1],
          $perm[2] => $outputs[1],
          $perm[3] => $outputs[2],
          $perm[4] => $outputs[2],
          );
-%map2{Int} = ($perm[0] => $outputs[4], 
+my %map2{Int} = ($perm[0] => $outputs[4], 
          $perm[1] => $outputs[3],
          $perm[2] => $outputs[2],
          $perm[3] => $outputs[2],
          $perm[4] => $outputs[2],
          );
-%alwaysgood{Int} = ($perm[0] => $outputs[2], 
+my %alwaysgood{Int} = ($perm[0] => $outputs[2], 
          $perm[1] => $outputs[3],
          $perm[2] => $outputs[3],
          $perm[3] => $outputs[3],
          $perm[4] => $outputs[3],
          );
-%alwaysbad{Int} = ($perm[0] => $outputs[4], 
+my %alwaysbad{Int} = ($perm[0] => $outputs[4], 
          $perm[1] => $outputs[2],
          $perm[2] => $outputs[2],
          $perm[3] => $outputs[2],
@@ -87,7 +87,7 @@ if ($part) {
     $e1 = Compute("{$perm[0]}");
     $e2 = Compute("{$perm[1]}");
     $e3 = Compute("{$perm[2], $perm[3], $perm[4]}");
-    %good = %map2;
+    %ood = %map2;
     %bad = %map1;
     };
 
@@ -105,10 +105,10 @@ $E = Compute("{}, $e1, $e2, $e3, $e4, $e5, $e6, $e7");
 @maps = (\%good, \%alwaysgood, \%bad, \%alwaysbad);
 @maplist = @maps[@mapindex];
 
-%mapX{Int} = %$maplist[$mapsmap{'X'}];
-%mapY{Int} = %$maplist[$mapsmap{'Y'}];
-%mapZ{Int} = %$maplist[$mapsmap{'Z'}];
-%mapW{Int} = %$maplist[$mapsmap{'W'}];
+my %mapX{Int} = %$maplist[$mapsmap{'X'}];
+my %mapY{Int} = %$maplist[$mapsmap{'Y'}];
+my %mapZ{Int} = %$maplist[$mapsmap{'Z'}];
+my %mapW{Int} = %$maplist[$mapsmap{'W'}];
 
 @xvals = @mapX{@sspace};
 
