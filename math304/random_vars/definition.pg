@@ -27,8 +27,8 @@ loadMacros(
   "MathObjects.pl",
   "PGchoicemacros.pl",
   "PGML.pl",
-  "PGcourse.pl",
   "niceTables.pl"
+  "PGcourse.pl",
 );
 
 TEXT(beginproblem());
@@ -137,22 +137,61 @@ if ($mapindex[3] == 3) {
         @RVW = @alwaysbad;
     };
 
+$mc = new_checkbox_multiple_choice();
+
+$mc -> qa (
+"Which of the functions are random variables for this experiment?",
+@mapnameslist[(0,1)]
+);
+
+$mc -> extra(@mapnameslist[(2,3)]);
+
+
 ###########################
 #  Main text
 
 BEGIN_PGML
-The sample space of an experiment is [` S = \{1, 2, 3, 4, 5\} `].  The collection of observable events is 
+The sample space for an experiment is [` S = \{1, 2, 3, 4, 5\} `].  The collection of observable events is 
 [` \mathcal{E} = \left\{ [$E] \right\} `].
+
+The following functions from [` S `] to [` \mathbb{R} `] are defined:
+
+Function [` X `] defined by the table
 
 [@ DataTable( [[["\\(s\\)", midrule=>1], 1,2,3,4,5], ["\\(X\\)",$RVX[0], $RVX[1], $RVX[2], $RVX[3], $RVX[4]]],
              align => 'c|c|c|c|c|c') @]***
 
-[__________]{4}
+Function [` Y `] defined by the table
+
+[@ DataTable( [[["\\(s\\)", midrule=>1], 1,2,3,4,5], ["\\(Y\\)",$RVY[0], $RVY[1], $RVY[2], $RVY[3], $RVY[4]]],
+             align => 'c|c|c|c|c|c') @]***
+
+Function [` Z `] defined by the table
+
+[@ DataTable( [[["\\(s\\)", midrule=>1], 1,2,3,4,5], ["\\(Z\\)",$RVZ[0], $RVZ[1], $RVZ[2], $RVZ[3], $RVZ[4]]],
+             align => 'c|c|c|c|c|c') @]***
+
+Function [` W `] defined by the table
+
+[@ DataTable( [[["\\(s\\)", midrule=>1], 1,2,3,4,5], ["\\(W\\)",$RVW[0], $RVW[1], $RVW[2], $RVW[3], $RVW[4]]],
+             align => 'c|c|c|c|c|c') @]***
+
+
+[@ $mc -> print_q() @]***
+[@ $mc -> print_a() @]***
 END_PGML
 
 
 ############################
 #  Answer evaluation
+#
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 0;
+
+ANS( checkbox_cmp( $mc->correct_ans() ) );
+
 
 ############################
 #  Solution
