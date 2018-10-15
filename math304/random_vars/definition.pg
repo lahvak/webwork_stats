@@ -78,7 +78,7 @@ $e7 = $e1 + $e2 + $e3;
 
 $E = Compute("{}, $e1, $e2, $e3, $e4, $e5, $e6, $e7");
 
-@mapnames = "XYZW";
+@mapnames = ('X', 'Y', 'Z', 'W');
 @mapindex = NchooseK(4,4);
 @mapnameslist = @mapnames[@mapindex];
 
