@@ -61,13 +61,13 @@ if ($part) {
     $e1 = Compute("{$perm[0]}");
     $e2 = Compute("{$perm[1], $perm[2]}");
     $e3 = Compute("{$perm[3], $perm[4]}");
-    @g0od = @map1;
+    @good = @map1;
     @bad = @map2;
     } else {
     $e1 = Compute("{$perm[0]}");
     $e2 = Compute("{$perm[1]}");
     $e3 = Compute("{$perm[2], $perm[3], $perm[4]}");
-    @g0od = @map2;
+    @good = @map2;
     @bad = @map1;
     };
 
@@ -84,58 +84,58 @@ $E = Compute("{}, $e1, $e2, $e3, $e4, $e5, $e6, $e7");
 
 if ($mapindex[0] == 0) {
         @RVX = @good;
-    }
+    };
 if ($mapindex[0] == 1) {
         @RVY = @good;
-    }
+    };
 if ($mapindex[0] == 2) {
         @RVZ = @good;
-    }
+    };
 if ($mapindex[0] == 3) {
         @RVW = @good;
-    }
+    };
 }
 
 if ($mapindex[1] == 0) {
         @RVX = @alwaysgood;
-    }
+    };
 if ($mapindex[1] == 1) {
         @RVY = @alwaysgood;
-    }
+    };
 if ($mapindex[1] == 2) {
         @RVZ = @alwaysgood;
-    }
+    };
 if ($mapindex[1] == 3) {
         @RVW = @alwaysgood;
-    }
+    };
 }
 
 if ($mapindex[2] == 0) {
         @RVX = @bad;
-    }
+    };
 if ($mapindex[2] == 1) {
         @RVY = @bad;
-    }
+    };
 if ($mapindex[2] == 2) {
         @RVZ = @bad;
-    }
+    };
 if ($mapindex[2] == 3) {
         @RVW = @bad;
-    }
+    };
 }
 
 if ($mapindex[3] == 0) {
         @RVX = @alwaysbad;
-    }
+    };
 if ($mapindex[3] == 1) {
         @RVY = @alwaysbad;
-    }
+    };
 if ($mapindex[3] == 2) {
         @RVZ = @alwaysbad;
-    }
+    };
 if ($mapindex[3] == 3) {
         @RVW = @alwaysbad;
-    }
+    };
 }
 
 ###########################
@@ -148,6 +148,7 @@ The sample space of an experiment is [` S = \{1, 2, 3, 4, 5\} `].  The collectio
 [@ DataTable( [[["\\(s\\)", midrule=>1], 1,2,3,4,5], ["\\(X\\)",$RVX[0], $RVX[1], $RVX[2], $RVX[3], $RVX[4]]],
              align => 'c|c|c|c|c|c') @]***
 
+[__________]{4}
 END_PGML
 
 
