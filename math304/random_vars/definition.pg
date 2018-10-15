@@ -98,7 +98,7 @@ The sample space of an experiment is [` S = \{1, 2, 3, 4, 5\} `].  The collectio
 
 [$good[0]] [$good[1]]
 
-[@ DataTable( [[1,2,3,4,5], [$good[0], $good[1], $good[2], $good[3], $good[4]]] ) @]***
+[@ DataTable( [[1,2,3,4,5], [[$good[0]], [$good[1]], [$good[2]], [$good[3]], [$good[4]]]] ) @]***
 
 [@ DataTable( [@sspace, @mapX] ) @]***
 
