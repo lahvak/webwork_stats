@@ -113,7 +113,8 @@ sub RVVals {
           $RV{$sspace[1]},
           $RV{$sspace[2]},
           $RV{$sspace[3]},
-          $RV{$sspace[4]})
+          $RV{$sspace[4]}
+          );
 };
 
 %mapX = %$maplist[$mapsmap{'X'}];
@@ -130,6 +131,9 @@ BEGIN_PGML
 The sample space of an experiment is [` S = \{1, 2, 3, 4, 5\} `].  The collection of observable events is [` \mathcal{E} = [$E] `].
 
 [$xvals[0]] [$xvals[1]] [$xvals[4]]
+
+[$mapX[0]]
+[$mapX[1]]
 
 [@ DataTable( [@sspace, @xvals] ) @]***
 
