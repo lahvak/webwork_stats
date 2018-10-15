@@ -144,7 +144,9 @@ $mc -> qa (
 $mapnameslist[0], $mapnameslist[1]
 );
 
-$mc -> extra($mapnameslist[2], $mapnameslist[3]);
+## $mc -> extra($mapnameslist[2], $mapnameslist[3]);
+
+$mc->makeLast("X", "Y", "Z", "W");
 
 
 ###########################
