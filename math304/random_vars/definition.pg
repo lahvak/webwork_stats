@@ -84,10 +84,10 @@ $E = Compute("{}, $e1, $e2, $e3, $e4, $e5, $e6, $e7");
 @maps = [[@g0od], [@alwaysgood], [@bad], [@alwaysbad]];
 @maplist[@mapindex] = @maps;
 
-@mapX = $maplist[0];
-@mapY = $maplist[1];
-@mapZ = $maplist[2];
-@mapW = $maplist[3];
+@mapX = @maplist[0];
+@mapY = @maplist[1];
+@mapZ = @maplist[2];
+@mapW = @maplist[3];
 
 ###########################
 #  Main text
