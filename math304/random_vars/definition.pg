@@ -98,8 +98,6 @@ The sample space of an experiment is [` S = \{1, 2, 3, 4, 5\} `].  The collectio
 
 Mapx0: [$mapX[0]]
 
-MapX->0: [$mapX->[0]]
-
 Maplist0: [$maplist[0]]
 
 Maplist0->0: [$maplist[0]->[0]]
