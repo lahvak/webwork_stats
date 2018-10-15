@@ -82,6 +82,9 @@ $E = Compute("{}, $e1, $e2, $e3, $e4, $e5, $e6, $e7");
 @mapindex = NchooseK(4,4);
 @mapnameslist = @mapnames[@mapindex];
 
+## This is idiotic, but every time I try to to dereference a reference to an array 
+## I get weird errors from WeBWorK:
+
 if ($mapindex[0] == 0) {
         @RVX = @good;
     };
