@@ -96,13 +96,13 @@ BEGIN_PGML
 The sample space of an experiment is [` S = \{1, 2, 3, 4, 5\} `].  The collection of observable events is 
 [` \mathcal{E} = \left\{ [$E] \right\} `].
 
-[$mapX[0]]
+Mapx0: [$mapX[0]]
 
-[$mapX->[0]]
+MapX->0: [$mapX->[0]]
 
-[$maplist[0]]
+Maplist0: [$maplist[0]]
 
-[$maplist[0]->[0]]
+Maplist0->0: [$maplist[0]->[0]]
 
 [@ DataTable( [[["\\(s\\)", midrule=>1], 1,2,3,4,5], ["\\(X\\)",[$mapX->[0]], [$mapX->[1]], [$mapX->[2]], [$mapX->[3]], [$mapX->[4]]]],
              align => 'c|c|c|c|c|c') @]***
