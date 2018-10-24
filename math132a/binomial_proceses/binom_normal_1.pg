@@ -41,7 +41,10 @@ $xadj = $x + 0.5;
 
 @zscores = rserve_eval("round(($xadj - $mu)/$sig, 2)");
 
-$zscore = $zscores[0];
+$zscore = Compute($zscores[0])->with(
+  tolType => 'absolute',
+  tolerance => .009,
+);
 
 @ltails = rserve_eval("round(pnorm($zscore),4)");
 
