@@ -27,7 +27,7 @@ $showPartialCorrectAnswers = 1;
 
 Context("Numeric");
 
-$pval = list_random(0.3, 2, 4, 8, 12, 19, 22, 34)/100;
+$pval = list_random(2, 4, 8, 12, 19, 22, 34)/100;
 
 $p = random(20,80,1)/100;
 
@@ -44,7 +44,9 @@ $reps = random(500,1500,10);
 
 $succ = int($reps*$pval +0.5);
 
-$pval_approx = $succ/$reps;
+@pval_r_approx = rserve_eval("round($succ/$reps, 2)");
+
+$pval_approx = $pval_r_approx[0];
 
 $dostring = "[|do($reps) * rflip(|]";
 
@@ -78,7 +80,7 @@ Section::End();
 Section::Begin("Calculate the p-value estimate");
 BEGIN_PGML
 Out of the [$reps] repetitions, [$succ] had the number of heads greater than or equal to [$x].  Use this fact to estimate the 
-p-value of the sample:
+p-value of the sample (round answer to 2 decimal places):
 
 P-value estimate is [__________]{$pval_approx}
 
