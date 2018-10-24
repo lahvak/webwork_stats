@@ -47,7 +47,7 @@ $succ = int($reps*$pval +0.5);
 @pval_r_approx = rserve_eval("round($succ/$reps, 2)");
 
 Context()->flags->set(
-     tolerance    => .009
+     tolerance    => .009,
      tolType      => 'absolute'
    );
 
