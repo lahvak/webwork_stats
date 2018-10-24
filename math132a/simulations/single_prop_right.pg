@@ -42,7 +42,7 @@ $x = $value[0];
 
 $reps = random(500,1500,10);
 
-$succ = int($rep*$pval +0.5);
+$succ = int($reps*$pval +0.5);
 
 $pval_approx = $succ/$reps;
 
