@@ -48,7 +48,7 @@ $succ = int($reps*$pval +0.5);
 
 $pval_approx = Compute("$pval_r_approx[0]")->with(
   tolType => 'absolute',
-  tolerance => .009,
+  tolerance => .01,
 );
 
 $dostring = "[|do($reps) * rflip(|]";
