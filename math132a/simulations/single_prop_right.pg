@@ -46,7 +46,7 @@ $succ = int($rep*$pval +0.5);
 
 $pval_approx = $succ/$reps;
 
-$dostring = "[|do($reps) * rflip(|]*
+$dostring = "[|do($reps) * rflip(|]";
 
 Scaffold::Begin();
 Section::Begin("Set up simulation");
