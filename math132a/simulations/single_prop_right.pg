@@ -79,13 +79,15 @@ Section::End();
 
 Section::Begin("Calculate the p-value estimate");
 BEGIN_PGML
-Out of the [$reps] repetitions, [$succ] had the number of heads greater than or equal to [$x].  Use this fact to estimate the 
+Exactly [$succ] of the simulations had the number of heads greater than or equal to [$x].  Use this fact to estimate the 
 p-value of the sample (round answer to 2 decimal places):
 
 P-value estimate is [__________]{$pval_approx}
 
 END_PGML
 BEGIN_PGML_SOLUTION
+There were [$reps] simulations.
+
 The alternative hypothesis tels us this is a _right tailed_ test, so we are interested in the area to the right of [$x] in the histogram.
 We need to find the _proportion of simulations_ that will have [$x] or more heads.  This is
 
