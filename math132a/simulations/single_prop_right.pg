@@ -46,7 +46,12 @@ $succ = int($reps*$pval +0.5);
 
 @pval_r_approx = rserve_eval("round($succ/$reps, 2)");
 
-$pval_approx = $pval_r_approx[0];
+Context()->flags->set(
+     tolerance    => .009
+     tolType      => 'absolute'
+   );
+
+$pval_approx = Compute($pval_r_approx[0]);
 
 $dostring = "[|do($reps) * rflip(|]";
 
