@@ -1,0 +1,91 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Hypothesis Testing)
+## DBsection(Simulations)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## MLT(CI_1p_03)
+## MLTleader(1)
+## Level(3)
+## KEYWORDS('hypothesis testing', 'p-value', 'simulation', 'single proportion')
+##ENDDESCRIPTION
+
+# File Created: 10/24/2018
+# Location: SVSU
+# Course: General Statistics
+
+DOCUMENT();     
+loadMacros("PGstandard.pl",  
+           "PGauxiliaryFunctions.pl",
+           "MathObjects.pl",
+           "PGML.pl",
+           "RserveClient.pl",
+           "scaffold.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$pval = list_random(0.3, 2, 4, 8, 12, 19, 22, 34)/100;
+
+$p = random(20,80,1)/100;
+
+$n = random(5,25,1)*10;
+
+$mean = $n*$p;
+$sd = sqrt($n*$p*(1-$p));
+
+@value = rserve_eval("round(qnorm(1-$pval, mean = $mean, sd = $sd) + .5)")
+
+$x = $value[0];
+
+$reps = random(500,1500,10);
+
+$succ = int($rep*$pval +0.5);
+
+$pval_approx = $succ/$reps;
+
+Scaffold::Begin();
+Section::Begin("Set up simulation");
+
+BEGIN_PGML
+A research group tested a claim that the proportion of people in certain population testing positive to certain virus as at most [`[$p]`]. 
+Their null hypothesis [' H_0: p = [$p] '] and alternative hypothesis [' H_A: p > [$p] '].
+They collected a simple random sample of size [$n].  In the sample, [$x] people tested positive to the virus.
+
+To estimate the p-value of this sample, the researchers decided to run a simulation with a virtual loaded coin.
+
+Fill in the blanks in the following command that runs the simulations:
+
+:   do([$reps]) \* rflip([_______]{$n}, prob = [________]{$p}) -> sim\_data
+
+END_PGML
+BEGIN_PGML_SOLUTION
+Their sample size was [$n], so they need to flip [$n] coins.
+
+According to the null hypothesis, the proportion of people in the population that test positive for the virus is [$p], so the command
+will be
+
+:   do([$reps]) \* rflip([$n], prob = [$p]) -> sim\_data
+
+END_PGML_SOLUTION
+Section::End();
+
+Section::Begin("Calculate the p-value estimate");
+BEGIN_PGML
+Out of the [$reps] repetitions, [$succ] had the number of heads greater than or equal to [$x].  Use this fact to estimate the 
+p-value of the sample:
+
+P-value estimate is [__________]{$pval_approx}
+
+BEGIN_PGML_SOLUTION
+The alternative hypothesis tels us this is a _right tailed_ test, so we are interested in the area to the right of [$x] in the histogram.
+We need to find the _proportion of simulations_ that will have [$x] or more heads.  This is
+
+[``` \frac{[$succ]}{[$reps]} = [$pval_approx] ```]
+
+END_PGML_SOLUTION
+Section::End();
+Scaffold::End();
+ENDDOCUMENT();
