@@ -53,8 +53,6 @@ sub my_sort {
        PGsort sub {$_[0] lt $_[1]}, @_;
 }
 
-$test = join(" ", my_sort ('a', 'g','b','d','z'));
-
 sub mkset {
     my @members = @_;
     return "\left\{" . join(",", my_sort(@members)) . "\right\}";
@@ -101,8 +99,6 @@ $multians = MultiAnswer(@ans)->with(
 
 BEGIN_PGML
 The sample space for an experiment is [` S = \{a, b, c, d, e, f\} `].  The collection of observable events is 
-
-[$test]
 
 >>[`` \mathcal{E} = \left\{ \emptyset, [$set1], [$set2], [$set3], [$set4], [$set5], [$set6], [$set7] \right\} ``].<<
 
