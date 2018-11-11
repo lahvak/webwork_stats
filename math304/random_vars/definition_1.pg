@@ -29,6 +29,7 @@ loadMacros(
   "PGML.pl",
   "niceTables.pl",
   "PGcourse.pl",
+  "parserMultiAnswer.pl",
 );
 
 TEXT(beginproblem());
@@ -48,9 +49,13 @@ $one = $perm[0];
 @two = @perm[(1,2)];
 @three = @perm[3..5];
 
+sub my_sort {
+       PGsort sub {$_[0] <=> $_[1]}, @_;
+ }
+
 sub mkset {
     my @members = @_;
-    return "\\{" . join(",", sort(@members)) . "\\}";
+    return "\\{" . join(",", my_sort(@members)) . "\\}";
 }
 
 $set1 = "\\{" + $one + "\\}";
