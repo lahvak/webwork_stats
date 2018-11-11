@@ -122,6 +122,23 @@ END_PGML
 #  Solution
 
 BEGIN_PGML_SOLUTION
-hjkh
+The field of observable events shows us that the outcomes [$perm[1]] and [$perm[2]] are indistinguishable, as are the outcomes [$perm[3]], [$perm[4]] and [$perm[5]]. Therefore every random variable on this probability space must assign the same value to [$perm[1]] and [$perm[2]], and (possibly different) same value to [$perm[3]], [$perm[4]] and [$perm[5]].
+
+On the other hand, in order to get the maximal number of possible values, the variable should not assign the same value to outcomes that are distinguishable.  Therefore [$perm[0]] must be assigned value different from both [$perm[1]] and [$perm[3]], and [$perm[1]] and [$perm[3]] must be assigned values different form each other.
+
+One possible assignment is
+
+[@ DataTable( [[["\\(s\\)", midrule=>1], 'a','b','c','d','e','f'], 
+               ["\\(X\\)",
+               [$ans[0]],
+               [$ans[1]],
+               [$ans[2]],
+               [$ans[3]],
+               [$ans[4]],
+               [$ans[5]],
+               ]],
+             align => 'c|c|c|c|c|c') @]***
+
+Many other assignments are possible.
 END_PGML_SOLUTION
 ENDDOCUMENT();
