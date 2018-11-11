@@ -1,0 +1,121 @@
+## DESCRIPTION
+## Probability spaces: Construct a random variable
+## ENDDESCRIPTION
+
+## KEYWORDS('probability', 'probability space', 'random variable', 'definition')
+
+## DBsubject(Probability)
+## DBchapter(Random Variables)
+## DBsection(Definition of random variable)
+## Date(11/10/2018)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## TitleText1('')
+## EditionText1('')
+## AuthorText1('')
+## Section1('')
+## Problem1('')
+
+
+###########################
+#  Initialization
+
+DOCUMENT();  
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGchoicemacros.pl",
+  "PGML.pl",
+  "niceTables.pl",
+  "PGcourse.pl",
+);
+
+TEXT(beginproblem());
+
+
+###########################
+#  Setup
+
+$showPartialCorrectAnswers = 1;
+
+@sspace = a..f;
+
+@slice = NchooseK(6,6);
+@perm = @sspace[@slice];
+
+$one = $perm[0];
+@two = @perm[(1,2)];
+@three = @perm[3..5];
+
+sub mkset {
+    my @members = @_;
+    return "\\{" . join(",", sort(@members)) . "\\}";
+}
+
+$set1 = "\\{" + $one + "\\}";
+$set2 = &mkset(@two);
+$set3 = &mkset(@three);
+$set4 = &mkset(@two, $one);
+$set5 = &mkset(@three, $one);
+$set6 = &mkset(@two, @three);
+$set7 = &mkset(@sspace);
+
+@ans = (1,1,1,1,1,1);
+@ans[$perm[(1,2)]] = (2,2);
+@ans[$perm[3..5]] = (3,3,3);
+
+Context("Numeric");
+
+$multians = MultiAnswer(@ans)->with(
+  singleResult => 1,
+  checker => sub {
+      my ( $correct, $student, $self ) = @_;
+      my @sans = @{$student};
+      if ( $sans[$perm[1]] != $sans[$perm[2]] ||
+           $sans[$perm[3]] != $sans[$perm[4]] ||
+           $sans[$perm[3]] != $sans[$perm[5]] ||
+           $sans[$perm[4]] != $sans[$perm[5]] ) {
+           Value::Error("This is not a random variable on the given probability space!");
+      } else {
+          if ( $sans[$perm[0]] == $sans[$perm[1]] ||
+               $sans[$perm[0]] == $sans[$perm[3]] ||
+               $sans[$perm[2]] == $sana[$perm[3]]) {
+              Value::Error("This random variable has too few possible values!");
+          } else {
+              return 1;
+          }
+       }
+   }
+);
+
+###########################
+#  Main text
+
+BEGIN_PGML
+The sample space for an experiment is [` S = \{a, b, c, d, e, f\} `].  The collection of observable events is 
+[` \mathcal{E} = \left\{ \emptyset, [$set1], [$set2], [$set3], [$set4], [$set5], [$set6], [$set7] \right\} `].
+
+Fill in the table so that it defines a random variable on the probability space with this sample space and this collection of observable events,
+with the *maximal number of possible values*:
+
+[@ DataTable( [[["\\(s\\)", midrule=>1], 'a','b','c','d','e','f'], 
+               ["\\(X\\)",
+               PGML('[____]{$multians}'),
+               PGML('[____]{$multians}'),
+               PGML('[____]{$multians}'),
+               PGML('[____]{$multians}'),
+               PGML('[____]{$multians}'),
+               PGML('[____]{$multians}')
+               ]],
+             align => 'c|c|c|c|c|c') @]***
+
+END_PGML
+
+############################
+#  Solution
+
+BEGIN_PGML_SOLUTION
+hjkh
+END_PGML_SOLUTION
+ENDDOCUMENT();
