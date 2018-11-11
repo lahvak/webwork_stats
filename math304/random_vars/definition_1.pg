@@ -61,14 +61,14 @@ sub mkset {
 $set1 = "\\{" + $one + "\\}";
 $set2 = &mkset(@two);
 $set3 = &mkset(@three);
-$set4 = &mkset(@two, $one);
-$set5 = &mkset(@three, $one);
-$set6 = &mkset(@two, @three);
+$set4 = &mkset((@two, $one));
+$set5 = &mkset((@three, $one));
+$set6 = &mkset((@two, @three));
 $set7 = &mkset(@sspace);
 
 @ans = (1,1,1,1,1,1);
-@ans[$perm[(1,2)]] = (2,2);
-@ans[$perm[3..5]] = (3,3,3);
+@ans[$slice[(1,2)]] = (2,2);
+@ans[$slice[3..5]] = (3,3,3);
 
 Context("Numeric");
 
@@ -77,15 +77,15 @@ $multians = MultiAnswer(@ans)->with(
   checker => sub {
       my ( $correct, $student, $self ) = @_;
       my @sans = @{$student};
-      if ( $sans[$perm[1]] != $sans[$perm[2]] ||
-           $sans[$perm[3]] != $sans[$perm[4]] ||
-           $sans[$perm[3]] != $sans[$perm[5]] ||
-           $sans[$perm[4]] != $sans[$perm[5]] ) {
+      if ( $sans[$slice[1]] != $sans[$slice[2]] ||
+           $sans[$slice[3]] != $sans[$slice[4]] ||
+           $sans[$slice[3]] != $sans[$slice[5]] ||
+           $sans[$slice[4]] != $sans[$slice[5]] ) {
            Value::Error("This is not a random variable on the given probability space!");
       } else {
-          if ( $sans[$perm[0]] == $sans[$perm[1]] ||
-               $sans[$perm[0]] == $sans[$perm[3]] ||
-               $sans[$perm[2]] == $sana[$perm[3]]) {
+          if ( $sans[$slice[0]] == $sans[$slice[1]] ||
+               $sans[$slice[0]] == $sans[$slice[3]] ||
+               $sans[$slice[2]] == $sans[$slice[3]]) {
               Value::Error("This random variable has too few possible values!");
           } else {
               return 1;
