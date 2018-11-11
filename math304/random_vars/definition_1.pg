@@ -55,10 +55,10 @@ sub my_sort {
 
 sub mkset {
     my @members = @_;
-    return "\\{" . join(",", my_sort(@members)) . "\\}";
+    return "\\\{" . join(",", my_sort(@members)) . "\\\}";
 }
 
-$set1 = "\\{" + $one + "\\}";
+$set1 = "\\\{" + "$one" + "\\\}";
 $set2 = &mkset(@two);
 $set3 = &mkset(@three);
 $set4 = &mkset((@two, $one));
@@ -67,8 +67,8 @@ $set6 = &mkset((@two, @three));
 $set7 = &mkset(@sspace);
 
 @ans = (1,1,1,1,1,1);
-@ans[$slice[(1,2)]] = (2,2);
-@ans[$slice[3..5]] = (3,3,3);
+@ans[@slice[(1,2)]] = (2,2);
+@ans[@slice[3..5]] = (3,3,3);
 
 Context("Numeric");
 
