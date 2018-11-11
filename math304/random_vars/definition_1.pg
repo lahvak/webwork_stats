@@ -58,7 +58,7 @@ sub mkset {
     return "\\\{" . join(",", my_sort(@members)) . "\\\}";
 }
 
-$set1 = "\\\{" + "$one" + "\\\}";
+$set1 = "\\\{ $one \\\}";
 $set2 = &mkset(@two);
 $set3 = &mkset(@three);
 $set4 = &mkset((@two, $one));
@@ -99,7 +99,8 @@ $multians = MultiAnswer(@ans)->with(
 
 BEGIN_PGML
 The sample space for an experiment is [` S = \{a, b, c, d, e, f\} `].  The collection of observable events is 
-[` \mathcal{E} = \left\{ \emptyset, [$set1], [$set2], [$set3], [$set4], [$set5], [$set6], [$set7] \right\} `].
+
+>>[``` \mathcal{E} = \left\{ \emptyset, [$set1], [$set2], [$set3], [$set4], [$set5], [$set6], [$set7] \right\} ```].<<
 
 Fill in the table so that it defines a random variable on the probability space with this sample space and this collection of observable events,
 with the *maximal number of possible values*:
