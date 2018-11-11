@@ -50,7 +50,7 @@ $one = $perm[0];
 @three = @perm[3..5];
 
 sub my_sort {
-       PGsort sub {$_[1] cmp $_[0]}, @_;
+       PGsort sub {$_[0] cmp $_[1]}, @_;
 }
 
 $test = join(" ", my_sort ('a', 'g','b','d','z'));
