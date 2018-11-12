@@ -94,7 +94,7 @@ The probability measure is defined by the following table:
                ]],
              align => 'c|c|c|c|c|c') @]***
 
-A random variable $X$ is defined on this probability space by the following table:
+A random variable [` X `] is defined on this probability space by the following table:
 
 [@ DataTable( [[["\\(s\\)", midrule=>1], 'a','b','c','d','e','f'], 
                ["\\(X\\)",
@@ -119,7 +119,7 @@ Find the following:
 
 * [` \operatorname{E} X = `] [_________]{$ExpX}
 
-* [` \operataorname{Var} X = `] [_________]{$VarX}
+* [` \operatorname{Var} X = `] [_________]{$VarX}
 
 END_PGML
 
