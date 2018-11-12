@@ -72,7 +72,7 @@ A random variable [` X `] has a probability mass function [` f `] given by the t
                ["\\(f(x)\\)",
                 @probs
                ]],
-             align => 'c|c|c|c|c|c') @]***
+             align => 'c|c|c|c|c|c|c') @]***
 
 
 END_PGML
