@@ -1,0 +1,149 @@
+## DESCRIPTION
+## Probability spaces: Find probabilities for a given random variable
+## ENDDESCRIPTION
+
+## KEYWORDS('probability', 'probability space', 'random variable', 'cdf', 'pmf')
+
+## DBsubject(Probability)
+## DBchapter(Random Variables)
+## DBsection(Discrete random variables)
+## Date(11/11/2018)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## TitleText1('')
+## EditionText1('')
+## AuthorText1('')
+## Section1('')
+## Problem1('')
+
+
+###########################
+#  Initialization
+
+DOCUMENT();  
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGchoicemacros.pl",
+  "PGML.pl",
+  "niceTables.pl",
+  "PGcourse.pl",
+);
+
+TEXT(beginproblem());
+
+###########################
+#  Setup
+
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$n1 = random(12,18,1);
+$n2 = random(12,18,1);
+$n3 = random(12,18,1);
+$n4 = random(12,18,1);
+$n5 = random(12,18,1);
+$n6 = 100 - ($n1 + $n2 + $n3 + $n4 + $n5);
+
+$p1 = $n1/100;
+$p2 = $n2/100;
+$p3 = $n3/100;
+$p4 = $n4/100;
+$p5 = $n5/100;
+$p6 = $n6/100;
+
+@probs = ($p1, $p2, $p3, $p4, $p5, $p6);
+
+@sspace = a..f;
+@slice = NchooseK(6,6);
+@perm = @sspace[@slice];
+@probperms = @probs[@slice];
+
+$val1 = random(13,20,1);
+$val2 = random(1,6,1);
+$val3 = random(7,12,1);
+
+@vals[@slice] = ($val3, $val3, $val3, $val2, $val2, $val1);
+
+$pval3 = $probperms[0] + $probperms[1] + $probperms[2];
+$pval2 = $probperms[3] + $probperms[4];
+$pval1 = $probperms[5];
+
+# F($val3):
+
+$Fval3 = $pval2 + $pval3;
+
+$ExpX = $pval1*$val1 + $pval2*$val2 + $pval3*$val3;
+
+$ExpX2 = $pval1*$val1*$val1 + $pval2*$val2*$val2 + $pval3*$val3*$val3;
+
+$VarX = $ExpX2 - $ExpX*$ExpX;
+
+###########################
+#  Main text
+
+BEGIN_PGML
+The sample space for an experiment is [` S = \{a, b, c, d, e, f\} `].  The collection of observable events is [` \mathcal{P}(S) `].
+The probability measure is defined by the following table:
+
+[@ DataTable( [[["\\(s\\)", midrule=>1], 'a','b','c','d','e','f'], 
+               ["\\(P(\{s\})\\)",
+                [$p1], [$p2], [$p3], [$p4], [$p5], [$p6]
+               ]],
+             align => 'c|c|c|c|c|c') @]***
+
+A random variable $X$ is defined on this probability space by the following table:
+
+[@ DataTable( [[["\\(s\\)", midrule=>1], 'a','b','c','d','e','f'], 
+               ["\\(X\\)",
+                [$vals[0]],
+                [$vals[1]],
+                [$vals[2]],
+                [$vals[3]],
+                [$vals[4]],
+                [$vals[5]]
+               ]],
+             align => 'c|c|c|c|c|c') @]***
+
+Let [` f `] and [` F `] be the probability mass function and the cumulative density function of [` X `], respectively.
+
+Find the following:
+
+* [`P(X = [$val2]) = `] [________]{$pval2}
+
+* [`f([$val3]) = `] [________]{$pval3}
+
+* [`F([$val3]) = `] [________]{$Fval3}
+
+* [` \operatorname{E} X = `] [_________]{$ExpX}
+
+* [` \operataorname{Var} X = `] [_________]{$VarX}
+
+END_PGML
+
+############################
+#  Solution
+
+BEGIN_PGML_SOLUTION
+The field of observable events shows us that the outcomes [$perm[1]] and [$perm[2]] are indistinguishable, as are the outcomes [$perm[3]], [$perm[4]] and [$perm[5]]. Therefore every random variable on this probability space must assign the same value to [$perm[1]] and [$perm[2]], and (possibly different) same value to [$perm[3]], [$perm[4]] and [$perm[5]].
+
+On the other hand, in order to get the maximal number of possible values, the variable should not assign the same value to outcomes that are distinguishable.  Therefore [$perm[0]] must be assigned value different from both [$perm[1]] and [$perm[3]], and [$perm[1]] and [$perm[3]] must be assigned values different form each other.
+
+One possible assignment is
+
+[@ DataTable( [[["\\(s\\)", midrule=>1], 'a','b','c','d','e','f'], 
+               ["\\(X\\)",
+               [$ans[0]],
+               [$ans[1]],
+               [$ans[2]],
+               [$ans[3]],
+               [$ans[4]],
+               [$ans[5]],
+               ]],
+             align => 'c|c|c|c|c|c') @]***
+
+Many other assignments are possible.
+END_PGML_SOLUTION
+ENDDOCUMENT();
