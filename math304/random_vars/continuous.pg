@@ -74,7 +74,7 @@ END_PGML
 
 BEGIN_PGML_SOLUTION
 
-* [`` P(X \le [$b]) = \int_{[$a]}^{[$b]} \frac{1}{x}\;dx = \ln([$b]) - \ln([$a]) = \ln]left(\frac{[$b]}{[$a]}\right) ``]
+* [`` P(X \le [$b]) = \int_{[$a]}^{[$b]} \frac{1}{x}\;dx = \ln([$b]) - \ln([$a]) = \ln\left(\frac{[$b]}{[$a]}\right) ``]
 
 * Since [` [$c] > [$a]e `], the probability is 1
 
