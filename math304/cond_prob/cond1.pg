@@ -36,6 +36,17 @@ TEXT(beginproblem());
 ###########################
 #  Setup
 
+sub sum
+{
+ local($s);
+ $s = 0;
+ foreach(@_)
+ {
+ $s = $s + $_;
+ }
+ $s;
+}
+
 $showPartialCorrectAnswers = 1;
 
 Context("Numeric");
