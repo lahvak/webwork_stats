@@ -73,7 +73,7 @@ A random variable [` X `] has a probability mass function [` f `] given by the t
 
 [@ DataTable( [[["\\(x\\)", midrule=>1], '0', '1', '2', '3', '4', '5', '6'], 
                ["\\(f(x)\\)",
-                @slice
+                @probs
                ]],
              align => 'c|c|c|c|c|c|c') @]***
 
