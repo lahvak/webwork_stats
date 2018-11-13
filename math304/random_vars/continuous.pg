@@ -82,7 +82,7 @@ BEGIN_PGML_SOLUTION
 
 * First calculate 
 
-    [\operatorname{E} X^2 = \int_{[$a]}^{[$a]e} x^2\cdot\frac{1}{x}\;dx = \frac{([$a]e)^2}{2} - \frac{[$a]^2}{2} = \frac{[$a]^2}{2}(e^2-1) ``]
+    [`` \operatorname{E} X^2 = \int_{[$a]}^{[$a]e} x^2\cdot\frac{1}{x}\;dx = \frac{([$a]e)^2}{2} - \frac{[$a]^2}{2} = \frac{[$a]^2}{2}(e^2-1) ``]
 
     Then calculate
 
