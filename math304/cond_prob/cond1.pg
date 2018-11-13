@@ -81,12 +81,16 @@ if ($case == 0) {
     $A = "at most $right";
     $B = "at least $left";
     $PB = sum(@perm[$left..$#perm]);
-    $sumB = join('+', @perm[$left..$#perm]);
+    $sumB = "1 - " . join('-', @perm[0..($left-1)]);
 } else {
     $A = "at least $left";
     $B = "at most $right";
     $PB = sum(@perm[0..$right]);
-    $sumB = join('+', @perm[0..$right]);
+    if (right < 3) {
+        $sumB = join('+', @perm[0..$right]);
+    } else {
+        $sumB = " 1 - " . join('-', @perm[($right+1)..$#perm]);
+    }
 }
 
 $PAandB = sum(@perm[$left..$right]);
