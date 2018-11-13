@@ -118,6 +118,6 @@ END_PGML
 BEGIN_PGML_SOLUTION
 Let [` A = `] "[` X `] is [$A]" and [` B = `] "[` X `] is [$B]".
 
-Then [`` P(A|B) = \frac{P(A \cap B)}{P(B)} = \frac{[$SumAandB]}{[$SumB]} = \frac{[$PAandB]}{[$PB]} = [$PAgivenB] ``]
+Then [`` P(A|B) = \frac{P(A \cap B)}{P(B)} = \frac{[$sumAandB]}{[$sumB]} = \frac{[$PAandB]}{[$PB]} = [$PAgivenB] ``]
 END_PGML_SOLUTION
 ENDDOCUMENT();
