@@ -64,6 +64,25 @@ $p6 = $n6/100;
 $left = random(1,3,1);
 $right = random($left + 1, 5, 1);
 
+$case = random(0,1,1);
+
+if ($case == 0) {
+    $A = "at most $right";
+    $B = "at least $left";
+    $PB = sum(@perm[$left..$#perm]);
+    $sumB = join('+', @perm[$left..$#perm]);
+} else {
+    $A = "at least $left";
+    $B = "at most $right";
+    $PB = sum(@perm[0..$right]);
+    $sumB = join('+', @perm[0..$right]);
+}
+
+$PAandB = sum(@perm[$left..$right]);
+
+$PAgivenB = Compute("$PAandB/$PB");
+
+$sumAandB = join('+', @perm[$left..$right]);
 
 ###########################
 #  Main text
@@ -77,13 +96,17 @@ A random variable [` X `] has a probability mass function [` f `] given by the t
                ]],
              align => 'c|c|c|c|c|c|c') @]***
 
+Find the probability that [` X `] is [$A], given that [` X `] is [$B]:
 
+[_________________]{$PAgivenB}
 END_PGML
 
 ############################
 #  Solution
 
 BEGIN_PGML_SOLUTION
-hjk
+Let [` A = `] "[` X `] is [$A]" and [` B = `] "[` X `] is [$B]".
+
+Then [`` P(A|B) = \frac{P(A \cap B)}{P(B)} = \frac{[$SumAandB]}{[$SumB]} = \frac{[$PAandB]}{[$PB]} = [$PAgivenB] ``]
 END_PGML_SOLUTION
 ENDDOCUMENT();
