@@ -10,7 +10,7 @@
 ## KEYWORDS('hypothesis testing')
 ##ENDDESCRIPTION
 
-# File Created: 06/16/17
+# File Created: 11/18/2018 
 # Location: SVSU
 # Course: Biostatistic
 
@@ -58,16 +58,6 @@ larger than non-dominant hands.},
 q{Researchers selected a sample of 40 right-handed and 30 left-handed volunteers.  For each volunteer, 
 they measured the palm width of their dominant hand.  They wanted to see if the mean palm width
 of the dominant hand is the same for left-handed and right-handed people.},
-q{Participants in a study investigating the
-relationship between coffee consumption and exercise were asked to report 
-their coffee consumption level (none: less than one cup a week, light: 2 to 6
-cups a week, medium: 1 cup a day, serious: 2 to 3 cups a day, and heavy: 4 or more cups a day),
-and the number of hours they spent per week on moderate (e.g., brisk walking) and
-vigorous (e.g., strenuous sports and jogging) exercise. Based on the exercise data the
-researchers estimated the total hours of metabolic equivalent tasks (MET) per
-week, a numerical value always greater than 0.
-The researchers wanted to know if the average physical activity level varies among the
-different levels of coffee consumption.}
 );
 
 @tests = (
@@ -77,7 +67,6 @@ different levels of coffee consumption.}
 "single mean",
 "matched pair differences",
 "difference of means",
-"ANOVA"
 );
 
 @testchoices = [
@@ -88,7 +77,6 @@ different levels of coffee consumption.}
 "single mean",
 "matched pair differences",
 "difference of means",
-"ANOVA"
 ];
 
 @h0s = [
@@ -119,8 +107,6 @@ different levels of coffee consumption.}
 "there is a difference between the sample means of the hand sizes",
 "there is no difference between the population means of the hand sizes",
 "there is a difference between the population means of the hand sizes",
-"there is a difference between the mean physical activity level among different levels of coffee consumption",
-"there is no difference between the mean physical activity level among different levels of coffee consumption"
 ];
 
 @correct_h0s = (
@@ -130,10 +116,9 @@ different levels of coffee consumption.}
 "the population mean is 0.3 ppm",
 "the population mean difference of the hand sizes is 0",
 "there is no difference between the population means of the hand sizes",
-"there is no difference between the mean physical activity level among different levels of coffee consumption"
 );
 
-@selection = NchooseK(7,3);
+@selection = NchooseK(6,3);
 
 $test1 = PopUp(@testchoices, $tests[$selection[0]]);
 $hyp1 = PopUp(@h0s, $correct_h0s[$selection[0]]);
@@ -194,6 +179,6 @@ BEGIN_PGML_SOLUTION
 
 END_PGML_SOLUTION
 
-COMMENT("This question includes ANOVA as one of the options.");
+COMMENT("This question does not include ANOVA.");
 
 ENDDOCUMENT();
