@@ -45,7 +45,7 @@ $unit = $units[$ind1];
 rserve_eval("x <- rnorm($size, mean=$mu, sd=$sigma)");
 @sample_data = rserve_eval('round(c(mean(x), sd(x)),2)');
 
-@conflev = (75, 80, 90, 95, 99);
+@conflev = (80, 90, 95, 98, 99);
 $clind = random(0, 4, 1);
 $typeone = 100-$conflev[$clind];
 $onetail = $typeone/2;
