@@ -1,0 +1,100 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Confidence intervals)
+## DBsection(One sample mean, large sample)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## KEYWORDS('Confidence Intervals')
+##ENDDESCRIPTION
+
+# File Created: 06/18/2017
+# Location: SVSU
+# Course: Biostatistic
+
+DOCUMENT();     
+loadMacros("PGstandard.pl",  
+           "PGauxiliaryFunctions.pl",
+           "contextPercent.pl",
+           "MathObjects.pl",
+           "PGML.pl",
+           "RserveClient.pl"
+);     
+TEXT(&beginproblem);
+
+Context("Numeric");
+Context()->flags->set(tolerance => .005);
+$size = random( 100, 300, 1 );
+@names = ( 'snail', 'fly', 'snake', 'fish' );
+@namespl = ( 'snails', 'flies', 'snakes', 'fish' );
+@traits = ( 'shell volume', 'wing span', 'length', 'weight');
+@units = ( 'ccm', 'mm', 'cm', 'g' );
+@lomean = ( .3, 2, 15, 350 );
+@himean = ( 3, 10, 45, 750 );
+@step = ( .01, .1, 1, 1 );
+$ind1 = random( 0, 3, 1 );
+$mu = random( $lomean[$ind1], $himean[$ind1], $step[$ind1] );
+$sigma = random($mu/10, $mu/4, .01);
+
+$name = $names[$ind1];
+$namepl = $namespl[$ind1];
+$trait = $traits[$ind1];
+$unit = $units[$ind1];
+
+# Sample
+
+rserve_eval("x <- rnorm($size, mean=$mu, sd=$sigma)");
+@sample_data = rserve_eval('round(c(mean(x), sd(x)),2)');
+
+@conflev = (75, 80, 90, 95, 99);
+$clind = random(0, 4, 1);
+$typeone = 100-$conflev[$clind];
+$onetail = $typeone/2;
+$prob = $onetail/100;
+$df = $size-1;
+@tscore = rserve_eval("-qt($prob, df=$df)");
+$qt = Compute($tscore[0]);
+$xbar = Compute($sample_data[0]);
+$s = Compute($sample_data[1]);
+$stderr = Compute($s/sqrt( $size ));
+$margin = Compute($qt*$stderr);
+$left = Compute($xbar - $margin );
+$right = Compute($xbar + $margin );
+
+BEGIN_PGML
+
+Researchers studying certain species of [$name] collected a random sample of size [$size] of these [$namepl] and measured their [$trait].
+
+They found that the mean [$trait] of the sample was [$xbar] [$unit], with standard deviation [$s] [$unit].
+
+Your task is to find a [$conflev[$clind]]% *uncertainty interval* estimating the population mean of 
+[$trait] of the given species of [$name].  The calculation has several steps:
+
+* Find the [`t`]-score corresponding to the given confidence level: [`t=`] [_________]{$qt}
+
+* Calculate the _standard error_: [___________]{$stderr}
+
+* Calculate the _margin of error_: [____________]{$margin}
+
+Finally, fill in the two interval bounds in the following conclusion:
+
+_We are [$conflev[$clind]]% confident that the interval between [___________]{$left} and [___________]{$right} contains the true value of the population mean of [$trait] of the given species of [$name]._
+
+END_PGML
+
+BEGIN_PGML_SOLUTION
+Since we do not know the standard deviation of the population, we need to use the Student's [`t`]-distribution as the sampling distribution of the sample means.  Since the sample size is large, we do not need to see the histogram of the sample.  We do not expect the population of [$namepl] to have extremely skewed distribution of [$trait].
+
+With [$conflev[$clind]]% confidence level we allow [$typeone]% chance of type one error, which for a two-tailed test means [$onetail]% in each tail.  That corresponds to the [`t`]-score of [$qt] (using [$df] degrees of freedom).
+
+The formula for the standard error is
+
+[``SE = \frac{s}{\sqrt{n}} = \frac{[$s]}{\sqrt{[$size]}} = [$stderr]``]
+
+To find the margin of error, you multiply the standard error by the [`t`]-score:
+
+[``E = t\cdot SE = [$qt]\cdot [$stderr] = [$margin]``]
+
+Finally, the left bound of the uncertainty interval is [`\bar{x} - E = [$xbar] - [$margin] = [$left]`] and the right bound is [`\bar{x} + E = [$xbar] + [$margin] = [$right]`].
+END_PGML_SOLUTION
+
+ENDDOCUMENT();

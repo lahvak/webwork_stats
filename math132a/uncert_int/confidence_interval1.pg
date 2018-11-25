@@ -1,0 +1,93 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Confidence intervals)
+## DBsection(One sample proportion)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## MLT(CI_1p_03)
+## MLTleader(1)
+## Level(3)
+## KEYWORDS('Confidence Intervals')
+##ENDDESCRIPTION
+
+# File Created: 06/16/17
+# Location: SVSU
+# Course: Biostatistic
+
+DOCUMENT();     
+loadMacros("PGstandard.pl",  
+           "PGauxiliaryFunctions.pl",
+           "contextPercent.pl",
+           "MathObjects.pl",
+           "PGML.pl"
+);     
+TEXT(&beginproblem);
+
+Context("Numeric");
+Context()->flags->set(tolerance => .005);
+$size = random( 500, 2000, 100 );
+@name = ( 'snail', 'fly', 'snake', 'fish' );
+@namepl = ( 'snails', 'flies', 'snakes', 'fish' );
+@trait = ( 'shell orientation', 'eye color', 'coloration', 'pectoral fin shape');
+@option1 = ( 'sinistral', 'red', 'dark', 'round' );
+@option2 = ( 'dextral', 'yellow', 'light', 'triangular' );
+$ind1 = random( 0, 3, 1 );
+@conflev = (75, 80, 90, 95, 99);
+@zscore = (1.150349, 1.281552, 1.644854, 1.959964, 2.575829);
+$clind = random(0, 4, 1);
+$typeone = Compute(100-$conflev[$clind]);
+$onetail = Compute($typeone/2);
+$qz = Compute($zscore[$clind]);
+Context("Percent");
+$phat = random( .1, .5, .01 );
+Context("Numeric");
+Context()->flags->set(tolerance => .005);
+$sample =  Compute($phat * $size);
+$stderr = Compute(sqrt( ( $phat * ( 1 - $phat ) ) / $size ));
+Context("Percent");
+$margin = Compute($qz*$stderr);
+$left = Compute($phat - $margin );
+$right = Compute($phat + $margin );
+
+BEGIN_PGML
+
+Certain species of [$name[$ind1] ] come with two different [$trait[$ind1]]s: [$option1[$ind1]] and [$option2[$ind1]]. 
+Researchers collected a random sample of size [$size] of these [$namepl[$ind1]] and found out that [$sample] of them had [$option1[$ind1]] [$trait[$ind1]].
+
+Your task is to find a [$conflev[$clind]]% *uncertainty interval* estimating the population proportion of 
+[$namepl[$ind1]] with [$option1[$ind1]] [$trait[$ind1]].  The calculation has several steps:
+
+* Calculate the _sample proportion_ [`\hat{p}`] of the [$namepl[$ind1]] with  [$option1[$ind1]] [$trait[$ind1]]: [`\hat{p}=`][________]{$phat}
+
+* Find the [`z`]-score corresponding to the given confidence level: [`z=`] [_________]{$qz}
+
+* Calculate the _standard error_: [___________]{$stderr}
+
+* Calculate the _margin of error_: [____________]{$margin}
+
+Finally, fill in the two interval bounds in the following conclusion:
+
+_We are [$conflev[$clind]]% confident that the interval between [___________]{$left} and [___________]{$right} contains the true value of the population proportion of [$namepl[$ind1]] with [$option1[$ind1]] [$trait[$ind1]]._
+
+END_PGML
+
+BEGIN_PGML_SOLUTION
+
+The sample proportion is simply the number of successes divided by the sample size:
+
+[``\hat{p} = \frac{[$sample]}{[$size]} = [$phat]``]
+
+With [$conflev[$clind]]% confidence level we allow [$typeone]% chance of type one error, which for a two-tailed test means [$onetail]% in each tail.  That corresponds to the [`z`]-score of [$qz].
+
+The formula for the standard error is
+
+[``SE = \sqrt{\frac{\hat{p}\cdot(1-\hat{p})}{n}} = \sqrt{\frac{[$phat]\cdot(1-[$phat])}{[$size]}} = [$stderr]``]
+
+To find the margin of error, you multiply the standard error by the [`z`]-score:
+
+[``E = z\cdot SE = [$qz]\cdot [$stderr] = [$margin]``]
+
+Finally, the left bound of the uncertainty interval is [`\hat{p} - E = [$phat] - [$margin] = [$left]`] and the right bound is [`\hat{p} + E = [$phat] + [$margin] = [$right]`].
+END_PGML_SOLUTION
+
+ENDDOCUMENT();      
