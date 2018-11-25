@@ -48,7 +48,7 @@ $img = rserve_start_plot('png');
 rserve_eval('hist(x)');
 $image_path = rserve_finish_plot($img);
 
-@conflev = (75, 80, 90, 95, 99);
+@conflev = (80, 90, 95, 98, 99);
 $clind = random(0, 4, 1);
 $typeone = 100-$conflev[$clind];
 $onetail = $typeone/2;
