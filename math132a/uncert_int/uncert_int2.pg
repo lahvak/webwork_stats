@@ -110,8 +110,8 @@ END_PGML_SOLUTION
 Section::End();
 
 $studSE = $inputs_ref->{ANS_NUM_TO_NAME(3)};
-$studstart = $studphat - $studz*$studSE;
-$studend = $studphat + $studz*$studSE;
+$studstart = $xbar- $studt*$studSE;
+$studend = $xbar + $studt*$studSE;
 
 Section::Begin("Part 3: Construct the confidence interval:");
 BEGIN_PGML
