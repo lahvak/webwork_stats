@@ -114,12 +114,14 @@ END_PGML_SOLUTION
 Section::End();
 
 $studSE = $SE;
+$studstart = $xbar - $t*$studSE;
+$studend = $xbar + $t*$studSE;
 eval { # hack to process student input if it is correct, and avoid bringing the whole 
        # thing down if it has incorrect syntax or something
     $studSE = Compute($inputs_ref->{ANS_NUM_TO_NAME(3)});
+    $studstart = $xbar - $studt*$studSE;
+    $studend = $xbar + $studt*$studSE;
 };
-$studstart = $xbar- $studt*$studSE;
-$studend = $xbar + $studt*$studSE;
 
 Section::Begin("Part 3: Construct the confidence interval:");
 BEGIN_PGML

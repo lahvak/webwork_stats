@@ -103,13 +103,15 @@ Section::End();
 
 $studphat = $phat;
 $studSE = $SE;
+$studstart = $studphat - $z*$studSE;
+$studend = $studphat + $z*$studSE;
 eval { # hack to process student input if it is correct, and avoid bringing the whole 
        # thing down if it has incorrect syntax
     $studphat = Compute($inputs_ref->{ANS_NUM_TO_NAME(2)});
     $studSE = Compute($inputs_ref->{ANS_NUM_TO_NAME(3)});
+    $studstart = $studphat - $studz*$studSE;
+    $studend = $studphat + $studz*$studSE;
 };
-$studstart = $studphat - $studz*$studSE;
-$studend = $studphat + $studz*$studSE;
 
 Section::Begin("Part 3: Construct the confidence interval:");
 BEGIN_PGML
