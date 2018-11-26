@@ -1,0 +1,129 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Uncertainty intervals)
+## DBsection(Uncertainty intervals for means)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## MLT(CI_1p_03)
+## MLTleader(1)
+## Level(3)
+## KEYWORDS('uncertainty intervals','confidence intervals')
+##ENDDESCRIPTION
+
+# File Created: 10/21/2017
+# Location: SVSU
+# Course: General Statistics
+
+DOCUMENT();     
+loadMacros("PGstandard.pl",  
+           "PGauxiliaryFunctions.pl",
+           "MathObjects.pl",
+           "PGML.pl",
+           "scaffold.pl",
+           "PGinfo.pl",
+           "RserveClient.pl"
+);     
+TEXT(&beginproblem);
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+Context()->flags->set(
+  tolerance => 0.01, # about 2 decimal places
+  tolType => "absolute",
+);
+
+
+$L = list_random(80, 90, 95, 98, 99);  # Confidence level
+$Ld = Compute("$L/100");
+$bothtails = 1 - $Ld;
+$alpha = (1-$L/100)/2;
+
+$n = random(20,51,1);  # sample size
+$df = n - 1;
+
+@ts = rserve_eval("round(qt(c($alpha, 1-$alpha), df = $df),2)");
+$t = $ts[1];  # Critical t-score
+
+$xbar = random(-10, 10, .1);
+$s = random(.2, 5.2, .1);
+$SE = Compute("$s/sqrt(n)");
+$E = Compute("$t*$SE");  # Margin
+
+$start = Compute("$xbar - $E");
+$end = Compute("$xbar + $E");
+
+BEGIN_PGML
+Engineers were comparing two different designs for power supply module for
+laptop computers. They constructed [$n] units of each of the designs. They
+first replaced power supply modules in [$n] laptops with the [$n] power supply
+modules constructed according the design 1. They operated the laptops for 2
+hours, and recorded a number of measurements.  Later they replaced the modules
+by those constructed according to design 2, and again they operated the laptops
+for 2 hours, recording their measurements. One of the measurements they were
+interested in was the average operating temperature of the power supply
+modules.
+
+For each laptop, they calculated the difference in the average operating
+temperature between the design 1 and design 2 modules. The [$n] differences
+obtained in that way had mean [$xbar] and standard deviation [$s].  The
+histogram of the temperature differences was very clearly bell shaped.
+
+Use this data to construct a [$L]% uncertainty (confidence) interval estimating
+the mean operating temperature difference between the design 1 and design 2
+power supply modules.
+END_PGML
+
+Scaffold::Begin();
+Section::Begin("Part 1: Find the critical t score:");
+
+BEGIN_PGML
+Start by finding the critical t-scores corresponding to the [$L]% confidence level.  
+
+* Enter the _degrees of freedom_ of the Student's distribution that you will use: [________]{$df}.
+
+* Enter the *positive* t-score (round to 2 decimal places): [_________]{$t}.
+END_PGML
+
+BEGIN_PGML_SOLUTION
+In the Student's t-distribution curve, we want the area in the middle to be [$L]%, or [$Ld].  That means the two tails must have
+the area of [$bothtails], or [$alpha] in each tail. 
+
+Since the sample size [`n`] is [$n], we will use [`n-1`], or [$df], degrees of freedom.
+
+The t-score corresponding to [$alpha] in left tail is [:[$ts[0]]:], the z-score corresponding to [$alpha] in right tail is [:[$t]:].
+END_PGML_SOLUTION
+Section::End();
+
+$studt = $inputs_ref->{ANS_NUM_TO_NAME(2)};
+
+Section::Begin("Part 2: Calculate the standard error:");
+BEGIN_PGML
+Next you ned to calculate the *standard error* [`SE`]:
+
+SE = [__________]{$SE}
+END_PGML
+
+BEGIN_PGML_SOLUTION
+* The standard error is
+[`` \text{SE} = \frac{s}{\sqrt{n}} = \frac{[$s]}{\sqrt{[$n]}} = [$SE] ``]
+END_PGML_SOLUTION
+Section::End();
+
+$studSE = $inputs_ref->{ANS_NUM_TO_NAME(3)};
+$studstart = $studphat - $studz*$studSE;
+$studend = $studphat + $studz*$studSE;
+
+Section::Begin("Part 3: Construct the confidence interval:");
+BEGIN_PGML
+We are [$L]% confident that the interval starting at [________]{$studstart} and ending at [________]{$studend} contains the true
+mean operating temperature difference between the design 1 and design 2
+power supply modules.
+END_PGML
+
+BEGIN_PGML_SOLUTION
+The lower bound of the uncertainty interval is [` \overline{x} - t\cdot\text{SE} = [$xbar] - [$t]\cdot [$SE] = [$start] `] and 
+the upper bound is [` \overline{x} + t\cdot\text{SE} = [$xbar] + [$t]\cdot [$SE] = [$end] `]
+END_PGML_SOLUTION
+Section::End();
+Scaffold::End();
+ENDDOCUMENT();
