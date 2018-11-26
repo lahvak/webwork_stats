@@ -39,14 +39,14 @@ $bothtails = 1 - $Ld;
 $alpha = (1-$L/100)/2;
 
 $n = random(20,51,1);  # sample size
-$df = n - 1;
+$df = $n - 1;
 
 @ts = rserve_eval("round(qt(c($alpha, 1-$alpha), df = $df),2)");
 $t = $ts[1];  # Critical t-score
 
 $xbar = random(-10, 10, .1);
 $s = random(.2, 5.2, .1);
-$SE = Compute("$s/sqrt(n)");
+$SE = Compute("$s/sqrt($n)");
 $E = Compute("$t*$SE");  # Margin
 
 $start = Compute("$xbar - $E");
