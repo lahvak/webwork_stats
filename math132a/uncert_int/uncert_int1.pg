@@ -78,7 +78,7 @@ Section::End();
 $studz = $z;
 eval { # hack to process student input if it is correct, and avoid bringing the whole 
        # thing down if it has incorrect syntax
-    $studz = $inputs_ref->{ANS_NUM_TO_NAME(1)};
+    $studz = Compute($inputs_ref->{ANS_NUM_TO_NAME(1)});
 };
 
 Section::Begin("Part 2: Calculate the standard error:");

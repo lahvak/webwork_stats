@@ -94,7 +94,11 @@ The t-score corresponding to [$alpha] in left tail is [:[$ts[0]]:], the z-score 
 END_PGML_SOLUTION
 Section::End();
 
-$studt = $inputs_ref->{ANS_NUM_TO_NAME(2)};
+$studt = $t;
+eval { # hack to process student input if it is correct, and avoid bringing the whole 
+       # thing down if it has incorrect syntax or something
+    $studt = Compute($inputs_ref->{ANS_NUM_TO_NAME(2)});
+};
 
 Section::Begin("Part 2: Calculate the standard error:");
 BEGIN_PGML
@@ -109,7 +113,11 @@ BEGIN_PGML_SOLUTION
 END_PGML_SOLUTION
 Section::End();
 
-$studSE = $inputs_ref->{ANS_NUM_TO_NAME(3)};
+$studSE = $SE;
+eval { # hack to process student input if it is correct, and avoid bringing the whole 
+       # thing down if it has incorrect syntax or something
+    $studSE = Compute($inputs_ref->{ANS_NUM_TO_NAME(3)});
+};
 $studstart = $xbar- $studt*$studSE;
 $studend = $xbar + $studt*$studSE;
 
