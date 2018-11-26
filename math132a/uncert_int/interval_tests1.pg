@@ -57,10 +57,12 @@ contains the true population proportion of red-eyed spotted corn weevils."<<
 
 * Suppose you want to use the researchers' data to test the null hypothesis [` H_0: p = [$nonreject] `] 
   with [` H_A: p \neq [$nonreject] `] at [$alpha] significance level.  What would be the result of the test?
+
   [_]{$nonrejectradio}
 
 * Suppose you want to use the researchers' data to test the null hypothesis [` H_0: p = [$reject] `] 
   with [` H_A: p \neq [$reject] `] at [$alpha] significance level.  What would be the result of the test?
+
   [_]{$rejectradio}
 
 END_PGML
