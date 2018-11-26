@@ -97,8 +97,13 @@ BEGIN_PGML_SOLUTION
 END_PGML_SOLUTION
 Section::End();
 
-$studphat = Compute($inputs_ref->{ANS_NUM_TO_NAME(2)});
-$studSE = $inputs_ref->{ANS_NUM_TO_NAME(3)};
+$studphat = $phat;
+$studSE = $SE;
+eval { # hack to process student input if it is correct, and avoid bringing the whole 
+       # thing down if it has incorrect syntax
+    $studphat = Compute($inputs_ref->{ANS_NUM_TO_NAME(2)});
+    $studSE = Compute($inputs_ref->{ANS_NUM_TO_NAME(3)});
+};
 $studstart = $studphat - $studz*$studSE;
 $studend = $studphat + $studz*$studSE;
 
