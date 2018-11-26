@@ -75,7 +75,11 @@ The z-score corresponding to [$alpha] in left tail is [:[$zs[0]]:], the z-score 
 END_PGML_SOLUTION
 Section::End();
 
-$studz = $inputs_ref->{ANS_NUM_TO_NAME(1)};
+$studz = $z;
+eval { # hack to process student input if it is correct, and avoid bringing the whole 
+       # thing down if it has incorrect syntax
+    $studz = $inputs_ref->{ANS_NUM_TO_NAME(1)};
+};
 
 Section::Begin("Part 2: Calculate the standard error:");
 BEGIN_PGML
