@@ -78,6 +78,6 @@ BEGIN_PGML_SOLUTION
   value of [` p `], and the null hypothesis _cannot_ be rejected.
 
 * Since [$reject] is clearly _outside_ of the interval, it is not a plausible
-  value of [` p `], and the null hypothesis _will be rejected.
+  value of [` p `], and the null hypothesis _will_ be rejected.
 END_PGML_SOLUTION
 ENDDOCUMENT();
