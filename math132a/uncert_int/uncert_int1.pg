@@ -97,7 +97,7 @@ BEGIN_PGML_SOLUTION
 END_PGML_SOLUTION
 Section::End();
 
-$studphat = $inputs_ref->{ANS_NUM_TO_NAME(2)};
+$studphat = Compute($inputs_ref->{ANS_NUM_TO_NAME(2)});
 $studSE = $inputs_ref->{ANS_NUM_TO_NAME(3)};
 $studstart = $studphat - $studz*$studSE;
 $studend = $studphat + $studz*$studSE;
