@@ -1,0 +1,93 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Hypothesis Testing)
+## DBsection(Goodness of fit test)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## MLT(CI_1p_03)
+## MLTleader(1)
+## Level(3)
+## KEYWORDS('hypothesis testing', 'goodness of fit', 'chi-square')
+##ENDDESCRIPTION
+
+# File Created: 11/28/2018
+# Location: SVSU
+# Course: General Statistics
+
+DOCUMENT();     
+loadMacros("PGstandard.pl",  
+           "PGauxiliaryFunctions.pl",
+           "MathObjects.pl",
+           "PGML.pl",
+           "RserveClient.pl"
+);
+TEXT(&beginproblem);
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+Context()->flags->set(
+  tolerance => 0.01, # about 2 decimal places
+  tolType => "absolute",
+);
+
+@siglevs = (.3, .2, .1, .05, .02, .01, .005, .001);
+
+$numint = $#siglevs + 1;
+
+$interval = random(0, $numint, 1);
+
+sub intervalDesc {
+    my $intno = shift(@_);
+
+    if ($intno <= 0) {
+        return "larger than $siglevs[0]";
+    };
+
+    if ($intno >= $numint) {
+        return "smaller than $siglevs[$#siglevs]";
+    };
+
+    return "between $siglevs[$intno] and $siglevs[$intno - 1]";
+}
+
+sub getP {
+    my $intno = shift(@_);
+    my $factor = random(.2, .8, .1);
+
+    if ($intno <= 0) {
+        return $siglevs[0]*factor + .5*(1 - $factor);
+    };
+
+    if ($intno >= $numint) {
+        return $siglevs[$#siglevs]*factor;
+    };
+
+    return $siglevs[$intno]*$factor + $siglevs[$intno - 1]*(1 - $factor);
+}
+
+@intstrs = map intervalDesc (1..$intno);
+
+$p = getP($interval);
+
+$levels = random(3, 21, 1);
+
+$df = $levels - 1;
+
+@scores = rserve_eval("round(qchisq($p, df = $df), 2)");
+$score = @scores[0];
+
+$radio1 = RadioButtons(@intstrs, $interval);
+
+BEGIN_PGML
+A _goodness of fit test_ with [$levels] levels was performed, and the calculated [` \chi^2 `] score was [$score].
+
+Use the table in the book to choose the correct range for the p-value:
+
+[_]{$radio1}
+
+END_PGML
+
+BEGIN_PGML_SOLUTION
+Use the table in the book with [` [$levels] - 1 = [$df] `] degrees of freedom.
+END_PGML_SOLUTION
+ENDDOCUMENT();
