@@ -42,6 +42,8 @@ foreach my $i (0..7) {
     $total += $x;
 }
 
+$fd = $#expected;
+
 # diffs must add up to 0 and absolute value of each should be no larger than the expected value
 
 do {
