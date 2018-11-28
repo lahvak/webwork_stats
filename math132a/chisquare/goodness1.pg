@@ -1,0 +1,252 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Hypothesis Testing)
+## DBsection(Goodness of fit test)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## MLT(CI_1p_03)
+## MLTleader(1)
+## Level(3)
+## KEYWORDS('hypothesis testing', 'goodness of fit', 'chi-square')
+##ENDDESCRIPTION
+
+# File Created: 11/26/2018
+# Location: SVSU
+# Course: General Statistics
+
+DOCUMENT();     
+loadMacros("PGstandard.pl",  
+           "PGauxiliaryFunctions.pl",
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "scaffold.pl",
+);
+TEXT(&beginproblem);
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+Context()->flags->set(
+  tolerance => 0.01, # about 2 decimal places
+  tolType => "absolute",
+);
+
+@expected = ();
+@diffs = ();
+$total = 0;
+foreach my $i (0..7) {
+    my $x = random(5,50,1);
+    push @expected, $x;
+    push @diffs, list_random(-1,1)*random(3, $x, 1);
+    $total += $x;
+}
+
+# diffs must add up to 0 and absolute value of each should be no larger than the expected value
+
+do {
+    $diffsum = 0;
+    $sumabs = 0;
+    foreach my $i @diffs[0:6] {
+        $diffsum += $i;
+        $sumabs += abs($i);
+    };
+    if ($sumabs == 0) { # all diffs are 0
+        $expected[7] += 1; # make it easier to fit;
+        $total += 1;
+        foreach my $i (0..7) { # generate new diffs
+            $diffs[$i] = list_random(-1,1)*random(3, $expected[$i], 1);
+        };
+        continue;  # try again
+    }
+    if (abs($diffsum) < $expected[7]) { break; };
+
+    if ($diffsum < 0) { # increase negative diffs
+        foreach my $i (0..6) {
+            if ($diffs[$i] < 0) {
+                $diffs[$i] += 1;
+            };
+        };
+    } else { # decrease positive diffs
+        foreach my $i (0..6) {
+            if ($diffs[$i] > 0) {
+                $diffs[$i] -= 1;
+            };
+        };
+    };
+};
+
+$diffs[7] = -$diffsum;
+
+@zsq = map {($diffs[$_]**2)/$expected[$_]} (1..$#expected);
+
+$chisq = 0;
+foreach my $i (0..7) {
+    $chisq += $zsq[$i];
+};
+
+@observed = map {$expected[$_] + $diffs[$_]} (0..$#expected);
+
+@percents = map {100*$_/$total} @expected;
+
+@roundedpercents = map {sprintf("%.2f", $_)} @percents;
+
+$siglevs = (.3, .2, .1, .05, .02, .01, .005, .001);
+$scores = (8.38, 9.80, 12.02, 14.07, 16.62, 18.48, 20.28, 24.32); # 7 degrees of freedom
+
+do {$index = random(0, $#siglevs, 1);} until (abs($chisq - $scores[$index]) > 1); # make sure it is not too close
+
+$alpha = $siglevs[$index];
+$score = scores[$index];
+
+$reject = ($chisq < $score);
+
+$radio1 = RadioButtons([["Reject \(H_0\)", "Fail to reject \(H_0\)"]], $reject?0:1);
+
+$radio2 = RadioButtons([["The shipment does not seem to fulfill the customer specifications.", 
+                         "The shipment does not seem to violate the customer specifications."]], $reject?0:1);
+
+@shapes = ("small cube", "large cube", "small cylinder", "large cylinder", "cone", "half sphere", "short block", "long block");
+
+if ($chisq < $scores[0]) {
+    $chisqcomp = "is less than $scores[0]";
+    $pvalcomp = "is greater than $siglevs[0]";
+} elsif ($scores[0] <= $chisq && $chisq < $scores[1]) {
+    $chisqcomp = "is between $scores[0] and $scores[1]";
+    $pvalcomp = "is between $siglevs[1] and  $siglevs[0]";
+} elsif ($scores[1] <= $chisq && $chisq < $scores[2]) {
+    $chisqcomp = "is between $scores[1] and $scores[2]";
+    $pvalcomp = "is between $siglevs[2] and  $siglevs[1]";
+} elsif ($scores[2] <= $chisq && $chisq < $scores[3]) {
+    $chisqcomp = "is between $scores[2] and $scores[3]";
+    $pvalcomp = "is between $siglevs[3] and  $siglevs[2]";
+} elsif ($scores[3] <= $chisq && $chisq < $scores[4]) {
+    $chisqcomp = "is between $scores[3] and $scores[4]";
+    $pvalcomp = "is between $siglevs[4] and  $siglevs[3]";
+} elsif ($scores[4] <= $chisq && $chisq < $scores[5]) {
+    $chisqcomp = "is between $scores[4] and $scores[5]";
+    $pvalcomp = "is between $siglevs[5] and  $siglevs[4]";
+} elsif ($scores[5] <= $chisq && $chisq < $scores[6]) {
+    $chisqcomp = "is between $scores[5] and $scores[6]";
+    $pvalcomp = "is between $siglevs[6] and  $siglevs[5]";
+} elsif ($scores[6] <= $chisq && $chisq < $scores[7]) {
+    $chisqcomp = "is between $scores[6] and $scores[7]";
+    $pvalcomp = "is between $siglevs[7] and  $siglevs[6]";
+} else {
+    $chisqcomp = "is greater than $scores[7]";
+    $pvalcomp = "is less than $siglevs[7]";
+}
+
+$palphacomp = $reject?"smaller":"larger";
+    
+
+BEGIN_PGML
+A toy company is shipping a large order of wooden blocks that come in 8 different shapes.  The customer ordered the following 
+percentages of the blocks:
+
+[@ DataTable( [[["shape:", midrule=>1], @shapes], 
+               ["percent:",
+                @roundedpercents
+               ]],
+             align => 'r|c|c|c|c|c|c|c|c') @]***
+
+The quality control department selected a random sample of [$total] blocks and found the following shape counts in their sample:
+
+[@ DataTable( [[["shape:", midrule=>1], @shapes], 
+               ["count:",
+                @observed
+               ]],
+             align => 'r|c|c|c|c|c|c|c|c') @]***
+
+Your goal is to test, at [$alpha] significance level, whether the shipment satisfies the customer's requirements.
+
+END_PGML
+
+Scaffold::Begin();
+Section::Begin("Part 1: Calculate the expected counts:");
+
+BEGIN_PGML
+Calculate the _expected counts_ for your sample:
+
+[@ DataTable( [[["shape:", midrule=>1], @shapes], 
+               ["expected count:",
+               PGML('[____]{$expected[0]}'),
+               PGML('[____]{$expected[1]}'),
+               PGML('[____]{$expected[2]}'),
+               PGML('[____]{$expected[3]}'),
+               PGML('[____]{$expected[4]}'),
+               PGML('[____]{$expected[5]}'),
+               PGML('[____]{$expected[6]}'),
+               PGML('[____]{$expected[7]}'),
+               ]],
+             align => 'r|c|c|c|c|c|c|c|c') @]***
+
+END_PGML
+
+BEGIN_PGML_SOLUTION
+To get the expected counts, we multiply the percentages by the sample size, and divide by 100:
+
+* [` \frac{[$roundedpercents[0]]\cdot [$total]}{100} = $expected[0] `]
+* [` \frac{[$roundedpercents[1]]\cdot [$total]}{100} = $expected[1] `]
+* [` \frac{[$roundedpercents[2]]\cdot [$total]}{100} = $expected[2] `]
+* [` \frac{[$roundedpercents[3]]\cdot [$total]}{100} = $expected[3] `]
+* [` \frac{[$roundedpercents[4]]\cdot [$total]}{100} = $expected[4] `]
+* [` \frac{[$roundedpercents[5]]\cdot [$total]}{100} = $expected[5] `]
+* [` \frac{[$roundedpercents[6]]\cdot [$total]}{100} = $expected[6] `]
+* [` \frac{[$roundedpercents[7]]\cdot [$total]}{100} = $expected[7] `]
+END_PGML_SOLUTION
+Section::End();
+
+Section::Begin("Part 2: Calculate the [` \chi^2 `]-score of the sample:");
+BEGIN_PGML
+Using the observed and expected counts, you need to find the [` \chi^2 `] score of the sample:
+
+[` \chi^2 = `] [__________]{$chisq}
+
+END_PGML
+
+BEGIN_PGML_SOLUTION
+To calculate the [`\chi^2`] score, we need to calculate the squared z-score for each of our levels, and then add them all together.
+
+The formula for [` z^2 `] is
+
+[`` z^2 = \frac{\left(\text{observed count} - \text{expected count}\right)^2}{\text{expected count}} ``]
+
+* [` z_1^2 = \frac{([$observed[0]] - [$expected[0]])^2}{[$expected[0]]} = [$zsq[0]] `]
+* [` z_2^2 = \frac{([$observed[1]] - [$expected[1]])^2}{[$expected[1]]} = [$zsq[1]] `]
+* [` z_3^2 = \frac{([$observed[2]] - [$expected[2]])^2}{[$expected[2]]} = [$zsq[2]] `]
+* [` z_4^2 = \frac{([$observed[3]] - [$expected[3]])^2}{[$expected[3]]} = [$zsq[3]] `]
+* [` z_5^2 = \frac{([$observed[4]] - [$expected[4]])^2}{[$expected[4]]} = [$zsq[4]] `]
+* [` z_6^2 = \frac{([$observed[5]] - [$expected[5]])^2}{[$expected[5]]} = [$zsq[5]] `]
+* [` z_7^2 = \frac{([$observed[6]] - [$expected[6]])^2}{[$expected[6]]} = [$zsq[6]] `]
+* [` z_8^2 = \frac{([$observed[7]] - [$expected[7]])^2}{[$expected[7]]} = [$zsq[7]] `]
+
+then [` \chi^2 = z_1^2 + z_2^2 + \cdots + z_8^2 = [$chisq] `].
+END_PGML_SOLUTION
+Section::End();
+
+Section::Begin("Part 3: Find the p-value and compare it to [` \alpha `]:");
+BEGIN_PGML
+Finally, you need to use the table in the book to estimate the p-value of the data.
+
+* How many degrees of freedom will you use? [__________]{$df}
+
+* After using the table to estimate the p-value and comparing it to the significance level [` \alpha `], we
+
+    [_]{$radio1}
+
+    which means
+
+    [_]{$radio2}
+END_PGML
+
+BEGIN_PGML_SOLUTION
+We use one less degrees of freedom than we have levels.  Since we have [$df + 1] levels, we use the line in the table
+with [$df] degrees of freedom.
+
+In the table, the [` \chi^2 `] score of [$chisq] is [$chisqcomp], which means the p-value is [$pvalcomp].  That is [$palphacomp] than [` \alpha `], so we [$radio1->correct_ans()].
+
+[$radio2->correct_ans()].
+END_PGML_SOLUTION
+Section::End();
+Scaffold::End();
+ENDDOCUMENT();
