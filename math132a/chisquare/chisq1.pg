@@ -75,7 +75,7 @@ $levels = random(3, 21, 1);
 $df = $levels - 1;
 
 @scores = rserve_eval("round(qchisq($p, df = $df), 2)");
-$score = @scores[0];
+$score = $scores[0];
 
 $radio1 = RadioButtons([ # this is really stoopid!  Why can't I just put @intstrs there?
                 $intstrs[0], 
