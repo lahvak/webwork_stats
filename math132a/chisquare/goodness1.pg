@@ -46,7 +46,7 @@ foreach my $i (0..7) {
 do {
     $diffsum = 0;
     $sumabs = 0;
-    foreach my $i @diffs[0:6] {
+    foreach my $i (@diffs[0:6]) {
         $diffsum += $i;
         $sumabs += abs($i);
     };
@@ -96,7 +96,7 @@ $scores = (8.38, 9.80, 12.02, 14.07, 16.62, 18.48, 20.28, 24.32); # 7 degrees of
 do {$index = random(0, $#siglevs, 1);} until (abs($chisq - $scores[$index]) > 1); # make sure it is not too close
 
 $alpha = $siglevs[$index];
-$score = scores[$index];
+$score = $scores[$index];
 
 $reject = ($chisq < $score);
 
