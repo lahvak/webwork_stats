@@ -99,7 +99,7 @@ do {$index = random(0, $#siglevs, 1);} until (abs($chisq - $scores[$index]) > 1)
 $alpha = $siglevs[$index];
 $score = $scores[$index];
 
-$reject = ($chisq < $score);
+$reject = ($chisq > $score);
 
 $radio1 = RadioButtons([["Reject \(H_0\)", "Fail to reject \(H_0\)"]], $reject?0:1);
 
@@ -138,6 +138,9 @@ if ($chisq < $scores[0]) {
 }
 
 $palphacomp = $reject?"smaller":"larger";
+$rejecth0 = $reject?"reject":"fail to reject";
+$conclusion = $reject?"The shipment does not seem to fulfill the customer specifications.":
+                         "The shipment does not seem to violate the customer specifications.";
     
 
 BEGIN_PGML
@@ -244,9 +247,9 @@ BEGIN_PGML_SOLUTION
 We use one less degrees of freedom than we have levels.  Since we have [$df + 1] levels, we use the line in the table
 with [$df] degrees of freedom.
 
-In the table, the [` \chi^2 `] score of [$chisq] is [$chisqcomp], which means the p-value is [$pvalcomp].  That is [$palphacomp] than [` \alpha `], so we [$radio1->correct_ans()].
+In the table, the [` \chi^2 `] score of [$chisq] is [$chisqcomp], which means the p-value is [$pvalcomp].  That is [$palphacomp] than [` \alpha `], so we [$rejecth0] the [` H_0 `].
 
-[$radio2->correct_ans()].
+[$conclusion]
 END_PGML_SOLUTION
 Section::End();
 Scaffold::End();
