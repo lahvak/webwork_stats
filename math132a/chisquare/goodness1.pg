@@ -163,15 +163,6 @@ The quality control department selected a random sample of [$total] blocks and f
                ]],
              align => 'r|c|c|c|c|c|c|c|c') @]***
 
-Debug:
-
-
-[@ DataTable( [[["shape:", midrule=>1], @shapes], 
-               ["diff:",
-                @diffs
-               ]],
-             align => 'r|c|c|c|c|c|c|c|c') @]***
-
 Your goal is to test, at [$alpha] significance level, whether the shipment satisfies the customer's requirements.
 
 END_PGML
@@ -211,7 +202,7 @@ To get the expected counts, we multiply the percentages by the sample size, and 
 END_PGML_SOLUTION
 Section::End();
 
-Section::Begin("Part 2: Calculate the [` \chi^2 `]-score of the sample:");
+Section::Begin("Part 2: Calculate the \(\chi^2\)-score of the sample:");
 BEGIN_PGML
 Using the observed and expected counts, you need to find the [` \chi^2 `] score of the sample:
 
@@ -239,7 +230,7 @@ then [` \chi^2 = z_1^2 + z_2^2 + \cdots + z_8^2 = [$chisq] `].
 END_PGML_SOLUTION
 Section::End();
 
-Section::Begin("Part 3: Find the p-value and compare it to [` \alpha `]:");
+Section::Begin("Part 3: Find the p-value and compare it to \(\alpha\):");
 BEGIN_PGML
 Finally, you need to use the table in the book to estimate the p-value of the data.
 
