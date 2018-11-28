@@ -68,6 +68,8 @@ sub getP {
 
 @intstrs = map {intervalDesc($_)} [0..$numint];
 
+$deb = join(':', @intstrs);
+
 $p = getP($interval);
 
 $levels = random(3, 21, 1);
@@ -77,14 +79,16 @@ $df = $levels - 1;
 @scores = rserve_eval("round(qchisq($p, df = $df), 2)");
 $score = @scores[0];
 
-$radio1 = RadioButtons(@intstrs, $interval);
+#$radio1 = RadioButtons(@intstrs, $interval);
 
 BEGIN_PGML
 A _goodness of fit test_ with [$levels] levels was performed, and the calculated [` \chi^2 `] score was [$score].
 
 Use the table in the book to choose the correct range for the p-value:
 
-[_]{$radio1}
+[$deb]
+
+#[_]{$radio1}
 
 END_PGML
 
