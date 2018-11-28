@@ -19,7 +19,8 @@ loadMacros("PGstandard.pl",
            "PGauxiliaryFunctions.pl",
            "MathObjects.pl",
            "PGML.pl",
-           "RserveClient.pl"
+           "RserveClient.pl",
+           "parserRadioButtons.pl",
 );
 TEXT(&beginproblem);
 $showPartialCorrectAnswers = 1;
@@ -55,11 +56,11 @@ sub getP {
     my $factor = random(.2, .8, .1);
 
     if ($intno <= 0) {
-        return $siglevs[0]*factor + .5*(1 - $factor);
+        return $siglevs[0]*$factor + .5*(1 - $factor);
     };
 
     if ($intno >= $numint) {
-        return $siglevs[$#siglevs]*factor;
+        return $siglevs[$#siglevs]*$factor;
     };
 
     return $siglevs[$intno]*$factor + $siglevs[$intno - 1]*(1 - $factor);
