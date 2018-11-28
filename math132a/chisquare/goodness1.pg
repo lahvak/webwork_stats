@@ -20,6 +20,7 @@ loadMacros("PGstandard.pl",
            "MathObjects.pl",
            "PGML.pl",
            "niceTables.pl",
+           "parserRadioButtons.pl",
            "scaffold.pl",
 );
 TEXT(&beginproblem);
