@@ -77,7 +77,18 @@ $df = $levels - 1;
 @scores = rserve_eval("round(qchisq($p, df = $df), 2)");
 $score = @scores[0];
 
-$radio1 = RadioButtons($intstrs[0..$#intstrs], $interval);
+$radio1 = RadioButtons([ # this is really stoopid!  Why can't I just put @intstrs there?
+                $intstrs[0], 
+                $intstrs[1], 
+                $intstrs[2], 
+                $intstrs[3], 
+                $intstrs[4], 
+                $intstrs[5], 
+                $intstrs[6], 
+                $intstrs[7], 
+                $intstrs[8], 
+                ],
+                $interval);
 
 BEGIN_PGML
 A _goodness of fit test_ with [$levels] levels was performed, and the calculated [` \chi^2 `] score was [$score].
