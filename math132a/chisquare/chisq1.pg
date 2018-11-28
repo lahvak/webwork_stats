@@ -66,7 +66,7 @@ sub getP {
     return $siglevs[$intno]*$factor + $siglevs[$intno - 1]*(1 - $factor);
 }
 
-@intstrs = map intervalDesc (1..$intno);
+@intstrs = map intervalDesc 1..$intno;
 
 $p = getP($interval);
 
@@ -77,7 +77,7 @@ $df = $levels - 1;
 @scores = rserve_eval("round(qchisq($p, df = $df), 2)");
 $score = @scores[0];
 
-$radio1 = RadioButtons([@intstrs], $interval);
+$radio1 = RadioButtons(@intstrs, $interval);
 
 BEGIN_PGML
 A _goodness of fit test_ with [$levels] levels was performed, and the calculated [` \chi^2 `] score was [$score].
