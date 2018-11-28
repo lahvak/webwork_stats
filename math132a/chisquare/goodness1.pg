@@ -46,12 +46,12 @@ $df = $#expected;
 
 # diffs must add up to 0 and absolute value of each should be no larger than the expected value
 
-do {
+while (1) {
     $diffsum = 0;
     $sumabs = 0;
-    foreach my $i (0..6) {
-        $diffsum += $diffs[$i];
-        $sumabs += abs($diffs[$i]);
+    foreach my $i (@diffs[0..6]) {
+        $diffsum += $i;
+        $sumabs += abs($i);
     };
     if ($sumabs == 0) { # all diffs are 0
         $expected[7] += 1; # make it easier to fit;
@@ -59,9 +59,9 @@ do {
         foreach my $i (0..7) { # generate new diffs
             $diffs[$i] = list_random(-1,1)*random(1, int($expected[$i]/3), 1);
         };
-        continue;  # try again
+        next;  # try again
     }
-    if (abs($diffsum) < $expected[7]) { break; };
+    if (abs($diffsum) < $expected[7]) { last; };
 
     if ($diffsum < 0) { # increase negative diffs
         foreach my $i (0..6) {
