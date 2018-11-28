@@ -78,7 +78,7 @@ do {
 
 $diffs[7] = -$diffsum;
 
-@zsq = map {($diffs[$_]**2)/$expected[$_]} (1..$#expected);
+@zsq = map {($diffs[$_]**2)/$expected[$_]} (0..$#expected);
 
 $chisq = 0;
 foreach my $i (0..7) {
