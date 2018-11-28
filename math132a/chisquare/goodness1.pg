@@ -163,6 +163,15 @@ The quality control department selected a random sample of [$total] blocks and f
                ]],
              align => 'r|c|c|c|c|c|c|c|c') @]***
 
+Debug:
+
+
+[@ DataTable( [[["shape:", midrule=>1], @shapes], 
+               ["diff:",
+                @diffs
+               ]],
+             align => 'r|c|c|c|c|c|c|c|c') @]***
+
 Your goal is to test, at [$alpha] significance level, whether the shipment satisfies the customer's requirements.
 
 END_PGML
