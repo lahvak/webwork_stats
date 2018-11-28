@@ -38,7 +38,7 @@ $total = 0;
 foreach my $i (0..7) {
     my $x = random(5,50,1);
     push @expected, $x;
-    push @diffs, list_random(-1,1)*random(int($x/2), $x, 1);
+    push @diffs, list_random(-1,1)*random(1, int($x/2), 1);
     $total += $x;
 }
 
@@ -57,7 +57,7 @@ do {
         $expected[7] += 1; # make it easier to fit;
         $total += 1;
         foreach my $i (0..7) { # generate new diffs
-            $diffs[$i] = list_random(-1,1)*random(int($expected[$i]/2), $expected[$i], 1);
+            $diffs[$i] = list_random(-1,1)*random(1, int($expected[$i]/2), 1);
         };
         continue;  # try again
     }
