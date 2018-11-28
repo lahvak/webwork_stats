@@ -91,8 +91,8 @@ foreach my $i (0..7) {
 
 @roundedpercents = map {sprintf("%.2f", $_)} @percents;
 
-$siglevs = (.3, .2, .1, .05, .02, .01, .005, .001);
-$scores = (8.38, 9.80, 12.02, 14.07, 16.62, 18.48, 20.28, 24.32); # 7 degrees of freedom
+@siglevs = (.3, .2, .1, .05, .02, .01, .005, .001);
+@scores = (8.38, 9.80, 12.02, 14.07, 16.62, 18.48, 20.28, 24.32); # 7 degrees of freedom
 
 do {$index = random(0, $#siglevs, 1);} until (abs($chisq - $scores[$index]) > 1); # make sure it is not too close
 
@@ -186,14 +186,14 @@ END_PGML
 BEGIN_PGML_SOLUTION
 To get the expected counts, we multiply the percentages by the sample size, and divide by 100:
 
-* [` \frac{[$roundedpercents[0]]\cdot [$total]}{100} = $expected[0] `]
-* [` \frac{[$roundedpercents[1]]\cdot [$total]}{100} = $expected[1] `]
-* [` \frac{[$roundedpercents[2]]\cdot [$total]}{100} = $expected[2] `]
-* [` \frac{[$roundedpercents[3]]\cdot [$total]}{100} = $expected[3] `]
-* [` \frac{[$roundedpercents[4]]\cdot [$total]}{100} = $expected[4] `]
-* [` \frac{[$roundedpercents[5]]\cdot [$total]}{100} = $expected[5] `]
-* [` \frac{[$roundedpercents[6]]\cdot [$total]}{100} = $expected[6] `]
-* [` \frac{[$roundedpercents[7]]\cdot [$total]}{100} = $expected[7] `]
+* [` \frac{[$roundedpercents[0]]\cdot [$total]}{100} = [$expected[0]] `]
+* [` \frac{[$roundedpercents[1]]\cdot [$total]}{100} = [$expected[1]] `]
+* [` \frac{[$roundedpercents[2]]\cdot [$total]}{100} = [$expected[2]] `]
+* [` \frac{[$roundedpercents[3]]\cdot [$total]}{100} = [$expected[3]] `]
+* [` \frac{[$roundedpercents[4]]\cdot [$total]}{100} = [$expected[4]] `]
+* [` \frac{[$roundedpercents[5]]\cdot [$total]}{100} = [$expected[5]] `]
+* [` \frac{[$roundedpercents[6]]\cdot [$total]}{100} = [$expected[6]] `]
+* [` \frac{[$roundedpercents[7]]\cdot [$total]}{100} = [$expected[7]] `]
 END_PGML_SOLUTION
 Section::End();
 
