@@ -80,18 +80,20 @@ while (1) {
 
 $diffs[7] = -$diffsum;
 
-@zsq = map {($diffs[$_]**2)/$expected[$_]} (0..$#expected);
-
-$chisq = 0;
-foreach my $i (0..7) {
-    $chisq += $zsq[$i];
-};
-
 @observed = map {$expected[$_] + $diffs[$_]} (0..$#expected);
 
 @percents = map {100*$_/$total} @expected;
 
 @roundedpercents = map {sprintf("%.2f", $_)} @percents;
+
+@newexpected = map {$_ * $total/100} $roundedpercents;
+
+@zsq = map {($diffs[$_]**2)/$newexpected[$_]} (0..$#newexpected);
+
+$chisq = 0;
+foreach my $i (0..7) {
+    $chisq += $zsq[$i];
+};
 
 @siglevs = (.3, .2, .1, .05, .02, .01, .005, .001);
 @scores = (8.38, 9.80, 12.02, 14.07, 16.62, 18.48, 20.28, 24.32); # 7 degrees of freedom
@@ -175,14 +177,14 @@ Calculate the _expected counts_ for your sample:
 
 [@ DataTable( [[["shape:", midrule=>1], @shapes], 
                ["expected count:",
-               PGML('[____]{$expected[0]}'),
-               PGML('[____]{$expected[1]}'),
-               PGML('[____]{$expected[2]}'),
-               PGML('[____]{$expected[3]}'),
-               PGML('[____]{$expected[4]}'),
-               PGML('[____]{$expected[5]}'),
-               PGML('[____]{$expected[6]}'),
-               PGML('[____]{$expected[7]}'),
+               PGML('[____]{$newexpected[0]}'),
+               PGML('[____]{$newexpected[1]}'),
+               PGML('[____]{$newexpected[2]}'),
+               PGML('[____]{$newexpected[3]}'),
+               PGML('[____]{$newexpected[4]}'),
+               PGML('[____]{$newexpected[5]}'),
+               PGML('[____]{$newexpected[6]}'),
+               PGML('[____]{$newexpected[7]}'),
                ]],
              align => 'r|c|c|c|c|c|c|c|c') @]***
 
@@ -191,14 +193,14 @@ END_PGML
 BEGIN_PGML_SOLUTION
 To get the expected counts, we multiply the percentages by the sample size, and divide by 100:
 
-* [` \frac{[$roundedpercents[0]]\cdot [$total]}{100} = [$expected[0]] `]
-* [` \frac{[$roundedpercents[1]]\cdot [$total]}{100} = [$expected[1]] `]
-* [` \frac{[$roundedpercents[2]]\cdot [$total]}{100} = [$expected[2]] `]
-* [` \frac{[$roundedpercents[3]]\cdot [$total]}{100} = [$expected[3]] `]
-* [` \frac{[$roundedpercents[4]]\cdot [$total]}{100} = [$expected[4]] `]
-* [` \frac{[$roundedpercents[5]]\cdot [$total]}{100} = [$expected[5]] `]
-* [` \frac{[$roundedpercents[6]]\cdot [$total]}{100} = [$expected[6]] `]
-* [` \frac{[$roundedpercents[7]]\cdot [$total]}{100} = [$expected[7]] `]
+* [` \frac{[$roundedpercents[0]]\cdot [$total]}{100} = [$newexpected[0]] `]
+* [` \frac{[$roundedpercents[1]]\cdot [$total]}{100} = [$newexpected[1]] `]
+* [` \frac{[$roundedpercents[2]]\cdot [$total]}{100} = [$newexpected[2]] `]
+* [` \frac{[$roundedpercents[3]]\cdot [$total]}{100} = [$newexpected[3]] `]
+* [` \frac{[$roundedpercents[4]]\cdot [$total]}{100} = [$newexpected[4]] `]
+* [` \frac{[$roundedpercents[5]]\cdot [$total]}{100} = [$newexpected[5]] `]
+* [` \frac{[$roundedpercents[6]]\cdot [$total]}{100} = [$newexpected[6]] `]
+* [` \frac{[$roundedpercents[7]]\cdot [$total]}{100} = [$newexpected[7]] `]
 END_PGML_SOLUTION
 Section::End();
 
@@ -217,14 +219,14 @@ The formula for [` z^2 `] is
 
 [`` z^2 = \frac{\left(\text{observed count} - \text{expected count}\right)^2}{\text{expected count}} ``]
 
-* [` z_1^2 = \frac{([$observed[0]] - [$expected[0]])^2}{[$expected[0]]} = [$zsq[0]] `]
-* [` z_2^2 = \frac{([$observed[1]] - [$expected[1]])^2}{[$expected[1]]} = [$zsq[1]] `]
-* [` z_3^2 = \frac{([$observed[2]] - [$expected[2]])^2}{[$expected[2]]} = [$zsq[2]] `]
-* [` z_4^2 = \frac{([$observed[3]] - [$expected[3]])^2}{[$expected[3]]} = [$zsq[3]] `]
-* [` z_5^2 = \frac{([$observed[4]] - [$expected[4]])^2}{[$expected[4]]} = [$zsq[4]] `]
-* [` z_6^2 = \frac{([$observed[5]] - [$expected[5]])^2}{[$expected[5]]} = [$zsq[5]] `]
-* [` z_7^2 = \frac{([$observed[6]] - [$expected[6]])^2}{[$expected[6]]} = [$zsq[6]] `]
-* [` z_8^2 = \frac{([$observed[7]] - [$expected[7]])^2}{[$expected[7]]} = [$zsq[7]] `]
+* [` z_1^2 = \frac{([$observed[0]] - [$newexpected[0]])^2}{[$newexpected[0]]} = [$zsq[0]] `]
+* [` z_2^2 = \frac{([$observed[1]] - [$newexpected[1]])^2}{[$newexpected[1]]} = [$zsq[1]] `]
+* [` z_3^2 = \frac{([$observed[2]] - [$newexpected[2]])^2}{[$newexpected[2]]} = [$zsq[2]] `]
+* [` z_4^2 = \frac{([$observed[3]] - [$newexpected[3]])^2}{[$newexpected[3]]} = [$zsq[3]] `]
+* [` z_5^2 = \frac{([$observed[4]] - [$newexpected[4]])^2}{[$newexpected[4]]} = [$zsq[4]] `]
+* [` z_6^2 = \frac{([$observed[5]] - [$newexpected[5]])^2}{[$newexpected[5]]} = [$zsq[5]] `]
+* [` z_7^2 = \frac{([$observed[6]] - [$newexpected[6]])^2}{[$newexpected[6]]} = [$zsq[6]] `]
+* [` z_8^2 = \frac{([$observed[7]] - [$newexpected[7]])^2}{[$newexpected[7]]} = [$zsq[7]] `]
 
 then [` \chi^2 = z_1^2 + z_2^2 + \cdots + z_8^2 = [$chisq] `].
 END_PGML_SOLUTION
