@@ -88,7 +88,9 @@ $diffs[7] = -$diffsum;
 
 @newexpected = map {$_ * $total/100} @roundedpercents;
 
-@zsq = map {($diffs[$_]**2)/$newexpected[$_]} (0..$#newexpected);
+@newdiffs = map {$observed[$_] - $newexpected[$_]} (0..$#newexpected);
+
+@zsq = map {($newdiffs[$_]**2)/$newexpected[$_]} (0..$#newexpected);
 
 $chisq = 0;
 foreach my $i (0..7) {
