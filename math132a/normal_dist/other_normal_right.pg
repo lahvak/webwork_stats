@@ -58,6 +58,8 @@ Find the area under the normal curve with mean [` \mu = [$mu] `] and standard de
     Area = [__________]{$ltail}
 
 3. Subtract from 1 to find the area under the standard normal curve to the right of your [:z:]-score: 
+
+    Area = [__________]{$rtail}
 END_PGML
 
 BEGIN_PGML_SOLUTION
