@@ -39,7 +39,7 @@ $x = random($xmin, $xmax, 1);
 BEGIN_PGML
 To find the area under the normal curve with mean [` \mu = [$mu] `] and standard deviation [` \sigma = [$sig] `] to the left of [` x = [$x] `] using R, you would type the following code (fill in the blanks):
 
-[_____]{"pnorm"}[|(|][________]{$x}[|, mean = |][________]{$mu}[|, sd = |][_________]{$sig}[|)|]
+[_____]{String("pnorm")}[|(|][________]{$x}[|, mean = |][________]{$mu}[|, sd = |][_________]{$sig}[|)|]
 
 END_PGML
 
