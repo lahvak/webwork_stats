@@ -64,5 +64,7 @@ BEGIN_PGML_SOLUTION
 1.  [` z = \frac{x - \mu}{\sigma} = \frac{[$x] - [$mu]}{[$sig]} = [$zscore] `].
 
 2.  From the table, the area to the left of [: [$zscore] :] is [: [$ltail] :].
+
+3.  To get the area to the right, we subtract from 1: [: 1 - [$ltail] = [$rtail] :].
 END_PGML_SOLUTION
 ENDDOCUMENT();
