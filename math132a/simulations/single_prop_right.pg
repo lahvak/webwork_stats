@@ -57,7 +57,7 @@ Scaffold::Begin();
 Section::Begin("Set up simulation");
 
 BEGIN_PGML
-A research group tested a claim that the proportion of people in certain population testing positive to certain virus as at most [$p]. 
+A research group tested a claim that the proportion of people in certain population testing positive to certain virus is at most [$p]. 
 Their null hypothesis is [` H_0: p = [$p] `], with alternative hypothesis [` H_A: p > [$p] `].
 
 They collected a simple random sample of size [$n].  In the sample, [$x] people tested positive for the virus.
