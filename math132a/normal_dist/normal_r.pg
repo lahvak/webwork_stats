@@ -24,7 +24,7 @@ loadMacros("PGstandard.pl",
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
 
-Context("String")->strings->add(pnorm->{});
+Context("String")->strings->add(pnorm=>{});
 
 $pnorm = Compute("pnorm");
 
