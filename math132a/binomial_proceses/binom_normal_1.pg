@@ -57,7 +57,7 @@ Use the normal approximation to find the probability that the process results in
 
 1. We will use the normal curve with mean [` \mu = `] [_________]{$mu} and standard deviation [` \sigma = `][__________]{$sig} (round to 3 decimal places).
 
-2. The [: z :]-score will be [: z = :] [__________]{$zscore} (round to two decimal places.  When calculating the [:z:]-score, do not forget to account for the thickness of the histogram bar!)
+2. The [: z :]-score will be [: z = :] [__________]{$zscore} (round to two decimal places.  When calculating the [:z:]-score, do not forget to account for the thickness of the histogram bar - so called _continuity correction_!)
 
 3. Use the table C.1 in the textbook (or another normal probability table) to find the area under the standard normal curve to the left of your [:z:]-score: 
 
