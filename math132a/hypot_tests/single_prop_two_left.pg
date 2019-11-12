@@ -1,0 +1,102 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Hypothesis Testing)
+## DBsection(Simulations)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## MLT(CI_1p_03)
+## MLTleader(1)
+## Level(3)
+## KEYWORDS('hypothesis testing', 'p-value', 'single proportion')
+##ENDDESCRIPTION
+
+# File Created: 2019-11-12
+# Location: SVSU
+# Course: General Statistics
+
+DOCUMENT();     
+loadMacros("PGstandard.pl",  
+           "PGauxiliaryFunctions.pl",
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserRadioButtons.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 0;
+
+Context("Numeric");
+
+$p = random(20, 80, 1)/100;
+$n = random(20, 90, 1)*100;
+$meansucc = $p*$n;
+$phat = random(100, 2*$meansucc/3, 1)/$n;
+
+$SE1 = sqrt($p*(1-$p)/n);
+$SE2 = sqrt($phat*(1-$phat)/n);
+
+$radiodist = RadioButtons(
+    ["?",
+     "Normal distribution with mean [$p] and standard deviation [$SE1].",
+     "Normal distribution with mean [$phat] and standard deviation [$SE1].",
+     "Normal distribution with mean [$p] and standard deviation [$SE2].",
+     "Normal distribution with mean [$phat] and standard deviation [$SE2].",
+     "Normal distribution with mean [$SE1] and standard deviation [$p].",
+     "Normal distribution with mean [$SE1] and standard deviation [$phat].",
+     "Normal distribution with mean [$SE2] and standard deviation [$p].",
+     "Normal distribution with mean [$SE2] and standard deviation [$phat].",
+    ], "Normal distribution with mean [$p] and standard deviation [$SE1].");
+
+$radioside = RadioButtons(
+    ["?",
+     "find the area to the left of $phat.",
+     "find the area to the right of $phat.",
+     "find the area to the left of $p.",
+     "find the area to the right of $p.",
+     "find the area to the left of $phat and double it.",
+     "find the area to the right of $phat and double it.",
+     "find the area to the left of $p and double it.",
+     "find the area to the right of $p and double it.",
+    ], "find the area to the left of $phat and double it.");
+
+BEGIN_PGML
+In a test for a single proprtion, the null hypothesis is [` H_0: p = [$p] `], 
+with alternative hypothesis [` H_A: p \neq [$p] `].  
+
+A simple random sample of size [$n] was collected, with the sample proportion [`\hat{p} = [$phat]`].
+
+We can assume that the sample size is large enough so that a continuity
+correction is not needed, and the success-failure condition is satisfied.
+
+According to the Central Limit Theorem for sample proportions, which
+distribution can we use to approximate the sampling distribution of
+[`\hat{p}`]?
+
+[@ $radiodist->buttons() @]*
+
+To approximate the p-value, we need to:
+
+[@ $radioside->buttons() @]*
+
+END_PGML
+
+install_problem_grader(~~&std_problem_grader);
+
+ANS( $radiodist->cmp() );
+
+ANS( $radioside->cmp() );
+
+BEGIN_PGML_SOLUTION
+Since we are assuming that the null hypothesis is true, all calculations will be done with [: p = [$p] :].
+The CLT says that the sampling distribution of the sample proportions is approximately normal with mean [:p:]
+    and standard deviation equal to the _standard error_
+
+[`` SE = \sqrt{\frac{p(1-p)}{n}} = \sqrt{\frac{[$p]\cdot(1 - [$p])}{[$n]}} = [$SE1] ``]
+
+So the answer for the first part is [$radiodist->correct_ans()].
+
+Since this is a two-tailed test and [` \hat{p} < p `], we need to find the area to the _left_ of [` \hat{p} `] and double it.
+
+So the answer for the second part is [$radioside->correct_ans()].
+
+END_PGML_SOLUTION
+ENDDOCUMENT();
