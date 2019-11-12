@@ -110,7 +110,7 @@ Section::End();
 Section::Begin("Calculate the p-value");
 BEGIN_PGML
 The [|tally|] command above calculates that [$succ] simulations resulted in the number of heads less than or equal to [$x].
-Yse this information to approximate the p-value of the sample (round your answer to 2 decimal places):
+Use this information to approximate the p-value of the sample (round your answer to 2 decimal places):
 
 P-value estimate is [__________]{$pval_approx}
 END_PGML
