@@ -38,7 +38,7 @@ $n = random(5,25,1)*10;
 $mean = $n*$p;
 $sd = sqrt($n*$p*(1-$p));
 
-@value = rserve_eval("round(qnorm(1-$pval, mean = $mean, sd = $sd) + .5)");
+@value = rserve_eval("round(qnorm($pval, mean = $mean, sd = $sd) + .5)");
 
 $x = $value[0];
 
