@@ -99,7 +99,7 @@ END_PGML
 BEGIN_PGML_SOLUTION
 This is a two-tailed test, so to find the p-value, we will need to find the area in both tails of the histogram.  
 
-According to the _null hypothesis_, the expected number of deer mice affected by the mutation is [:[$n]*[$p] = [$mean]:].
+According to the _null hypothesis_, the expected number of deer mice affected by the mutation is [`[$n]\cdot [$p] = [$mean]`].
 Since the observed value is [:[$x]:], which is _less than_ the expected value, we want to start by finding the area to the 
 _left_ of the observed value.  So the command is
 
