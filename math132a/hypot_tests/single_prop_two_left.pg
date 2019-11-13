@@ -35,7 +35,7 @@ $SE1 = sprintf("%.4f", sqrt($p*(1-$p)/$n));
 $SE2 = sprintf("%.4f", sqrt($phat*(1-$phat)/$n));
 
 $radiodist = RadioButtons(
-    ["Normal distribution with mean $p and standard deviation $SE1.",
+    [["Normal distribution with mean $p and standard deviation $SE1.",
      "Normal distribution with mean $phat and standard deviation $SE1.",
      "Normal distribution with mean $p and standard deviation $SE2.",
      "Normal distribution with mean $phat and standard deviation $SE2.",
@@ -43,10 +43,10 @@ $radiodist = RadioButtons(
      "Normal distribution with mean $SE1 and standard deviation $phat.",
      "Normal distribution with mean $SE2 and standard deviation $p.",
      "Normal distribution with mean $SE2 and standard deviation $phat.",
-    ], "Normal distribution with mean $p and standard deviation $SE1.");
+    ]], "Normal distribution with mean $p and standard deviation $SE1.");
 
 $radioside = RadioButtons(
-    ["find the area to the left of $phat.",
+    [["find the area to the left of $phat.",
      "find the area to the right of $phat.",
      "find the area to the left of $p.",
      "find the area to the right of $p.",
@@ -54,7 +54,7 @@ $radioside = RadioButtons(
      "find the area to the right of $phat and double it.",
      "find the area to the left of $p and double it.",
      "find the area to the right of $p and double it.",
-    ], "find the area to the left of $phat and double it.");
+    ]], "find the area to the left of $phat and double it.");
 
 BEGIN_PGML
 In a test for a single proprtion, the null hypothesis is [` H_0: p = [$p] `], 
@@ -86,15 +86,10 @@ ANS( $radioside->cmp() );
 BEGIN_PGML_SOLUTION
 Since we are assuming that the null hypothesis is true, all calculations will be done with [: p = [$p] :].
 The CLT says that the sampling distribution of the sample proportions is approximately normal with mean [:p:]
-    and standard deviation equal to the _standard error_
+and standard deviation equal to the _standard error_
 
 [`` SE = \sqrt{\frac{p(1-p)}{n}} = \sqrt{\frac{[$p]\cdot(1 - [$p])}{[$n]}} = [$SE1] ``]
 
-So the answer for the first part is [$radiodist->correct_ans()].
-
 Since this is a two-tailed test and [` \hat{p} < p `], we need to find the area to the _left_ of [` \hat{p} `] and double it.
-
-So the answer for the second part is [$radioside->correct_ans()].
-
 END_PGML_SOLUTION
 ENDDOCUMENT();
