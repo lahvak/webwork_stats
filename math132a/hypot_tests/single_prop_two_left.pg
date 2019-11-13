@@ -57,7 +57,7 @@ $radioside = RadioButtons(
     ]], "find the area to the left of $phat and double it.");
 
 BEGIN_PGML
-In a test for a single proprtion, the null hypothesis is [` H_0: p = [$p] `], 
+In a test for a single proportion, the null hypothesis is [` H_0: p = [$p] `], 
 with alternative hypothesis [` H_A: p \neq [$p] `].  
 
 A simple random sample of size [$n] was collected, with the sample proportion [`\hat{p} = [$phat]`].
