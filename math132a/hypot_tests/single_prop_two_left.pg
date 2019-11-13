@@ -35,15 +35,15 @@ $SE1 = sprintf("%.4f", sqrt($p*(1-$p)/$n));
 $SE2 = sprintf("%.4f", sqrt($phat*(1-$phat)/$n));
 
 $radiodist = RadioButtons(
-    ["Normal distribution with mean [$p] and standard deviation [$SE1].",
-     "Normal distribution with mean [$phat] and standard deviation [$SE1].",
-     "Normal distribution with mean [$p] and standard deviation [$SE2].",
-     "Normal distribution with mean [$phat] and standard deviation [$SE2].",
-     "Normal distribution with mean [$SE1] and standard deviation [$p].",
-     "Normal distribution with mean [$SE1] and standard deviation [$phat].",
-     "Normal distribution with mean [$SE2] and standard deviation [$p].",
-     "Normal distribution with mean [$SE2] and standard deviation [$phat].",
-    ], "Normal distribution with mean [$p] and standard deviation [$SE1].");
+    ["Normal distribution with mean $p and standard deviation $SE1.",
+     "Normal distribution with mean $phat and standard deviation $SE1.",
+     "Normal distribution with mean $p and standard deviation $SE2.",
+     "Normal distribution with mean $phat and standard deviation $SE2.",
+     "Normal distribution with mean $SE1 and standard deviation $p.",
+     "Normal distribution with mean $SE1 and standard deviation $phat.",
+     "Normal distribution with mean $SE2 and standard deviation $p.",
+     "Normal distribution with mean $SE2 and standard deviation $phat.",
+    ], "Normal distribution with mean $p and standard deviation $SE1.");
 
 $radioside = RadioButtons(
     ["find the area to the left of $phat.",
