@@ -29,10 +29,10 @@ Context("Numeric");
 $p = random(20, 80, 1)/100;
 $n = random(20, 90, 1)*10;
 $meansucc = $p*$n;
-$phat = random(20, 2*$meansucc/3, 1)/$n;
+$phat = sprintf("%.4f", random(20, 2*$meansucc/3, 1)/$n);
 
-$SE1 = sqrt($p*(1-$p)/$n);
-$SE2 = sqrt($phat*(1-$phat)/$n);
+$SE1 = sprintf("%.4f", sqrt($p*(1-$p)/$n));
+$SE2 = sprintf("%.4f", sqrt($phat*(1-$phat)/$n));
 
 $radiodist = RadioButtons(
     ["Normal distribution with mean [$p] and standard deviation [$SE1].",
