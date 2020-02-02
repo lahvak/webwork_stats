@@ -96,8 +96,8 @@ BEGIN_PGML_SOLUTION
     [`` \begin{aligned}
     \operatorname{E} X^2 &= \int_{[$a]}^{[$b]} x^2\cdot 2\frac{x - [$a]}{\left([$b] - [$a]\right)^2}\;dx\\
     &= \frac{2}{\left([$b] - [$a]\right)^2} \left.\left(\frac{x^4}{4} - [$a]\frac{x^3}{3}\right)\right\rvert_{[$a]}^{[$b]}\\
-    &= \frac{2}{\left([$b] - [$a]\right)^2} \left(\frac{[$b]^4}{4} - \frac{[$a]\cdot ([$b])^3}{3} + \frac{[$a]^4}{12}\right)\\
-    ``]
+    &= \frac{2}{\left([$b] - [$a]\right)^2} \left(\frac{[$b]^4}{4} - \frac{[$a]\cdot ([$b])^3}{3} + \frac{[$a]^4}{12}\right)
+    \end{aligned}``]
 
     Then calculate
 
