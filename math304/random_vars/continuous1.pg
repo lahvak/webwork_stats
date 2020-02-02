@@ -1,0 +1,99 @@
+## DESCRIPTION
+## Random variables: continuous RV
+## ENDDESCRIPTION
+
+## KEYWORDS('probability', 'random variable', 'continuous random variable', 'expected value', 'variance')
+
+## DBsubject(Probability)
+## DBchapter(Random Variables)
+## DBsection(Continuous Random Variables)
+## Date(11/13/2018)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## TitleText1('')
+## EditionText1('')
+## AuthorText1('')
+## Section1('')
+## Problem1('')
+
+
+###########################
+#  Initialization
+
+DOCUMENT();  
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGML.pl",
+  "PGcourse.pl",
+);
+
+TEXT(beginproblem());
+
+
+###########################
+#  Setup
+
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$a = random(2,7,1);
+$L = random(2,6,1);
+$b = $a + $L;
+$p = random(1,9,1)/10;
+$c = $a + $L*$p;
+
+$Pc = Compute("($p)^2");
+
+$EX = Compute("$a + 2*$L/3");
+
+$VarX = Compute("($L)^2/18");
+
+###########################
+#  Main text
+
+BEGIN_PGML
+A continuous random variable [` X `] has the probability density function
+
+[`` f(x) = \begin{cases} 2\frac{x - [$a]}{\left([$b] - [$a]\right)^2} & \text{ if } x \in [[$a], [$b]] \\ 0 & \text{otherwise} \end{cases} ``]
+
+Calculate the following:
+
+* [` P(X \le [$c]) = `] [________________]{$Pc}
+* [` \operatorname{E} X = `] [________________]{$EX}
+* [` \operatorname{Var} X = `] [________________]{$VarX}
+
+END_PGML
+
+
+############################
+#  Solution
+
+BEGIN_PGML_SOLUTION
+
+* [`` \begin{aligned}
+P(X \le [$c]) &= \int_{[$a]}^{[$c]} 2\frac{x - [$a]}{\left([$b] - [$a]\right)^2}\;dx \\
+&= \frac{2}{\left([$b] - [$a]\right)^2} \left(\frac{x^2}{2} - [$a]x\right)\vert_{[$a]}^{[$c]}\\
+&= \frac{2}{\left([$b] - [$a]\right)^2} \left(\frac{[$c]^2}{2} - [$a]\cdot [$c] + \frac{[$a]^2}{2}\right)\\
+&= [$Pc]
+\end{aligned}``]
+
+* [`` \begin{aligned}
+\operatorname{E} X &= \int_{[$a]}^{[$b]}x\cdot 2\frac{x - [$a]}{\left([$b] - [$a]\right)^2}\;dx \\
+&= \frac{2}{\left([$b] - [$a]\right)^2} \left(\frac{x^3}{3} - [$a]\frac{x^2}{2}\right)\vert_{[$a]}^{[$b]}\\
+&= \frac{2}{\left([$b] - [$a]\right)^2} \left(\frac{[$b]^3}{3} - \frac{[$a]\cdot ([$b])^2}{2} + \frac{[$a]^3}{6}\right)\\
+&= [$EX]
+\end{aligned}``]
+
+* First calculate 
+
+    [`` \operatorname{E} X^2 = \int_{[$a]}^{[$b]} x^2\cdot 2\frac{x - [$a]}{\left([$b] - [$a]\right)^2}\;dx ``]
+
+    Then calculate
+
+    [`` \operatorname{Var} X = \operatorname{E} X^2 - \left(\operatorname{E} X\right)^2 ``]
+
+END_PGML_SOLUTION
+ENDDOCUMENT();
