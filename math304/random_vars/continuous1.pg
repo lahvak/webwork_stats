@@ -49,7 +49,7 @@ $Pc = Compute("($p)^2");
 
 $EX = Compute("$a + 2*$L/3");
 
-$VarX = Compute("($L)^2/18");
+$VarX = Compute("($L)^2/18")->reduce;
 
 ###########################
 #  Main text
