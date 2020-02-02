@@ -82,20 +82,26 @@ BEGIN_PGML_SOLUTION
     &= [$Pc]
     \end{aligned}``]
 
-* [`` \begin{aligned}
-\operatorname{E} X &= \int_{[$a]}^{[$b]}x\cdot 2\frac{x - [$a]}{\left([$b] - [$a]\right)^2}\;dx \\
-&= \frac{2}{\left([$b] - [$a]\right)^2} \left.\left(\frac{x^3}{3} - [$a]\frac{x^2}{2}\right)\right\rvert_{[$a]}^{[$b]}\\
-&= \frac{2}{\left([$b] - [$a]\right)^2} \left(\frac{[$b]^3}{3} - \frac{[$a]\cdot ([$b])^2}{2} + \frac{[$a]^3}{6}\right)\\
-&= [$EX]
-\end{aligned}``]
+*   Since [`` \operatorname{E} X = \int_{-\infty}^\infty x f(x)\;dx ``], we have
+
+    [`` \begin{aligned}
+    \operatorname{E} X &= \int_{[$a]}^{[$b]}x\cdot 2\frac{x - [$a]}{\left([$b] - [$a]\right)^2}\;dx \\
+    &= \frac{2}{\left([$b] - [$a]\right)^2} \left.\left(\frac{x^3}{3} - [$a]\frac{x^2}{2}\right)\right\rvert_{[$a]}^{[$b]}\\
+    &= \frac{2}{\left([$b] - [$a]\right)^2} \left(\frac{[$b]^3}{3} - \frac{[$a]\cdot ([$b])^2}{2} + \frac{[$a]^3}{6}\right)\\
+    &= [$EX]
+    \end{aligned}``]
 
 * First calculate 
 
-    [`` \operatorname{E} X^2 = \int_{[$a]}^{[$b]} x^2\cdot 2\frac{x - [$a]}{\left([$b] - [$a]\right)^2}\;dx ``]
+    [`` \begin{aligned}
+    \operatorname{E} X^2 &= \int_{[$a]}^{[$b]} x^2\cdot 2\frac{x - [$a]}{\left([$b] - [$a]\right)^2}\;dx\\
+    &= \frac{2}{\left([$b] - [$a]\right)^2} \left.\left(\frac{x^4}{4} - [$a]\frac{x^3}{3}\right)\right\rvert_{[$a]}^{[$b]}\\
+    &= \frac{2}{\left([$b] - [$a]\right)^2} \left(\frac{[$b]^4}{4} - \frac{[$a]\cdot ([$b])^3}{3} + \frac{[$a]^4}{12}\right)\\
+    ``]
 
     Then calculate
 
-    [`` \operatorname{Var} X = \operatorname{E} X^2 - \left(\operatorname{E} X\right)^2 ``]
+    [`` \operatorname{Var} X = \operatorname{E} X^2 - \left(\operatorname{E} X\right)^2  = [$VarX]``]
 
 END_PGML_SOLUTION
 ENDDOCUMENT();
