@@ -131,6 +131,8 @@ $BR
 \(\lambda \in \) \{ ans_rule(12) \}.
 $BR
 \{ AnswerFormatHelp("intervals") \}
+$BR
+$BR
 
 $BBOLD Part b) $EBOLD
 Evaluate the log-likelihood function for the data when \(\lambda
@@ -140,17 +142,19 @@ $BR
 $BR
 $BR
 
-$BBOLD Part b) $EBOLD
-Find the maximum likelihood estimate of \(L\).
+$BBOLD Part c) $EBOLD
+Typically with a likelihood function of two variables we cannot find the maximum likelihood estimate of one variable 
+without knowing the value of the other variable.  In this case, however, the m.l.e. of \(L\) is independent of \(\lambda\).
+Find the maximum likelihood estimate of \(L\). (Hint: knowing the domain of the log-likelihood is helpful.)
 $BR
-\{ ans_rule(12) \} 
+\(\widehat{L} = \) \{ ans_rule(12) \} 
 $BR
 $BR
 
-$BBOLD Part c) $EBOLD
-Hence find the maximum likelihood estimate of \(\lambda\).
+$BBOLD Part d) $EBOLD
+Using \(L = \widehat{L}\), find the maximum likelihood estimate of \(\lambda\).
 $BR
-\{ ans_rule(12) \} 
+\(\widehat{\lambda} = \) \{ ans_rule(12) \} 
 $BR
 $BR
 
