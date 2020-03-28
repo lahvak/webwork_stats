@@ -120,7 +120,7 @@ $mca1 = RadioButtons(
 @mcb_resp = ("\(L<10^{-16}\)","\(10^{-16}\leq L<10^{-14}\)","\(10^{-14}\leq L<10^{-12}\)","\(10^{-12}\leq L<10^{-10}\)","\(L>10^{-10}\)");
 $ansb = $mcb_resp[$ans_b];
 $mcb = RadioButtons(
-\@mcb_resp, $ansb, labels=>"ABC", separator=>"$PAR"
+[$mcb_resp[0], $mcb_resp[1], $mcb_resp[2], $mcb_resp[3], $mcb_resp[4]] $ansb, labels=>"ABC", separator=>"$PAR"
 );
 
 
