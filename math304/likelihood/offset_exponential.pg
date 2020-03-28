@@ -73,7 +73,7 @@ rserve_finish();
 
 Context("Interval");
 
-$Ldomain = Compute("(0, $q2ans)");
+$Ldomain = Compute("(0, $q2ans]");
 $lambdomain = Compute("(0, infinity)");
 ##############################################################
 
@@ -98,7 +98,7 @@ times is the  "offset" Exponential
 distribution, defined  by the $BBOLD cumulative $EBOLD distribution function
 \[
 F\left( x\mid L, \lambda\right) = \begin{cases}
-1-e^{-\lambda \left( x-L\right) } & \text{ if } x > L\\
+1-e^{-\lambda \left( x-L\right) } & \text{ if } x \geq L\\
 0 & \text{ otherwise}
 \end{cases}
 \]
@@ -112,12 +112,15 @@ are provided below:
 \begin{align*}
 $x.
 \end{align*}
-An offset Exponential distribution model can be assumed here. 
+An offset Exponential distribution model can be assumed here.
 $BR
 $BR
 
 Derive the log-likelihood function (the natural logarithm of the likelihood function)
-given by the data. Answer the following questions:
+given by the data. Note that although the pdf function will be undefined at $x = L$, assume for the 
+sake of dicussion that it is defined there so that it is continuous from the right.
+$PAR
+Answer the following questions:
 $BR
 $BR
 
@@ -186,14 +189,15 @@ BEGIN_SOLUTION
 $BR
 $BBOLD Part a) $EBOLD 
 We can see that the density function for the offset Exponential is
-\begin{align*}
-f\left( x;\lambda ,L\right) =\frac{dF}{dx}=\lambda e^{-\lambda \left(
-x-L\right) }
-\end{align*}
-for \(x\geq L\), noting that 
-\begin{align*}
-\int_{L}^{\infty }f\left( x;\lambda ,L\right) =1.
-\end{align*}
+\[
+f\left( x\mid\lambda ,L\right) =\frac{dF}{dx}= \begin{cases}
+\lambda e^{-\lambda \left( x-L\right) } & \text{ if } x \ge L\\
+0 & \text{ otherwise}
+\end{cases}
+\]
+Note that although the cumulative density function is not differentialble at \(x = L\),
+the instructions say to make the pdf continuous from the right, thus the \(\le\) sign.
+$PAR
 With data \(x_{1},...,x_{12}\) i.i.d. from the above
 distribution, the likelihood function is
 \begin{align*}
@@ -202,15 +206,24 @@ x_{1}-L\right) }\times \cdots \times \lambda e^{-\lambda \left(
 x_{12}-L\right) } \\
 &=\lambda ^{12}e^{-\lambda \sum_{i=1}^{12}\left( x_{i}-L\right) }.
 \end{align*}
+$PAR
+This formula apply for \(0 < L \le \min x_i\) and for \(\lambda > 0\).
+Otherwise the likelihood is 0.
+$PAR
 The natural logarithm of the above function is
 \begin{align*}
 l\left( L,\lambda;x_{1},... ,x_{12}\right) =12\log \left( \lambda \right)
 -\lambda \sum_{i=1}^{12}\left( x_{i}-L\right).
 \end{align*}
+which is defined for \(L \in \left(0,\min x_i\right]\) and for \(\lambda \in (0,\infty)\).
 $BR
 $BR
 
-$BBOLD Part b) $EBOLD 
+$BBOLD Part b) $EBOLD Plugging into the log-likelihood function will give us \($q1ans\).
+$BR
+$BR
+
+$BBOLD Part c) $EBOLD 
 To maximise the likelihood function as a function of \(L\),
 we must choose the value of \(L\) to make \(\sum_{i=1}^{12}\left(
 x_{i}-L\right)\) as small as possible. That is, we choose \(L\) 
@@ -219,7 +232,7 @@ as large as possible,
 $BR
 $BR
 
-$BBOLD Part c) $EBOLD 
+$BBOLD Part d) $EBOLD 
 Given the MLE for \(L\) as \(\hat{L}\)  above, we find
 the MLE for \(\lambda\)  by setting \(L=\hat{L}\)  and
 differentiating with respect to \(\lambda\),
