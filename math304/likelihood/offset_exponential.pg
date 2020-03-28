@@ -207,8 +207,8 @@ x_{12}-L\right) } \\
 &=\lambda ^{12}e^{-\lambda \sum_{i=1}^{12}\left( x_{i}-L\right) }.
 \end{align*}
 $PAR
-This formula apply for \(0 < L \le \min x_i\) and for \(\lambda > 0\).
-Otherwise the likelihood is 0.
+This formula applies for \(0 < L \le \min x_i\) and for \(\lambda > 0\).
+Otherwise the likelihood is 0 or undefined.
 $PAR
 The natural logarithm of the above function is
 \begin{align*}
