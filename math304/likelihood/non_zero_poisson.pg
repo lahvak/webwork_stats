@@ -112,6 +112,20 @@ $mca->extra(
 $fakea1a, $fakea2a, $fakea3a, $fakea4a
 );
 
+# Second multiple choice question for part a
+$qua1 = "The mean as a function os \(\lambda\) is:";
+$ansa1 = "increasing";
+$fakea1a1 = "decreasing";
+$fakea2a1 = "neither";
+
+$mca1 = new_multiple_choice();
+$mca1->qa(
+  $qua1,
+  $ansa1
+);
+$mca1->extra(
+$fakea1a1, $fakea2a1
+);
 
 # Multiple choice question for part b
 @mcb_resp = ("\(L<10^{-16}\)","\(10^{-16}\leq L<10^{-14}\)","\(10^{-14}\leq L<10^{-12}\)","\(10^{-12}\leq L<10^{-10}\)","\(L>10^{-10}\)");
@@ -170,6 +184,11 @@ $BR
 \{ $mca->print_a() \}
 $BR
 $BR
+\{ $mca1->print_q() \}
+$BR
+\{ $mca1->print_a() \}
+$BR
+$BR
 
 $BBOLD Part b) $EBOLD
 The model quoted may be helpful in the following situation: the
@@ -203,7 +222,7 @@ $BR
 $BR
 
 $BBOLD Part e) $EBOLD
-Using parts $BBOLD a) $EBOLD and $BBOLD d) $EBOLD, provide the maximum likelihood estimate for the mean number of
+Using parts $BBOLD a) $EBOLD and $BBOLD d)$EBOLD, provide the maximum likelihood estimate for the mean number of
 shopping basket items for the customers at the supermarket who use the
 express checkout, giving your answer to two decimal places.
 $BR
@@ -222,6 +241,7 @@ END_TEXT
 ## Show answer
 ##############################################################
 ANS( radio_cmp($mca->correct_ans()) );
+ANS( radio_cmp($mca1->correct_ans()) );
 ANS( radio_cmp($mcb->correct_ans()) );
 ANS( num_cmp($ans_c, tol=> 0.001) );
 ANS( radio_cmp($mcd->correct_ans()) );
