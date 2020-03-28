@@ -97,10 +97,15 @@ $q5ans = @q5ans[0];
 
 rserve_finish();
 
-$q2mc = new_multiple_choice();
-$q2mc -> qa("Which of the following is the mean \(\mu\) of the distribution \(f\left(
-x;\theta \right) ?\)", "\(\displaystyle\frac{\theta }{\theta +2}\)");
-$q2mc -> extra("\(\displaystyle\frac{1}{\theta }\)", "\(\displaystyle\frac{1}{\theta +1} \)", "\(\displaystyle\theta \left( \theta +1\right) \)", "\(\displaystyle\theta\)");
+$q2mc = RadioButtons(
+["\(\displaystyle\frac{\theta }{\theta +2}\)",
+"\(\displaystyle\frac{1}{\theta }\)", 
+"\(\displaystyle\frac{1}{\theta +1} \)", 
+"\(\displaystyle\theta \left( \theta +1\right) \)", 
+"\(\displaystyle\theta\)"],
+"\(\displaystyle\frac{\theta }{\theta +2}\)",
+labels => "ABC"
+);
 
 
 ##############################################################
@@ -150,9 +155,9 @@ $BR
 $BR
 
 $BBOLD Part b) $EBOLD
-\{ $q2mc->print_q() \}
+Which of the following is the mean \(\mu\) of the distribution \(f\left( x;\theta \right) ?\)?
 $BR
-\{ $q2mc->print_a() \}
+\{ $q2mc->buttons() \}
 $BR
 $BR
 
@@ -199,7 +204,7 @@ END_TEXT
 ##############################################################
 $showPartialCorrectAnswers = 1;
 ANS( $q1popup -> cmp() );
-ANS( radio_cmp($q2mc->correct_ans()) );
+ANS( $q2mc -> cmp() );
 ANS( num_cmp($q3ans, tol=> 0.001) );
 ANS( num_cmp($q4ans, tol=> 0.001) );
 ANS( num_cmp($q5ans, tol=> 0.001) );
