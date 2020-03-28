@@ -96,66 +96,44 @@ $ans_e_round = join ", ", @ans_e_round;
 rserve_finish();
 
 # Multiple choice question for part a
-$qua = "Which of the following is the mean of the distribution given above?";
 $ansa = "\(\displaystyle\lambda/(1 - e^{-\lambda})\)";
 $fakea1a = "\(\displaystyle\lambda\)";
 $fakea2a = "\(\displaystyle\lambda(1 - e^{-\lambda})\)";
 $fakea3a = "\(\displaystyle e^{-\lambda}\)";
 $fakea4a = "\(\displaystyle\lambda e^{-\lambda}\)";
 
-$mca = new_multiple_choice();
-$mca->qa(
-  $qua,
-  $ansa
-);
-$mca->extra(
-$fakea1a, $fakea2a, $fakea3a, $fakea4a
+$mca = RadioButtons(
+  [[$ansa, $fakea1a, $fakea2a, $fakea3a, $fakea4a]],
+  $ansa, labels=>"ABC", separator=>"$BR$BR"
 );
 
 # Second multiple choice question for part a
-$qua1 = "The mean as a function os \(\lambda\) is:";
 $ansa1 = "increasing";
 $fakea1a1 = "decreasing";
 $fakea2a1 = "neither";
 
-$mca1 = new_multiple_choice();
-$mca1->qa(
-  $qua1,
-  $ansa1
-);
-$mca1->extra(
-$fakea1a1, $fakea2a1
+$mca1 = RadioButtons();
+  [[$ansa1, $fakea1a1], $fakea2a1]
 );
 
 # Multiple choice question for part b
-@mcb_resp = ("\(L<10^{-16}\)","\(10^{-16}\leq L<10^{-14}\)","\(10^{-14}\leq L<10^{-12}\)","\(10^{-12}\leq L<10^{-10}\)","\(L>10^{-10}\)");
-$qub = "Assuming the model given above, derive the likelihood function in this case, and evaluate the likelihood at the point \(\lambda =@lambda1\). When simplifying the likelihood function, do not drop factors without \(\lambda\)! In this
-case the likelihood function \(L\) satisfies:";
+@mcb_resp = ["\(L<10^{-16}\)","\(10^{-16}\leq L<10^{-14}\)","\(10^{-14}\leq L<10^{-12}\)","\(10^{-12}\leq L<10^{-10}\)","\(L>10^{-10}\)"];
 $ansb = $mcb_resp[$ans_b];
-$mcb = new_multiple_choice();
-$mcb->qa(
-  $qub, 
-  $ansb
+$mcb = RadioButtons(
+@mcb_resp, $ansb, labels=>"ABC", separator=>"$PAR"
 );
-$mcb->makeLast($mcb_resp[0],$mcb_resp[1],$mcb_resp[2],$mcb_resp[3],$mcb_resp[4]);
 
 
 # Multiple choice question for part d
-$qud = "Attempt to derive the maximum likelihood estimator of the parameter \(\lambda\). 
-Denoting this estimate \(\widehat{\lambda}\), which equation must \(\widehat{\lambda}\) satisfy?";
 $ansd = "\(\displaystyle\widehat{\lambda}=\left( 1-e^{-\widehat{\lambda}}\right) \overline{x}\)";
 $faked1a = "\(\displaystyle\widehat{\lambda}=\lambda \)";
 $faked2a = "\(\displaystyle\widehat{\lambda}=\overline{x}\)";
 $faked3a = "\(\displaystyle\widehat{\lambda}=e^{-\widehat{\lambda}}\overline{x}\)";
 $faked4a = "\(\displaystyle\widehat{\lambda}=$n e^{-\widehat{\lambda}}\overline{x}\)";
 
-$mcd = new_multiple_choice();
-$mcd->qa(
-  $qud,
-  $ansd
-);
-$mcd->extra(
-$faked1a, $faked2a, $faked3a, $faked4a
+$mcd = RadioButtons(
+  [[$ansd, $faked1a, $faked2a, $faked3a, $faked4a]], $ansd,
+  labels=>"ABC", separator=>"$BR$BR"
 );
 
 
@@ -179,14 +157,16 @@ for some \(\lambda > 0\) and \(x = 1,2,....\)
 $BR
 $BR
 $BBOLD Part a) $EBOLD
-\{ $mca->print_q() \}
-$BR
-\{ $mca->print_a() \}
+Which of the following is the mean of the distribution given above?
 $BR
 $BR
-\{ $mca1->print_q() \}
+\{ $mca->buttons() \}
 $BR
-\{ $mca1->print_a() \}
+$BR
+The mean as a function os \(\lambda\) is:
+$BR
+$BR
+\{ $mca1->buttons() \}
 $BR
 $BR
 
@@ -200,9 +180,14 @@ of \(@n\) customers selected at random, giving the following counts:
 \begin{align*}
 @x
 \end{align*}
-\{ $mcb->print_q() \}
+$PAR
+Assuming the model given above, derive the likelihood function in this case,
+and evaluate the likelihood at the point \(\lambda =@lambda1\). When
+simplifying the likelihood function, $BBOLD do not $EBOLD  drop factors without \(\lambda\)!
+In this case the likelihood function \(L\) satisfies:
 $BR
-\{ $mcb->print_a() \}
+$BR
+\{ $mcb->buttons() \}
 $BR
 $BR
 
@@ -215,9 +200,14 @@ $BR
 $BR
 
 $BBOLD Part d) $EBOLD
-\{ $mcd->print_q() \}
+In order to find the maximum likelihood estimator of the parameter \(\lambda\),
+you would take a derivative of the log-likelihood function, and set it euqal to
+0.  You will not be able to solve the resulting equation, however, if we denote 
+the estimate \(\widehat{\lambda}\), you will be able to decide which of the
+following equations must \(\widehat{\lambda}\) satisfy:
 $BR
-\{ $mcd->print_a() \}
+$BR
+\{ $mcd->buttons() \}
 $BR
 $BR
 
@@ -240,11 +230,11 @@ END_TEXT
 ##############################################################
 ## Show answer
 ##############################################################
-ANS( radio_cmp($mca->correct_ans()) );
-ANS( radio_cmp($mca1->correct_ans()) );
-ANS( radio_cmp($mcb->correct_ans()) );
+ANS( $mca->cmp() );
+ANS( $mca1->cmp() );
+ANS( $mcb->cmp() );
 ANS( num_cmp($ans_c, tol=> 0.001) );
-ANS( radio_cmp($mcd->correct_ans()) );
+ANS( $mcd->cmp() );
 ANS( num_cmp($ans_e, tol=> 0.01) );
 ##############################################################
 
