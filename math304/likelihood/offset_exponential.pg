@@ -117,16 +117,18 @@ $BR
 
 Derive the log-likelihood function (the natural logarithm of the likelihood function)
 given by the data. Answer the following questions:
+$BR
+$BR
 
 $BBOLD Part a) $EBOLD
 
 What is the domain of the log-likelihood? (Hint: log-likelihood is undefined when the likelihood is 0.)
 $BR
 $BR
-\(L \in \)\{ ans_rule(12) \}.
+\(L \in \) \{ ans_rule(12) \}.
 $BR
-\(\lambda \in \)\{ ans_rule(12) \}.
-
+\(\lambda \in \) \{ ans_rule(12) \}.
+$BR
 \{ AnswerFormatHelp("intervals") \}
 
 $BBOLD Part b) $EBOLD
