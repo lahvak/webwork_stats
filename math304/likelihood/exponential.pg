@@ -92,7 +92,7 @@ $BR
 $BR
 
 $BBOLD Part a) $EBOLD
-Find the log-likelihood function for the above data at the point 
+Find the natural logarithm of the likelihood function (a.k.a. the log-likelihood function) obtained from the above data at the point 
 \(\lambda =$lambda\).
 $BR
 \{ ans_rule(12) \} 
