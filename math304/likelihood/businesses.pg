@@ -104,7 +104,8 @@ $q2mc = RadioButtons(
 "\(\displaystyle\theta \left( \theta +1\right) \)", 
 "\(\displaystyle\theta\)"],
 "\(\displaystyle\frac{\theta }{\theta +2}\)",
-labels => "ABC"
+labels => "ABC",
+separator => "$BR$BR"
 );
 
 
