@@ -69,6 +69,11 @@ $q2ans = $q2ans[0];
 $q3ans = $q3ans[0];
 
 rserve_finish();
+
+Context("Interval")
+
+$Ldomain = Compute("(L, $q2ans)");
+$lambdomain = Compute("(0, infinity)");
 ##############################################################
 
 
@@ -106,14 +111,27 @@ are provided below:
 \begin{align*}
 $x.
 \end{align*}
-A offset Exponential distribution model can be assumed here. 
-Provide answers to the following to three decimal places.
+An offset Exponential distribution model can be assumed here. 
 $BR
 $BR
 
+Derive the log-likelihood function (the natural logarithm of the likelihood function)
+given by the data. Answer the following questions:
+
 $BBOLD Part a) $EBOLD
+
+What is the domain of the log-likelihood? (Hint: log-likelihood is undefined when the likelihood is 0.)
+$BR
+$BR
+\(L \in \)\{ ans_rule(12) \}.
+$BR
+\(\lambda \in \)\{ ans_rule(12) \}.
+
+\{ AnswerFormatHelp("intervals") \}
+
+$BBOLD Part b) $EBOLD
 Evaluate the log-likelihood function for the data when \(\lambda
-=$lambda\) and \(L=$L\).
+=$lambda\) and \(L=$L\).  Enter the answer rounded to 3 decimal places.
 $BR
 \{ ans_rule(12) \} 
 $BR
@@ -142,6 +160,8 @@ END_TEXT
 ## Show answer
 ##############################################################
 $showPartialCorrectAnswers = 1;
+ANS( $Ldomain->cmp() );
+ANS( $lambdomain->cmp() );
 ANS( num_cmp($q1ans, tol=> 0.001) );
 ANS( num_cmp($q2ans, tol=> 0.001) );
 ANS( num_cmp($q3ans, tol=> 0.001) );
