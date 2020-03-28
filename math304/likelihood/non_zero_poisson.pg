@@ -113,7 +113,7 @@ $fakea1a1 = "decreasing";
 $fakea2a1 = "neither";
 
 $mca1 = RadioButtons(
-  [[$ansa1, $fakea1a1], $fakea2a1]
+  [[$ansa1, $fakea1a1], $fakea2a1], $ansa1
 );
 
 # Multiple choice question for part b
