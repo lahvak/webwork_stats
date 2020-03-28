@@ -59,19 +59,19 @@ a3 <- runif(1, min=0.4, max=0.8); 1');
 @q1ans = rserve_eval('shape1 <- c(a1,a2,a3,1); shape2 <- c(2,2,2,1); 
 porder <- sample(1:4); c("I","II","III","IV")[which(porder == 4)]');
 
-$plot1 = rserve_start_plot('svg');
+$plot1 = rserve_start_plot('png');
 rserve_eval('plot(x, dbeta(x, shape1=shape1[porder[1]], shape2=shape2[porder[1]]), xlab="x", ylab="Density", type="l")');
 $plot1path = rserve_finish_plot($plot1);
 
-$plot2 = rserve_start_plot('svg');
+$plot2 = rserve_start_plot('png');
 rserve_eval('plot(x, dbeta(x, shape1=shape1[porder[2]], shape2=shape2[porder[2]]), xlab="x", ylab="Density", type="l")');
 $plot2path = rserve_finish_plot($plot2);
 
-$plot3 = rserve_start_plot('svg');
+$plot3 = rserve_start_plot('png');
 rserve_eval('plot(x, dbeta(x, shape1=shape1[porder[3]], shape2=shape2[porder[3]]), xlab="x", ylab="Density", type="l")');
 $plot3path = rserve_finish_plot($plot3);
 
-$plot4 = rserve_start_plot('svg');
+$plot4 = rserve_start_plot('png');
 rserve_eval('plot(x, dbeta(x, shape1=shape1[porder[4]], shape2=shape2[porder[4]]), xlab="x", ylab="Density", type="l")');
 $plot4path = rserve_finish_plot($plot4);
 
