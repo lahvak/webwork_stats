@@ -89,14 +89,14 @@ first front bumper to the second front bumper. That is, the headway is the
 sum of the time used by the first vehicle to pass the observation point and
 the time to the arrival of the next vehicle. One model proposed for headway
 times is the  "offset" Exponential
-distribution, defined for some \(L>0\) by the c.d.f. 
+distribution, defined  by the $BBOLD cumulative $EBOLD distribution function
 \[
-F\left( x\right\mid L, \lambda) = \begin{cases}
+F\left( x\mid L, \lambda\right) = \begin{cases}
 1-e^{-\lambda \left( x-L\right) } & \text{ if } x > L\\
 0 & \text{ otherwise}
 \end{cases}
 \]
-for \(x\geq L\) and some \(\lambda >0\). 
+for some \(L\geq 0\) and some \(\lambda >0\). 
 $BR
 
 A study on traffic on a highway with low traffic density aimed to
