@@ -98,11 +98,11 @@ $q5ans = @q5ans[0];
 rserve_finish();
 
 $q2mc = RadioButtons(
-["\(\displaystyle\frac{\theta }{\theta +2}\)",
+[["\(\displaystyle\frac{\theta }{\theta +2}\)",
 "\(\displaystyle\frac{1}{\theta }\)", 
 "\(\displaystyle\frac{1}{\theta +1} \)", 
 "\(\displaystyle\theta \left( \theta +1\right) \)", 
-"\(\displaystyle\theta\)"],
+"\(\displaystyle\theta\)"]],
 "\(\displaystyle\frac{\theta }{\theta +2}\)",
 labels => "ABC",
 separator => "$BR$BR"
@@ -156,7 +156,7 @@ $BR
 $BR
 
 $BBOLD Part b) $EBOLD
-Which of the following is the mean \(\mu\) of the distribution \(f\left( x;\theta \right) ?\)?
+Which of the following is the mean \(\mu\) of the distribution \(f\left( x;\theta \right)\)?
 $BR
 \{ $q2mc->buttons() \}
 $BR
