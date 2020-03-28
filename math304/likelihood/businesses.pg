@@ -158,6 +158,7 @@ $BR
 $BBOLD Part b) $EBOLD
 Which of the following is the mean \(\mu\) of the distribution \(f\left( x;\theta \right)\)?
 $BR
+$BR
 \{ $q2mc->buttons() \}
 $BR
 $BR
