@@ -100,7 +100,7 @@ $qua = "Which of the following is the mean of the distribution given above?";
 $ansa = "\(\displaystyle\lambda/(1 - e^{-\lambda})\)";
 $fakea1a = "\(\displaystyle\lambda\)";
 $fakea2a = "\(\displaystyle\lambda(1 - e^{-\lambda})\)";
-$fakea3a = "\(\displaystylee^{-\lambda}\)";
+$fakea3a = "\(\displaystyle e^{-\lambda}\)";
 $fakea4a = "\(\displaystyle\lambda e^{-\lambda}\)";
 
 $mca = new_multiple_choice();
@@ -203,7 +203,7 @@ $BR
 $BR
 
 $BBOLD Part e) $EBOLD
-Provide the maximum likelihood estimate for the mean number of
+Using parts $BBOLD a) $EBOLD and $BBOLD d) $EBOLD, provide the maximum likelihood estimate for the mean number of
 shopping basket items for the customers at the supermarket who use the
 express checkout, giving your answer to two decimal places.
 $BR
@@ -253,7 +253,7 @@ Directly
 $BR
 $BR
 $BBOLD Part b) $EBOLD 
-The likelihood for the truncated Poisson is clearly
+The likelihood for the truncated Poisson is
 \begin{align*}
 L\left( \lambda ;x_{1},\dots ,x_{@n}\right) =\frac{\lambda
 ^{\sum_{i=1}^{@n}x_{i}}e^{-@n\lambda }}{\left( \prod_{i=1}^{@n}x_{i}!\right) \left(
