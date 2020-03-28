@@ -196,7 +196,7 @@ f\left( x\mid\lambda ,L\right) =\frac{dF}{dx}= \begin{cases}
 \end{cases}
 \]
 Note that although the cumulative density function is not differentialble at \(x = L\),
-the instructions say to make the pdf continuous from the right, thus the \(\le\) sign.
+the instructions say to make the pdf continuous from the right, thus the \(\ge\) sign.
 $PAR
 With data \(x_{1},...,x_{12}\) i.i.d. from the above
 distribution, the likelihood function is
