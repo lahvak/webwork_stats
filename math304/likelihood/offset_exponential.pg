@@ -70,7 +70,7 @@ $q3ans = $q3ans[0];
 
 rserve_finish();
 
-Context("Interval")
+Context("Interval");
 
 $Ldomain = Compute("(L, $q2ans)");
 $lambdomain = Compute("(0, infinity)");
