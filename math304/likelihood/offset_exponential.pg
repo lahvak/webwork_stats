@@ -117,7 +117,7 @@ $BR
 $BR
 
 Derive the log-likelihood function (the natural logarithm of the likelihood function)
-given by the data. Note that although the pdf function will be undefined at $x = L$, assume for the 
+given by the data. Note that although the pdf function will be undefined at \(x = L\), assume for the 
 sake of dicussion that it is defined there so that it is continuous from the right.
 $PAR
 Answer the following questions:
