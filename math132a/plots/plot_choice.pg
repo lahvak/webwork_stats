@@ -100,7 +100,6 @@ sub is_overlap {  #if str2 contains some of the letters in str1, but also someth
     if ($inter_len < length($str2)) {return 1};
     return 0;
 }
-           "PGchoicemacros.pl",
 
 sub is_subset {  #if str2 is a nonempty proper subset of str1
     my ($str1, $str2) = @_;
