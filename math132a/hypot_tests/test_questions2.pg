@@ -1,0 +1,127 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Hypothesis Testing)
+## DBsection(Test choice)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## MLT(CI_1p_03)
+## MLTleader(1)
+## Level(3)
+## KEYWORDS('hypothesis testing')
+##ENDDESCRIPTION
+
+# File Created: 2020-04-25
+# Location: SVSU
+# Course: Biostatistic
+
+DOCUMENT();     
+loadMacros("PGstandard.pl",  
+           "PGauxiliaryFunctions.pl",
+           "contextPercent.pl",
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserPopUp.pl",
+           "PGchoicemacros.pl",
+);     
+TEXT(&beginproblem);
+
+Context("Numeric");
+
+$test = PopUp([
+"choose one",
+"single proportion",
+"difference of proportions",
+"goodness of fit",
+"single mean",
+"matched pair differences",
+"difference of means",
+"ANOVA"
+],
+"ANOVA");
+
+$null = PopUp([
+"All five population means are different.",
+"All five population means are the same.",
+"At least one of the five population means is different.",
+"At least one of the five population means is the same.",
+"All five population variances are different.",
+"All five population variances are the same.",
+"At least one of the five population variances is different.",
+"At least one of the five population variances is the same.",
+"All five sample means are different.",
+"All five sample means are the same.",
+"At least one of the five sample means is different.",
+"At least one of the five sample means is the same.",
+"All five sample variances are different.",
+"All five sample variances are the same.",
+"At least one of the five sample variances is different.",
+"At least one of the five sample variances is the same.",
+"There were 5 treatments.",
+"Average leaf size is a treatment.",
+"The test was proper."
+],
+"All five population means are the same."
+);
+
+$alt = PopUp([
+"All five population means are different.",
+"All five population means are the same.",
+"At least one of the five population means is different.",
+"At least one of the five population means is the same.",
+"All five population variances are different.",
+"All five population variances are the same.",
+"At least one of the five population variances is different.",
+"At least one of the five population variances is the same.",
+"All five sample means are different.",
+"All five sample means are the same.",
+"At least one of the five sample means is different.",
+"At least one of the five sample means is the same.",
+"All five sample variances are different.",
+"All five sample variances are the same.",
+"At least one of the five sample variances is different.",
+"At least one of the five sample variances is the same.",
+"There were less than 5 treatments.",
+"Average leaf size is not a treatment.",
+"The test was not proper."
+],
+"At least one of the five population means is different."
+);
+
+BEGIN_PGML
+
+**Answer questions about the following scenario:**
+
+Researchers were comparing five different treatments for a virus
+causing decrease in leaf size in pear trees. They selected a
+sample of 1000 infected trees, and applied each treatment to 200
+of them. For each group they measured the average leaf size two
+weeks after the application of the treatment. They wanted to see if
+some of these treatments worked better.
+
+What type of test was this?
+
+[__]{$test}
+
+The null hypothesis is [__]{$null}
+
+The alternative hypothesis is [__]{$alt}
+
+END_PGML
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 0;
+
+BEGIN_PGML_SOLUTION
+
+This is an example of an [$test->correct_ans()] test.
+
+The null hypothesis is "[$null->correct_ans()]".
+
+The alternative hypothesis is "[$alt->correct_ans()]".
+
+END_PGML_SOLUTION
+
+COMMENT("This question includes ANOVA as one of the options.");
+
+ENDDOCUMENT();
