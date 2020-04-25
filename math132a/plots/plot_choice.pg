@@ -100,6 +100,7 @@ sub is_overlap {  #if str2 contains some of the letters in str1, but also someth
     if ($inter_len < length($str2)) {return 1};
     return 0;
 }
+           "PGchoicemacros.pl",
 
 sub is_subset {  #if str2 is a nonempty proper subset of str1
     my ($str1, $str2) = @_;
@@ -134,12 +135,12 @@ ANS( checkbox_cmp( $plot1->correct_ans() )->withPostFilter(AnswerHints(
     sub {
         my ($correct,$student,$ans) = @_;
         return is_overlap($student, $correct);
-        } => ["You got some of the correct answers, but also some extra ones.", replaceMessage=>1],
+        } => "You got some of the correct answers, but also some extra ones.",
     sub {
         my ($correct,$student,$ans) = @_;
         return is_subset($student, $correct);
-        } => ["Your answers are correct, but you did not get all of them.", replaceMessage=>1]))
-    );
+        } => "Your answers are correct, but you did not get all of them."
+        )));
     ANS( checkbox_cmp( $plot2->correct_ans() ) );
     ANS( checkbox_cmp( $plot3->correct_ans() ) );
 
