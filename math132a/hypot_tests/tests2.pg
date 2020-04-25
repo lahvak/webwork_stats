@@ -27,7 +27,7 @@ TEXT(&beginproblem);
 
 Context("Numeric");
 
-@testchoices = [
+@tests = [
 "choose one",
 "single proportion",
 "difference of proportions",
