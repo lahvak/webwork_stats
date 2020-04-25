@@ -64,7 +64,7 @@ $ineq = PopUp([
 "=");
 
 $popperc = random(30,70,1);
-$pop0 = $popperc/100;
+$pop0 = Compute($popperc/100);
 $samp = $popperc + list_random(-1,1)*random(5,15,1);
 
 BEGIN_PGML
@@ -97,17 +97,7 @@ ANS( $pop0->cmp() );
 
 BEGIN_PGML_SOLUTION
 
-* The test is [$test1->correct_ans()].
-
-  The null hypothesis is [$hyp1->correct_ans()].
-
-* The test is [$test2->correct_ans()].
-
-  The null hypothesis is [$hyp2->correct_ans()].
-
-* The test is [$test3->correct_ans()].
-
-  The null hypothesis is [$hyp3->correct_ans()].
+* The test is [$test->correct_ans()].
 
 END_PGML_SOLUTION
 
