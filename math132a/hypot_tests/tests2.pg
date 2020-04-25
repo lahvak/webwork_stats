@@ -54,20 +54,21 @@ $symb = PopUp([
 ],
 "p");
 
+$eq = "~~x{003D}";
 $ne = "~~x{2260}";
 $le = "~~x{2264}";
 $ge = "~~x{2265}";
 
 $ineq = PopUp([
 "choose one",
-"=",
+$eq,
 $ne,
 $ge,
 $le,
 "<",
 ">"
 ],
-"=");
+$eq);
 
 $popperc = random(30,70,1);
 $pop0 = Compute($popperc/100);
