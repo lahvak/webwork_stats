@@ -59,9 +59,9 @@ $symb = PopUp([
 
 $eq = "is equal to";
 $ne = "is not equal to";
-$le = "is less than or equal to"
+$le = "is less than or equal to";
 $ge = "is greater than or equal to";
-$lt = "is less than"
+$lt = "is less than";
 $gt = "is greater than";
 
 $ineq = PopUp([
