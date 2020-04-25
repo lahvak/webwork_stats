@@ -21,7 +21,8 @@ loadMacros("PGstandard.pl",
            "MathObjects.pl",
            "PGML.pl",
            "parserPopUp.pl",
-           "PGchoicemacros.pl"
+           "PGchoicemacros.pl",
+           "contextString.pl"
 );     
 TEXT(&beginproblem);
 
