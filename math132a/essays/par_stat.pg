@@ -35,7 +35,7 @@ install_problem_grader(~~&std_problem_grader);
 #  Setup
 
 $popup = PopUp(
-[ "Choose one", ["Parameter", "Statistic"], "It can be either.", "It is neither of them.], # choices
+[ "Choose one", ["Parameter", "Statistic"], "It can be either.", "It is neither of them."], # choices
 "Statistic" # corect answer
 );
 
