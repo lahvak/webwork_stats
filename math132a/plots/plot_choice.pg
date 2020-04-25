@@ -76,6 +76,41 @@ $plot3->extra(
 "Mosaic plot",
 );
 
+sub str_union_inter_lengths {
+    my ($str1, $str2) = @_;
+    my @ar1 = (split //, $str1);
+    my @ar2 = (split //, $str2);
+
+    my (%union, %intersection);
+    foreach $c ( @ar1, @ar2 ) {
+        $union{$c}++ && $intersection{$c}++
+    }
+
+    my @u = keys %union;
+    my @i = keys %intersection;
+
+    return (scalar @u, scalar @i);
+}
+
+sub is_overlap {  #if str2 contains some of the letters in str1, but also something extra
+    my ($str1, $str2) = @_;
+    my ($union_len, $inter_len) = str_union_inter_lengths($str1, $str2);
+    if ($inter_len == 0) {return 0};
+    if ($inter_len < length($str2)) {return 1};
+    return 0;
+}
+
+sub is_subset {  #if str2 is a nonempty proper subset of str1
+    my ($str1, $str2) = @_;
+    my ($union_len, $inter_len) = str_union_inter_lengths($str1, $str2);
+    if ($inter_len == 0) {return 0};
+    if ($inter_len == length($str2)) {
+        if ($inter_len < $union_len) {return 1};
+    }
+    return 0;
+}
+
+
 BEGIN_PGML
 
 Selecting the right type of plot is extremely important when visualizing your
@@ -94,9 +129,18 @@ END_PGML
 
 #install_problem_grader(~~&std_problem_grader);
 
-ANS( checkbox_cmp( $plot1->correct_ans() ) );
-ANS( checkbox_cmp( $plot2->correct_ans() ) );
-ANS( checkbox_cmp( $plot3->correct_ans() ) );
+ANS( checkbox_cmp( $plot1->correct_ans() )->withPostFilter(AnswerHints(
+    sub {
+        my ($correct,$student,$ans) = @_;
+        return is_overlap($student, $correct);
+        } => "You got some of the correct answers, but also some extra ones.",
+    sub {
+        my ($correct,$student,$ans) = @_;
+        return is_subset($student, $correct);
+        } => "Your answers are correct, but you did not get all of them."))
+    );
+    ANS( checkbox_cmp( $plot2->correct_ans() ) );
+    ANS( checkbox_cmp( $plot3->correct_ans() ) );
 
 BEGIN_PGML_SOLUTION
 1.  When displaying the distribution of a single continuous numerical variable,
