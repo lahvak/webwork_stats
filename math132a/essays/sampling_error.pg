@@ -1,0 +1,52 @@
+## DESCRIPTION
+## Essay question on sampling error
+## ENDDESCRIPTION
+
+
+## DBsubject(Statistics)
+## DBchapter(Sampling)
+## DBsection()
+## Date(2020-04-25)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## MO(1)
+## KEYWORDS('statistics', 'sampling', 'sampling error')
+
+
+##########################
+#  Initialization
+
+DOCUMENT(); 
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGessaymacros.pl",
+  "PGML.pl",
+  "PGcourse.pl"
+);
+TEXT(beginproblem());
+
+$showPartialCorrectAnswers = 0;
+
+install_problem_grader(~~&std_problem_grader);
+
+##########################
+#  Setup
+
+
+##########################
+#  Main text
+
+BEGIN_PGML
+Describe in your own words what we mean by *sampling error*.
+
+[@ essay_box(8,60) @]*
+END_PGML
+
+
+##########################
+#  Answer evaluation
+
+ANS( essay_cmp() );
+
+ENDDOCUMENT();
