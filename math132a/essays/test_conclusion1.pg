@@ -41,7 +41,7 @@ $sin_n = random(20,100,1);
 # relevant randomization:
 $sig = list_random(0.01, 0.05, 0.1);
 
-$rej = list_random(-1,1)*random(3:10);
+$rej = list_random(-1,1)*random(3,10,1);
 
 $pval = $sig*($rej/20 + 1);
 
