@@ -27,6 +27,12 @@ TEXT(&beginproblem);
 
 Context("Numeric");
 
+$popperc = random(30,70,1);
+$pop0 = Compute($popperc/100);
+$samp = $popperc + list_random(-1,1)*random(5,15,1);
+
+Context(Strings);
+
 $test = PopUp([
 "choose one",
 "single proportion",
@@ -70,12 +76,6 @@ $le,
 ],
 $eq);
 
-$popperc = random(30,70,1);
-$pop0 = Compute($popperc/100);
-$samp = $popperc + list_random(-1,1)*random(5,15,1);
-
-Context($ineq->context);
-
 BEGIN_PGML
 
 **Answer questions about the following scenario:**
@@ -89,20 +89,15 @@ virus. There were [$samp] of them.
 
 What type of test was this?
 
-[@ $test->menu() @]*
+[--]{$test}
 
-The null hypothesis is [@ $symb->menu() @]* [@ $ineq->menu() @]* [________]
+The null hypothesis is [__]{$symb} [__]{$ineq} [________]{$pop0}
 
 END_PGML
 
 install_problem_grader(~~&std_problem_grader);
 
 $showPartialCorrectAnswers = 0;
-
-ANS( $test->cmp() );
-ANS( $symb->cmp() );
-ANS( $ineq->cmp() );
-ANS( $pop0->cmp() );
 
 BEGIN_PGML_SOLUTION
 
