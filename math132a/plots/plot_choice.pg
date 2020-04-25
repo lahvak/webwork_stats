@@ -131,14 +131,18 @@ END_PGML
 
 #install_problem_grader(~~&std_problem_grader);
 
-ANS( $plot1->correct_ans()->cmp()->withPostFilter(AnswerHints(
+ANS( checkbox_cmp( $plot1->correct_ans() )->withPostFilter(AnswerHints(
+#    sub {
+#        my ($correct,$student,$ans) = @_;
+#        return is_overlap($student, $correct);
+#        } => "You got some of the correct answers, but also some extra ones.",
+#    sub {
+#        my ($correct,$student,$ans) = @_;
+#        return is_subset($student, $correct);
+#        } => "Your answers are correct, but you did not get all of them."
     sub {
         my ($correct,$student,$ans) = @_;
-        return is_overlap($student, $correct);
-        } => "You got some of the correct answers, but also some extra ones.",
-    sub {
-        my ($correct,$student,$ans) = @_;
-        return is_subset($student, $correct);
+        return $student == "A";
         } => "Your answers are correct, but you did not get all of them."
         )));
     ANS( checkbox_cmp( $plot2->correct_ans() ) );
