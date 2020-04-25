@@ -1,0 +1,85 @@
+## DESCRIPTION
+## Essay question on parameters and statistics
+## ENDDESCRIPTION
+
+
+## DBsubject(Statistics)
+## DBchapter(Basics)
+## DBsection()
+## Date(2020-04-25)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## MO(1)
+## KEYWORDS('statistic', 'sample', 'population')
+
+
+##########################
+#  Initialization
+
+DOCUMENT(); 
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "parserPopUp.pl",
+  "PGessaymacros.pl",
+  "PGML.pl",
+  "PGcourse.pl"
+);
+TEXT(beginproblem());
+
+$showPartialCorrectAnswers = 0;
+
+install_problem_grader(~~&std_problem_grader);
+
+##########################
+#  Setup
+
+# irrelevant randomization:
+$dext_n = random(20,100,1);
+$sin_n = random(20,100,1);
+
+# relevant randomization:
+$sig = list_random(0.01, 0.05, 0.1);
+
+$rej = list_random(-1,1)*random(3:10);
+
+$pval = $sig*($rej/20 + 1);
+
+$popup = PopUp(
+[ "Choose one", ["rejected", "did not reject"]], # choices
+($rej < 0)?"rejected":"did not reject"
+);
+
+##########################
+#  Main text
+
+BEGIN_PGML
+
+Researchers were testing whether there is a difference in mean weight between
+the populations of dextral and sinistral snails of certain species, in other words, whether the 
+shell orientation affects the mean weight of these species of snails.  They collected two samples,
+one with [$dext_n] dextral specimen and one with [$sin_n] sinistral specimen.  They calculated the
+combined sample p-value and found out it was [$pval].  They were testing at [$sig] significance level.
+
+The reserchers [@ $popup->menu() @]* the null hypothesis.
+
+Explain why:
+
+[@ essay_box(8,60) @]*
+
+Write down, in your own words, a complete conclusion of the test, in terms of
+weights and shell orientations of the snail populations.
+
+[@ essay_box(8,60) @]*
+
+END_PGML
+
+
+##########################
+#  Answer evaluation
+
+ANS( $popup->cmp() );
+ANS( essay_cmp() );
+ANS( essay_cmp() );
+
+ENDDOCUMENT();
