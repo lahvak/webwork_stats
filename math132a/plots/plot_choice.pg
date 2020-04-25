@@ -131,7 +131,7 @@ END_PGML
 
 #install_problem_grader(~~&std_problem_grader);
 
-ANS( checkbox_cmp( $plot1->correct_ans() )->withPostFilter(AnswerHints(
+ANS( $plot1->correct_ans()->cmp()->withPostFilter(AnswerHints(
     sub {
         my ($correct,$student,$ans) = @_;
         return is_overlap($student, $correct);
