@@ -1,0 +1,73 @@
+## DESCRIPTION
+## Essay question on parameters and statistics
+## ENDDESCRIPTION
+
+
+## DBsubject(Statistics)
+## DBchapter(Basics)
+## DBsection()
+## Date(2020-04-25)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## MO(1)
+## KEYWORDS('statistic', 'sample', 'population')
+
+
+##########################
+#  Initialization
+
+DOCUMENT(); 
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "parserPopUp.pl",
+  "PGessaymacros.pl",
+  "PGML.pl",
+  "PGcourse.pl"
+);
+TEXT(beginproblem());
+
+$showPartialCorrectAnswers = 0;
+
+install_problem_grader(~~&std_problem_grader);
+
+##########################
+#  Setup
+
+$popup = PopUp(
+[ "Choose one", ["Parameter", "Statistic"], "It can be either"], # choices
+"Statistic" # corect answer
+);
+
+##########################
+#  Main text
+
+BEGIN_PGML
+Describe in your own words the difference between a *parameter* and a *statistic*.
+
+[@ essay_box(8,60) @]*
+
+Give at least hree examples of parameters:
+
+[@ essay_box(8,60) @]*
+
+Give at least hree examples of statistics:
+
+[@ essay_box(8,60) @]*
+
+A p-value is an example of a parameter of statistic?
+
+[@ $popup->menu() @]*
+
+END_PGML
+
+
+##########################
+#  Answer evaluation
+
+ANS( essay_cmp() );
+ANS( essay_cmp() );
+ANS( essay_cmp() );
+ANS( $popup->cmp() );
+
+ENDDOCUMENT();
