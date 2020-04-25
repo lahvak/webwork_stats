@@ -27,7 +27,7 @@ TEXT(&beginproblem);
 
 Context("Numeric");
 
-@tests = [
+$test = PopUp([
 "choose one",
 "single proportion",
 "difference of proportions",
@@ -36,9 +36,10 @@ Context("Numeric");
 "matched pair differences",
 "difference of means",
 "ANOVA"
-];
+],
+"single proportion");
 
-@symbs = [
+$symb = PopUp([
 "choose one",
 "x&#x0304;",  # x bar
 "p&#x0302;",  # p hat
@@ -50,19 +51,17 @@ Context("Numeric");
 "ρ",
 "z",
 "ζ"
-];
+],
+"p");
 
-@ineqs = [
+$ineq = PopUp([
 "choose one",
 "=",
 "≥",
 "≤",
 "≠"
-];
-
-$test = PopUp(@tests, $tests[1]);
-$symb = PopUp(@symbs, $symbs[1]);
-$ineq = PopUp(@ineqs, $ineqs[1]);
+],
+"=");
 
 $popperc = random(30,70,1);
 $pop0 = $popperc/100;
