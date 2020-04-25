@@ -17,8 +17,8 @@
 DOCUMENT();     
 loadMacros("PGstandard.pl",  
            "PGauxiliaryFunctions.pl",
-           "MathObjects.pl",
            "PGchoicemacros.pl",
+           "MathObjects.pl",
            "PGML.pl",
 );     
 TEXT(&beginproblem);
