@@ -22,8 +22,6 @@ loadMacros("PGstandard.pl",
            "PGML.pl",
            "parserPopUp.pl",
            "PGchoicemacros.pl",
-           "contextArbitraryString.pl",
-           "problemPreserveAnswers.pl"
 );     
 TEXT(&beginproblem);
 
@@ -32,9 +30,6 @@ Context("Numeric");
 $popperc = random(30,70,1);
 $pop0 = Compute($popperc/100);
 $samp = $popperc + list_random(-1,1)*random(5,15,1);
-
-Context("ArbitraryString");
-Context()->flags->set(noLaTeXresults => 1);
 
 $test = PopUp([
 "choose one",
@@ -50,23 +45,24 @@ $test = PopUp([
 
 $symb = PopUp([
 "choose one",
-"x&#x0304;",  # x bar
-"p&#x0302;",  # p hat
-"μ",
-"p^",
-"x‾",
+"p hat",
 "p",
+"x bar",
+"mu",
+"sigma",
+"s",
 "r",
-"ρ",
-"z",
-"ζ"
+"rho",
+"zeta"
 ],
 "p");
 
-$eq = "~~x{003D}";
-$ne = "~~x{2260}";
-$le = "~~x{2264}";
-$ge = "~~x{2265}";
+$eq = "is equal to";
+$ne = "is not equal to";
+$le = "is less than or equal to"
+$ge = "is greater than or equal to";
+$lt = "is less than"
+$gt = "is greater than";
 
 $ineq = PopUp([
 "choose one",
@@ -74,8 +70,8 @@ $eq,
 $ne,
 $ge,
 $le,
-"<",
-">"
+$lt,
+$gt
 ],
 $eq);
 
