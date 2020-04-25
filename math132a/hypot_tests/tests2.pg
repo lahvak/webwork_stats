@@ -22,7 +22,8 @@ loadMacros("PGstandard.pl",
            "PGML.pl",
            "parserPopUp.pl",
            "PGchoicemacros.pl",
-           "contextString.pl"
+           "contextString.pl",
+           "problemPreserveAnswers.pl"
 );     
 TEXT(&beginproblem);
 
@@ -90,7 +91,7 @@ virus. There were [$samp] of them.
 
 What type of test was this?
 
-[--]{$test}
+[__]{$test}
 
 The null hypothesis is [__]{$symb} [__]{$ineq} [________]{$pop0}
 
