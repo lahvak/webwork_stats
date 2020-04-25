@@ -142,7 +142,7 @@ ANS( checkbox_cmp( $plot1->correct_ans() )->withPostFilter(AnswerHints(
 #        } => "Your answers are correct, but you did not get all of them."
     sub {
         my ($correct,$student,$ans) = @_;
-        return $student == "A";
+        return $student eq "A";
         } => "Your answers are correct, but you did not get all of them."
         )));
     ANS( checkbox_cmp( $plot2->correct_ans() ) );
