@@ -35,7 +35,7 @@ install_problem_grader(~~&std_problem_grader);
 #  Setup
 
 $popup = PopUp(
-[ "Choose one", ["Parameter", "Statistic"], "It can be either"], # choices
+[ "Choose one", ["Parameter", "Statistic"], "It can be either.", "It is neither of them.], # choices
 "Statistic" # corect answer
 );
 
@@ -47,15 +47,15 @@ Describe in your own words the difference between a *parameter* and a *statistic
 
 [@ essay_box(8,60) @]*
 
-Give at least hree examples of parameters:
+Give at least three examples of parameters:
 
 [@ essay_box(8,60) @]*
 
-Give at least hree examples of statistics:
+Give at least three examples of statistics:
 
 [@ essay_box(8,60) @]*
 
-A p-value is an example of a parameter of statistic?
+Is p-value an example of a parameter or a statistic?
 
 [@ $popup->menu() @]*
 
