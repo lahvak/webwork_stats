@@ -92,7 +92,7 @@ data.  Choose the approprite types of plots in the following three situations:
 
 END_PGML
 
-install_problem_grader(~~&std_problem_grader);
+#install_problem_grader(~~&std_problem_grader);
 
 ANS( checkbox_cmp( $plot1->correct_ans() ) );
 ANS( checkbox_cmp( $plot2->correct_ans() ) );
