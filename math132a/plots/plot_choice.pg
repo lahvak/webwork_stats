@@ -40,7 +40,6 @@ $plot1->extra(
 "Pie graph",
 "Bar graph",
 "Line graph",
-"Stripchart",
 );
 
 $plot2 = new_checkbox_multiple_choice();
