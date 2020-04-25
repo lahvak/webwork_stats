@@ -1,0 +1,125 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Hypothesis Testing)
+## DBsection(Test choice)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## MLT(CI_1p_03)
+## MLTleader(1)
+## Level(3)
+## KEYWORDS('hypothesis testing')
+##ENDDESCRIPTION
+
+# File Created: 2020-04-25
+# Location: SVSU
+# Course: Biostatistic
+
+DOCUMENT();     
+loadMacros("PGstandard.pl",  
+           "PGauxiliaryFunctions.pl",
+           "contextPercent.pl",
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserPopUp.pl",
+           "PGchoicemacros.pl",
+);     
+TEXT(&beginproblem);
+
+Context("Numeric");
+
+$pop0 = Compute(0);
+
+$study = PopUp([
+"choose one",
+"between subjects experimental study",
+"between subjects observational study",
+"within subject experimental study",
+"within subject observational study",
+],
+"between subjects observational study",
+);
+
+$test = PopUp([
+"choose one",
+"single proportion",
+"difference of proportions",
+"goodness of fit",
+"single mean",
+"matched pair differences",
+"difference of means",
+"ANOVA"
+],
+"difference of proportions"
+);
+
+$symb = PopUp([
+"population mean",
+"difference of population means",
+"mean of population differences",
+"population proportion",
+"difference of population proportions",
+"mean of population proportions",
+"proportion of population differences",
+"correlation coefficient"
+],
+"difference of population proportions",
+);
+
+$eq = "is equal to";
+$ne = "is not equal to";
+$le = "is less than or equal to";
+$ge = "is greater than or equal to";
+$lt = "is less than";
+$gt = "is greater than";
+
+$ineq = PopUp([
+"choose one",
+$eq,
+$ne,
+$ge,
+$le,
+$lt,
+$gt
+],
+$eq);
+
+BEGIN_PGML
+
+**Answer questions about the following scenario:**
+
+Scientists wanted to know whether proximity to *ribes nigrum*
+increases the chance of white pine trees being infected by
+blistering pine rust (*cronartium ribicola*). They selected 50
+healthy wine pine trees growing in a proximity of *ribes nigrum*
+plants, and 50 healthy white pine trees that had no ribes plants
+growing within 1 mile radius. They monitored the trees for 5
+years and counted how many of them developed symptoms of
+blistering rust infection.
+
+What type of study was this?
+
+[__]{$study}
+
+What type of test was this?
+
+[__]{$test}
+
+The null hypothesis is [__]{$symb} [__]{$ineq} [________]{$pop0}
+
+END_PGML
+
+$showPartialCorrectAnswers = 0;
+
+BEGIN_PGML_SOLUTION
+
+This was a [$study->correct_ans()].
+
+This is an example of [$test->correct_ans()] test.
+
+The null hypothesis is "[$symb->correct_ans()] [$ineq->correct_ans()] [$pop0]".
+
+END_PGML_SOLUTION
+
+COMMENT("This question includes ANOVA as one of the options.");
+
+ENDDOCUMENT();
