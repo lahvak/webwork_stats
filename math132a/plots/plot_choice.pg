@@ -18,6 +18,7 @@ DOCUMENT();
 loadMacros("PGstandard.pl",  
            "PGauxiliaryFunctions.pl",
            "PGchoicemacros.pl",
+           "answerHints.pl",
            "MathObjects.pl",
            "PGML.pl",
 );     
@@ -133,11 +134,11 @@ ANS( checkbox_cmp( $plot1->correct_ans() )->withPostFilter(AnswerHints(
     sub {
         my ($correct,$student,$ans) = @_;
         return is_overlap($student, $correct);
-        } => "You got some of the correct answers, but also some extra ones.",
+        } => ["You got some of the correct answers, but also some extra ones.", replaceMessage=>1],
     sub {
         my ($correct,$student,$ans) = @_;
         return is_subset($student, $correct);
-        } => "Your answers are correct, but you did not get all of them."))
+        } => ["Your answers are correct, but you did not get all of them.", replaceMessage=>1]))
     );
     ANS( checkbox_cmp( $plot2->correct_ans() ) );
     ANS( checkbox_cmp( $plot3->correct_ans() ) );
