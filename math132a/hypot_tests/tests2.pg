@@ -100,7 +100,9 @@ $showPartialCorrectAnswers = 0;
 
 BEGIN_PGML_SOLUTION
 
-* The test is [$test->correct_ans()].
+This is and example of [$test->correct_ans()] test.
+
+The null hypothesis is [$symb->correct_ans()] [$ineq->correct_ans()] [$pop0].
 
 END_PGML_SOLUTION
 
