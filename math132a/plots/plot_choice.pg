@@ -1,0 +1,115 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Plotting)
+## DBsection(Choose appropriate plot)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## MLT(CI_1p_03)
+## MLTleader(1)
+## Level(3)
+## KEYWORDS('visualization')
+##ENDDESCRIPTION
+
+# File Created: 10/21/2017
+# Location: SVSU
+# Course: General Statistics
+
+DOCUMENT();     
+loadMacros("PGstandard.pl",  
+           "PGauxiliaryFunctions.pl",
+           "MathObjects.pl",
+           "PGchoicemacros.pl",
+           "PGML.pl",
+);     
+TEXT(&beginproblem);
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$plot1 = new_checkbox_multiple_choice();
+
+$plot1->qa(
+"Select all types of plots that would be appropraite for displaying a distribution of a continuous numerical variable:",
+"Histogram",
+"Density plot",
+"Dot plot"
+);
+
+$plot1->extra(
+"Scatterplot",
+"Pie graph",
+"Bar graph",
+"Line graph",
+"Stripchart",
+);
+
+$plot2 = new_checkbox_multiple_choice();
+
+$plot2->qa(
+"Select all types of plots that would be appropraite for displaying a relatioship between a categorical and numerical variable:",
+"Box plot",
+"Jitter plot",
+"Faceted histogram",
+);
+
+$plot2->extra(
+"Scatterplot",
+"Pie graph",
+"Bar graph",
+"Line graph",
+"Mosaic plot",
+);
+
+$plot3 = new_multiple_choice();
+
+$plot3->qa(
+"Which of the following types of plots would be most appropraite for displaying a relatioship between two numerical variables?",
+"Scatter plot",
+);
+
+$plot3->extra(
+"Histogram",
+"Jitter plot",
+"Faceted histogram",
+"Pie graph",
+"Bar graph",
+"Line graph",
+"Mosaic plot",
+);
+
+BEGIN_PGML
+
+Selecting the right type of plot is extremely important when visualizing your
+data.  Choose the approprite types of plots in the following three situations:
+
+[@ $plot1->print_q() @]***
+[@ $plot1->print_a() @]***
+
+[@ $plot2->print_q() @]***
+[@ $plot2->print_a() @]***
+
+[@ $plot3->print_q() @]***
+[@ $plot3->print_a() @]***
+
+END_PGML
+
+END_PGML
+
+install_problem_grader(~~&std_problem_grader);
+
+ANS( checkbox_cmp( $plot1->correct_ans() ) );
+ANS( checkbox_cmp( $plot2->correct_ans() ) );
+ANS( checkbox_cmp( $plot3->correct_ans() ) );
+
+BEGIN_PGML_SOLUTION
+1.  When displaying the distribution of a single continuous numerical variable,
+    the best types of plots are _histogram_, a _density plot_, or a _dot plot_.
+
+2.  When displaying the relationship between a categorical variable and a numerical variable,
+    the best types of plots are a _faceted histogram_, a _box plot_, or a
+    _jitter plot_.  There are other types of plots that can be used, such as a _violin plot_
+    or a _strip chart_.
+
+3.  The relationship between two numerical variables is best displayed by a _scatterplot_.
+END_PGML_SOLUTION
+ENDDOCUMENT();
