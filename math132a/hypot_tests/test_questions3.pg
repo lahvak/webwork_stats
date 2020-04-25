@@ -87,10 +87,10 @@ BEGIN_PGML
 
 **Answer questions about the following scenario:**
 
-Scientists wanted to know whether proximity to *ribes nigrum*
+Scientists wanted to know whether proximity to _ribes nigrum_
 increases the chance of white pine trees being infected by
-blistering pine rust (*cronartium ribicola*). They selected 50
-healthy wine pine trees growing in a proximity of *ribes nigrum*
+blistering pine rust (_cronartium ribicola_). They selected 50
+healthy wine pine trees growing in a proximity of _ribes nigrum_
 plants, and 50 healthy white pine trees that had no ribes plants
 growing within 1 mile radius. They monitored the trees for 5
 years and counted how many of them developed symptoms of
