@@ -31,7 +31,7 @@ $popperc = random(30,70,1);
 $pop0 = Compute($popperc/100);
 $samp = $popperc + list_random(-1,1)*random(5,15,1);
 
-Context("Strings");
+Context("String");
 
 $test = PopUp([
 "choose one",
