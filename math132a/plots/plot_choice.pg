@@ -111,7 +111,7 @@ sub is_subset {  #if str2 is a nonempty proper subset of str1
     return 0;
 }
 
-sub checkbox_cmp {
+sub my_checkbox_cmp {
         my      $correctAnswer = shift @_;
         my %options = @_;
         assign_option_aliases( ~~%options,
