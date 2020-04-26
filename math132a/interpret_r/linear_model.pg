@@ -28,16 +28,16 @@ Context("Numeric");
 @xvars = ("depth", "age", "frequency", "duration", "oxygen", "nitrogen");
 @xunits = ("m", "years", "Hz", "sec", "g/L", "ppm");
 @yvars = ("carbon", "height", "age", "frequency", "weight", "pressure");
-@yunits = ("ppm", "mm", "years", "Hz", "g", "kPa")
+@yunits = ("ppm", "mm", "years", "Hz", "g", "kPa");
 @dataset = ("fosils", "deposits", "calls", calls", "growth", "fluids");
 
 $index = random(0,5,1);
 
-$xvar = $xvars[$index]
-$yvar = $yvars[$index]
-$xunit = $xunits[$index]
-$yunit = $yunits[$index]
-$data = $dataset[$index]
+$xvar = $xvars[$index];
+$yvar = $yvars[$index];
+$xunit = $xunits[$index];
+$yunit = $yunits[$index];
+$data = $dataset[$index];
 
 $xmean = random(0,50,1);
 $ymean = random(20,70,1);
