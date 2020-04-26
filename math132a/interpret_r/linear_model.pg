@@ -56,7 +56,7 @@ $summary_code = $summary[0];
 
 BEGIN_PGML
 
-[$xsd] [$rsd]
+[$xsd] [$rsd] [$slope]
 
 The scatterplot shows blah blah blah:
 
