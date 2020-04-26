@@ -158,8 +158,9 @@ sub my_checkbox_cmp {
         $answer_evaluator->install_post_filter( sub {
                 my $rh_ans      = shift;
                 $rh_ans->{_filter_name} = 'check for close matches';
-                if (is_overlap($rh_ans->{student_ans}, $rh_ans->{correct_ans})) { };
+                if (is_overlap($rh_ans->{student_ans}, $rh_ans->{correct_ans})) {
                 $rh_ans->{ans_message}  =  'You have some correct choices in there, but also some incorrect ones.';
+                };
                 $rh_ans;
         });
 
