@@ -133,9 +133,8 @@ END_PGML
 ANS( checkbox_cmp( $plot1->correct_ans() )->install_post_filter(
     sub {
         my $ans = shift;
-        if (is_overlap($ans->{student_ans}, $and->{correct_ans})) {
-         $ans->{ans_message} = "Blah blah blah" ;
-      return $ans;})
+        $ans->{ans_message} = "Blah blah blah" ;
+        return $ans;})
 #        } => "You got some of the correct answers, but also some extra ones.",
 #    sub {
 #        my ($correct,$student,$ans) = @_;
