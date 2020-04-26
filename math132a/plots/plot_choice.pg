@@ -101,6 +101,8 @@ sub is_overlap {  #if str2 contains some of the letters in str1, but also someth
     return 0;
 }
 
+$test = is_overlap("ABCD", "BCEF");
+
 sub is_subset {  #if str2 is a nonempty proper subset of str1
     my ($str1, $str2) = @_;
     my ($union_len, $inter_len) = str_union_inter_lengths($str1, $str2);
@@ -156,8 +158,8 @@ sub my_checkbox_cmp {
         $answer_evaluator->install_post_filter( sub {
                 my $rh_ans      = shift;
                 $rh_ans->{_filter_name} = 'check for close matches';
-                $rh_ans->{ans_message}  =  'You have some correct choices in there, but also some incorrect ones.'
-                  if (is_overlap($rh_ans->{student_ans}, $rh_ans->{correct_ans});
+                $rh_ans->{ans_message}  =  'You have some correct choices in there, but also some incorrect ones.';
+                #if (is_overlap($rh_ans->{student_ans}, $rh_ans->{correct_ans});
                 $rh_ans;
         });
 
@@ -168,7 +170,7 @@ sub my_checkbox_cmp {
 BEGIN_PGML
 
 Selecting the right type of plot is extremely important when visualizing your
-data.  Choose the approprite types of plots in the following three situations:
+data.  Choose the approprite types of plots in the following three situations: [$test]
 
 [@ $plot1->print_q() @]***
 [@ $plot1->print_a() @]***
