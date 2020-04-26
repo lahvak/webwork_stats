@@ -27,7 +27,7 @@ Context("Numeric");
 
 $xmean = random(0,50,1);
 $ymean = random(20,70,1);
-$xsd = random(2,20,1)/10;
+$xsd = random(2,20,1)/5;
 $ysd = $xsd/(random(3,7,1)/2);
 $slope = list_random(-1,1)*random(2,20,1)/10;
 $ssize = random(20, 60, 1);
@@ -55,6 +55,8 @@ my @summary = rserve_eval("paste0(modsum, collapse = '\n')");
 $summary_code = $summary[0];
 
 BEGIN_PGML
+
+[$xsd] [$ysd]
 
 The scatterplot shows blah blah blah:
 
