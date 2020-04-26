@@ -130,20 +130,9 @@ END_PGML
 
 #install_problem_grader(~~&std_problem_grader);
 
-ANS( checkbox_cmp( $plot1->correct_ans() )->install_post_filter(
-    sub {
-        my $ans = shift;
-        $ans->{_filter_name} = 'Blah blah';
-        $ans->{ans_message} = "Blah blah blah";
-        $ans;})
-#        } => "You got some of the correct answers, but also some extra ones.",
-#    sub {
-#        my ($correct,$student,$ans) = @_;
-#        return is_subset($student, $correct);
-#        } => "Your answers are correct, but you did not get all of them."
-        );
-    ANS( checkbox_cmp( $plot2->correct_ans() ) );
-    ANS( checkbox_cmp( $plot3->correct_ans() ) );
+ANS( checkbox_cmp( $plot1->correct_ans() ) );
+ANS( checkbox_cmp( $plot2->correct_ans() ) );
+ANS( checkbox_cmp( $plot3->correct_ans() ) );
 
 BEGIN_PGML_SOLUTION
 1.  When displaying the distribution of a single continuous numerical variable,
