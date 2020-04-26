@@ -52,7 +52,7 @@ my ($intercept, $slope) = rserve_eval("coef(model)");
 rserve_eval("modsum = capture.output(summary(model))");
 my @summary = rserve_eval("paste0(modsum, collapse = '\n')");
 
-$summary_code = $summary[1];
+$summary_code = $summary[0];
 
 BEGIN_PGML
 
