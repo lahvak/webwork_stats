@@ -49,9 +49,10 @@ $image_path = rserve_finish_plot($img);
 
 rserve_eval("model <- lm(y ~ x, data = data)");
 my ($intercept, $slope) = rserve_eval("coef(model)");
-my @summary = rserve_eval("paste0(summary(model), collapse = '\n')");
+rserve_eval("modsum = capture.output(summary(model))");
+my @summary = rserve_eval("paste0(modsum, collapse = '\n')");
 
-$summary_code = @summary[0];
+my $summary_code = @summary[0];
 
 BEGIN_PGML
 
