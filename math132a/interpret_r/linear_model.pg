@@ -29,7 +29,7 @@ Context("Numeric");
 @xunits = ("m", "years", "Hz", "sec", "g/L", "ppm");
 @yvars = ("carbon", "height", "age", "frequency", "weight", "pressure");
 @yunits = ("ppm", "mm", "years", "Hz", "g", "kPa");
-@dataset = ("fosils", "deposits", "calls", calls", "growth", "fluids");
+@dataset = ("fosils", "deposits", "calls", "calls", "growth", "fluids");
 
 $index = random(0,5,1);
 
