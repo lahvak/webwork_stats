@@ -25,6 +25,20 @@ TEXT(beginproblem());
 
 Context("Numeric");
 
+@xvars = ("depth", "age", "frequency", "duration", "oxygen", "nitrogen");
+@xunits = ("m", "years", "Hz", "sec", "g/L", "ppm");
+@yvars = ("carbon", "height", "age", "frequency", "weight", "pressure");
+@yunits = ("ppm", "mm", "years", "Hz", "g", "kPa")
+@dataset = ("fosils", "deposits", "calls", calls", "growth", "fluids");
+
+$index = random(0,5,1);
+
+$xvar = $xvars[$index]
+$yvar = $yvars[$index]
+$xunit = $xunits[$index]
+$yunit = $yunits[$index]
+$data = $dataset[$index]
+
 $xmean = random(0,50,1);
 $ymean = random(20,70,1);
 $xsd = random(4,20,1)/5;
@@ -35,10 +49,10 @@ $ssize = random(20, 60, 1);
 rserve_eval('library(ggplot2)');
 rserve_eval("xs <- rnorm($ssize, mean = $xmean, sd = $xsd)");
 rserve_eval("ys <- $slope*(xs - $xmean) + $ymean + rnorm($ssize, mean = 0, sd = $rsd)");
-rserve_eval('data <- data.frame(x = xs, y = ys)');
+rserve_eval("$data <- data.frame($xvar = xs, $yvar = ys)");
 
-$ggcmd = <<'GG_END';
-ggplot(data, aes(x=x, y=y)) +
+$ggcmd = <<"GG_END";
+ggplot($data, aes(x=$xvar, y=$yvar)) +
     geom_point() +
     theme_grey(base_size = 12)
 GG_END
@@ -47,21 +61,39 @@ $img = rserve_start_plot('png', 500, 300);
 rserve_eval("print($ggcmd)");
 $image_path = rserve_finish_plot($img);
 
-rserve_eval("model <- lm(y ~ x, data = data)");
+rserve_eval("model <- lm($yvar ~ $xvar, data = $data)");
 my ($intercept, $slope) = rserve_eval("coef(model)");
 rserve_eval('modsum = Filter(function(s) {!startsWith(s, "Signif")}, capture.output(summary(model)))');
 my @summary = rserve_eval("paste0(modsum, collapse = '\n')");
 
 $summary_code = $summary[0];
 
+$slope_ans = Compute("$slope");
+$inter_ans = Compute("$intercept");
+
+$xval = rserve_eval('round(sample(xs, 1), 2)');
+
+$yval = Compute("$inter_ans + $slope_ans*($xval)");
+
 BEGIN_PGML
 
-The scatterplot shows blah blah blah:
+The scatterplot shows the relationship between the variable [$xvar] (in
+[$xunit]) and [$yvar] (in [$yunit]), in the data set [$data]:
 
 [@ image($image_path, width=>500, height=>300) @]*
 
 
+The following is the summary of a linear model constructed in R:
+
 :   [@ $summary_code @]
+
+Fill in the coefficients in the following regression equation:
+
+[`\widehat{\text{[$yvar]}}`] = [_________]{$inter_ans} + [________]{$slope_ans} [`\cdot \text{[$xvar]}`]
+
+Then use the equation to predict the value of [$yvar] if [$xvar] = [$xval] [$xunit]:
+
+[____________]{$yval} [$yunit]
 
 END_PGML
 
