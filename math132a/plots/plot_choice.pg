@@ -174,7 +174,9 @@ sub my_checkbox_cmp {
                 } elsif (length $rh_ans->{student_ans} == 0) {
                 $rh_ans->{ans_message}  =  'You have to select at least one option!';
                 # That does not actually work, it will just count the question
-                # as unaswered.
+                # as unaswered, not even getting to this spot.
+                } elsif ($rh_ans->{correct_ans} eq $rh_ans->{student_ans}) {
+                $rh_ans->{ans_message}  =  'Nice job!';
                 };
 
                 $rh_ans;
