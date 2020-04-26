@@ -28,8 +28,8 @@ Context("Numeric");
 $xmean = random(0,50,1);
 $ymean = random(20,70,1);
 $xsd = random(2,20,1)/5;
-$rsd = $xsd/(random(10,20,1));
-$slope = list_random(-1,1)*random(9,40,1)/10;
+$rsd = $xsd/(random(100,200,1));
+$slope = list_random(-1,1)*random(8,40,1)/10;
 $ssize = random(20, 60, 1);
 
 rserve_eval('library(ggplot2)');
