@@ -34,7 +34,7 @@ $ssize = random(20, 60, 1);
 
 rserve_eval('library(ggplot2)');
 rserve_eval("xs <- rnorm($ssize, mean = $xmean, sd = $xsd)");
-rserve_eval("ys <- $slope*($xs - $xmean) + $ymean + rnorm($ssize, mean = 0, sd = 0.000001)");
+rserve_eval("ys <- $slope*($xs - $xmean) + $ymean");
 rserve_eval('data <- data.frame(x = xs, y = ys)');
 
 $ggcmd = <<'GG_END';
