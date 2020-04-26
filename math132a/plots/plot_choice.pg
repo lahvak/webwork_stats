@@ -173,6 +173,8 @@ sub my_checkbox_cmp {
                 $rh_ans->{ans_message}  =  'Sorry, but this is a complete miss!';
                 } elsif (length $rh_ans->{student_ans} == 0) {
                 $rh_ans->{ans_message}  =  'You have to select at least one option!';
+                # That does not actually work, it will just count the question
+                # as unaswered.
                 };
 
                 $rh_ans;
@@ -185,7 +187,7 @@ sub my_checkbox_cmp {
 BEGIN_PGML
 
 Selecting the right type of plot is extremely important when visualizing your
-data.  Choose the approprite types of plots in the following three situations: [$test]
+data.  Choose the approprite types of plots in the following three situations:
 
 [@ $plot1->print_q() @]***
 [@ $plot1->print_a() @]***
@@ -201,7 +203,7 @@ END_PGML
 #install_problem_grader(~~&std_problem_grader);
 
 ANS( my_checkbox_cmp( $plot1->correct_ans() ) );
-ANS( checkbox_cmp( $plot2->correct_ans() ) );
+ANS( my_checkbox_cmp( $plot2->correct_ans() ) );
 ANS( checkbox_cmp( $plot3->correct_ans() ) );
 
 BEGIN_PGML_SOLUTION
