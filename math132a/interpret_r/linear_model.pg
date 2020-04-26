@@ -49,7 +49,7 @@ $image_path = rserve_finish_plot($img);
 
 rserve_eval("model <- lm(y ~ x, data = data)");
 my ($intercept, $slope) = rserve_eval("coef(model)");
-rserve_eval('modsum = Filter(function(s) {!startWith(s, "Signif")}, capture.output(summary(model))');
+rserve_eval('modsum = Filter(function(s) {!startWith(s, "Signif")}, capture.output(summary(model)))');
 my @summary = rserve_eval("paste0(modsum, collapse = '\n')");
 
 $summary_code = $summary[0];
