@@ -34,10 +34,8 @@ $ssize = random(20, 60, 1);
 
 rserve_eval('library(ggplot2)');
 rserve_eval("xs <- rnorm($ssize, mean = $xmean, sd = $xsd)");
-rserve_eval("ys <- $slope*($xs - $xmean) + $ymean");
+rserve_eval("ys <- $slope*(xs - $xmean) + $ymean");
 rserve_eval('data <- data.frame(x = xs, y = ys)');
-
-$cmd = "ys <- $slope*($xs - $xmean) + $ymean";
 
 $ggcmd = <<'GG_END';
 ggplot(data, aes(x=x, y=y)) +
@@ -57,8 +55,6 @@ my @summary = rserve_eval("paste0(modsum, collapse = '\n')");
 $summary_code = $summary[0];
 
 BEGIN_PGML
-
-[$xsd] [$rsd] [$slope] [$cmd]
 
 The scatterplot shows blah blah blah:
 
