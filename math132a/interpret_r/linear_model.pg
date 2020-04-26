@@ -53,7 +53,7 @@ rserve_eval("modsum = capture.output(summary(model))");
 #my @summary = rserve_eval("paste0(modsum, collapse = '\n')");
 my @summary = rserve_eval("modsum");
 
-my $summary_code = $summary[1];
+my $summary_code = join("", @summary);
 
 BEGIN_PGML
 
