@@ -59,7 +59,8 @@ The scatterplot shows blah blah blah:
 
 [@ image($image_path, width=>500, height=>300) @]*
 
-```[@ $summary_code @]*```
+
+:   [@ $summary_code @]
 
 END_PGML
 
