@@ -153,6 +153,12 @@ sub my_checkbox_cmp {
                 $rh_ans->{preview_latex_string} =       '\text{'.$rh_ans->{student_ans}.'}',
                 $rh_ans;
         });
+        $answer_evaluator->install_post_filter( sub {
+                my $rh_ans      = shift;
+                $rh_ans->{_filter_name} = 'check for close matches';
+                $rh_ans->{ans_message}  =  'Blah blah blah'
+                $rh_ans;
+        });
 
         return $answer_evaluator;
 }
