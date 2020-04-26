@@ -28,7 +28,7 @@ Context("Numeric");
 $xmean = random(0,50,1);
 $ymean = random(20,70,1);
 $xsd = random(2,20,1)/10;
-$ysd = random(2,20,1)/10;
+$ysd = random(2,20,1)/30;
 $slope = list_random(-1,1)*random(2,20,1)/10;
 $ssize = random(20, 60, 1);
 
