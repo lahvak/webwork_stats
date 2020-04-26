@@ -71,14 +71,14 @@ $summary_code = $summary[0];
 $slope_ans = Compute("$slope");
 $inter_ans = Compute("$intercept");
 
-$xval = rserve_eval('round(sample(xs, 1), 2)');
+$xval = (rserve_eval('round(sample(xs, 1), 2)'))[0];
 
 $yval = Compute("$inter_ans + $slope_ans*($xval)");
 
 BEGIN_PGML
 
-The scatterplot shows the relationship between the variable [$xvar] (in
-[$xunit]) and [$yvar] (in [$yunit]), in the data set [$data]:
+The scatterplot shows the relationship between the variables _[$xvar]_ (in
+[$xunit]) and _[$yvar]_ (in [$yunit]), in the data set _[$data]_:
 
 [@ image($image_path, width=>500, height=>300) @]*
 
