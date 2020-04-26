@@ -37,8 +37,10 @@ rserve_eval("xs <- rnorm($ssize, mean = $xmean, sd = $xsd)");
 rserve_eval("ys <- $slope*($xs - $xmean) + $ymean");
 rserve_eval('data <- data.frame(x = xs, y = ys)');
 
+$cmd = "ys <- $slope*($xs - $xmean) + $ymean";
+
 $ggcmd = <<'GG_END';
-ggplot(data, aes(x=x, y=y)) + 
+ggplot(data, aes(x=x, y=y)) +
     geom_point() +
     theme_grey(base_size = 12)
 GG_END
@@ -56,7 +58,7 @@ $summary_code = $summary[0];
 
 BEGIN_PGML
 
-[$xsd] [$rsd] [$slope]
+[$xsd] [$rsd] [$slope] [$cmd]
 
 The scatterplot shows blah blah blah:
 
