@@ -73,7 +73,7 @@ rserve_finish();
 
 Context("Interval");
 
-$Ldomain = Compute("(0, $q2ans]");
+$Ldomain = Compute("[0, $q2ans]")->with(ignoreEndpointTypes => 1);
 $lambdomain = Compute("(0, infinity)");
 ##############################################################
 
