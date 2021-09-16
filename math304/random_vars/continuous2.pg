@@ -88,11 +88,11 @@ END_PGML
 
 BEGIN_PGML_SOLUTION
 
-1.  In order for $f$ to be a pdf, [``\int_{-\infty}^\infty f(t)\;dt``] must be equal to [`1`].
+1.  In order for [`f`] to be a pdf, [``\int_{-\infty}^\infty f(t)\;dt``] must be equal to [`1`].
 
     [`` \begin{aligned}
     1 &= \int_{-\infty}^{\infty} \frac{C\cdot e^{-t}}{\left([$a] + [$b]\cdot e^{-t}\right)^2}\;dt\\
-    &\text{substitute } u = [$a] + [$b]\cdot e^{-t})\\
+    &\text{substitute } u = [$a] + [$b]\cdot e^{-t}\\
     &= -\frac{C}{[$b]}\int_{\infty}^{[$a]} \frac{1}{u^2}\;du\\
     &= \lim_{s\to\infty}\frac{C}{[$b]}\int_{[$a]}^{s} \frac{1}{u^2}\;du\\
     &= \lim_{s\to\infty}\frac{C}{[$b]}\left.\frac{-1}{u}\right\rvert_{[$a]}^s\\
@@ -106,12 +106,12 @@ BEGIN_PGML_SOLUTION
 
     [`` \begin{aligned}
     F(x) &= \int_{-\infty}^{x} \frac{[$p]\cdot e^{-t}}{\left([$a] + [$b]\cdot e^{-t}\right)^2}\;dt\\
-    &\text{substitute } u = [$a] + [$b]\cdot e^{-t})\\
+    &\text{substitute } u = [$a] + [$b]\cdot e^{-t}\\
     &= -[$a]\int_{\infty}^{[$a] + [$b]\cdot e^{-x}} \frac{1}{u^2}\;du\\
     &= \lim_{s\to\infty}[$a]\int_{[$a]+[$b]\cdot e^{-x}}^{s} \frac{1}{u^2}\;du\\
     &= \lim_{s\to\infty}[$a]\left.\frac{-1}{u}\right\rvert_{[$a]+[$b]\cdot e^{-x}}^s\\
     &= \lim_{s\to\infty}[$a]\left(\frac{-1}{s} - \frac{-1}{[$a]+[$b]\cdot e^{-x}}\right)\\
-    &= \frac{[$a]}{[$a]+[$b]\cdot e^{-x}}\right)\\
+    &= \frac{[$a]}{[$a]+[$b]\cdot e^{-x}}
     \end{aligned}``]
 
 3.  From the definition of cumulative density function, [`P(X \le [$l]) = F([$l]) = [$Pl]`].
