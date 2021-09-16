@@ -115,9 +115,9 @@ In general:
 All together the CDF is
 
 [``F(x) = \begin{cases}
-0 & \text{\ if\ } x \le [$a]\\
-\frac{(x-[$a])^2}{([$b] - [$a])^2} & \text{\ if\ } [$a] < x \le [$b]\\
-1 & \text{\ if\ } x > [$b]
+0 & \text{ if } x \le [$a]\\
+\frac{(x-[$a])^2}{([$b] - [$a])^2} & \text{ if } [$a] < x \le [$b]\\
+1 & \text{ if } x > [$b]
 \end{cases}``]
 
 END_PGML_SOLUTION
