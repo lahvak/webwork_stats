@@ -75,12 +75,6 @@ $pval1 = $probperms[5];
 
 $Fval3 = $pval2 + $pval3;
 
-$ExpX = $pval1*$val1 + $pval2*$val2 + $pval3*$val3;
-
-$ExpX2 = $pval1*$val1*$val1 + $pval2*$val2*$val2 + $pval3*$val3*$val3;
-
-$VarX = $ExpX2 - $ExpX*$ExpX;
-
 ###########################
 #  Main text
 
@@ -117,10 +111,6 @@ Find the following:
 
 * [`F([$val3]) = `] [________]{$Fval3}
 
-* [` \operatorname{E} X = `] [_________]{$ExpX}
-
-* [` \operatorname{Var} X = `] [_________]{$VarX}
-
 END_PGML
 
 ############################
@@ -137,14 +127,5 @@ Since [` f `] is the probability mass function, it is defined as [` f(x) = P(X =
 
 The cumulative density function [` F `] is defined as [` F(y) = P(X \le y) `], so [` F([$val3]) = f([$val2]) + f([$val3]) = [$pval2] + [$pval3] = [$Fval3] `].
 
-The _expected value_ [` \operatorname{E} X = f([$val2])\cdot [$val2] + f([$val3])\cdot [$val3] + f([$val1])\cdot [$val1] = [$ExpX] `].
-
-To calculate the variance, we start by calculating
-
-[` \operatorname{E} X^2 = f([$val2])\cdot [$val2]^2 + f([$val3])\cdot [$val3]^2 + f([$val1])\cdot [$val1]^2 = [$ExpX2] `].
-
-Then
-
-[` \operatorname{Var} X = \operatorname{E} X^2 - (\operatorname{E} X)^2 = [$ExpX2] - ([$ExpX])^2 = [$VarX] `].
 END_PGML_SOLUTION
 ENDDOCUMENT();

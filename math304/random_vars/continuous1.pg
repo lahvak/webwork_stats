@@ -45,11 +45,12 @@ $b = $a + $L;
 $p = random(1,9,1)/10;
 $c = $a + $L*$p;
 
+$l = $a - random(1,9,.1);
+$r = $b + random(1,9,.1);
+
 $Pc = Compute("($p)^2");
 
-$EX = Compute("$a + 2*$L/3");
-
-$VarX = Compute("($L)^2/18");
+$F = Formula("(x - $a)^2/($L)^2");
 
 ###########################
 #  Main text
@@ -62,8 +63,14 @@ A continuous random variable [` X `] has the probability density function
 Calculate the following:
 
 * [` P(X \le [$c]) = `] [________________]{$Pc}
-* [` \operatorname{E} X = `] [________________]{$EX}
-* [` \operatorname{Var} X = `] [________________]{$VarX}
+* [` P(X \le [$l]) = `] [________________]{0}
+* [` P(X \le [$r]) = `] [________________]{1}
+
+Find the **cumulative density function** [`F`] of the variable [`X`]:
+
+* [` F(x) = `] [__________________]{0} if [` x \le `] [______]{$a}.
+* [` F(x) = `] [__________________]{$F} if [______]{$a} [` < x \le `] [______]{$b}.
+* [` F(x) = `] [__________________]{1} if [` x > `] [______]{$b}.
 
 END_PGML
 
@@ -82,26 +89,36 @@ BEGIN_PGML_SOLUTION
     &= [$Pc]
     \end{aligned}``]
 
-*   Since [`` \operatorname{E} X = \int_{-\infty}^\infty x f(x)\;dx ``], we have
+*   Since [` [$l] < [$a] `], the event [` X \le [$l] `] is an *empty event* and its probability is 0.
+
+*   Since [` [$r] > [$b] `], the event [` X \le [$r] `] is the whole sample space and its probability is 1.
+
+In general:
+
+*   If [` x < [$a] `], the event [` X \le x `] is an *empty event* and its probability is 0, which mean [` F(x) = 0 `].
+
+*   If [` x > [$b] `], the event [` X \le x `] is the whole sample space and its probability is 1, and so [` F(x) = 1 `].
+
+*   Finally, if [` [$a] \le x \le [$b] `], we have
 
     [`` \begin{aligned}
-    \operatorname{E} X &= \int_{[$a]}^{[$b]}x\cdot 2\frac{x - [$a]}{\left([$b] - [$a]\right)^2}\;dx \\
-    &= \frac{2}{\left([$b] - [$a]\right)^2} \left.\left(\frac{x^3}{3} - [$a]\frac{x^2}{2}\right)\right\rvert_{[$a]}^{[$b]}\\
-    &= \frac{2}{\left([$b] - [$a]\right)^2} \left(\frac{[$b]^3}{3} - \frac{[$a]\cdot ([$b])^2}{2} + \frac{[$a]^3}{6}\right)\\
-    &= [$EX]
+    F(x) = P(X \le x) 
+    &= \int_{-\infty}^{x} f(t)\;dt \\
+    &= \int_{-\infty}^{[$a]} f(t)\;dt + \int_{[$a]}^x f(t)\;dt \\
+    &= \int_{[$a]}^{x} 2\frac{t - [$a]}{\left([$b] - [$a]\right)^2}\;dt \\
+    &= \frac{2}{\left([$b] - [$a]\right)^2}\int_{[$a]}^{x} (t - [$a])\;dt \\
+    &= \frac{2}{\left([$b] - [$a]\right)^2}\int_{0}^{x-[$a]} u\;du \\
+    &= \frac{2}{\left([$b] - [$a]\right)^2} \left.\frac{u^2}{2}\right\rvert_{0}^{x - [$a]}\\
+    &= \frac{\left(x-[$a]\right)^2}{\left([$b] - [$a]\right)^2}
     \end{aligned}``]
 
-* First calculate 
+All together the CDF is
 
-    [`` \begin{aligned}
-    \operatorname{E} X^2 &= \int_{[$a]}^{[$b]} x^2\cdot 2\frac{x - [$a]}{\left([$b] - [$a]\right)^2}\;dx\\
-    &= \frac{2}{\left([$b] - [$a]\right)^2} \left.\left(\frac{x^4}{4} - [$a]\frac{x^3}{3}\right)\right\rvert_{[$a]}^{[$b]}\\
-    &= \frac{2}{\left([$b] - [$a]\right)^2} \left(\frac{[$b]^4}{4} - \frac{[$a]\cdot ([$b])^3}{3} + \frac{[$a]^4}{12}\right)
-    \end{aligned}``]
-
-    Then calculate
-
-    [`` \operatorname{Var} X = \operatorname{E} X^2 - \left(\operatorname{E} X\right)^2  = [$VarX]``]
+[``F(x) = \begin{cases}
+0 & \text{\ if\ } x \le [$a]\\
+\frac{(x-[$a])^2}{([$b] - [$a])^2} & \text{\ if\ } [$a] < x \le [$b]\\
+1 & \text{\ if\ } x > [$b]
+\end{cases}``]
 
 END_PGML_SOLUTION
 ENDDOCUMENT();
