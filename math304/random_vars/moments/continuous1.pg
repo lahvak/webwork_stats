@@ -1,0 +1,93 @@
+## DESCRIPTION
+## Random variables: continuous RV
+## ENDDESCRIPTION
+
+## KEYWORDS('probability', 'random variable', 'continuous random variable', 'expected value', 'variance')
+
+## DBsubject(Probability)
+## DBchapter(Random Variables)
+## DBsection(Continuous Random Variables)
+## Date(11/13/2018)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## TitleText1('')
+## EditionText1('')
+## AuthorText1('')
+## Section1('')
+## Problem1('')
+
+
+###########################
+#  Initialization
+
+DOCUMENT();  
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGML.pl",
+  "PGcourse.pl",
+);
+
+TEXT(beginproblem());
+
+
+###########################
+#  Setup
+
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$a = random(2,7,1);
+$L = random(2,6,1);
+$b = $a + $L;
+
+$EX = Compute("$a + 2*$L/3");
+
+$VarX = Compute("($L)^2/18");
+
+###########################
+#  Main text
+
+BEGIN_PGML
+A continuous random variable [` X `] has the probability density function
+
+[`` f(x) = \begin{cases} 2\frac{x - [$a]}{\left([$b] - [$a]\right)^2} & \text{ if } x \in [[$a], [$b]] \\ 0 & \text{otherwise} \end{cases} ``]
+
+Calculate the following:
+
+* [` \operatorname{E} X = `] [________________]{$EX}
+* [` \operatorname{Var} X = `] [________________]{$VarX}
+
+END_PGML
+
+
+############################
+#  Solution
+
+BEGIN_PGML_SOLUTION
+
+*   Since [`` \operatorname{E} X = \int_{-\infty}^\infty x f(x)\;dx ``], we have
+
+    [`` \begin{aligned}
+    \operatorname{E} X &= \int_{[$a]}^{[$b]}x\cdot 2\frac{x - [$a]}{\left([$b] - [$a]\right)^2}\;dx \\
+    &= \frac{2}{\left([$b] - [$a]\right)^2} \left.\left(\frac{x^3}{3} - [$a]\frac{x^2}{2}\right)\right\rvert_{[$a]}^{[$b]}\\
+    &= \frac{2}{\left([$b] - [$a]\right)^2} \left(\frac{[$b]^3}{3} - \frac{[$a]\cdot ([$b])^2}{2} + \frac{[$a]^3}{6}\right)\\
+    &= [$EX]
+    \end{aligned}``]
+
+* First calculate 
+
+    [`` \begin{aligned}
+    \operatorname{E} X^2 &= \int_{[$a]}^{[$b]} x^2\cdot 2\frac{x - [$a]}{\left([$b] - [$a]\right)^2}\;dx\\
+    &= \frac{2}{\left([$b] - [$a]\right)^2} \left.\left(\frac{x^4}{4} - [$a]\frac{x^3}{3}\right)\right\rvert_{[$a]}^{[$b]}\\
+    &= \frac{2}{\left([$b] - [$a]\right)^2} \left(\frac{[$b]^4}{4} - \frac{[$a]\cdot ([$b])^3}{3} + \frac{[$a]^4}{12}\right)
+    \end{aligned}``]
+
+    Then calculate
+
+    [`` \operatorname{Var} X = \operatorname{E} X^2 - \left(\operatorname{E} X\right)^2  = [$VarX]``]
+
+END_PGML_SOLUTION
+ENDDOCUMENT();

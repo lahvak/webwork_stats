@@ -1,0 +1,82 @@
+## DESCRIPTION
+## Random variables: continuous RV
+## ENDDESCRIPTION
+
+## KEYWORDS('probability', 'random variable', 'continuous random variable', 'expected value', 'variance')
+
+## DBsubject(Probability)
+## DBchapter(Random Variables)
+## DBsection(Continuous Random Variables)
+## Date(11/13/2018)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## TitleText1('')
+## EditionText1('')
+## AuthorText1('')
+## Section1('')
+## Problem1('')
+
+
+###########################
+#  Initialization
+
+DOCUMENT();  
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGML.pl",
+  "PGcourse.pl",
+);
+
+TEXT(beginproblem());
+
+
+###########################
+#  Setup
+
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$a = random(2,7,1);
+
+$EX = Compute("$a*(e - 1)");
+
+$EX2 = Compute("($a)^2/2*(e^2 - 1)");
+
+$VarX = Compute("$EX2 - ($EX)^2");
+
+###########################
+#  Main text
+
+BEGIN_PGML
+A continuous random variable [` X `] has the probability density function
+
+[`` f(x) = \begin{cases} \frac{1}{x} & \text{ if } x \in [[$a], [$a]e] \\ 0 & \text{otherwise} \end{cases} ``]
+
+Calculate the following:
+
+* [` \operatorname{E} X = `] [________________]{$EX}
+* [` \operatorname{Var} X = `] [________________]{$VarX}
+
+END_PGML
+
+
+############################
+#  Solution
+
+BEGIN_PGML_SOLUTION
+
+* [`` \operatorname{E} X = \int_{[$a]}^{[$a]e} x\cdot\frac{1}{x}\;dx = [$a]e - [$a] = [$a](e-1) ``]
+
+* First calculate 
+
+    [`` \operatorname{E} X^2 = \int_{[$a]}^{[$a]e} x^2\cdot\frac{1}{x}\;dx = \frac{([$a]e)^2}{2} - \frac{[$a]^2}{2} = \frac{[$a]^2}{2}(e^2-1) ``]
+
+    Then calculate
+
+    [`` \operatorname{Var} X = \operatorname{E} X^2 - \left(\operatorname{E} X\right)^2 ``]
+
+END_PGML_SOLUTION
+ENDDOCUMENT();

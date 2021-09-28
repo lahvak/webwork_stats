@@ -1,0 +1,132 @@
+## DESCRIPTION
+## Probability spaces: Find expected values for a given random variable
+## ENDDESCRIPTION
+
+## KEYWORDS('probability', 'probability space', 'random variable', 'cdf', 'pmf')
+
+## DBsubject(Probability)
+## DBchapter(Random Variables)
+## DBsection(Discrete random variables)
+## Date(11/11/2018)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## TitleText1('')
+## EditionText1('')
+## AuthorText1('')
+## Section1('')
+## Problem1('')
+
+
+###########################
+#  Initialization
+
+DOCUMENT();  
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGchoicemacros.pl",
+  "PGML.pl",
+  "niceTables.pl",
+  "PGcourse.pl",
+);
+
+TEXT(beginproblem());
+
+###########################
+#  Setup
+
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$n1 = random(12,18,1);
+$n2 = random(12,18,1);
+$n3 = random(12,18,1);
+$n4 = random(12,18,1);
+$n5 = random(12,18,1);
+$n6 = 100 - ($n1 + $n2 + $n3 + $n4 + $n5);
+
+$p1 = $n1/100;
+$p2 = $n2/100;
+$p3 = $n3/100;
+$p4 = $n4/100;
+$p5 = $n5/100;
+$p6 = $n6/100;
+
+@probs = ($p1, $p2, $p3, $p4, $p5, $p6);
+
+@sspace = a..f;
+@slice = NchooseK(6,6);
+@perm = @sspace[@slice];
+@probperms = @probs[@slice];
+
+$val1 = random(13,20,1);
+$val2 = random(1,6,1);
+$val3 = random(7,12,1);
+
+@vals[@slice] = ($val3, $val3, $val3, $val2, $val2, $val1);
+
+$ExpX = $pval1*$val1 + $pval2*$val2 + $pval3*$val3;
+
+$ExpX2 = $pval1*$val1*$val1 + $pval2*$val2*$val2 + $pval3*$val3*$val3;
+
+$VarX = $ExpX2 - $ExpX*$ExpX;
+
+###########################
+#  Main text
+
+BEGIN_PGML
+The sample space for an experiment is [` S = \{a, b, c, d, e, f\} `].  The collection of observable events is [` \mathcal{P}(S) `].
+The probability measure is defined by the following table:
+
+[@ DataTable( [[["\\(s\\)", midrule=>1], 'a','b','c','d','e','f'], 
+               ["\\(P(\{s\})\\)",
+                [$p1], [$p2], [$p3], [$p4], [$p5], [$p6]
+               ]],
+             align => 'c|c|c|c|c|c') @]***
+
+A random variable [` X `] is defined on this probability space by the following table:
+
+[@ DataTable( [[["\\(s\\)", midrule=>1], 'a','b','c','d','e','f'], 
+               ["\\(X\\)",
+                [$vals[0]],
+                [$vals[1]],
+                [$vals[2]],
+                [$vals[3]],
+                [$vals[4]],
+                [$vals[5]]
+               ]],
+             align => 'c|c|c|c|c|c') @]***
+
+Let [` f `] and [` F `] be the probability mass function and the cumulative density function of [` X `], respectively.
+
+Find the following:
+
+* [` \operatorname{E} X = `] [_________]{$ExpX}
+
+* [` \operatorname{Var} X = `] [_________]{$VarX}
+
+END_PGML
+
+############################
+#  Solution
+
+BEGIN_PGML_SOLUTION
+The variable [` X `] has three possible values: [` [$val2] `], [` [$val3] `] and [` [$val1] `].
+
+* [` P(X = [$val2]) = P(\{[$perm[3]]\}) + P(\{[$perm[4]]\}) = [$probperms[3]] + [$probperms[4]] = [$pval2] `]
+* [` P(X = [$val3]) = P(\{[$perm[0]]\}) + P(\{[$perm[1]]\}) + P(\{[$perm[2]]\}) = [$probperms[0]] + [$probperms[1]] + [$probperms[2]] = [$pval3] `]
+* [` P(X = [$val1]) = P(\{[$perm[5]]\}) = [$probperms[5]] `]
+
+The _expected value_ [` \operatorname{E} X = f([$val2])\cdot [$val2] + f([$val3])\cdot [$val3] + f([$val1])\cdot [$val1] = [$ExpX] `].
+
+To calculate the variance, we start by calculating
+
+[` \operatorname{E} X^2 = f([$val2])\cdot [$val2]^2 + f([$val3])\cdot [$val3]^2 + f([$val1])\cdot [$val1]^2 = [$ExpX2] `].
+
+Then
+
+[` \operatorname{Var} X = \operatorname{E} X^2 - (\operatorname{E} X)^2 = [$ExpX2] - ([$ExpX])^2 = [$VarX] `].
+END_PGML_SOLUTION
+ENDDOCUMENT();
