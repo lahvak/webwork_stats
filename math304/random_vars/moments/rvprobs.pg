@@ -67,6 +67,10 @@ $val3 = random(7,12,1);
 
 @vals[@slice] = ($val3, $val3, $val3, $val2, $val2, $val1);
 
+$pval3 = $probperms[0] + $probperms[1] + $probperms[2];
+$pval2 = $probperms[3] + $probperms[4];
+$pval1 = $probperms[5];
+
 $ExpX = $pval1*$val1 + $pval2*$val2 + $pval3*$val3;
 
 $ExpX2 = $pval1*$val1*$val1 + $pval2*$val2*$val2 + $pval3*$val3*$val3;
