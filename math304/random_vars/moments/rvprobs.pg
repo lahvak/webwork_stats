@@ -103,8 +103,6 @@ A random variable [` X `] is defined on this probability space by the following 
                ]],
              align => 'c|c|c|c|c|c') @]***
 
-Let [` f `] and [` F `] be the probability mass function and the cumulative density function of [` X `], respectively.
-
 Find the following:
 
 * [` \operatorname{E} X = `] [_________]{$ExpX}
@@ -123,11 +121,11 @@ The variable [` X `] has three possible values: [` [$val2] `], [` [$val3] `] and
 * [` P(X = [$val3]) = P(\{[$perm[0]]\}) + P(\{[$perm[1]]\}) + P(\{[$perm[2]]\}) = [$probperms[0]] + [$probperms[1]] + [$probperms[2]] = [$pval3] `]
 * [` P(X = [$val1]) = P(\{[$perm[5]]\}) = [$probperms[5]] `]
 
-The _expected value_ [` \operatorname{E} X = f([$val2])\cdot [$val2] + f([$val3])\cdot [$val3] + f([$val1])\cdot [$val1] = [$ExpX] `].
+The _expected value_ [` \operatorname{E} X = P(X = [$val2])\cdot [$val2] + P(X = [$val3])\cdot [$val3] + P(X = [$val1])\cdot [$val1] = [$ExpX] `].
 
 To calculate the variance, we start by calculating
 
-[` \operatorname{E} X^2 = f([$val2])\cdot [$val2]^2 + f([$val3])\cdot [$val3]^2 + f([$val1])\cdot [$val1]^2 = [$ExpX2] `].
+[` \operatorname{E} X^2 = P(X = [$val2])\cdot [$val2]^2 + P(X = [$val3])\cdot [$val3]^2 + P(X = [$val1])\cdot [$val1]^2 = [$ExpX2] `].
 
 Then
 
