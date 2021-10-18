@@ -35,11 +35,11 @@ $n = random(11,16,1);
 
 $x = 3;
 
-@reply = rserve_eval("pnorm($x, size = $n, prob = $p)");
+@reply = rserve_eval("pbinom($x, size = $n, prob = $p)");
 
 $prob = $reply[0];
 
-@reply1 = rserve_eval("dnorm(0:$x, size = $n, prob = $p)");
+@reply1 = rserve_eval("dbinom(0:$x, size = $n, prob = $p)");
 
 BEGIN_PGML
 Researchers believe that in certain population of deer mice, at least [$proc]% of mice are affected by certain genetic mutation.  
