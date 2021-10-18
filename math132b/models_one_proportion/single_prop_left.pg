@@ -57,7 +57,7 @@ $pval_approx = Compute("$pval_r_approx[0]")->with(
 
 $dostring = "[|do($reps) * rflip(|]";
 
-Scaffold::Begin();
+Scaffold::Begin(is_open => "correct_or_first_incorrect");
 Section::Begin("Set up simulation");
 
 BEGIN_PGML
