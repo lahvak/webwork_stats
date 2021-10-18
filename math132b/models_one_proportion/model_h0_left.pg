@@ -46,7 +46,7 @@ $ubound = Compute("$p + 2*$SE")->with(
   tolerance => .009,
 );
 
-$x = Compute("floor($n*$lbound/2)");
+$x = floor($n*$lbound/2);
 
 $was = PopUp(["?", "was", "was not"], "was not");
 $reject = PopUp(["?", "reject", "not reject"], "reject");
