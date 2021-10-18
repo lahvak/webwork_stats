@@ -28,6 +28,7 @@ $showPartialCorrectAnswers = 1;
 Context("Numeric");
 
 $p = random(40,80,1)/100;
+$q = 1 - $p;
 
 $proc = $p*100;
 
@@ -68,9 +69,13 @@ The exact probabilities for the binomial distribution are given by the formula
 
 [```P(\text{The number of affected mice } = x) = \binom{n}{x} p^x (1-p)^{n-x}```]
 
-We need to calculate this for $x = 0$, $x = 1$, $x = 2$ and $x = 3$, and add the results together.
+We need to calculate this for [`x = 0`], [`x = 1`], [`x = 2`] and [`x = 3`], and add the results together.
 
-* [```P(\text{The number of affected mice } = 0) = \binom{[$n]}{0} [$p]^0 (1-[$p])^{[$n]-0} = 1\cdot 1\cdot [1-$p]^{[$n]} = [$reply1[0]]```]
-* [```P(\text{The number of affected mice } = 1) = \binom{[$n]}{1} [$p]^1 (1-[$p])^{[$n]-1} = [$n]\cdot [$p]\cdot [1-$p]^{[$n-1]} = [$reply1[1]]```]
+* [``P(\text{The number of affected mice } = 0) = \binom{[$n]}{0} [$p]^0 (1-[$p])^{[$n]-0} = 1\cdot 1\cdot [$q]^{[$n]} = [$reply1[0]]``]
+* [``P(\text{The number of affected mice } = 1) = \binom{[$n]}{1} [$p]^1 (1-[$p])^{[$n]-1} = [$n]\cdot [$p]\cdot [$q]^{[$n-1]} = [$reply1[1]]``]
+* [``P(\text{The number of affected mice } = 2) = \binom{[$n]}{2} [$p]^2 (1-[$p])^{[$n]-2} = \frac{[$n]\cdot [$n-1]}{2\cdot 1}\cdot [$p]^2\cdot [$q]^{[$n-2]} = [$reply1[2]]``]
+* [``P(\text{The number of affected mice } = 3) = \binom{[$n]}{3} [$p]^3 (1-[$p])^{[$n]-3} = \frac{[$n]\cdot [$n-1]\cdot [$n-2]}{3\cdot 2\cdot 1}\cdot [$p]^3\cdot [$q]^{[$n-3]} = [$reply1[3]]``]
+
+Adding these [$x] numbers together gives us [`[$prob]`].
 END_PGML_SOLUTION
 ENDDOCUMENT();
