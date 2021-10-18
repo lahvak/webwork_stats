@@ -51,7 +51,11 @@ $x = floor($n*$lbound/2);
 $was = PopUp(["?", "was", "was not"], "was not");
 $reject = PopUp(["?", "reject", "not reject"], "reject");
 
-$phat = $x/$n;
+$phat = Compute("$x/$n")->with(
+  tolType => 'absolute',
+  tolerance => .009,
+);
+
 
 BEGIN_PGML
 Researchers believe that in certain population of deer mice, at least [$proc]% of mice are affected by certain genetic mutation.  
