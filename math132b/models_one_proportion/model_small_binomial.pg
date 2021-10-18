@@ -1,0 +1,76 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Hypothesis Testing)
+## DBsection(Model evaluation)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## MLT(CI_1p_03)
+## MLTleader(1)
+## Level(3)
+## KEYWORDS('hypothesis testing', 'single proportion', 'binomial distribution')
+##ENDDESCRIPTION
+
+# File Created: 2021-10-18
+# Location: SVSU
+# Course: Biostatistic
+
+DOCUMENT();     
+loadMacros("PGstandard.pl",  
+           "PGauxiliaryFunctions.pl",
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserPopUp.pl",
+           "RserveClient.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$p = random(40,80,1)/100;
+
+$proc = $p*100;
+
+$n = random(11,16,1);
+
+$x = 3;
+
+@reply = rserve_eval("pnorm($x, size = $n, prob = $p)");
+
+$prob = $reply[0];
+
+@reply1 = rserve_eval("dnorm(0:$x, size = $n, prob = $p)");
+
+BEGIN_PGML
+Researchers believe that in certain population of deer mice, at least [$proc]% of mice are affected by certain genetic mutation.  
+They want to test this theory.  They decide to test a mathematical model of the deer mice population with the
+null hypothesis [` H_0: p = [$p] `]. (Since the theory they are testing allows for more than [$proc]% of the population to be affected, 
+their alternative hypothesis must be [` H_A: p < [$p] `].)
+
+They decided to collect a simple random sample of size [`n = [$n]`] deer mice from their population.
+
+According to their model, the null distribution of the sample proportion is _binomial_ with size [__________]{$n} and the 
+probability of success [_________]{$p}.
+
+In the sample, [$x] mice were affected by the mutation.
+
+Using the __binomial formula__, find the exact probability that under the tested mathematical model, the number of mice
+affected by the virus is __at most__ [$x].  Give you answer to at least 5 decimal places.
+
+[``P(\text{The number of affected mice} \le 3) = ``][____________]{$prob}
+
+END_PGML
+BEGIN_PGML_SOLUTION
+Their sample size is [$n], and the model assumes that the null hypothesis [`p = [$p]`] holds.  If this model is correct, the sample proportions
+have binomial distribution with size [$n] and probability of success [$p].
+
+The exact probabilities for the binomial distribution are given by the formula
+
+[```P(\text{The number of affected mice } = x) = \binom{n}{x} p^x (1-p)^{n-x}```]
+
+We need to calculate this for $x = 0$, $x = 1$, $x = 2$ and $x = 3$, and add the results together.
+
+* [```P(\text{The number of affected mice } = 0) = \binom{[$n]}{0} [$p]^0 (1-[$p])^{[$n]-0} = 1\cdot 1\cdot [1-$p]^{[$n]} = [$reply1[0]]```]
+* [```P(\text{The number of affected mice } = 1) = \binom{[$n]}{1} [$p]^1 (1-[$p])^{[$n]-1} = [$n]\cdot [$p]\cdot [1-$p]^{[$n-1]} = [$reply1[1]]```]
+END_PGML_SOLUTION
+ENDDOCUMENT();
