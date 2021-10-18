@@ -37,11 +37,11 @@ $SE = Compute("sqrt($p*(1-$p)/$n)")->with(
   tolerance => .001,
 );
 
-$lbound = Compute("$p - 2*SE")->with(
+$lbound = Compute("$p - 2*$SE")->with(
   tolType => 'absolute',
   tolerance => .009,
 );
-$ubound = Compute("$p + 2*SE")->with(
+$ubound = Compute("$p + 2*$SE")->with(
   tolType => 'absolute',
   tolerance => .009,
 );
