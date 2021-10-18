@@ -59,7 +59,7 @@ $phat = Compute("$x/$n")->with(
 
 BEGIN_PGML
 Researchers believe that in certain population of deer mice, at least [$proc]% of mice are affected by certain genetic mutation.  
-They want to test this hypothesis.  They decide to test a mathematical model of the deer mice population with the
+They want to test this theory.  They decide to test a mathematical model of the deer mice population with the
 null hypothesis [` H_0: p = [$p] `]. (Since the theory they are testing allows for more than [$proc]% of the population to be affected, 
 their alternative hypothesis must be [` H_A: p < [$p] `].)
 
