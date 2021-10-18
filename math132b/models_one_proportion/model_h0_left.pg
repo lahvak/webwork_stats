@@ -1,0 +1,95 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Hypothesis Testing)
+## DBsection(Model evaluation)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## MLT(CI_1p_03)
+## MLTleader(1)
+## Level(3)
+## KEYWORDS('hypothesis testing', 'single proportion')
+##ENDDESCRIPTION
+
+# File Created: 2021-10-18
+# Location: SVSU
+# Course: Biostatistic
+
+DOCUMENT();     
+loadMacros("PGstandard.pl",  
+           "PGauxiliaryFunctions.pl",
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserPopUp.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$p = random(40,80,1)/100;
+
+$proc = $p*100;
+
+$n = random(5,25,1)*10;
+
+$SE = Compute("sqrt($p*(1-$p)/n)")->with(
+  tolType => 'absolute',
+  tolerance => .001,
+);
+
+$lbound = Compute("$p - 2*SE")->with(
+  tolType => 'absolute',
+  tolerance => .009,
+);
+$ubound = Compute("$p + 2*SE")->with(
+  tolType => 'absolute',
+  tolerance => .009,
+);
+
+$x = Compute("floor($n*$lbound/2)");
+
+$was = PopUp(["?", "was", "was not"], "was not");
+$reject = PopUp(["?", "reject", "not reject"], "reject");
+
+$phat = $x/$n;
+
+BEGIN_PGML
+Researchers believe that in certain population of deer mice, at least [$proc]% of mice are affected by certain genetic mutation.  
+They want to test this hypothesis.  They decide to test a mathematical model of the deer mice population with the
+null hypothesis [` H_0: p = [$p] `]. (Since the theory they are testing allows for more than [$proc]% of the population to be affected, 
+their alternative hypothesis must be [` H_A: p < [$p] `].)
+
+They decided to collect a simple random sample of size [`n = [$n]`] deer mice from their population.
+
+According to their model, the null distribution of the sample proportion is _binomial_ with the mean [__________]{$p} and the 
+standard error [_________]{$SE} (give the standard error with at least three decimal places).
+
+The _rule of thumb_ for bell shaped distributions says that if their model is correct, _approximately 95% of the sample proportions_
+are larger than [_________]{$lbound} and smaller than [__________]{$rbound}.
+
+------------------
+
+In the sample, [$x] mice were affected by the mutation.
+
+The observed sample proportion of the affected mice was [`\hat{p} = `] [________________]{$phat}.
+
+Since the observed sample proportion [_]{$was} between the two values given by the rule of thumb, the researchers should [_]{$reject} 
+their model, based on the observed data.
+
+END_PGML
+BEGIN_PGML_SOLUTION
+Their sample size is [$n], and the model assumes that the null hypothesis [`p = [$p]`] holds.  If this model is correct, the sample proportions
+have binomial distribution with mean [`p`] and standard error
+
+[```SE = \sqrt{\frac{p(1-p)}{n}} = [$SE]```]
+
+The _rule or thumb_ says that approximately 95% of the sample proportions will be within 2 standard errors away from the mean, that is between
+[`p - 2SE = [$lbound]`] and [`p + 2SE = [$ubound]`].
+
+-----------
+
+The _observed sample proportion_ is [``\hat{p} = \frac{[$x]}{[$n]} = [$phat]``].
+
+Since this sample proportion is not between the two values given by the rule of thumb, the researchers should reject their model, as it does not provide a good explanation for the observed data.
+END_PGML_SOLUTION
+ENDDOCUMENT();
