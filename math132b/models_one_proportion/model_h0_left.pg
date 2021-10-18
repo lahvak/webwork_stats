@@ -65,7 +65,7 @@ According to their model, the null distribution of the sample proportion is _bin
 standard error [_________]{$SE} (give the standard error with at least three decimal places).
 
 The _rule of thumb_ for bell shaped distributions says that if their model is correct, _approximately 95% of the sample proportions_
-are larger than [_________]{$lbound} and smaller than [__________]{$rbound}.
+are larger than [_________]{$lbound} and smaller than [__________]{$ubound}.
 
 ------------------
 
