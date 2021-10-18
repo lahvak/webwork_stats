@@ -38,7 +38,11 @@ $x = 3;
 
 @reply = rserve_eval("pbinom($x, size = $n, prob = $p)");
 
-$prob = $reply[0];
+$prob = Compute("$reply[0]")->with(
+  tolType => 'absolute',
+  tolerance => .000009,
+);
+
 
 @reply1 = rserve_eval("dbinom(0:$x, size = $n, prob = $p)");
 
