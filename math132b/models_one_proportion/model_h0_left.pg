@@ -32,7 +32,7 @@ $proc = $p*100;
 
 $n = random(5,25,1)*10;
 
-$SE = Compute("sqrt($p*(1-$p)/n)")->with(
+$SE = Compute("sqrt($p*(1-$p)/$n)")->with(
   tolType => 'absolute',
   tolerance => .001,
 );
