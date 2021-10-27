@@ -55,7 +55,7 @@ $or2 = Compute("($b*$d)/($a*$c)")->with(tolType => 'absolute', tolerance => .001
 BEGIN_PGML
 The seeds of certain plant come in two different color variations, _blue_ and _gray_.  They also are either _wrinkled_  or _smooth_. The following contingency table shows the numbers of occurences of these variations in a sample of [$total] seeds:
 
-[@ DataTable([[["", headerrow => 1], ["Wrinkled", i => 1], ["Smooth", i => 1, header => 'CH']],[["Blue", i => 1, header => 'CH'], "$a", "$b"], [["Gray", i => 1], "$c", "$d"]]) @]***
+[@ DataTable([[["", headerrow => 1], ["Wrinkled", i => 1], ["Smooth", i => 1]],[["Blue", i => 1, header => 'CH'], "$a", "$b"], [["Gray", i => 1, header => 'CH'], "$c", "$d"]]) @]***
 
 END_PGML
 BEGIN_PGML_SOLUTION
