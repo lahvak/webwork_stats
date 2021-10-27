@@ -36,7 +36,7 @@ $n = random(11,16,1);
 
 $x = 3;
 
-@reply = rserve_eval("format(pbinom($x, size = $n, prob = $p), scientific=FALSE");
+@reply = rserve_eval("format(pbinom($x, size = $n, prob = $p), scientific=FALSE)");
 
 $prob = Compute("$reply[0]")->with(
   tolType => 'absolute',
@@ -44,7 +44,7 @@ $prob = Compute("$reply[0]")->with(
 );
 
 
-@reply1 = rserve_eval("format(dbinom(0:$x, size = $n, prob = $p), scientific=FALSE");
+@reply1 = rserve_eval("format(dbinom(0:$x, size = $n, prob = $p), scientific=FALSE)");
 
 BEGIN_PGML
 Researchers believe that in certain population of deer mice, at least [$proc]% of mice are affected by certain genetic mutation.  
