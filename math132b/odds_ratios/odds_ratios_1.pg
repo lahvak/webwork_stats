@@ -44,13 +44,13 @@ $gray = $c + $d;
 $wrinkled = $a + $c;
 $smooth = $b + $d;
 
-$oddsBlue = Compute("$blue/$gray")->with(tolType => 'absolute', tolerance = .001);
-$oddsGray = Compute("$gray/$blue")->with(tolType => 'absolute', tolerance = .001);
-$oddsWrinkled = Compute("$wrinkled/$smooth")->with(tolType => 'absolute', tolerance = .001);
-$oddsSmooth = Compute("$smooth/$wrinkled")->with(tolType => 'absolute', tolerance = .001);
+$oddsBlue = Compute("$blue/$gray")->with(tolType => 'absolute', tolerance => .001);
+$oddsGray = Compute("$gray/$blue")->with(tolType => 'absolute', tolerance => .001);
+$oddsWrinkled = Compute("$wrinkled/$smooth")->with(tolType => 'absolute', tolerance => .001);
+$oddsSmooth = Compute("$smooth/$wrinkled")->with(tolType => 'absolute', tolerance => .001);
 
-$or1 = Compute("($a*$c)/($b*$d)")->with(tolType => 'absolute', tolerance = .001);
-$or2 = Compute("($b*$d)/($a*$c)")->with(tolType => 'absolute', tolerance = .001);
+$or1 = Compute("($a*$c)/($b*$d)")->with(tolType => 'absolute', tolerance => .001);
+$or2 = Compute("($b*$d)/($a*$c)")->with(tolType => 'absolute', tolerance => .001);
 
 BEGIN_PGML
 The seeds of certain plant come in two different color variations, _blue_ and _gray_.  They also are either _smooth_ or _wrinkled_.  The following contingency table shows the numbers of occurences of these variations in a sample of [$total] seeds:
