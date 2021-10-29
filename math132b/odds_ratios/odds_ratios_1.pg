@@ -95,5 +95,14 @@ Calculate the following *odds ratios*:
 
 END_PGML
 BEGIN_PGML_SOLUTION
+
+To calculate the first four odds, we first calculate the *margings* of the contingency table:
+
+[@ DataTable([[["", headerrow => 1], ["Wrinkled", i => 1], ["Smooth", i => 1], "Total"],[["Blue", i => 1, header => 'CH'], "$a", "$b", "$blue"], [["Gray", i => 1, header => 'CH'], "$c", "$d", "$gray"], [["Total", header => 'CH'], "$wrinkled", "$smooth", "$total"]]) @]***
+
+Then
+
+*   Odds of a seed being blue [` = \frac{P(\text{seed is blue})}{P(\text{seed is gray})} = \frac{\frac{[$blue]}{[$total]}}{\frac{[$gray]}{[$total]}} `].  This can be simplified as [` \frac{[$blue]}{[$gray]} = [$oddsBlue] `].
+
 END_PGML_SOLUTION
 ENDDOCUMENT();
