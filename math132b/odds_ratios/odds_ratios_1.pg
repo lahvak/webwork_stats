@@ -33,8 +33,8 @@ Context("Numeric");
 # Columns are wrinkled and smooth, rows are blue and gray
 
 $a = random(20,100,1);
-$b = random(20,100,1);
-$c = random(20,100,1);
+do{$b = random(20,100,1);} until (abs($a - $b) > 10);
+do{$c = random(20,100,1);} until (abs($a - $c) > 15);
 $d = random(20,100,1);
 
 $total = $a + $b + $c + $d;
@@ -49,13 +49,49 @@ $oddsGray = Compute("$gray/$blue")->with(tolType => 'absolute', tolerance => .00
 $oddsWrinkled = Compute("$wrinkled/$smooth")->with(tolType => 'absolute', tolerance => .001);
 $oddsSmooth = Compute("$smooth/$wrinkled")->with(tolType => 'absolute', tolerance => .001);
 
-$or1 = Compute("($a*$c)/($b*$d)")->with(tolType => 'absolute', tolerance => .001);
-$or2 = Compute("($b*$d)/($a*$c)")->with(tolType => 'absolute', tolerance => .001);
+$oddsBlueinWrinkled = Compute("$a/$c")->with(tolType => 'absolute', tolerance => .001);
+$oddsGrayinWrinkled = Compute("$c/$a")->with(tolType => 'absolute', tolerance => .001);
+$oddsBlueinSmooth = Compute("$b/$d")->with(tolType => 'absolute', tolerance => .001);
+$oddsGrayinSmooth = Compute("$d/$b")->with(tolType => 'absolute', tolerance => .001);
+$oddsWrinkledinBlue = Compute("$a/$b")->with(tolType => 'absolute', tolerance => .001);
+$oddsSmoothinBlue = Compute("$b/$a")->with(tolType => 'absolute', tolerance => .001);
+$oddsWrinkledinGray = Compute("$c/$d")->with(tolType => 'absolute', tolerance => .001);
+$oddsSmoothinGray = Compute("$d/$c")->with(tolType => 'absolute', tolerance => .001);
+
+$or1 = Compute("($a*$d)/($b*$c)")->with(tolType => 'absolute', tolerance => .001);
+$or2 = Compute("($b*$c)/($a*$d)")->with(tolType => 'absolute', tolerance => .001);
 
 BEGIN_PGML
 The seeds of certain plant come in two different color variations, _blue_ and _gray_.  They also are either _wrinkled_  or _smooth_. The following contingency table shows the numbers of occurences of these variations in a sample of [$total] seeds:
 
 [@ DataTable([[["", headerrow => 1], ["Wrinkled", i => 1], ["Smooth", i => 1]],[["Blue", i => 1, header => 'CH'], "$a", "$b"], [["Gray", i => 1, header => 'CH'], "$c", "$d"]]) @]***
+
+-------------------------
+
+Calculate the following odds:
+
+*  Odds of a seed being blue: [____________]{$oddsBlue}
+*  Odds of a seed being gray: [____________]{$oddsGray}
+*  Odds of a seed being wrinkled: [____________]{$oddsWrinkled}
+*  Odds of a seed being smooth: [____________]{$oddsSmooth}
+
+*  Odds of a seed being blue for **wrinkled** seeds: [____________]{$oddsBlueinWrinkled}
+*  Odds of a seed being gray for **wrinkled** seeds: [____________]{$oddsGrayinWrinkled}
+*  Odds of a seed being blue for **smooth** seeds: [____________]{$oddsBlueinSmooth}
+*  Odds of a seed being gray for **smooth** seeds: [____________]{$oddsGrayinSmooth}
+*  Odds of a seed being wrinkled for **blue** seeds: [____________]{$oddsWrinkledinBlue}
+*  Odds of a seed being smooth for **blue** seeds: [____________]{$oddsSmoothinBlue}
+*  Odds of a seed being wrinkled for **gray** seeds: [____________]{$oddsWrinkledinGray}
+*  Odds of a seed being smooth for **gray** seeds: [____________]{$oddsSmoothinGray}
+
+------------------------
+
+Calculate the following *odds ratios*:
+
+*  The odds ratio of blue seeds, comparing the wrinkled group to the smooth group: [____________]{$or1}
+*  The odds ratio of gray seeds, comparing the wrinkled group to the smooth group: [____________]{$or2}
+*  The odds ratio of blue seeds, comparing the smooth group to the wrinkled group: [____________]{$or2}
+*  The odds ratio of gray seeds, comparing the smooth group to the wrinkled group: [____________]{$or1}
 
 END_PGML
 BEGIN_PGML_SOLUTION
