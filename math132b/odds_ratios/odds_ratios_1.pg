@@ -103,6 +103,29 @@ To calculate the first four odds, we first calculate the *margings* of the conti
 Then
 
 *   Odds of a seed being blue [` = \frac{P(\text{seed is blue})}{P(\text{seed is gray})} = \frac{\frac{[$blue]}{[$total]}}{\frac{[$gray]}{[$total]}} `].  This can be simplified as [` \frac{[$blue]}{[$gray]} = [$oddsBlue] `].
+*   Odds of a seed being gray [` = \frac{P(\text{seed is gray})}{P(\text{seed is blue})} = \frac{\frac{[$gray]}{[$total]}}{\frac{[$blue]}{[$total]}} `].  This can be simplified as [` \frac{[$gray]}{[$blue]} = [$oddsGray] `].
+*   Odds of a seed being wrinkled [` = \frac{P(\text{seed is wrinkled})}{P(\text{seed is smooth})} = \frac{\frac{[$wrinkled]}{[$total]}}{\frac{[$smooth]}{[$total]}} `].  This can be simplified as [` \frac{[$wrinkled]}{[$smooth]} = [$oddsWrinkled] `].
+*   Odds of a seed being smooth [` = \frac{P(\text{seed is smooth})}{P(\text{seed is wrinkled})} = \frac{\frac{[$smooth]}{[$total]}}{\frac{[$wrinkled]}{[$total]}} `].  This can be simplified as [` \frac{[$smooth]}{[$wrinkled]} = [$oddsSmooth] `].
+
+----------------------
+
+*  Odds of a seed being blue for **wrinkled** seeds
+    [` = \frac{P(\text{seed is blue}\vert\text{seed is wrinkled})}{P(\text{seed is gray}\vert\text{seed is wrinkled})} = \frac{\frac{[$a]}{[$wrinkled]}}{\frac{[$c]}{[$wrinkled]}} `] which simplifies as 
+    [` \frac{[$a]}{[$c]} = [$oddsBlueinWrinkled] `].
+*  Odds of a seed being gray for **wrinkled** seeds
+[`  [$oddsGrayinWrinkled] `].
+*  Odds of a seed being blue for **smooth** seeds
+[`  [$oddsBlueinSmooth] `].
+*  Odds of a seed being gray for **smooth** seeds
+[`  [$oddsGrayinSmooth] `].
+*  Odds of a seed being wrinkled for **blue** seeds
+[`  [$oddsWrinkledinBlue] `].
+*  Odds of a seed being smooth for **blue** seeds
+[`  [$oddsSmoothinBlue] `].
+*  Odds of a seed being wrinkled for **gray** seeds
+[`  [$oddsWrinkledinGray] `].
+*  Odds of a seed being smooth for **gray** seeds
+[`  [$oddsSmoothinGray] `].
 
 END_PGML_SOLUTION
 ENDDOCUMENT();
