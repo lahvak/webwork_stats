@@ -134,5 +134,19 @@ Then
     [` = \frac{P(\text{seed is smooth}\vert\text{seed is gray})}{P(\text{seed is wrinkled}\vert\text{seed is gray})} = \frac{\frac{[$d]}{[$gray]}}{\frac{[$c]}{[$gray]}} `] which simplifies as 
 [` \frac{[$d]}{[$c]} = [$oddsSmoothinGray] `].
 
+--------------------
+
+*  The odds ratio of blue seeds, comparing the wrinkled group to the smooth group:
+
+[``\begin{aligned}
+\frac{\text{The odds of a seed being blue for wrinkled seeds}}{\text{The odds of a seed being blue for smooth seeds}} &= \frac{\frac{[$a]}{[$c]}}{\frac{[$b]}{[$d]}}\\ &= \frac{[$a]\cdot [$d]}{[$c]\cdot [$b]}\\ &= [$or1]
+\end{aligned} ``]
+*  The odds ratio of gray seeds, comparing the wrinkled group to the smooth group:
+{$or2}
+*  The odds ratio of blue seeds, comparing the smooth group to the wrinkled group:
+{$or2}
+*  The odds ratio of gray seeds, comparing the smooth group to the wrinkled group:
+{$or1}
+
 END_PGML_SOLUTION
 ENDDOCUMENT();
