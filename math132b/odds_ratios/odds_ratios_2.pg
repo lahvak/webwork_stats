@@ -114,8 +114,8 @@ The rule of thumb says that for bell-shaped sampling distributions, about 95% of
 
 To get the interval estimate for the odds ratio, we apply the natural exponential function to the bounds of the interval estimate for the logarithm of odds ratios.  The exponential function will cancel the logarithm:
 
-*   Lower bound [` = \exp([$lowlor) = [$lowor] `]
-*   Upper bound [` = \exp[[$hilor]) = [$hior] `]
+*   Lower bound [` = \exp([$lowlor]) = [$lowor] `]
+*   Upper bound [` = \exp([$hilor]) = [$hior] `]
 
 END_PGML_SOLUTION
 ENDDOCUMENT();
