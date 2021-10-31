@@ -30,7 +30,7 @@ Context("Numeric");
 # ---------
 # | c | d |
 #
-# Columns are south and north, rows are red and yellow
+# Columns are north and south, rows are red and yellow
 
 $a = random(20,100,1);
 do{$b = random(80,200,1);} until (abs($a - $b) > 10);
@@ -41,13 +41,14 @@ $total = $a + $b + $c + $d;
 
 $SE = Compute("sqrt(1/$a + 1/$b + 1/$c + 1/$d)")->with(tolType => 'absolute', tolerance => 0.0001);
 
-$red = $a + $b;
-$yellow = $c + $d;
-$south = $a + $c;
-$north = $b + $d;
-
-$oddsRedinSouth = Compute("$a/$c")->with(tolType => 'absolute', tolerance => .001);
-$oddsRedinNorth = Compute("$b/$d")->with(tolType => 'absolute', tolerance => .001);
+# Not needed, may be useful in more detailed solution:
+# $red = $a + $b;
+# $yellow = $c + $d;
+# $north = $a + $c;
+# $south = $b + $d;
+# 
+# $oddsRedinNorth = Compute("$a/$c")->with(tolType => 'absolute', tolerance => .001);
+# $oddsRedinSouth = Compute("$b/$d")->with(tolType => 'absolute', tolerance => .001);
 
 $or = Compute("($a*$d)/($b*$c)")->with(tolType => 'absolute', tolerance => .001);
 
@@ -60,9 +61,9 @@ $lowor = Compute("exp($lowlor)")->with(tolType => 'absolute', tolerance => .001)
 $hior = Compute("exp($hilor)")->with(tolType => 'absolute', tolerance => .001);
 
 BEGIN_PGML
-Certain species of beetles is endemic to two isolated locations, one in the south and one further north.  The beetles come in two color variations, red and yellow.  A sample of [$total] beetles of this speacies has been collected and summarized in the following contingency table:
+Certain species of beetles is endemic to two isolated locations, one in the north and one further south.  The beetles come in two color variations, red and yellow.  A sample of [$total] beetles of this speacies has been collected and summarized in the following contingency table:
 
-[@ DataTable([[["", headerrow => 1], ["South", i => 1], ["North", i => 1]],[["Red", i => 1, header => 'CH'], "$a", "$b"], [["Yellow", i => 1, header => 'CH'], "$c", "$d"]]) @]***
+[@ DataTable([[["", headerrow => 1], ["North", i => 1], ["South", i => 1]],[["Red", i => 1, header => 'CH'], "$a", "$b"], [["Yellow", i => 1, header => 'CH'], "$c", "$d"]]) @]***
 
 Answer the following questions:
 
