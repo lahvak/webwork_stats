@@ -1,0 +1,121 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Two categorical variables)
+## DBsection(Odds ratios)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(3)
+## KEYWORDS('categorical variables', 'odds ratios')
+##ENDDESCRIPTION
+
+# File Created: 2021-10-27
+# Location: SVSU
+# Course: Biostatistic
+
+DOCUMENT();     
+loadMacros("PGstandard.pl",  
+           "PGauxiliaryFunctions.pl",
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+# Contingency table
+#
+# | a | b |
+# ---------
+# | c | d |
+#
+# Columns are south and north, rows are red and yellow
+
+$a = random(20,100,1);
+do{$b = random(80,200,1);} until (abs($a - $b) > 10);
+$c = random(60,120,1);
+$d = random(10,50,1);
+
+$total = $a + $b + $c + $d;
+
+$SE = Compute("sqrt(1/$a + 1/$b + 1/$c + 1/$d)")->with(tolType => 'absolute', tolerance => 0.0001);
+
+$red = $a + $b;
+$yellow = $c + $d;
+$south = $a + $c;
+$north = $b + $d;
+
+$oddsRedinSouth = Compute("$a/$c")->with(tolType => 'absolute', tolerance => .001);
+$oddsRedinNorth = Compute("$b/$d")->with(tolType => 'absolute', tolerance => .001);
+
+$or = Compute("($a*$d)/($b*$c)")->with(tolType => 'absolute', tolerance => .001);
+
+$lor = Compute("ln($or)")->with(tolType => 'absolute', tolerance => .001);
+
+$lowlor = Compute("$lor - 2*$SE")->with(tolType => 'absolute', tolerance => .001);
+$hilor = Compute("$lor + 2*$SE")->with(tolType => 'absolute', tolerance => .001);
+
+$lowor = Compute("exp($lowlor)")->with(tolType => 'absolute', tolerance => .001);
+$hior = Compute("exp($hilor)")->with(tolType => 'absolute', tolerance => .001);
+
+BEGIN_PGML
+Certain species of beetles is endemic to two isolated locations, one in the south and one further north.  The beetles come in two color variations, red and yellow.  A sample of [$total] beetles of this speacies has been collected and summarized in the following contingency table:
+
+[@ DataTable([[["", headerrow => 1], ["South", i => 1], ["North", i => 1]],[["Red", i => 1, header => 'CH'], "$a", "$b"], [["Yellow", i => 1, header => 'CH'], "$c", "$d"]]) @]***
+
+Answer the following questions:
+
+*  The observed odds ratio [` \widehat{OR} `] of red beetles, comparing the north location with the south location, is [_______________]{$or} (give your answer with at least 3 decimal places).
+
+*  The **logarithm** of the observed odds ratio is [_________________]{$lor} (Use the **natural** logarithmic function and give your answer with at least 3 decimal places).
+
+*  The **standard error** estimate for the logarithm of the odds ratios is [_________________]{$SE} (give your answer with at least 4 decimal places).
+
+------------------------
+
+Using the *rule of thumb*, calculate an approximation of the 95% confidence interval for the *logarithm of the population odds ratios* of the red beetles, comparing the north location with the south location. Give your answer to at least 3 decimal places:
+
+*  The lower bound: [______________]{$lowlor}
+*  The upper bound: [______________]{$hilor}
+
+Using these values, calculate the approximation of the 95% confidence interval for the *population odds ratios* of the red beetles, comparing the north location with the south location. Give your answer to at least 3 decimal places:
+
+*  The lower bound: [______________]{$lowor}
+*  The upper bound: [______________]{$hior}
+
+END_PGML
+BEGIN_PGML_SOLUTION
+
+The observed odds ratio [` \widehat{OR} `] of red beetles, comparing the north location with the south location, can be calculated by the shortcut formula
+
+[`` \widehat{OR} = \frac{\text{frequency of red beetles the north}\cdot\text{frequency of yellow beetles in the south}}{\text{frequency of yellow beetles in the north}\cdot\text{frequency of red beetles in the south}} ``]
+
+With the given contingency table, this will be
+
+[`` \widehat{OR} = \frac{[$a]\cdot [$d]}{[$b] \cdot [$c]} = [$or] ``]
+
+The natural logarithm of [` \widehat{OR} `] is [`` \ln\left(\widehat{OR}\right) = \ln([$or]) = [$lor] ``].
+
+The *standard error* of logaritms of odds ratios can be estimated from the contingency table using the formula
+
+[`` SE = \sqrt{\frac{1}{a} + \frac{1}{b} + \frac{1}{c} + \frac{1}{d}} ``]
+
+where [`a`], [`b`], [`c`] and [`d`] are the four frequencies in the contingency table.  Here
+
+[`` SE = \sqrt{\frac{1}{[$a]} + \frac{1}{[$b]} + \frac{1}{[$c]} + \frac{1}{[$d]}} = [$SE] ``]
+
+----------------------
+
+The rule of thumb says that for bell-shaped sampling distributions, about 95% of all samples produce sample statistic that is within 2 standard errors from the distribution mean.  That gives us 95% chance that our sample is one of those samples, in which case the distribution mean, which in this case is the logarithm of the population odds ratio, is within 2 standard erros from our sample statistic.  Subtracting 2 standard errors to the logarithm of our sample odds ratio will give us the lower bound of the confidence interval, while adding 2 standard errors will give us the upper bound:
+
+*   Lower bound [` = \log(\widehat{OR}) - 2\cdot SE = [$lor] - 2\cdot [$SE] = [$lowlor] `]
+*   Upper bound [` = \log(\widehat{OR}) + 2\cdot SE = [$lor] + 2\cdot [$SE] = [$hilor] `]
+
+To get the interval estimate for the odds ratio, we apply the natural exponential function to the bounds of the interval estimate for the logarithm of odds ratios.  The exponential function will cancel the logarithm:
+
+*   Lower bound [` = \exp([$lowlor) = [$lowor] `]
+*   Upper bound [` = \exp[[$hilor]) = [$hior] `]
+
+END_PGML_SOLUTION
+ENDDOCUMENT();
