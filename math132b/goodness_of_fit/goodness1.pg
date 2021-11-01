@@ -29,7 +29,7 @@ $showPartialCorrectAnswers = 1;
 
 Context("Numeric");
 Context()->flags->set(
-  tolerance => 0.01, # about 2 decimal places
+  tolerance => 0.00009, # about 4 decimal places
   tolType => "absolute",
 );
 
@@ -106,7 +106,7 @@ Scaffold::Begin();
 Section::Begin("Part 1: Calculate the expected counts:");
 
 BEGIN_PGML
-Calculate the _expected counts_ for your sample:
+Calculate the _expected counts_ for your sample.  If necessary, round your answers to 4 decimal places.
 
 [@ DataTable( [[["species:", midrule=>1], @species], 
                ["expected count:",
@@ -137,26 +137,11 @@ To get the expected counts, we multiply the percentages by the sample size, and 
 END_PGML_SOLUTION
 Section::End();
 
-# Use the student answers to calculate chi square because rounding can mess
-# things up.
-
-@student_expected = map { $inputs_ref->{ANS_NUM_TO_NAME($_)} } (1..8); 
-@student_expected = map { if ($student_expected[$_] == 0) { $student_expected[$_] = $newexpected[$_] } } (0..$#student_expected); 
-@student_diffs = map {$observed[$_] - $student_expected[$_]} (0..$#student_expected);
-@student_zsq = map {($student_diffs[$_]**2)/$student_expected[$_]} (0..$#student_expected);
-
-$student_chisq = 0;
-foreach my $i (0..7) {
-    $student_chisq += $studnet_zsq[$i];
-};
-
-$chisqans = OneOf($student_chisq, $chisq);
-
 Section::Begin("Part 2: Calculate the \(\chi^2\)-score of the sample:");
 BEGIN_PGML
-Using the observed and expected counts, find the [` \chi^2 `] score of the sample:
+Using the given observed and your expected counts, find the [` \chi^2 `] score of the sample.  Agin, round your answer to 4 decimal places if necessary.:
 
-[` \chi^2 = `] [__________]{$chisqans}
+[` \chi^2 = `] [__________]{$chisq}
 
 END_PGML
 
