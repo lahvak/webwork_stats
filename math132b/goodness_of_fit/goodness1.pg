@@ -21,7 +21,7 @@ loadMacros("PGstandard.pl",
            "PGML.pl",
            "niceTables.pl",
            "parserRadioButtons.pl",
-           "parserOneOf,pl",
+           "parserOneOf.pl",
            "scaffold.pl",
 );
 TEXT(&beginproblem);
