@@ -54,7 +54,7 @@ foreach my $i (0..6) {
 # Calculate the seventh diff and the seventh expected:
 
 $lastdiff = -$sumdiffs;
-$lastexp = random(ceil(2*abs($lastdiff)), 50) + $lastdiff;
+$lastexp = random(ceil(2*abs($lastdiff)), 50) - $lastdiff;
 push @diffs, $lastdiff;
 push @expected, $lastexp;
 $total += $lastexp;
