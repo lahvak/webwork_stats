@@ -34,7 +34,7 @@ $sig = $sigs[0];
 $xmin = floor($mu - 3*$sig) + .5;
 $xmax = ceil($mu + 3*$sig) - .5;
 
-$x = random($xmin, $mu, 1);
+$x = random($mu, $xmax, 1);
 
 @zscores = rserve_eval("round(($x - $mu)/$sig, 2)");
 
