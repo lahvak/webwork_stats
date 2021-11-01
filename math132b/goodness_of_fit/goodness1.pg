@@ -210,7 +210,7 @@ Section::End();
 # Use the student answers to calculate chi square because rounding can mess
 # things up.
 
-@student_expected = map { $inputs_ref->{ANS_NUM_TO_NAME($_)} (1..8); 
+@student_expected = map { $inputs_ref->{ANS_NUM_TO_NAME($_)} } (1..8); 
 @student_zsq = map {($newdiffs[$_]**2)/$student_expected[$_]} (0..$#student_expected);
 
 $student_chisq = 0;
