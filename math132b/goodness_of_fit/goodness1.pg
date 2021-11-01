@@ -102,7 +102,10 @@ They want to perform the goodness of fit test to see if these counts fit the ori
 
 END_PGML
 
-Scaffold::Begin();
+Scaffold::Begin(
+can_open => "when_previous_correct",
+is_open  => "correct_or_first_incorrect"
+);
 Section::Begin("Part 1: Calculate the expected counts:");
 
 BEGIN_PGML
