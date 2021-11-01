@@ -32,7 +32,7 @@ $z0 = $zscores[0];
 $z1 = -$zscores[1];
 $z2 = $zscores[2];
 
-@ltails = rserve_eval("round(1 - pnorm(c($z0, $z1, $z2)), 5)");
+@ltails = rserve_eval("round(pnorm(c($z0, $z1, $z2)), 5)");
 
 $tail0 = 1 - $ltails[0];
 $tail1 = $ltails[1];
@@ -41,9 +41,9 @@ $tail2 = $ltails[2];
 BEGIN_PGML
 Use the table C.1 in the textbook (or another normal probability table) to find the following areas under the standard normal curve:
 
-- The are to the right of [: [$z0] :]: [_________]{$tail0}
-- The are to the left of [: [$z1] :]: [_________]{$tail1}
-- The are to the left of [: [$z2] :]: [_________]{$tail2}
+- The area to the right of [: [$z0] :]: [_________]{$tail0}
+- The area to the left of [: [$z1] :]: [_________]{$tail1}
+- The area to the left of [: [$z2] :]: [_________]{$tail2}
 END_PGML
 
 BEGIN_PGML_SOLUTION
