@@ -1,0 +1,109 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Hypothesis Testing)
+## DBsection(Goodness of fit test)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## MLT(CI_1p_03)
+## MLTleader(1)
+## Level(3)
+## KEYWORDS('hypothesis testing', 'goodness of fit', 'chi-square')
+##ENDDESCRIPTION
+
+# File Created: 11/28/2018
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();     
+loadMacros("PGstandard.pl",  
+           "PGauxiliaryFunctions.pl",
+           "MathObjects.pl",
+           "PGML.pl",
+           "RserveClient.pl",
+           "parserRadioButtons.pl",
+);
+TEXT(&beginproblem);
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+Context()->flags->set(
+  tolerance => 0.01, # about 2 decimal places
+  tolType => "absolute",
+);
+
+@areas = (.999, .995, .99, .975, .95, .05, .025, .01, .005, .001);
+
+$numint = $#areas + 1;
+
+$interval = random(0, $numint, 1);
+
+sub intervalDesc {
+    my $intno = shift(@_);
+
+    if ($intno <= 0) {
+        return "larger than $areas[0]";
+    };
+
+    if ($intno >= $numint) {
+        return "smaller than $areas[$#areas]";
+    };
+
+    return "between $areas[$intno] and $areas[$intno - 1]";
+}
+
+sub getP {
+    my $intno = shift(@_);
+    my $factor = random(.2, .8, .1);
+
+    if ($intno <= 0) {
+        return $areas[0]*$factor + .5*(1 - $factor);
+    };
+
+    if ($intno >= $numint) {
+        return $areas[$#areas]*$factor;
+    };
+
+    return $areas[$intno]*$factor + $areas[$intno - 1]*(1 - $factor);
+}
+
+@intstrs = map {intervalDesc($_)} 0..$numint;
+
+$p = getP($interval);
+
+$levels = random(4, 21, 1);
+
+$df = $levels - 1;
+
+@scores = rserve_eval("round(qchisq(1-$p, df = $df), 2)");
+$score = $scores[0];
+
+$radio1 = RadioButtons([ # this is really stoopid!  Why can't I just put @intstrs there?
+                $intstrs[0], 
+                $intstrs[1], 
+                $intstrs[2], 
+                $intstrs[3], 
+                $intstrs[4], 
+                $intstrs[5], 
+                $intstrs[6], 
+                $intstrs[7], 
+                $intstrs[8], 
+                $intstrs[9], 
+                $intstrs[10], 
+                ],
+                $interval);
+
+BEGIN_PGML
+A _goodness of fit test_ with [$levels] levels was performed, and the calculated [` \chi^2 `] score was [$score].
+
+You want to know the probability that, assuming your data was drawn from the given distribution, a [` \chi^2 `] score of a random sample of the same size as your sample is at least as high as the [` \chi^2 `] score of your sample.
+
+Use the table in the book to choose the correct range for this probability:
+
+[_]{$radio1}
+
+END_PGML
+
+BEGIN_PGML_SOLUTION
+Use the table in the book with [` [$levels] - 1 = [$df] `] degrees of freedom.
+END_PGML_SOLUTION
+ENDDOCUMENT();
