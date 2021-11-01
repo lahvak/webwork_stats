@@ -110,14 +110,14 @@ Calculate the _expected counts_ for your sample:
 
 [@ DataTable( [[["species:", midrule=>1], @species], 
                ["expected count:",
-               PGML('[____]{$newexpected[0]}'),
-               PGML('[____]{$newexpected[1]}'),
-               PGML('[____]{$newexpected[2]}'),
-               PGML('[____]{$newexpected[3]}'),
-               PGML('[____]{$newexpected[4]}'),
-               PGML('[____]{$newexpected[5]}'),
-               PGML('[____]{$newexpected[6]}'),
-               PGML('[____]{$newexpected[7]}'),
+               PGML('[____]{$newexpected[0]}{4}{"exp1"}'),
+               PGML('[____]{$newexpected[1]}{4}{"exp2"}'),
+               PGML('[____]{$newexpected[2]}{4}{"exp3"}'),
+               PGML('[____]{$newexpected[3]}{4}{"exp4"}'),
+               PGML('[____]{$newexpected[4]}{4}{"exp5"}'),
+               PGML('[____]{$newexpected[5]}{4}{"exp6"}'),
+               PGML('[____]{$newexpected[6]}{4}{"exp7"}'),
+               PGML('[____]{$newexpected[7]}{4}{"exp8"}'),
                ]],
              align => 'r|c|c|c|c|c|c|c|c') @]***
 
@@ -143,7 +143,7 @@ Section::End();
 @student_expected = map { $inputs_ref->{ANS_NUM_TO_NAME($_)} } (1..8); 
 @student_expected = map { if ($student_expected[$_] == 0) { $student_expected[$_] = $newexpected[$_] } } (0..$#student_expected); 
 @student_diffs = map {$observed[$_] - $student_expected[$_]} (0..$#student_expected);
-@student_zsq = map {($newdiffs[$_]**2)/$student_expected[$_]} (0..$#student_expected);
+@student_zsq = map {($student_diffs[$_]**2)/$student_expected[$_]} (0..$#student_expected);
 
 $student_chisq = 0;
 foreach my $i (0..7) {
@@ -156,7 +156,7 @@ Section::Begin("Part 2: Calculate the \(\chi^2\)-score of the sample:");
 BEGIN_PGML
 Using the observed and expected counts, find the [` \chi^2 `] score of the sample:
 
-[` \chi^2 = `] [__________]{$chisq}
+[` \chi^2 = `] [__________]{$chisqans}
 
 END_PGML
 
