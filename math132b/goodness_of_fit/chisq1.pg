@@ -106,6 +106,6 @@ END_PGML
 BEGIN_PGML_SOLUTION
 Use the table in the book with [` [$levels] - 1 = [$df] `] degrees of freedom.
 
-The area corresponding to the score [$score] is [$interval].
+The area corresponding to the score [$score] is [$instrs[$interval]].
 END_PGML_SOLUTION
 ENDDOCUMENT();
