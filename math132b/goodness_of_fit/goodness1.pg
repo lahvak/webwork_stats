@@ -65,8 +65,7 @@ $df = $#expected;
 
 @percents = map {100*$_/$total} @expected;
 
-@roundedpercents = @percents;
-#@roundedpercents = map {sprintf("%.2f", $_)} @percents;
+@roundedpercents = map {sprintf("%.2f", $_)} @percents;
 
 @newexpected = map {$_ * $total/100} @roundedpercents;
 
