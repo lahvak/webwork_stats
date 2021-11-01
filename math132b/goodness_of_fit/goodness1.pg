@@ -55,7 +55,7 @@ foreach my $i (0..6) {
 
 $lastdiff = -$sumdiffs;
 $lastexp = random(ceil(2*abs($lastdiff)), 50) + $lastdiff;
-push @diff, $lastdiff;
+push @diffs, $lastdiff;
 push @expected, $lastexp;
 $total += $lastexp;
 
