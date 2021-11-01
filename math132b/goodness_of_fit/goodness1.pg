@@ -43,7 +43,7 @@ foreach my $i (0..6) {
     my $x = random(5,50,0.01);
     push @expected, $x;
     my $frac = $x - floor($x);
-    my $mult = sgn($sumdiffs);
+    my $mult = -sgn($sumdiffs);
     if ( $mult == 0 ) { $mult = list_random(-1,1); }
     my $diff = $mult*random(0, int($x/3), 1) + $frac;
     $sumdiffs += $diff;
@@ -65,7 +65,8 @@ $df = $#expected;
 
 @percents = map {100*$_/$total} @expected;
 
-@roundedpercents = map {sprintf("%.2f", $_)} @percents;
+@roundedpercents = @percents;
+#@roundedpercents = map {sprintf("%.2f", $_)} @percents;
 
 @newexpected = map {$_ * $total/100} @roundedpercents;
 
