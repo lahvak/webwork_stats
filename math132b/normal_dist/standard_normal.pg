@@ -1,0 +1,58 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Normal distribution)
+## DBsection(Standard normal distribution)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## MLT(CI_1p_03)
+## MLTleader(1)
+## Level(3)
+## KEYWORDS('normal distribution')
+##ENDDESCRIPTION
+
+# File Created: 10/24/2017
+# Location: SVSU
+# Course: General Statistics
+
+DOCUMENT();     
+loadMacros("PGstandard.pl",  
+           "PGauxiliaryFunctions.pl",
+           "MathObjects.pl",
+           "PGML.pl",
+           "RserveClient.pl"
+);     
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+@zscores = rserve_eval("round(runif(3, .5, 3),2)");
+
+$z0 = $zscores[0];
+$z1 = -$zscores[1];
+$z2 = $zscores[2];
+
+@ltails = rserve_eval("round(1 - pnorm(c($z0, $z1, $z2)), 5)");
+
+$tail0 = 1 - $ltails[0];
+$tail1 = $ltails[1];
+$tail2 = $ltails[2];
+
+BEGIN_PGML
+Use the table C.1 in the textbook (or another normal probability table) to find the following areas under the standard normal curve:
+
+- The are to the right of [: [$z0] :]: [_________]{$tail0}
+- The are to the left of [: [$z1] :]: [_________]{$tail1}
+- The are to the left of [: [$z2] :]: [_________]{$tail2}
+END_PGML
+
+BEGIN_PGML_SOLUTION
+Using the Standard Normal Distribution table in the book:
+
+*  The area to the right of a *positive* z-score can be found directly from the table.
+
+*  The area to the left of a *negative* z-score if the same as the area to the right of the corresponding positive z-score.
+
+*  The area to the left of a positive z-score is [` 1 - `] the area to the right of the z-score.
+END_PGML_SOLUTION
+ENDDOCUMENT();
