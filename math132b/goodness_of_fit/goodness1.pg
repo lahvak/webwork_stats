@@ -110,14 +110,14 @@ Calculate the _expected counts_ for your sample:
 
 [@ DataTable( [[["species:", midrule=>1], @species], 
                ["expected count:",
-               PGML('[____]{$newexpected[0]}{4}{"exp1"}'),
-               PGML('[____]{$newexpected[1]}{4}{"exp2"}'),
-               PGML('[____]{$newexpected[2]}{4}{"exp3"}'),
-               PGML('[____]{$newexpected[3]}{4}{"exp4"}'),
-               PGML('[____]{$newexpected[4]}{4}{"exp5"}'),
-               PGML('[____]{$newexpected[5]}{4}{"exp6"}'),
-               PGML('[____]{$newexpected[6]}{4}{"exp7"}'),
-               PGML('[____]{$newexpected[7]}{4}{"exp8"}'),
+               PGML('[____]{$newexpected[0]}'),
+               PGML('[____]{$newexpected[1]}'),
+               PGML('[____]{$newexpected[2]}'),
+               PGML('[____]{$newexpected[3]}'),
+               PGML('[____]{$newexpected[4]}'),
+               PGML('[____]{$newexpected[5]}'),
+               PGML('[____]{$newexpected[6]}'),
+               PGML('[____]{$newexpected[7]}'),
                ]],
              align => 'r|c|c|c|c|c|c|c|c') @]***
 
