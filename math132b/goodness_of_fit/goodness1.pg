@@ -78,77 +78,27 @@ foreach my $i (0..7) {
     $chisq += $zsq[$i];
 };
 
-@siglevs = (.3, .2, .1, .05, .02, .01, .005, .001);
-@scores = (8.38, 9.80, 12.02, 14.07, 16.62, 18.48, 20.28, 24.32); # 7 degrees of freedom
+@species = ("A".."H");
 
-do {$index = random(0, $#siglevs, 1);} until (abs($chisq - $scores[$index]) > 1); # make sure it is not too close
-
-$alpha = $siglevs[$index];
-$score = $scores[$index];
-
-$reject = ($chisq > $score);
-
-$radio1 = RadioButtons([["Reject \(H_0\)", "Fail to reject \(H_0\)"]], $reject?0:1);
-
-$radio2 = RadioButtons([["The shipment does not seem to fulfill the customer specifications.", 
-                         "The shipment does not seem to violate the customer specifications."]], $reject?0:1);
-
-@shapes = ("small cube", "large cube", "small cylinder", "large cylinder", "cone", "half sphere", "short block", "long block");
-
-if ($chisq < $scores[0]) {
-    $chisqcomp = "is less than $scores[0]";
-    $pvalcomp = "is greater than $siglevs[0]";
-} elsif ($scores[0] <= $chisq && $chisq < $scores[1]) {
-    $chisqcomp = "is between $scores[0] and $scores[1]";
-    $pvalcomp = "is between $siglevs[1] and  $siglevs[0]";
-} elsif ($scores[1] <= $chisq && $chisq < $scores[2]) {
-    $chisqcomp = "is between $scores[1] and $scores[2]";
-    $pvalcomp = "is between $siglevs[2] and  $siglevs[1]";
-} elsif ($scores[2] <= $chisq && $chisq < $scores[3]) {
-    $chisqcomp = "is between $scores[2] and $scores[3]";
-    $pvalcomp = "is between $siglevs[3] and  $siglevs[2]";
-} elsif ($scores[3] <= $chisq && $chisq < $scores[4]) {
-    $chisqcomp = "is between $scores[3] and $scores[4]";
-    $pvalcomp = "is between $siglevs[4] and  $siglevs[3]";
-} elsif ($scores[4] <= $chisq && $chisq < $scores[5]) {
-    $chisqcomp = "is between $scores[4] and $scores[5]";
-    $pvalcomp = "is between $siglevs[5] and  $siglevs[4]";
-} elsif ($scores[5] <= $chisq && $chisq < $scores[6]) {
-    $chisqcomp = "is between $scores[5] and $scores[6]";
-    $pvalcomp = "is between $siglevs[6] and  $siglevs[5]";
-} elsif ($scores[6] <= $chisq && $chisq < $scores[7]) {
-    $chisqcomp = "is between $scores[6] and $scores[7]";
-    $pvalcomp = "is between $siglevs[7] and  $siglevs[6]";
-} else {
-    $chisqcomp = "is greater than $scores[7]";
-    $pvalcomp = "is less than $siglevs[7]";
-}
-
-$palphacomp = $reject?"smaller":"larger";
-$rejecth0 = $reject?"reject":"fail to reject";
-$conclusion = $reject?"The shipment does not seem to fulfill the customer specifications.":
-                         "The shipment does not seem to violate the customer specifications.";
-    
 
 BEGIN_PGML
-A toy company is shipping a large order of wooden blocks that come in 8 different shapes.  The customer ordered the following 
-percentages of the blocks:
+Five years ago, a large number of fish were released into a reservoar.  There were 8 species, with the following percentages:
 
-[@ DataTable( [[["shape:", midrule=>1], @shapes], 
+[@ DataTable( [[["species:", midrule=>1], @species], 
                ["percent:",
                 @roundedpercents
                ]],
              align => 'r|c|c|c|c|c|c|c|c') @]***
 
-The quality control department selected a random sample of [$total] blocks and found the following shape counts in their sample:
+This year reserchers caught a sample of [$total] fish from the reservoar, with theo following species counts:
 
-[@ DataTable( [[["shape:", midrule=>1], @shapes], 
+[@ DataTable( [[["species:", midrule=>1], @species], 
                ["count:",
                 @observed
                ]],
              align => 'r|c|c|c|c|c|c|c|c') @]***
 
-Your goal is to test, at [$alpha] significance level, whether the shipment satisfies the customer's requirements.
+They want to perform the goodness of fit test to see if these counts fit the original distribution of the species.
 
 END_PGML
 
@@ -158,7 +108,7 @@ Section::Begin("Part 1: Calculate the expected counts:");
 BEGIN_PGML
 Calculate the _expected counts_ for your sample:
 
-[@ DataTable( [[["shape:", midrule=>1], @shapes], 
+[@ DataTable( [[["species:", midrule=>1], @species], 
                ["expected count:",
                PGML('[____]{$newexpected[0]}'),
                PGML('[____]{$newexpected[1]}'),
@@ -204,7 +154,7 @@ $chisqans = OneOf($student_chisq, $chisq);
 
 Section::Begin("Part 2: Calculate the \(\chi^2\)-score of the sample:");
 BEGIN_PGML
-Using the observed and expected counts, you need to find the [` \chi^2 `] score of the sample:
+Using the observed and expected counts, find the [` \chi^2 `] score of the sample:
 
 [` \chi^2 = `] [__________]{$chisq}
 
@@ -227,31 +177,6 @@ The formula for [` z^2 `] is
 * [` z_8^2 = \frac{([$observed[7]] - [$newexpected[7]])^2}{[$newexpected[7]]} = [$zsq[7]] `]
 
 then [` \chi^2 = z_1^2 + z_2^2 + \cdots + z_8^2 = [$chisq] `].
-END_PGML_SOLUTION
-Section::End();
-
-Section::Begin("Part 3: Find the p-value and compare it to \(\alpha\):");
-BEGIN_PGML
-Finally, you need to use the table in the book to estimate the p-value of the data.
-
-* How many degrees of freedom will you use? [__________]{$df}
-
-* After using the table to estimate the p-value and comparing it to the significance level [` \alpha `], we
-
-    [_]{$radio1}
-
-    which means
-
-    [_]{$radio2}
-END_PGML
-
-BEGIN_PGML_SOLUTION
-We use one less degrees of freedom than we have levels.  Since we have [$df + 1] levels, we use the line in the table
-with [$df] degrees of freedom.
-
-In the table, the [` \chi^2 `] score of [$chisq] is [$chisqcomp], which means the p-value is [$pvalcomp].  That is [$palphacomp] than [` \alpha `], so we [$rejecth0] the [` H_0 `].
-
-[$conclusion]
 END_PGML_SOLUTION
 Section::End();
 Scaffold::End();
