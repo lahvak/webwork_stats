@@ -52,13 +52,13 @@ $SE = Compute("sqrt(1/$a + 1/$b + 1/$c + 1/$d)")->with(tolType => 'absolute', to
 
 $or = Compute("($a*$d)/($b*$c)")->with(tolType => 'absolute', tolerance => .001);
 
-$lor = Compute("ln($or)")->with(tolType => 'absolute', tolerance => .001);
+$lor = Compute("ln($or)")->with(tolType => 'absolute', tolerance => .01);
 
-$lowlor = Compute("$lor - 2*$SE")->with(tolType => 'absolute', tolerance => .001);
-$hilor = Compute("$lor + 2*$SE")->with(tolType => 'absolute', tolerance => .001);
+$lowlor = Compute("$lor - 2*$SE")->with(tolType => 'absolute', tolerance => .01);
+$hilor = Compute("$lor + 2*$SE")->with(tolType => 'absolute', tolerance => .01);
 
-$lowor = Compute("exp($lowlor)")->with(tolType => 'absolute', tolerance => .001);
-$hior = Compute("exp($hilor)")->with(tolType => 'absolute', tolerance => .001);
+$lowor = Compute("exp($lowlor)")->with(tolType => 'absolute', tolerance => .01);
+$hior = Compute("exp($hilor)")->with(tolType => 'absolute', tolerance => .01);
 
 BEGIN_PGML
 Certain species of beetles is endemic to two isolated locations, one in the north and one further south.  The beetles come in two color variations, red and yellow.  A sample of [$total] beetles of this speacies has been collected and summarized in the following contingency table:
