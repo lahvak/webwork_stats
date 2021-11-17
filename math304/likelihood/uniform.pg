@@ -100,6 +100,31 @@ END_PGML
 #  Solution
 ##############################################################
 BEGIN_PGML_SOLUTION
+The likelihood function is
+
+[```\ell(b) = \begin{cases}
+\prod_{i=1}^{[$n]} \frac{1}{b} & \text{ if } 0 \le x_i \le b \text{ for each } i = 1, 2, \ldots, [$n]\\
+0 & \text{ otherwise}
+\end{cases}```]
+
+This can be simplified as
+
+[```\ell(b) = \begin{cases}
+\frac{1}{b^{[$n]}} & \text{ if } b \ge [$bhat]\\
+0 & \text{ otherwise}
+\end{cases}```]
+
+The logarithm of the likelihood function is only defined when the likelihood function is *strictly positive*, which is on the interval [`[$lhooddomain]`]:
+
+[```\ell\ell(b) = -[$n]\log(b) \text{ for } b \in [$lhooddomain]```]
+
+The derivative of the log-likelihood is then
+
+[```\ell\ell'(b) = -[$n]/b \text{ for } b \in [$lhooddomain]```]
+
+The derivative is never 0, in fact it is always *negative*, so the log-likelihood (and therefore the likelihood) function is always *decreasing*, and attains its *maximum* at the **left-most point of its domain**, which is [`[$bhat]`].
+
+
 END_PGML_SOLUTION
 ##############################################################
 
