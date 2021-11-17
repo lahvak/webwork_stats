@@ -76,12 +76,12 @@ Remember that a density function for a variable [`X \sim \operatorname{Unif}(0,b
 
 [```f(x\vert b) = \begin{cases} \frac{1}{b} & \text{ if } x \in [0,b]\\0 & \text{ otherwise}\end{cases}```]
 
-1.  Find the *likelihood* function for [`b`] given by this data:
+1.  Find the _likelihood_ function for [`b`] given by this data:
 
     *  [`\ell(b) = `] [______________]{$lhood} if [`b \in`] [______________]{$lhooddomain} (use interval notation)
     *  [`\ell(b) = `] [______________]{0} otherwise.
 
-2.  Find the *log-likelihood* function [`\ell\ell(b)`] and its domain:
+2.  Find the _log-likelihood_ function [`\ell\ell(b)`] and its domain:
 
     *  [`\ell\ell(b) = `] [_____________]{$llhood}
     *  The domain of [`\ell\ell`] is [______________]{$lhooddomain} (use interval notation)
@@ -114,7 +114,7 @@ This can be simplified as
 0 & \text{ otherwise}
 \end{cases}```]
 
-The logarithm of the likelihood function is only defined when the likelihood function is *strictly positive*, which is on the interval [`[$lhooddomain]`]:
+The logarithm of the likelihood function is only defined when the likelihood function is _strictly positive_, which is on the interval [`[$lhooddomain]`]:
 
 [```\ell\ell(b) = -[$n]\log(b) \text{ for } b \in [$lhooddomain]```]
 
@@ -122,7 +122,7 @@ The derivative of the log-likelihood is then
 
 [```\ell\ell'(b) = -[$n]/b \text{ for } b \in [$lhooddomain]```]
 
-The derivative is never 0, in fact it is always *negative*, so the log-likelihood (and therefore the likelihood) function is always *decreasing*, and attains its *maximum* at the **left-most point of its domain**, which is [`[$bhat]`].
+The derivative is never 0, in fact it is always _negative_, so the log-likelihood (and therefore the likelihood) function is always _decreasing_, and attains its _maximum_ at the **left-most point of its domain**, which is [`[$bhat]`].
 
 
 END_PGML_SOLUTION
