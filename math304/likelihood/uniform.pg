@@ -1,0 +1,106 @@
+## DESCRIPTION
+## Statistics 305 
+## ENDDESCRIPTION
+
+## KEYWORDS('Statistical inference; The uniform distribution, maximum
+## likelihood estimation)
+
+## DBsubject(Statistics)
+## DBchapter(Point estimation)
+## DBsection(Maximum likelihood estimation)
+## Date(2021-11-16)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(4)
+## TitleText1('No Text')
+## AuthorText1('?')
+## EditionText1('?')
+## Section1('.')
+## Problem1('')
+
+
+########################################################################
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "PGchoicemacros.pl",
+  "parserRadioButtons.pl",
+  "MathObjects.pl",
+  "PGML.pl",
+  "parserMultiAnswer.pl",
+  "unionTables.pl",
+  "RserveClient.pl",
+  "PGcourse.pl"
+);
+
+# Print problem number and point value (weight) for the problem
+TEXT(beginproblem());
+
+
+##############################################################
+#  Question and R Setup
+##############################################################
+Context("Numeric");
+Context()->variables->add(b=>"Real");
+
+$n = random(9,11,1);
+$b = random(3,10,0.1);
+rserve_eval("data <- round(runif($n,0,$b),4)");
+@data = rserve_eval("format(data, scientific=FALSE)");
+@datamax = rserve_eval("max(data)");
+$bhat = $datamax[0];
+$datatxt = join ", ", @data;
+
+$lhood = Formula("1/b^$n");
+# TODO: write a custom answer checker that will compare the formula up to a
+# constant multiple.
+$llhood = Formula("-$n*log(b)");
+$llhooddiff = Formula("-$n/b");
+
+Context("Interval");
+
+$lhooddomain = Compute("[$bhat, infty)");
+
+
+##############################################################
+#  Question in Text
+##############################################################
+BEGIN_PGML
+The following data come from a **uniform** distribution on an interval [`[0,b]`] for some [`b > 0`]:
+
+[```[$datatxt]```]
+
+Remember that a density function for a variable [`X \sim \operatorname{Unif}(0,b)`] is
+
+[```f(x\vert b) = \begin{cases} \frac{1}{b} & \text{ if } x \in [0,b]\\0 & \text{ otherwise}\end{cases}```]
+
+1.  Find the *likelihood* function for [`b`] given by this data:
+
+    *  [`\ell(b) = `] [______________]{$lhood} if [`b \in`] [______________]{$lhooddomain} (use interval notation)
+    *  [`\ell(b) = `] [______________]{0} otherwise.
+
+2.  Find the *log-likelihood* function [`\ell\ell(b)`] and its domain:
+
+    *  [`\ell\ell(b) = `] [_____________]{$llhood}
+    *  The domain of [`\ell\ell`] is [______________]{$lhooddomain} (use interval notation)
+
+3.  Calculate the derivative of the log-likelihood function [`\ell\ell(b)`] on its domain:
+
+    [`\ell\ell'(b) = `] [_____________]{$llhooddiff}
+
+4.  Finally, find the **maximum likelihood estimate** for [`b`] given by the data:
+
+    [`\hat b`] = [____________]{$bhat}
+
+END_PGML
+##############################################################
+##############################################################
+#  Solution
+##############################################################
+BEGIN_PGML_SOLUTION
+END_PGML_SOLUTION
+##############################################################
+
+ENDDOCUMENT();
