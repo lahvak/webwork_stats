@@ -61,7 +61,7 @@ $llhooddiff = Formula("-$n/b");
 
 Context("Interval");
 
-$lhooddomain = Compute("[$bhat, infty)");
+$lhooddomain = Compute("[$bhat, infinity)");
 
 
 ##############################################################
