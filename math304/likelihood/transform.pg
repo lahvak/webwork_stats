@@ -1,0 +1,91 @@
+## DESCRIPTION
+## Statistics
+## ENDDESCRIPTION
+
+## KEYWORDS('Statistical inference; maximum likelihood estimation)
+
+## DBsubject(Statistics)
+## DBchapter(Point estimation)
+## DBsection(Maximum likelihood estimation)
+## Date(2021-11-17)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(4)
+## TitleText1('No Text')
+## AuthorText1('?')
+## EditionText1('?')
+## Section1('.')
+## Problem1('')
+
+
+########################################################################
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGML.pl",
+  "PGcourse.pl"
+);
+
+TEXT(beginproblem());
+
+Context("Numeric");
+Context()->variables->add(theta=>["Real", TeX=>'\theta');
+Context()->variables->add(psi=>["Real", TeX=>'\psi');
+
+$theta = random(0.1,10,0.01);
+do {$theta2 = random(0.1,10,0.01);} while ($theta2 == $theta);
+
+# parameters:
+
+$a = random(1,10,1);
+$b = random(4,10,1);
+$c = random(3,10,1) + random(1,9,1)/10;
+
+@functions = ("($a*theta + $b)/$c", "$a/($c*theta + $b)", "$c*exp($a*theta + $b)", "$c*sqrt($a*theta + $b)");
+@inverses  = ("($c*psi - $b)/$a", "($a - $b*psi)/($$c*psi)", "(log(psi/c) - $b)/$a", "((psi/c)^2 - $b)/$a");
+
+$index = random(1,$#functions,1);
+
+$fun = Formula($functions[$index]);
+$inv = Formula($inverses[$index]);
+
+$psi = $fun->eval(theta=>$theta);
+$psi2 = round(100*$fun->eval(theta=>$theta2))/100;
+$theta2 = $inv->eval(psi=>$psi2);
+
+BEGIN_PGML
+## Transformations of the Maximum Likelihood Estimates ##
+
+Many distribution can be specified equivalently using several different parameters: for example the Exponential
+distribution can be described using the _rate_ [`\lambda`] or the _mean_ [`\mu`], where [`\mu = 1/\lambda`].  Similarly,
+for the Normal distribution we can either give the standard deviation [`\sigma`] or the variance [`\sigma^2`]. If we have
+the maximum likelihood estimate for one of these parameters, most of the time we can easily find the maximum likelihood estimate
+for the other one:
+
+Suppose a parameter [`\psi`] is related to a parameter [`\theta`] by the equation [`\psi = g(\theta)`] where [`g`] is a *monotone*
+function, and [`\ell(\psi)`] is a likelihood function for [`\psi`].  Then [`\ell(g(\theta)`] is a likelihood function for [`\theta`].
+
+------------
+
+Suppose a distribution has a parameter [`\theta > 0`] and a parameter [`\psi`] where
+
+[```psi = [$fun]```]
+
+1.   If a maximum likelihood estimate for [`\theta`] obtained from a sample is [`\hat{\theta} = [$theta]`], what is the 
+     maximum likelihood estimate for [`\psi`] obtained from the same data?
+
+     [`\hat{\psi} = `] [______________]{$psi}
+
+2.   A different sample was used to calculate a maximum likelihood estimate for [`\psi`]. The value was [`\hat{\psi} = [$psi2]`].
+     What is the maximum likelihood estimate for [`\theta`] obtained from the same data?
+
+     [`\hat{\theta} = `] [______________]{$theta2}
+
+END_PGML
+
+BEGIN_PGML_SOLUTION
+END_PGML_SOLUTION
+ENDDOCUMENT();
