@@ -45,7 +45,7 @@ $b = random(4,10,1);
 $c = random(3,10,1) + random(1,9,1)/10;
 
 @functions = ("($a*theta + $b)/$c", "$a/($c*theta + $b)", "$c*exp($a*theta + $b)", "$c*sqrt($a*theta + $b)");
-@inverses  = ("($c*psi - $b)/$a", "($a - $b*psi)/($$c*psi)", "(log(psi/c) - $b)/$a", "((psi/c)^2 - $b)/$a");
+@inverses  = ("($c*psi - $b)/$a", "($a - $b*psi)/($c*psi)", "(log(psi/$c) - $b)/$a", "((psi/$c)^2 - $b)/$a");
 
 $index = random(1,$#functions,1);
 
