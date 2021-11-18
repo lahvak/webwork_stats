@@ -87,5 +87,14 @@ Suppose a distribution has a parameter [`\theta > 0`] and a parameter [`\psi`] w
 END_PGML
 
 BEGIN_PGML_SOLUTION
+We know that [`\psi = g(\theta)`] where [`g(\theta) = [$fun]`].
+
+1.  Therefore
+    [```\hat{\psi} = g(\hat{\theta}) = [$psi]```]
+
+2.  Since [`\psi = g(\theta)`] and [`g`] is *monotone* and therefore *invertible*, we get 
+    [```\theta = g^{-1}(\psi) = [$inv]```] 
+    This gives us
+    [```\hat{\theta} = g^{-1}(\hat{\psi}) = [$theta2]```]
 END_PGML_SOLUTION
 ENDDOCUMENT();
