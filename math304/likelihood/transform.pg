@@ -40,7 +40,7 @@ do {$theta2 = random(0.1,10,0.01);} while ($theta2 == $theta);
 
 # parameters:
 
-$a = random(1,10,1);
+$a = random(2,10,1);
 $b = random(4,10,1);
 $c = random(3,10,1) + random(1,9,1)/10;
 
