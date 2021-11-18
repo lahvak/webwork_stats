@@ -52,7 +52,7 @@ $uplim = Compute("$bhat*($alpha)^(-1/$n)");
 
 Context("Interval");
 
-$lhooddomain = Compute("[$bhat, infinity]");
+$lhooddomain = Compute("[$bhat, infinity)");
 $lset = Compute("[$bhat, $uplim]");
 
 BEGIN_PGML
