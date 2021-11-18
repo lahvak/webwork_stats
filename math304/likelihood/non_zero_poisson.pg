@@ -163,7 +163,7 @@ $BR
 \{ $mca->buttons() \}
 $BR
 $BR
-The mean as a function os \(\lambda\) is:
+The mean as a function of \(\lambda\) is:
 $BR
 $BR
 \{ $mca1->buttons() \}
