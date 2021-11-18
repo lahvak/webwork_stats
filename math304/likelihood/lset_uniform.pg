@@ -1,0 +1,114 @@
+## DESCRIPTION
+## Statistics
+## ENDDESCRIPTION
+
+## KEYWORDS('Statistical inference; The uniform distribution, maximum
+## likelihood estimation, likelihood set)
+
+## DBsubject(Statistics)
+## DBchapter(Point estimation)
+## DBsection(Maximum likelihood estimation)
+## Date(2021-11-17)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(4)
+## TitleText1('No Text')
+## AuthorText1('?')
+## EditionText1('?')
+## Section1('.')
+## Problem1('')
+
+########################################################################
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGML.pl",
+  "RserveClient.pl",
+  "PGcourse.pl"
+);
+
+TEXT(beginproblem());
+
+Context("Numeric");
+Context()->variables->add(b=>"Real");
+
+$n = random(9,11,1);
+$b = random(3,10,0.1);
+$alpha = random(1,9,1)/10;
+rserve_eval("data <- round(runif($n,0,$b),4)");
+@data = rserve_eval("format(data, scientific=FALSE)");
+@datamax = rserve_eval("max(data)");
+$bhat = $datamax[0];
+$datatxt = join ", ", @data;
+
+$lhood = Formula("1/b^$n");
+# TODO: write a custom answer checker that will compare the formula up to a
+# constant multiple.
+
+$uplim = Compute("$bhat*($alpha)^(-1/$n)");
+
+Context("Interval");
+
+$lhooddomain = Compute("[$bhat, infinity]");
+$lset = Compute("[$bhat, $uplim]");
+
+BEGIN_PGML
+The following data come from a **uniform** distribution on an interval [`[0,b]`] for some [`b > 0`]:
+
+[```[$datatxt]```]
+
+Remember that a density function for a variable [`X \sim \operatorname{Unif}(0,b)`] is
+
+[```f(x\vert b) = \begin{cases} \frac{1}{b} & \text{ if } x \in [0,b]\\0 & \text{ otherwise}\end{cases}```]
+
+1.  Find the _likelihood_ function for [`b`] given by this data:
+
+    *  [`\ell(b) = `] [______________]{$lhood} if [`b \in`] [______________]{$lhooddomain} (use interval notation)
+    *  [`\ell(b) = `] [______________]{0} otherwise.
+
+2.  Find the _maximum likelihood estimate_ for [`b`] given by the data:
+
+    [`\hat b`] = [____________]{$bhat}
+
+3.  Find the _likelihood set_ [`\operatorname{LS}_\alpha`] with [`\alpha = [$alpha]`]:
+
+    [`\operatorname{LS}_{[$alpha]} =`] [_________________________]{$lset}
+
+END_PGML
+
+BEGIN_PGML_SOLUTION
+The likelihood function is
+
+[```\ell(b) = \begin{cases}
+\prod_{i=1}^{[$n]} \frac{1}{b} & \text{ if } 0 \le x_i \le b \text{ for each } i = 1, 2, \ldots, [$n]\\
+0 & \text{ otherwise}
+\end{cases}```]
+
+This can be simplified as
+
+[```\ell(b) = \begin{cases}
+\frac{1}{b^{[$n]}} & \text{ if } b \ge [$bhat]\\
+0 & \text{ otherwise}
+\end{cases}```]
+
+This function is strictly decreasing for [`b > [$bhat]`], so [`\hat{b} = \argmax \ell(b) = [$bhat]`], and any likelihood
+set will be an interval starting with [`[$bhat]`].  To find the right end-point of the interval, we need to solve the inequality
+
+[``` \frac{\ell(b)}{\ell(\hat{b})} \ge \alpha ```]
+
+which in this case becomes
+
+[``` \frac{\hat{b}^{[$n]}}{b^{[$n]}} \ge [$alpha] ```]
+
+Solving this for [`b`] will give us
+
+[``` b \le \frac{\hat{b}}{\sqrt[[$n]]{[$alpha]}} = \frac{[$bhat]}{\sqrt[[$n]]{[$alpha]}} = [$uplim] ```]
+
+and the _likelihood set_ is
+
+[``` \operatorname{LS}_{[$alpha]} = [$lset] ```]
+END_PGML_SOLUTION
+ENDDOCUMENT();
