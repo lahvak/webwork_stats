@@ -94,7 +94,7 @@ This can be simplified as
 0 & \text{ otherwise}
 \end{cases}```]
 
-This function is strictly decreasing for [`b > [$bhat]`], so [`\hat{b} = \argmax \ell(b) = [$bhat]`], and any likelihood
+This function is strictly decreasing for [`b > [$bhat]`], so [`\hat{b} = \operatorname{arg\;max} \ell(b) = [$bhat]`], and any likelihood
 set will be an interval starting with [`[$bhat]`].  To find the right end-point of the interval, we need to solve the inequality
 
 [``` \frac{\ell(b)}{\ell(\hat{b})} \ge \alpha ```]
