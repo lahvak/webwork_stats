@@ -1,5 +1,5 @@
 ## DESCRIPTION
-## Statistics 305 
+## Statistics
 ## ENDDESCRIPTION
 
 ## KEYWORDS('Statistical inference; The uniform distribution, maximum
@@ -25,23 +25,14 @@ DOCUMENT();
 
 loadMacros(
   "PGstandard.pl",
-  "PGchoicemacros.pl",
-  "parserRadioButtons.pl",
   "MathObjects.pl",
   "PGML.pl",
-  "parserMultiAnswer.pl",
-  "unionTables.pl",
   "RserveClient.pl",
   "PGcourse.pl"
 );
 
-# Print problem number and point value (weight) for the problem
 TEXT(beginproblem());
 
-
-##############################################################
-#  Question and R Setup
-##############################################################
 Context("Numeric");
 Context()->variables->add(b=>"Real");
 
@@ -63,10 +54,6 @@ Context("Interval");
 
 $lhooddomain = Compute("[$bhat, infinity)");
 
-
-##############################################################
-#  Question in Text
-##############################################################
 BEGIN_PGML
 The following data come from a **uniform** distribution on an interval [`[0,b]`] for some [`b > 0`]:
 
@@ -95,10 +82,7 @@ Remember that a density function for a variable [`X \sim \operatorname{Unif}(0,b
     [`\hat b`] = [____________]{$bhat}
 
 END_PGML
-##############################################################
-##############################################################
-#  Solution
-##############################################################
+
 BEGIN_PGML_SOLUTION
 The likelihood function is
 
@@ -124,8 +108,5 @@ The derivative of the log-likelihood is then
 
 The derivative is never 0, in fact it is always _negative_, so the log-likelihood (and therefore the likelihood) function is always _decreasing_, and attains its _maximum_ at the **left-most point of its domain**, which is [`[$bhat]`].
 
-
 END_PGML_SOLUTION
-##############################################################
-
 ENDDOCUMENT();
