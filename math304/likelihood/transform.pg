@@ -72,7 +72,7 @@ function, and [`\ell(\psi)`] is a likelihood function for [`\psi`].  Then [`\ell
 
 Suppose a distribution has a parameter [`\theta > 0`] and a parameter [`\psi`] where
 
-[```psi = [$fun]```]
+[```\psi = [$fun]```]
 
 1.   If a maximum likelihood estimate for [`\theta`] obtained from a sample is [`\hat{\theta} = [$theta]`], what is the 
      maximum likelihood estimate for [`\psi`] obtained from the same data?
