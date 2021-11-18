@@ -32,8 +32,8 @@ loadMacros(
 TEXT(beginproblem());
 
 Context("Numeric");
-Context()->variables->add(theta=>["Real", TeX=>'\theta');
-Context()->variables->add(psi=>["Real", TeX=>'\psi');
+Context()->variables->add(theta=>["Real", TeX=>'\theta']);
+Context()->variables->add(psi=>["Real", TeX=>'\psi']);
 
 $theta = random(0.1,10,0.01);
 do {$theta2 = random(0.1,10,0.01);} while ($theta2 == $theta);
@@ -66,7 +66,7 @@ the maximum likelihood estimate for one of these parameters, most of the time we
 for the other one:
 
 Suppose a parameter [`\psi`] is related to a parameter [`\theta`] by the equation [`\psi = g(\theta)`] where [`g`] is a *monotone*
-function, and [`\ell(\psi)`] is a likelihood function for [`\psi`].  Then [`\ell(g(\theta)`] is a likelihood function for [`\theta`].
+function, and [`\ell(\psi)`] is a likelihood function for [`\psi`].  Then [`\ell(g(\theta))`] is a likelihood function for [`\theta`].
 
 ------------
 
