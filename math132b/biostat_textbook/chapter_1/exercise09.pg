@@ -1,0 +1,92 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Experimental design)
+## DBsection(Concepts)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popupnom = PopUp(
+["choose one","Nominal categorical","Ordinal categorical","Discrete numerical","Continuous numerical"],
+"Nominal categorical");
+
+$popupord = PopUp(
+["choose one","Nominal categorical","Ordinal categorical","Discrete numerical","Continuous numerical"],
+"Ordinal categorical");
+
+$popupdisc = PopUp(
+["choose one","Nominal categorical","Ordinal categorical","Discrete numerical","Continuous numerical"],
+"Discrete numerical");
+
+$popupcont = PopUp(
+["choose one","Nominal categorical","Ordinal categorical","Discrete numerical","Continuous numerical"],
+"Continuous numerical");
+
+BEGIN_PGML
+### The microbiome and colon cancer
+
+A study was conducted to assess whether the abundance of particular bacterial
+species in the gastrointestinal system is associated with the development of
+colon cancer. The following data matrix shows a subset of the data collected in
+the study. Cancer stage is coded 1-4, with larger values indicating cancer that
+is more difficult to treat. The abundance levels are given for five bacterial
+species; abundance is calculated as the frequency of that species divided by
+the total number of bacteria from all species.
+
+[@
+    DataTable(
+        [
+            [["", headerrow=>1], "age", "gender", "stage", "bug 1", "bug 2", "bug 3", "bug 4", "bug 5"],
+            [1 ,  71 , "Female" ,   2 , 0.03 , 0.09 , 0.52 , 0.00 , 0.00 ],
+            [2 ,  53 , "Female" ,   4 , 0.16 , 0.08 , 0.08 , 0.00 , 0.00 ],
+            [3 ,  55 , "Female" ,   2 , 0.00 , 0.01 , 0.31 , 0.00 , 0.00 ],
+            [4 ,  44 , "Male" ,   2 , 0.11 , 0.14 , 0.00 , 0.07 , 0.05 ],
+            ["`\vdots`" , "`\vdots`" , "`\vdots`" , "`\vdots`" , "`\vdots`" , "`\vdots`" , "`\vdots`" , "`\vdots`" , "`\vdots`" ],
+            [73 , 48 , "Female" ,   3 , 0.21 , 0.05 , 0.00 , 0.00 , 0.04 ],
+        ], align=>'rcccccccc'
+        )
+@]***
+
+* What does each row of the data matrix represent?
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+
+* Identify explanatory variables:
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+
+* Identify response variables:
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+
+* For each variable, indicate whether it is numerical or categorical:
+
+    * age: [_]{$popupcont}
+    * gender: [_]{$popupnom}
+    * stage: [_]{$popupord}
+    * bug 1: [_]{$popupcont}
+    * bug 2: [_]{$popupcont}
+    * bug 3: [_]{$popupcont}
+    * bug 4: [_]{$popupcont}
+    * bug 5: [_]{$popupcont}
+END_PGML
+
+ENDDOCUMENT();
