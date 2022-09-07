@@ -1,0 +1,77 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Experimental design)
+## DBsection(Concepts)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$cite = "Alessandro Bucciol and Marco Piovesan. “Luck or cheating? A field experiment on honesty with children”. In: _Journal of Economic Psychology_ 32.1 (2011), pp. 73–78.";
+
+BEGIN_PGML
+### Cheaters, study components
+
+Researchers studying the relationship between honesty, age and self-control 
+conducted an experiment on 160 children between the ages of 5 and 15. 
+Participants reported their age, sex, and whether they were an only child 
+or not. The researchers asked each child to toss a fair coin in private and 
+to record the outcome (white or black) on a paper sheet, and said they 
+would only reward children who report white.
+
+The study's findings can be summarized as follows:
+
+    _Half the students were 
+    explicitly told not to cheat and the others were not given any explicit 
+    instructions.
+
+    In the no instruction group probability of cheating was found to 
+    be uniform across groups based on child's characteristics.
+
+    In the group that was 
+    explicitly told to not cheat, girls were less likely to cheat,
+    and while rate 
+    of cheating didn't vary by age for boys, it decreased with age
+    for girls._
+
+([$cite]**)
+
+*  Identify the main research question of the study.
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+
+*  Who are the subjects in this study? 
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+
+*  How many are included?
+
+    [_______________]{160}
+
+*  How many variables were recorded for each subject in the study?
+
+    [_______________]{4}
+
+*  What are the variables in the study? Identify each variable as numerical or 
+    categorical. If numerical, state whether the variable is discrete or continuous.
+    If categorical, state whether the variable is ordinal.
+
+    [@ ANS(essay_cmp); essay_box(8,50) @]*
+END_PGML
+
+ENDDOCUMENT();
