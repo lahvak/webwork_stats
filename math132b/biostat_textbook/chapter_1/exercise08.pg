@@ -48,7 +48,7 @@ BEGIN_PGML
 A survey 
 was conducted to study the smoking habits of UK residents. Below is a data 
 matrix displaying a portion of the data collected in this survey. Note that 
-"[`\pounds`]" stands for British Pounds Sterling, "cig" stands for cigarettes, 
+"£" stands for British Pounds Sterling, "cig" stands for cigarettes, 
 and "N/A" refers to a missing component of the data. \footfullcite{data:smoking}
 
 ([$cite]**)
@@ -57,11 +57,11 @@ and "N/A" refers to a missing component of the data. \footfullcite{data:smoking}
     DataTable(
         [
             [["", headerrow=>1], "sex", "age", "marital", "grossIncome", "smoke", "amtWeekends", "amtWeekdays"],
-            [1  , "Female" , 42  , "Single"  , "Under \(\pounds\)2,600"         , "Yes"   , "12 cig/day"   , "12 cig/day"],
-            [2  , "Male"  , 44 , "Single"  , "\(\pounds\)10,400 to \(\pounds\)15,600" , "No"  , "N/A"    , "N/A"],
-            [3  , "Male"   , 53  , "Married"   , "Above \(\pounds\)36,400"        , "Yes"   , "6 cig/day"  , "6 cig/day"],
-            ["\(\vdots\)", "\(\vdots\)", "\(\vdots\)", "\(\vdots\)", "\(\vdots\)", "\(\vdots\)", "\(\vdots\)", "\(\vdots\)"],
-            [1691 , "Male"  , 40   , "Single"  , "\(\pounds\)2,600 to \(\pounds\)5,200"   , "Yes"   , "8 cig/day"  , "8 cig/day"]
+            [1  , "Female" , 42  , "Single"  , "Under £2,600"         , "Yes"   , "12 cig/day"   , "12 cig/day"],
+            [2  , "Male"  , 44 , "Single"  , "£10,400 to £15,600" , "No"  , "N/A"    , "N/A"],
+            [3  , "Male"   , 53  , "Married"   , "Above £36,400"        , "Yes"   , "6 cig/day"  , "6 cig/day"],
+            ["[`\vdots`]", "[`\vdots`]", "[`\vdots`]", "[`\vdots`]", "[`\vdots`]", "[`\vdots`]", "[`\vdots`]", "[`\vdots`]"],
+            [1691 , "Male"  , 40   , "Single"  , "£2,600 to £5,200"   , "Yes"   , "8 cig/day"  , "8 cig/day"]
         ], align=>'rccccccc'
         )
 @]***
