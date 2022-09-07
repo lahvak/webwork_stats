@@ -60,15 +60,19 @@ and "N/A" refers to a missing component of the data. \footfullcite{data:smoking}
             [1  , "Female" , 42  , "Single"  , "Under £2,600"         , "Yes"   , "12 cig/day"   , "12 cig/day"],
             [2  , "Male"  , 44 , "Single"  , "£10,400 to £15,600" , "No"  , "N/A"    , "N/A"],
             [3  , "Male"   , 53  , "Married"   , "Above £36,400"        , "Yes"   , "6 cig/day"  , "6 cig/day"],
-            ["[`\vdots`]", "[`\vdots`]", "[`\vdots`]", "[`\vdots`]", "[`\vdots`]", "[`\vdots`]", "[`\vdots`]", "[`\vdots`]"],
+            ["`\vdots`", "[`\vdots`]", "[`\vdots`]", "[`\vdots`]", "[`\vdots`]", "[`\vdots`]", "[`\vdots`]", "[`\vdots`]"],
             [1691 , "Male"  , 40   , "Single"  , "£2,600 to £5,200"   , "Yes"   , "8 cig/day"  , "8 cig/day"]
         ], align=>'rccccccc'
         )
 @]***
-}
+
 * What does each row of the data matrix represent?
 
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+
 * How many participants were included in the survey?
+
+    [________]{1691}
 
 * For each variable, indicate whether it is numerical or categorical. If numerical, identify the variable as continuous or discrete. If categorical, indicate if the variable is ordinal.
 
