@@ -29,7 +29,7 @@ $popup = PopUp(
 
 BEGIN_PGML
 ### Hummingbird taste behavior, study components
-#
+
 Researchers hypothesized that a particular taste receptor in hummingbirds,
 T1R1-T1R3, played a primary role in dictating taste behavior; specifically, in
 determining which compounds hummingbirds detect as sweet. In a series of field
