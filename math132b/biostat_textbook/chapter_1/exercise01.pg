@@ -1,7 +1,7 @@
 ##DESCRIPTION
-## DBsubject(Biostatistics)
-## DBchapter(Data)
-## DBsection()
+## DBsubject(Statistics)
+## DBchapter(Experimental design)
+## DBsection(Concepts)
 ## Institution(SVSU)
 ## Author(Jan Hlavacek)
 ## Level(2)
@@ -17,6 +17,7 @@ loadMacros("PGstandard.pl",
            "PGML.pl",
            "niceTables.pl",
            "parserPopUp.pl",
+           "PGessaymacros.pl",
 );
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
@@ -25,7 +26,7 @@ Context("Numeric");
 
 $popup = PopUp(
 ["choose one","control","treatment"],
-"treatment",);
+"treatment");
 
 BEGIN_PGML
 ### Migraine and acupuncture, Part I
@@ -48,7 +49,7 @@ that is specifically designed to treat migraines.
 if they were pain free.
 
 Results are summarized in the contingency table
-below.\footfullcite{Allais:2011}
+below.footfullcite{Allais:2011}
 
 [@
     DataTable(
