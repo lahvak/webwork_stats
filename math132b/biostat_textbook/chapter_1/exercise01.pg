@@ -28,6 +28,8 @@ $popup = PopUp(
 ["choose one","control","treatment"],
 "treatment");
 
+$cite = "G. Allais et al. \“Ear acupuncture in the treatment of migraine attacks: a randomized trial on the efficacy of appropriate versus inappropriate acupoints\”. In: _Neurological Sci._ 32.1 (2011), pp. 173–175.";
+
 BEGIN_PGML
 ### Migraine and acupuncture, Part I
 
@@ -49,7 +51,9 @@ that is specifically designed to treat migraines.
 if they were pain free.
 
 Results are summarized in the contingency table
-below.footfullcite{Allais:2011}
+below.
+
+([$cite]**)
 
 [@
     DataTable(
