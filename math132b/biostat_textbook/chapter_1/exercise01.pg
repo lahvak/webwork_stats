@@ -55,7 +55,7 @@ below.footfullcite{Allais:2011}
     DataTable(
         [
             ["", "", ["Pain free:", colspan=>2, i=>1], ""],
-            [["", headerrow=>1], "", "Yes", "No", "Total"],
+            ["", "", ["Yes", header=>"CH"], ["No", header=>"CH"], "Total"],
             [["Group:", i=>1], ["Treatment", header=>'RH'], 10, 33, 43],
             ["", ["Control", header=>'RH'], 2, 44, 46],
             ["", ["Total", header=>'RH'], 12, 77, 89]
