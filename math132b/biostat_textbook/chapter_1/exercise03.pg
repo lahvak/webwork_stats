@@ -1,0 +1,62 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Experimental design)
+## DBsection(Concepts)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$cite = "B. Ritz et al. “Effect of air pollution on preterm birth among children born in Southern California between 1989 and 1993”. In: _Epidemiology_ 11.5 (2000), pp. 502–511.";
+
+BEGIN_PGML
+### Air pollution and birth outcomes, study components
+
+Researchers collected data to examine the relationship between air pollutants 
+and preterm births in Southern California. During the study air pollution levels 
+were measured by air quality monitoring stations. Specifically, levels of carbon 
+monoxide were recorded in parts per million, nitrogen dioxide and ozone in parts 
+per hundred million, and coarse particulate matter (PM[`{}_{10}`]) in [`\mu g/m^3`]. 
+Length of gestation data were collected on 143,196 births between the years 1989 
+and 1993, and air pollution exposure during gestation was calculated for each 
+birth. The analysis suggested that increased ambient PM[`{}_{10}`] and, to a lesser 
+degree, CO concentrations may be associated with the occurrence of preterm births.
+
+([$cite]**)
+
+*  Identify the main research question of the study.
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+
+*  Who are the subjects in this study? 
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+
+*  How many are included?
+
+    [_______________]{143196}
+
+*  What are the variables in the study? Identify each variable as numerical or 
+    categorical. If numerical, state whether the variable is discrete or continuous.
+    If categorical, state whether the variable is ordinal.
+
+    [@ ANS(essay_cmp); essay_box(8,50) @]*
+
+END_PGML
+
+ENDDOCUMENT();
