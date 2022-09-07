@@ -28,7 +28,7 @@ $popup = PopUp(
 ["choose one","control","treatment"],
 "control");
 
-$cite = "Garbutt:2012";
+$cite = "J.M. Garbutt et al. “Amoxicillin for Acute Rhinosinusitis: A Randomized Controlled Trial”. In: _JAMA: The Journal of the American Medical Association_ 307.7 (2012), pp. 685–692.";
 
 BEGIN_PGML
 ### Sinusitis and antibiotics, Part I
@@ -43,7 +43,7 @@ At the end of the 10-day period, patients were asked if
 they experienced improvement in symptoms.
 The distribution of responses is summarized below. 
 
-([$cite])
+([$cite]**)
 
 
 [@
