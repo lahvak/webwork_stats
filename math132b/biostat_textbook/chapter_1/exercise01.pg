@@ -53,7 +53,6 @@ below.footfullcite{Allais:2011}
 
 [@
     DataTable(
-	\begin{tabular}{ll  cc c} 
         [
             ["", "", & ["Pain free:", colspan=>2, i=>1], ""],
             [["", headerrow=>1], "", "Yes", "No", "Total"],
