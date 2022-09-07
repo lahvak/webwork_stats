@@ -1,0 +1,69 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Experimental design)
+## DBsection(Concepts)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","numerical","categorical"],
+"numerical");
+
+BEGIN_PGML
+### Egg coloration
+
+The evolutionary significance of variation in egg coloration among birds is not
+fully understood. One hypothesis suggests that egg coloration may be an
+indication of female quality, with healthier females being capable of
+depositing blue-green pigment into eggshells instead of using it for themselves
+as an antioxidant. 
+
+In a study conducted on 32 collared flycatchers, half of the
+females were given supplementary diets before and during egg laying. Eggs were
+measured for darkness of blue color using spectrophotometry; for example, the
+mean amount of blue-green chroma was 0.594 absorbance units. Egg mass was also
+recorded.
+
+* Identify the control and treatment groups.
+
+    Control group:
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+
+    Treatment group:
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+
+* Describe the main research question.
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+
+* Identify the primary response variable of interest: 
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+
+* Is it numerical or categorical?
+
+    [_]{$popup}
+
+END_PGML
+
+ENDDOCUMENT();
