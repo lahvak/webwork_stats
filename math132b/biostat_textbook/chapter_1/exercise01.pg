@@ -1,0 +1,89 @@
+##DESCRIPTION
+## DBsubject(Biostatistics)
+## DBchapter(Data)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment",);
+
+BEGIN_PGML
+### Migraine and acupuncture, Part I
+
+A migraine is a particularly painful type of headache,
+which patients sometimes wish to treat with acupuncture.
+To determine whether acupuncture relieves migraine 
+pain, researchers conducted a randomized controlled study
+where 89 females diagnosed with migraine headaches were
+randomly assigned to one of two groups:
+treatment or control.
+
+* 43 patients in the treatment group received acupuncture 
+that is specifically designed to treat migraines.
+
+* 46 patients in the control group received placebo acupuncture
+(needle insertion at non-acupoint locations).
+
+* 24 hours after patients received acupuncture, they were asked 
+if they were pain free.
+
+Results are summarized in the contingency table
+below.\footfullcite{Allais:2011}
+
+[@
+    DataTable(
+	\begin{tabular}{ll  cc c} 
+        [
+            ["", "", & ["Pain free:", colspan=>2, i=>1], ""],
+            [["", headerrow=>1], "", "Yes", "No", "Total"],
+            [["Group:", i=>1], ["Treatment", header=>'RH'], 10, 33, 43],
+            ["", ["Control", header=>'RH'], 2, 44, 46],
+            ["", ["Total", header=>'RH'], 12, 77, 89]
+        ], align=>'llccc'
+        )
+@]***
+
+
+*  What percent of patients in the treatment group were pain free 24 hours after receiving acupuncture? 
+
+    [_____________]{23}%
+
+*  What percent were pain free in the control group?
+
+    [_____________]{4}%
+
+*  In which group did a higher percent of patients become pain free 24 hours after receiving acupuncture?
+
+    A higher percentage of patients in the [_]{$popup} group were pain free 24 hours after receiving
+    acupuncture.
+
+*  Your findings so far might suggest that acupuncture is an effective treatment 
+    for migraines for all people who suffer from migraines. However this is not the 
+    only possible conclusion that can be drawn based on your findings so far. What is 
+    one other possible explanation for the observed difference between the percentages 
+    of patients that are pain free 24 hours after receiving acupuncture in the two groups?
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+END_PGML
+
+ENDDOCUMENT();
