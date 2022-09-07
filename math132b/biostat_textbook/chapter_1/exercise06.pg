@@ -1,0 +1,70 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Experimental design)
+## DBsection(Concepts)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","numerical","categorical"],
+"numerical");
+
+BEGIN_PGML
+### Hummingbird taste behavior, study components
+#
+Researchers hypothesized that a particular taste receptor in hummingbirds,
+T1R1-T1R3, played a primary role in dictating taste behavior; specifically, in
+determining which compounds hummingbirds detect as sweet. In a series of field
+tests, hummingbirds were presented simultaneously with two filled containers,
+one containing test stimuli and a second containing sucrose. The test stimuli
+included aspartame, erythritol, water, and sucrose. Aspartame is an artificial
+sweetener that tastes sweet to humans, but is not detected by hummingbird
+T1R1-T1R3 , while erythritol is an artificial sweetener known to activate
+T1R1-T1R3.
+
+Data were collected on how long a hummingbird drank from a particular container
+for a given trial, measured in seconds. For example, in one field test
+comparing aspartame and sucrose, a hummingbird drank from the aspartame
+container for 0.54 seconds and from the sucrose container for 3.21 seconds. 
+
+* Which tests are controls? 
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+
+* Which tests are treatments?
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+
+* Identify the response variable in the study.
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+
+* Is it numerical or categorical?
+
+    [_]{$popup}
+
+* Describe the main research question.
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+
+END_PGML
+
+ENDDOCUMENT();
