@@ -1,0 +1,87 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Experimental design)
+## DBsection(Concepts)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"control");
+
+$cite = "Garbutt:2012";
+
+BEGIN_PGML
+### Sinusitis and antibiotics, Part I
+
+Researchers studying the effect of antibiotic treatment for acute sinusitis 
+compared to symptomatic treatments randomly assigned 166 adults diagnosed 
+with acute sinusitis to one of two groups: treatment or control. Study 
+participants received either a 10-day course of amoxicillin (an antibiotic) 
+or a placebo similar in appearance and taste. The placebo consisted of 
+symptomatic treatments such as acetaminophen, nasal decongestants, etc.
+At the end of the 10-day period, patients were asked if
+they experienced improvement in symptoms.
+The distribution of responses is summarized below. 
+
+([$cite])
+
+
+[@
+    DataTable(
+        [
+            ["", "", ["Self-reported improvement", colspan=>2, i=>1], ""],
+            ["", "", ["in symptomps", colspan=>2, i=>1], ""],
+            ["", "", ["Yes", header=>"CH"], ["No", header=>"CH"], "Total"],
+            [["Group:", i=>1], ["Treatment", header=>'RH'], 66, 19, 85],
+            ["", ["Control", header=>'RH'], 65, 16, 81],
+            ["", ["Total", header=>'RH'], 131, 35, 166]
+        ], align=>'llccc'
+        )
+@]***
+
+* What percent of patients in the treatment group experienced improvement in symptoms? 
+
+    [_____________]{23}%
+
+* What percent experienced improvement in symptoms in the control group?
+
+    [_____________]{23}%
+
+* In which group did a higher percentage of patients experience improvement in symptoms?
+
+    A higher percentage of patients in the [_]{$popup} experienced improvement in symptomps.
+
+* Your findings so far might suggest a real difference
+    in effectiveness of antibiotic and placebo treatments
+    for improving symptoms of sinusitis.
+    However, this is not the only possible conclusion that
+    can be drawn based on your findings so far.
+    What is one other possible explanation for the observed
+    difference between the percentages of patients in the
+    antibiotic and placebo treatment groups that experience
+    improvement in symptoms of sinusitis?
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+END_PGML
+
+ENDDOCUMENT();
