@@ -23,6 +23,7 @@ TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
 
 @labels = ("Yes", "Probably yes", "Probably not", "No");
+Context()->strings->are(map {$_ => {}} @labels);
 
 @choices1 = (
     "Yes, you can safely generalize the results to the population",
@@ -32,8 +33,7 @@ $showPartialCorrectAnswers = 1;
     );
 
 $radio1 = RadioButtons([@choices1], $choices1[0], labels=>[@labels]);
-Context($radio1->context);
-$cmp1 = OneOf('B1', 'B2')->cmp();
+$cmp1 = OneOf(@labels[1,2])->cmp();
 
 @choices2 = (
     "Yes, the results can be safely used to establish causal relationship",
@@ -43,8 +43,7 @@ $cmp1 = OneOf('B1', 'B2')->cmp();
     );
 
 $radio2 = RadioButtons([@choices2], $choices2[0], labels=>[@labels]);
-Context($radio2->context);
-$cmp2 = OneOf('B1', 'B2')->cmp();
+$cmp2 = OneOf(@labels[1,2])->cmp();
 
 $cite = "Alessandro Bucciol and Marco Piovesan. “Luck or cheating? A field experiment on honesty with children”. In: _Journal of Economic Psychology_ 32.1 (2011), pp. 73–78.";
 
