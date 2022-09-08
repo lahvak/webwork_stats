@@ -1,0 +1,62 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Experimental design)
+## DBsection(Concepts)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserRadioButtons.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+@choices1 = (
+    "An experiment",
+    "An observational study",
+    );
+
+$radio1 = RadioButtons([[@choices1]], $choices1[0]);
+
+$cite = "CIA Factbook, Country Comparisons, 2014.";
+
+BEGIN_PGML
+### Internet use and life expectancy
+
+The following scatterplot was created as part of a study evaluating the 
+relationship between estimated life expectancy at birth (as of 2014) and 
+percentage of internet users (as of 2009) in 208 countries for which such 
+data were available.
+
+[@ image("internet_life_expectancy.png", tex_size=>700,
+          extra_html_tags=>'alt="Scatterplot showing % of internet users on horizontal axis and life expectancy at birth on vertical axis. The dots loosely follow an upper half of a parabola openning right."')@]*
+
+([$cite]**)
+
+* Describe the relationship between life expectancy and percentage of internet users.
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+
+* What type of study is this?
+
+    [_]{$radio1}
+
+* State a possible confounding variable that might explain this relationship and describe its potential effect.
+
+    [@ ANS(essay_cmp); essay_box(5,50) @]*
+
+END_PGML
+
+ENDDOCUMENT();
