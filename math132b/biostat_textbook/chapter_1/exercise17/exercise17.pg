@@ -40,7 +40,8 @@ relationship between estimated life expectancy at birth (as of 2014) and
 percentage of internet users (as of 2009) in 208 countries for which such 
 data were available.
 
-[@ image("internet_life_expectancy.png", tex_size=>700,
+[@ image("internet_life_expectancy.png", 
+          width=>132, height=>103, tex_size=>700,
           extra_html_tags=>'alt="Scatterplot showing % of internet users on horizontal axis and life expectancy at birth on vertical axis. The dots loosely follow an upper half of a parabola openning right."')@]*
 
 ([$cite]**)
