@@ -32,7 +32,7 @@ $radio1 = RadioButtons([[@choices1]], $choices1[0]);
 
 BEGIN_PGML
 ### Chicks and antioxidants
-#
+
 Environmental factors early in life can have long-lasting effects on an
 organism. In one study, researchers examined whether dietary supplementation
 with vitamins C and E influences body mass and corticosterone level in
