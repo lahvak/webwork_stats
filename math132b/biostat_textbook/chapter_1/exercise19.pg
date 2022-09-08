@@ -1,0 +1,60 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Experimental design)
+## DBsection(Concepts)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserRadioButtons.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+@choices2 = ("?", "is", "is not");
+
+$popup1 = PopUp([@choices2], $choices2[1]);
+$popup2 = PopUp([@choices2], $choices2[1]);
+$popup3 = PopUp([@choices2], $choices2[2]);
+
+BEGIN_PGML
+### Evaluate sampling methods
+
+A university wants to assess how many hours of sleep students are getting per
+night. For each proposed method below, discuss whether the method is reasonable
+or not.  If a method is not reasonable, explain why.  If it is reasonable, explain why,
+and describe some possible drawbacks.
+
+* Survey a simple random sample of 500 students.
+
+    This [_]{$popup1} a reasonable method in this situation because:
+
+    [@ ANS(essay_cmp); essay_box(5,50) @]*
+
+* Stratify students by their field of study, then sample 10\% of students from each stratum.
+
+    This [_]{$popup2} a reasonable method in this situation because:
+
+    [@ ANS(essay_cmp); essay_box(5,50) @]*
+
+* Cluster students by their class year (e.g. freshmen in one cluster, sophomores in one cluster, etc.), then randomly sample three clusters and survey all students in those clusters.
+
+    This [_]{$popup3} a reasonable method in this situation because:
+
+    [@ ANS(essay_cmp); essay_box(5,50) @]*
+
+END_PGML
+
+ENDDOCUMENT();
