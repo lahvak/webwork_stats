@@ -40,7 +40,7 @@ $radio1->cmp = OneOf(($probyes1, $probno1))->cmp;
 
 $radio2 = RadioButtons([@choices2], $choices2[0]);
 Context($radio2->context);
-$radio2->cmp = OneOf(@choices2[1,2])->cmp;
+$radio2 = $radio2->cmp(OneOf(@choices2[1,2])->cmp());
 
 $cite = "Alessandro Bucciol and Marco Piovesan. “Luck or cheating? A field experiment on honesty with children”. In: _Journal of Economic Psychology_ 32.1 (2011), pp. 73–78.";
 
