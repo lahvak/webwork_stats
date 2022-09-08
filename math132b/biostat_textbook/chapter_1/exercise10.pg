@@ -33,7 +33,7 @@ $showPartialCorrectAnswers = 1;
 
 $radio1 = RadioButtons([@choices1], $choices1[0], labels=>[@labels]);
 Context($radio1->context);
-$radio1->cmp = OneOf(@labels[1,2])->cmp;
+$cmp1 = OneOf('B1', 'B2')->cmp();
 
 @choices2 = (
     "Yes, the results can be safely used to establish causal relationship",
@@ -44,7 +44,7 @@ $radio1->cmp = OneOf(@labels[1,2])->cmp;
 
 $radio2 = RadioButtons([@choices2], $choices2[0], labels=>[@labels]);
 Context($radio2->context);
-$radio2->cmp = OneOf(@labels[1,2])->cmp;
+$cmp2 = OneOf('B1', 'B2')->cmp();
 
 $cite = "Alessandro Bucciol and Marco Piovesan. “Luck or cheating? A field experiment on honesty with children”. In: _Journal of Economic Psychology_ 32.1 (2011), pp. 73–78.";
 
@@ -73,7 +73,7 @@ children's characteristics within each group.
 
 * Comment on whether or not the results of the study can be generalized to the population:
 
-    [_]{$radio1}
+    [@ ANS($cmp1); $radio1->buttons() @]*
 
     Explain your answer. If your answer calls for more information, describe what additional information you need and why:
 
@@ -81,7 +81,7 @@ children's characteristics within each group.
 
 * Comment on whether or not the findings of the study can be used to establish causal relationships:
 
-    [_]{$radio2}
+    [@ ANS($cmp2); $radio2->buttons() @]*
 
     Explain your answer. If your answer calls for more information, describe what additional information you need and why:
 
