@@ -1,0 +1,74 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Experimental design)
+## DBsection(Concepts)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserRadioButtons.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$cite = "C. Audera et al. “Mega-dose vitamin C in treatment of the common cold: a randomised controlled trial”. In: _Medical Journal of Australia_ 175.7 (2001), pp. 359–362.";
+
+@choices1 = (
+    "An experiment",
+    "An observational study",
+    );
+
+$radio1 = RadioButtons([[@choices1]], $choices1[0]);
+
+BEGIN_PGML
+### Vitamin supplements
+
+In order to assess the effectiveness 
+of taking large doses of vitamin C in reducing the duration of the common cold, 
+researchers recruited 400 healthy volunteers from staff and students at a university. A 
+quarter of the patients were randomly assigned a placebo, and the rest were
+randomly allocated between 1g Vitamin C, 3g Vitamin C, or 3g Vitamin C plus
+additives to be taken at onset of a cold for the following two days. All
+tablets had identical appearance and packaging. No significant differences were
+observed in any measure of cold duration or severity between the four
+medication groups, and the placebo group had the shortest duration of
+symptoms.
+
+([$cite]**)
+
+*  Was this an experiment or an observational study? 
+
+    [_]{$radio1}
+
+    Explain why:
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+
+*  What are the explanatory variables in this study?
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+
+*  What are the response variables in this study?
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+
+*  Participants are ultimately able to choose whether or not to use the pills 
+    prescribed to them. We might expect that not all of them will adhere and take their 
+    pills. Does this introduce a confounding variable to the study? Explain your reasoning.
+
+    [@ ANS(essay_cmp); essay_box(5,50) @]*
+END_PGML
+
+ENDDOCUMENT();
