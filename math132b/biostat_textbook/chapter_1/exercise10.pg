@@ -29,7 +29,7 @@ $showPartialCorrectAnswers = 1;
     "No, this result cannot be generalized to the population"
     );
 
-$radio1 = RadioButtons(@choices1, $choices1[0]);
+$radio1 = RadioButtons([@choices1], $choices1[0]);
 Context($radio1->context);
 $radio1->cmp = OneOf(@choices1[1,2])->cmp;
 
@@ -40,7 +40,7 @@ $radio1->cmp = OneOf(@choices1[1,2])->cmp;
     "No, the results cannot be used to establish causal relationship"
     );
 
-$radio2 = RadioButtons(@choices2, $choices2[0]);
+$radio2 = RadioButtons([@choices2], $choices2[0]);
 Context($radio2->context);
 $radio2->cmp = OneOf(@choices2[1,2])->cmp;
 
