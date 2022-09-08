@@ -83,6 +83,8 @@ children's characteristics within each group.
 
     [@ ANS($cmp2); $radio2->buttons() @]*
 
+    [_]{$radio2}
+
     Explain your answer. If your answer calls for more information, describe what additional information you need and why:
 
     [@ ANS(essay_cmp); essay_box(3,50) @]*
