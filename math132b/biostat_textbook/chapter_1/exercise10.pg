@@ -29,7 +29,7 @@ $no1 = "No, this result cannot be generalized to the population";
 
 $radio1 = RadioButtons([$yes1, $probyes1, $probno1, $no1], $probyes1);
 Context()->strings->add($yes1=>{}, $probyes1=>{}, $probno1=>{}, $no1=>{});
-$radio1->cmp = OneOf(($probyes1, $probno1))->cmp;
+$oneof1 = OneOf(($probyes1, $probno1));
 
 @choices2 = (
     "Yes, the results can be safely used to establish causal relationship",
@@ -40,7 +40,7 @@ $radio1->cmp = OneOf(($probyes1, $probno1))->cmp;
 
 $radio2 = RadioButtons([@choices2], $choices2[0]);
 Context($radio2->context);
-$radio2 = $radio2->cmp(OneOf(@choices2[1,2])->cmp());
+$oneof2 = OneOf(@choices2[1,2]);
 
 $cite = "Alessandro Bucciol and Marco Piovesan. “Luck or cheating? A field experiment on honesty with children”. In: _Journal of Economic Psychology_ 32.1 (2011), pp. 73–78.";
 
@@ -69,7 +69,7 @@ children's characteristics within each group.
 
 * Comment on whether or not the results of the study can be generalized to the population:
 
-    [_]{$radio1}
+    [@ ANS($oneof1->cmp()); $radio1->buttons() @]
 
     Explain your answer. If your answer calls for more information, describe what additional information you need and why:
 
@@ -77,7 +77,7 @@ children's characteristics within each group.
 
 * Comment on whether or not the findings of the study can be used to establish causal relationships:
 
-    [_]{$radio2}
+    [@ ANS($oneof1->cmp()); $radio1->buttons() @]
 
     Explain your answer. If your answer calls for more information, describe what additional information you need and why:
 
