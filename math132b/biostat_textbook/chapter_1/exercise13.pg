@@ -1,0 +1,60 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Experimental design)
+## DBsection(Concepts)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$cite = "J. McGowan. “Health Education: Does the Buteyko Institute Method make a difference?” In: _Thorax_ 58 (2003).";
+
+BEGIN_PGML
+### Buteyko method, scope of inference
+
+The Buteyko method is a shallow breathing technique developed by Konstantin 
+Buteyko, a Russian doctor, in 1952. Anecdotal evidence suggests that the Buteyko 
+method can reduce asthma symptoms and improve quality of life. In a scientific 
+study to determine the effectiveness of this method, researchers recruited 600 
+asthma patients aged 18-69 who relied on medication for 
+asthma treatment.  The subjects were randomly assigned to two groups: one practiced 
+the Buteyko method and the other did not. Those in the Buteyko group experienced,
+on average, a significant reduction in asthma symptoms and an improvement in quality 
+of life.
+
+([$cite]**)
+
+* Identify the population of interest:
+
+    [@ ANS(essay_cmp); essay_box(2,50) @]*
+
+* Identify the sample in this study:
+
+    [@ ANS(essay_cmp); essay_box(2,50) @]*
+
+* Comment on whether or not the results of the study can be generalized to the population:
+
+    [@ ANS(essay_cmp); essay_box(5,50) @]*
+
+* Comment on whether the findings of the study can be used to establish causal relationships:
+
+    [@ ANS(essay_cmp); essay_box(5,50) @]*
+
+END_PGML
+
+ENDDOCUMENT();
