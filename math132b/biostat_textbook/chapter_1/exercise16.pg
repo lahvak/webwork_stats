@@ -1,0 +1,79 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Experimental design)
+## DBsection(Concepts)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserRadioButtons.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+@choices1 = (
+    "An experiment",
+    "An observational study",
+    );
+
+$radio1 = RadioButtons([[@choices1]], $choices1[0]);
+
+BEGIN_PGML
+### Exercise and mental health
+
+A researcher is interested in the effects of exercise on mental health and he
+proposes the following study: Use stratified random sampling to recruit 18-30,
+31-40 and 41-55 year olds from the population. Next, randomly assign half the
+subjects from each age group to exercise twice a week, and instruct the rest
+not to exercise. Conduct a mental health exam at the beginning and at the end
+of the study, and compare the results.
+
+* What type of study is this? 
+
+    [_]{*radio1}
+
+* What are the treatment and control groups in this study?
+
+    Treatment:
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+
+    Control:
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+
+* Does this study make use of blocking? If so, what is the blocking variable?
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+
+    _(Enter "None" if no blocking is used)_
+
+* Comment on whether or not the results of the study can be used to establish a 
+    causal relationship between exercise and mental health:
+
+    [@ ANS(essay_cmp); essay_box(5,50) @]*
+
+* Comment on whether or not the conclusions can be generalized to the population at large:
+
+    [@ ANS(essay_cmp); essay_box(5,50) @]*
+
+* Suppose you are given the task of determining if this proposed study should get 
+    funding. Would you have any reservations about the study proposal?
+
+    [@ ANS(essay_cmp); essay_box(5,50) @]*
+
+END_PGML
+
+ENDDOCUMENT();
