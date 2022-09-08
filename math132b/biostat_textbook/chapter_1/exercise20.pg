@@ -1,0 +1,90 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Experimental design)
+## DBsection(Concepts)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserPopUp.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+@choices2 = (
+    "?",
+    "simple random sampling",
+    "stratified sampling",
+    "cluster sampling",
+    "multistage sampling",
+    "convenience sampling"
+    );
+
+$popup_srs = PopUp([[@choices2]], $choices2[1]);
+$popup_strat = PopUp([[@choices2]], $choices2[2]);
+$popup_clus = PopUp([[@choices2]], $choices2[3]);
+$popup_multi = PopUp([[@choices2]], $choices2[4]);
+$popup_conv = PopUp([[@choices2]], $choices2[5]);
+
+@choices2 = ("?", "is", "is not");
+
+$popup1 = PopUp([@choices2], $choices2[1]);
+$popup2 = PopUp([@choices2], $choices2[1]);
+$popup3 = PopUp([@choices2], $choices2[2]);
+$popup4 = PopUp([@choices2], $choices2[2]);
+$popup5 = PopUp([@choices2], $choices2[2]);
+
+BEGIN_PGML
+### City council survey
+
+A city council has requested a 
+household survey be conducted in a suburban area of their city. The area is broken 
+into many distinct and unique neighborhoods, some including large homes, some with 
+only apartments, and others a diverse mixture of housing structures. Identify the 
+sampling methods described below, and comment on whether or not you think they 
+would be effective in this setting.
+
+* *Randomly sample 50 households from the city.*
+
+    This is an example of [_]{$popup_srs}.
+
+    This [_]{$popup1} an effective sampling method in this situation.
+
+* *Divide the city into neighborhoods, and sample 20 households from each neighborhood.*
+
+    This is an example of [_]{$popup_strat}.
+
+    This [_]{$popup2} an effective sampling method in this situation.
+
+* *Divide the city into neighborhoods, randomly sample 10 neighborhoods, and sample all households from those neighborhoods.*
+
+    This is an example of [_]{$popup_clus}.
+
+    This [_]{$popup3} an effective sampling method in this situation.
+
+* *Divide the city into neighborhoods, randomly sample 10 neighborhoods, and then randomly sample 20 households from those neighborhoods.*
+
+    This is an example of [_]{$popup_multi}.
+
+    This [_]{$popup4} an effective sampling method in this situation.
+
+* *Sample the 200 households closest to the city council offices.*
+
+    This is an example of [_]{$popup_conv}.
+
+    This [_]{$popup5} an effective sampling method in this situation.
+
+END_PGML
+
+ENDDOCUMENT();
