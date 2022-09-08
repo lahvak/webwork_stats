@@ -28,7 +28,7 @@ Context("Numeric");
     "An observational study",
     );
 
-$radio1 = RadioButtons([[@choices1]], $choices1[0]);
+$radio1 = RadioButtons([[@choices1]], $choices1[1]);
 
 $cite = "CIA Factbook, Country Comparisons, 2014.";
 
