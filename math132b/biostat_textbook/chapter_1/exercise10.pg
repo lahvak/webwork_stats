@@ -22,16 +22,14 @@ loadMacros("PGstandard.pl",
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
 
-@choices1 = (
-    "Yes, you can safely generalize the results to the population",
-    "Probably yes, but we would need more information in order to decide",
-    "Probably not, but we would need more information in order to decide",
-    "No, this result cannot be generalized to the population"
-    );
+$yes1 = "Yes, you can safely generalize the results to the population";
+$probyes1 = "Probably yes, but we would need more information in order to decide";
+$probno1 = "Probably not, but we would need more information in order to decide";
+$no1 = "No, this result cannot be generalized to the population";
 
-$radio1 = RadioButtons([@choices1], $choices1[0]);
-Context($radio1->context);
-$radio1->cmp = OneOf(@choices1[1,2])->cmp;
+$radio1 = RadioButtons([$yes1, $probyes1, $probno1, $no1], $probyes1);
+Context()->strings->add($yes1=>{}, $probyes1=>{}, $probno1=>{}, $no1=>{});
+$radio1->cmp = OneOf(($probyes1, $probno1))->cmp;
 
 @choices2 = (
     "Yes, the results can be safely used to establish causal relationship",
