@@ -22,23 +22,29 @@ loadMacros("PGstandard.pl",
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
 
-$yes1 = "Yes, you can safely generalize the results to the population";
-$probyes1 = "Probably yes, but we would need more information in order to decide";
-$probno1 = "Probably not, but we would need more information in order to decide";
-$no1 = "No, this result cannot be generalized to the population";
+@labels = ("Yes", "Probably yes", "Probably not", "No");
 
-$radio1 = RadioButtons([$yes1, $probyes1, $probno1, $no1], $probyes1);
-Context()->strings->are($yes1=>{}, $probyes1=>{}, $probno1=>{}, $no1=>{});
-$oneof1 = OneOf(($probyes1, $probno1));
+@choices1 = (
+    "Yes, you can safely generalize the results to the population",
+    "Probably yes, but we would need more information in order to decide",
+    "Probably not, but we would need more information in order to decide",
+    "No, this result cannot be generalized to the population"
+    );
 
-$yes2 = "Yes, the results can be safely used to establish causal relationship";
-$probyes2 = "Probably yes, but we would need more information in order to decide";
-$probno2 = "Probably not, but we would need more information in order to decide";
-$no2 = "No, the results cannot be used to establish causal relationship";
+$radio1 = RadioButtons([@choices1], $choices1[0], labels=>[@labels]);
+Context($radio1->context);
+$radio1->cmp = OneOf(@labels[1,2])->cmp;
 
-$radio2 = RadioButtons([$yes2, $probyes2, $probno2, $no2], $probno2);
-Context()->strings->are($yes2=>{}, $probyes2=>{}, $probno2=>{}, $no2=>{});
-$oneof2 = OneOf(($probyes2, $probno2));
+@choices2 = (
+    "Yes, the results can be safely used to establish causal relationship",
+    "Probably yes, but we would need more information in order to decide",
+    "Probably not, but we would need more information in order to decide",
+    "No, the results cannot be used to establish causal relationship"
+    );
+
+$radio2 = RadioButtons([@choices2], $choices2[0], labels=>[@labels]);
+Context($radio2->context);
+$radio2->cmp = OneOf(@labels[1,2])->cmp;
 
 $cite = "Alessandro Bucciol and Marco Piovesan. “Luck or cheating? A field experiment on honesty with children”. In: _Journal of Economic Psychology_ 32.1 (2011), pp. 73–78.";
 
@@ -67,7 +73,7 @@ children's characteristics within each group.
 
 * Comment on whether or not the results of the study can be generalized to the population:
 
-    [@ ANS($oneof1->cmp()); $radio1->buttons() @]*
+    [_]{$radio1}
 
     Explain your answer. If your answer calls for more information, describe what additional information you need and why:
 
@@ -75,7 +81,7 @@ children's characteristics within each group.
 
 * Comment on whether or not the findings of the study can be used to establish causal relationships:
 
-    [@ ANS($oneof1->cmp()); $radio1->buttons() @]*
+    [_]{$radio2}
 
     Explain your answer. If your answer calls for more information, describe what additional information you need and why:
 
