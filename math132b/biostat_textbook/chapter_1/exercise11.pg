@@ -1,0 +1,58 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Experimental design)
+## DBsection(Concepts)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$cite = "B. Ritz et al. “Effect of air pollution on preterm birth among children born in Southern California between 1989 and 1993”. In: _Epidemiology_ 11.5 (2000), pp. 502–511.";
+
+BEGIN_PGML
+### Air pollution and birth outcomes, scope of inference
+
+Researchers collected data to examine the relationship between air pollutants 
+and preterm births in Southern California. During the study, air pollution levels were 
+measured by air quality monitoring stations. Length of gestation data were 
+collected on 143,196 births between the years 1989 and 1993, and air pollution 
+exposure during gestation was calculated for each birth. It can be assumed that
+the 143,196 births are effectively the entire population of births during this
+time period.
+
+([$cite]**)
+
+* Identify the population of interest:
+
+    [@ ANS(essay_cmp); essay_box(2,50) @]*
+
+* Identify the sample in this study:
+
+    [@ ANS(essay_cmp); essay_box(2,50) @]*
+
+* Comment on whether or not the results of the study can be generalized to the population:
+
+    [@ ANS(essay_cmp); essay_box(5,50) @]*
+
+* Comment on whether the findings of the study can be used to establish causal relationships:
+
+    [@ ANS(essay_cmp); essay_box(5,50) @]*
+
+END_PGML
+
+ENDDOCUMENT();
