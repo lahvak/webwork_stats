@@ -1,0 +1,53 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Experimental design)
+## DBsection(Concepts)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+BEGIN_PGML
+### Herbal remedies
+
+Echinacea has been widely used as an herbal remedy for the common cold, but
+previous studies evaluating its efficacy as a remedy have produced conflicting
+results. In a new study, researchers randomly assigned 437 volunteers to
+receive either a placebo or echinacea treatment before being infected with
+rhinovirus. Healthy young adult volunteers were recruited for the study from
+the University of Virginia community. 
+
+* Identify the population of interest:
+
+    [@ ANS(essay_cmp); essay_box(2,50) @]*
+
+* Identify the sample in this study:
+
+    [@ ANS(essay_cmp); essay_box(2,50) @]*
+
+* Comment on whether or not the results of the study can be generalized to the population:
+
+    [@ ANS(essay_cmp); essay_box(5,50) @]*
+
+* Comment on whether the findings of the study can be used to establish causal relationships:
+
+    [@ ANS(essay_cmp); essay_box(5,50) @]*
+
+END_PGML
+
+ENDDOCUMENT();
