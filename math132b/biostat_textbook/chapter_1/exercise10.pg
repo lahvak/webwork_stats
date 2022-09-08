@@ -16,34 +16,28 @@ loadMacros("PGstandard.pl",
            "MathObjects.pl",
            "PGML.pl",
            "parserRadioButtons.pl",
-           "parserOneOf.pl",
            "PGessaymacros.pl",
 );
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
 
-@labels = ("Yes", "Probably yes", "Probably not", "No");
-Context()->strings->are(map {$_ => {}} @labels);
+@labels = ("Yes", "Possibly", "No");
 
 @choices1 = (
     "Yes, you can safely generalize the results to the population",
-    "Probably yes, but we would need more information in order to decide",
-    "Probably not, but we would need more information in order to decide",
+    "Possibly, but we would need more information in order to decide",
     "No, this result cannot be generalized to the population"
     );
 
-$radio1 = RadioButtons([@choices1], $choices1[0], labels=>[@labels]);
-$cmp1 = OneOf(@labels[1,2])->cmp();
+$radio1 = RadioButtons([@choices1], $choices1[1], labels=>[@labels]);
 
 @choices2 = (
     "Yes, the results can be safely used to establish causal relationship",
-    "Probably yes, but we would need more information in order to decide",
-    "Probably not, but we would need more information in order to decide",
+    "Possibly, but we would need more information in order to decide",
     "No, the results cannot be used to establish causal relationship"
     );
 
-$radio2 = RadioButtons([@choices2], $choices2[0], labels=>[@labels]);
-$cmp2 = OneOf(@labels[1,2])->cmp();
+$radio2 = RadioButtons([@choices2], $choices2[1], labels=>[@labels]);
 
 $cite = "Alessandro Bucciol and Marco Piovesan. “Luck or cheating? A field experiment on honesty with children”. In: _Journal of Economic Psychology_ 32.1 (2011), pp. 73–78.";
 
@@ -72,15 +66,13 @@ children's characteristics within each group.
 
 * Comment on whether or not the results of the study can be generalized to the population:
 
-    [@ ANS($cmp1); $radio1->buttons() @]*
+    [_]{$radio2}
 
     Explain your answer. If your answer calls for more information, describe what additional information you need and why:
 
     [@ ANS(essay_cmp); essay_box(3,50) @]*
 
 * Comment on whether or not the findings of the study can be used to establish causal relationships:
-
-    [@ ANS($cmp2); $radio2->buttons() @]*
 
     [_]{$radio2}
 
