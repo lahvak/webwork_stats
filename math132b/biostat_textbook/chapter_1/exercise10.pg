@@ -1,0 +1,90 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Experimental design)
+## DBsection(Concepts)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserRadioButtons.pl",
+           "parserOneOf.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+@choices1 = (
+    "Yes, you can safely generalize the results to the population",
+    "Probably yes, but we would need more information in order to decide",
+    "Probably not, but we would need more information in order to decide",
+    "No, this result cannot be generalized to the population"
+    );
+
+$radio1 = RadioButtons(@choices1, $choices1[0]);
+Context($radio1->context);
+$radio1->cmp = OneOf(@choices1[1,2])->cmp;
+
+@choices2 = (
+    "Yes, the results can be safely used to establish causal relationship",
+    "Probably yes, but we would need more information in order to decide",
+    "Probably not, but we would need more information in order to decide",
+    "No, the results cannot be used to establish causal relationship"
+    );
+
+$radio2 = RadioButtons(@choices2, $choices2[0]);
+Context($radio2->context);
+$radio2->cmp = OneOf(@choices2[1,2])->cmp;
+
+$cite = "Alessandro Bucciol and Marco Piovesan. “Luck or cheating? A field experiment on honesty with children”. In: _Journal of Economic Psychology_ 32.1 (2011), pp. 73–78.";
+
+BEGIN_PGML
+### Cheaters, scope of inference
+
+Researchers 
+studying the relationship between honesty, age, and self-control conducted an 
+experiment on 160 children between the ages of 5 and 15. The researchers asked 
+each child to toss a fair coin in private and to record the outcome (white or black) 
+on a paper sheet, and said they would only reward children who report white. 
+Half the students were explicitly told not to cheat and the others were not given 
+any explicit instructions. Differences were observed in the cheating rates in the
+instruction and no instruction groups, as well as some differences across 
+children's characteristics within each group.
+
+([$cite]**)
+
+* Identify the population of interest:
+
+    [@ ANS(essay_cmp); essay_box(2,50) @]*
+
+* Identify the sample in this study:
+
+    [@ ANS(essay_cmp); essay_box(2,50) @]*
+
+* Comment on whether or not the results of the study can be generalized to the population:
+
+    [_]{$radio1}
+
+    Explain your answer. If your answer calls for more information, describe what additional information you need and why:
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+
+* Comment on whether or not the findings of the study can be used to establish causal relationships:
+
+    [_]{$radio2}
+
+    Explain your answer. If your answer calls for more information, describe what additional information you need and why:
+
+    [@ ANS(essay_cmp); essay_box(3,50) @]*
+
+END_PGML
+
+ENDDOCUMENT();
