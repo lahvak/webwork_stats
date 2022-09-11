@@ -42,7 +42,7 @@ of the study, and compare the results.
 
 * What type of study is this? 
 
-    [_]{*radio1}
+    [_]{$radio1}
 
 * What are the treatment and control groups in this study?
 
