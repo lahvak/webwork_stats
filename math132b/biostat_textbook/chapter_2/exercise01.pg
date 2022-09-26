@@ -1,0 +1,47 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Probability)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserPopUp.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popupT = PopUp(
+["choose one","True","False"],
+"True");
+
+$popupF = PopUp(
+["choose one","True","False"],
+"False");
+
+BEGIN_PGML
+Determine if the statements below are true or false. Make sure you can explain your reasoning.
+
+*   [_]{$popupF} Assume that a couple has an equal chance of having a boy or a
+    girl. If a couple's previous three children have all been boys, then the chance
+    that their next child is a boy is somewhat less than 50%.
+
+*   [_]{$popupF} Drawing a face card (jack, queen, or king) and drawing a red card from a 
+    full deck of playing cards are mutually exclusive events.
+
+*   [_]{$popupT} Drawing a face card and drawing an ace from a full deck of playing cards 
+    are mutually exclusive events.
+END_PGML
+
+ENDDOCUMENT();

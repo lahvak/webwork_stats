@@ -1,0 +1,35 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Probability)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+BEGIN_PGML
+### Dice rolls
+
+If you roll a pair of fair dice, what is the probability of
+
+*  getting a sum of 1? [______]{0}
+*  getting a sum of 5? [______]{1/9}
+*  getting a sum of 12? [______]{1/36}
+
+END_PGML
+
+ENDDOCUMENT();

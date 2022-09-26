@@ -1,0 +1,76 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Probability)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserPopUp.pl",
+           "contextPercent.pl",
+           "SVGDiagrams.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Percent");
+
+$popupT = PopUp(
+["choose one","True","False"],
+"True");
+
+$popupF = PopUp(
+["choose one","True","False"],
+"False");
+
+$venn = VennDiagram("Diabetes", "Hypertension");
+
+$perc_diab = Compute("9%");
+$perc_hyper = Compute("30%");
+$perc_both = Compute("6%");
+$perc_either = $perc_diab + $perc_hyper - $perc_both;
+$perc_neither = Compute("100% - $perc_both");
+$perc_only_diab = $perc_diab - $perc_both;
+$perc_only_hyper = $perc_hyper - $perc_both;
+
+BEGIN_PGML
+### Diabetes and hypertension
+
+Diabetes and hypertension are two of the most common diseases in Western,
+industrialized nations. In the United States, approximately 9% of the
+population have diabetes, while about 30% of adults have high blood pressure.
+The two diseases frequently occur together: an estimated 6% of the population
+have both diabetes and hypertension.
+
+Enter your answers as percents with the % sign or as decimals.
+
+*   Are having diabetes and having hypertension disjoint? [_]{$popupF}
+
+*   Draw a Venn diagram summarizing the variables and their associated probabilities.
+
+    [@ $venn @]*
+
+*   Let [`A`] represent the event of having diabetes, and [`B`] the event of having hypertension. 
+
+    [`P(A \text{ or } B) = `] [__________]{$perc_either} 
+
+*   What percent of Americans have neither hypertension nor diabetes? [______]{$perc_neither}
+
+*   Is the event of someone being hypertensive independent of the event that someone has diabetes? [_]{$popupF}
+
+END_PGML
+
+NAMED_ANS(left_area=>$perc_only_diab->cmp());
+NAMED_ANS(intersection=>$perc_both->cmp());
+NAMED_ANS(right_area=>$perc_only_hyper->cmp());
+
+ENDDOCUMENT();
