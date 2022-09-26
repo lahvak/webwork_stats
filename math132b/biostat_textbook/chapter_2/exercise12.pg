@@ -29,19 +29,20 @@ The ABO blood group system consists of four different blood groups, which
 describe whether an individual's red blood cells carry the A antigen, B
 antigen, both, or neither. The ABO gene has three alleles: [`{I}^{A}`],
 [`{I}^{B}`], and [`i`]. The [`i`] allele is recessive to both [`{I}^{A}`]
-    and [`{I}^{B}`], while the [`{I}^{A}`] and [`{I}^{B}`] allels are codominant.
+and [`{I}^{B}`], while the [`{I}^{A}`] and [`{I}^{B}`] allels are codominant.
 Individuals homozygous for the [`i`] allele are known as blood group O,
 with neither A nor B antigens.
 
 [@
     DataTable(
-        [["Alleles inherited", headerrow=>1], "Blood type"],
-        ["\(I^A\) and \(I^A\)", "A"],
-        ["\(I^A\) and \(I^B\)", "AB"],
-        ["\(I^A\) and \(i\)", "A"],
-        ["\(I^B\) and \(I^B\)", "B"],
-        ["\(I^B\) and \(i\)", "B"],
-        ["\(i\) and \(i\)", "O"]
+        [
+            [["Alleles inherited", headerrow=>1], "Blood type"],
+            ["\(I^A\) and \(I^A\)", "A"],
+            ["\(I^A\) and \(I^B\)", "AB"],
+            ["\(I^A\) and \(i\)", "A"],
+            ["\(I^B\) and \(I^B\)", "B"],
+            ["\(I^B\) and \(i\)", "B"],
+            ["\(i\) and \(i\)", "O"]
         ], align="cc")
 @]***
 
