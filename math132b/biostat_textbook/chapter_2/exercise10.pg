@@ -1,0 +1,69 @@
+##DESCRIPTION
+## DBSubject(Probability)
+## DBchapter(Sample Space)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$prob1 = Compute("451/20000");
+$prob2 = Compute("6722/20000");
+
+$cite = "Office of Surveillance, Epidemiology, and Laboratory Services Behavioral Risk Factor Surveillance System, BRFSS 2010
+Survey Data.";
+
+BEGIN_PGML
+### Health coverage, frequencies
+
+The Behavioral Risk Factor Surveillance System (BRFSS) is an annual telephone survey 
+designed to identify risk factors in the adult population and report emerging 
+health trends. The following table summarizes two variables for the respondents: 
+health status and health coverage, which describes whether each respondent had 
+health insurance.
+
+([$cite]*)
+
+[@
+DataTable(
+    [[["Health Coverage", i=>1, cell_css=>"vertical-align:middle;"],
+    [DataTable(
+        [
+            ["", ["Health Status", colspan=>5, i=>1]],
+            [["", midrule=>1], ["Excellent", header=>CH], ["Very good", header=>"CH"], ["Good", header=>"CH"], ["Fair", header=>"CH"], ["Poor", header=>"CH"], ["Total", header=>"CH"]],
+            ["No", 459, 727, 854, 385, 99, "2,524" ],
+            [["Yes", midrule=>1], "4,198", "6,245", "4,821", "1,634", "578", "17,476" ],
+            ["Total", "4,657"," "6,972", "5,675", "2,019", "677", "20,000"]
+        ], align="rrrrrrr", cell_css=>"vertical-align:middle;"]]],
+        align=>'p{1in} X')
+@]***
+
+
+*   If one individual is drawn at random, what is the probability that the 
+    respondent has excellent health and doesn't have health coverage?
+
+    [_______]{$prob1}
+
+*   If one individual is drawn at random, what is the probability that the 
+    respondent has excellent health or doesn't have health coverage?
+
+    [_______]{$prob2}
+
+END_PGML
+
+ENDDOCUMENT();
