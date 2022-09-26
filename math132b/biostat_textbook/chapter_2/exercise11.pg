@@ -49,9 +49,9 @@ DataTable(
     [[["Party and Ideology", i=>1, cell_css=>"vertical-align:middle;"],
     [DataTable(
         [
-            ["", ["Health Status", colspan=>3, align=>"c", i=>1], ""],
-            ["", ["Earth is", header=>"CH", align=>"c"], ["Not", header=>"CH", align=>"c"], ["Don't Know", header=>"CH", align=>"c"], ""],
-            [["", midrule=>1], ["warming", header=>"CH", align=>"c"], ["warming", header=>"CH", align=>"c"], ["Refuse", header=>"CH", align=>"c"], ["Total", header=>"CH", align=>"c"]],
+            ["", ["Health Status", colspan=>3, halign=>"c", i=>1], ""],
+            ["", ["Earth is", header=>"CH", halign=>"c"], ["Not", header=>"CH", halign=>"c"], ["Don't Know", header=>"CH", halign=>"c"], ""],
+            [["", midrule=>1], ["warming", header=>"CH", halign=>"c"], ["warming", header=>"CH", halign=>"c"], ["Refuse", header=>"CH", halign=>"c"], ["Total", header=>"CH", halign=>"c"]],
             ["Conservative Republican", 0.11, 0.20, 0.02, 0.33],
             ["Mod/Lib Republican", 0.06, 0.06, 0.01, 0.13],
             ["Mod/Cons Democrat", 0.25, 0.07, 0.02, 0.34],

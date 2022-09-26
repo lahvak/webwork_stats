@@ -44,7 +44,7 @@ DataTable(
     [[["Health Coverage", i=>1, cell_css=>"vertical-align:middle;"],
     [DataTable(
         [
-            ["", ["Health Status", colspan=>5, align=>"c", i=>1], ""],
+            ["", ["Health Status", colspan=>5, halign=>"c", i=>1], ""],
             [["", midrule=>1], ["Excellent", header=>CH], ["Very good", header=>"CH"], ["Good", header=>"CH"], ["Fair", header=>"CH"], ["Poor", header=>"CH"], ["Total", header=>"CH"]],
             ["No", "459", "727", "854", "385", "99", "2,524"],
             [["Yes", midrule=>1], "4,198", "6,245", "4,821", "1,634", "578", "17,476"],
