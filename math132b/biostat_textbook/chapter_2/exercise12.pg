@@ -43,7 +43,7 @@ with neither A nor B antigens.
             ["\(I^B\) and \(I^B\)", "B"],
             ["\(I^B\) and \(i\)", "B"],
             ["\(i\) and \(i\)", "O"]
-        ], align="cc")
+        ], align=>"cc")
 @]***
 
 Blood group follows the rules of Mendelian single-gene inheritance - alleles are inherited independently from either parent, with probability 0.5.
