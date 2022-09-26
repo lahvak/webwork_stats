@@ -1,0 +1,73 @@
+##DESCRIPTION
+## DBSubject(Probability)
+## DBchapter(Sample Space)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "U.S. Census Bureau, 2010 American Community Survey 1-Year Estimates, Educational Attainment.";
+
+BEGIN_PGML
+### Educational attainment by gender
+
+The table below shows the distribution of education level attained by US residents by 
+gender based on data collected during the 2010 American Community Survey.
+
+([$cite]**)
+
+[@
+LayoutTable(
+    [["Highest education attained", i=>1],
+    DataTable(
+        [
+            ["", ["Gender", colspan=>2, i=>1]],
+            [["", midrule=>1], ["Male", header=>"CH"], ["Female", header-"CH"]],
+            ["Less than 9th grade", 0.07  , 0.13 ],
+            ["9th to 12th grade, no diploma", 0.10  , 0.09 ],
+            ["HS graduate (or equivalent)", 0.30  , 0.20 ],
+            ["Some college, no degree", 0.22  , 0.24 ], 
+            ["Associate's degree", 0.06  , 0.08 ],
+            ["Bachelor's degree", 0.16  , 0.17 ],
+            [["Graduate or professional degree", midrule=>1], 0.09  , 0.09 ],
+            ["Total", 1.00  , 1.00]
+        ], align=>'lcc'])],
+        align=>'p{1in} X');
+@]***
+
+*   What is the probability that a randomly chosen individual is a high school
+    graduate? Assume that there is an equal proportion of males and females in the
+    population.
+*   Define Event [`A`] as having a graduate or professional degree.
+    Calculate the probability of the complement, [`A^c`].
+*   What is the probability that a randomly chosen man has at least a 
+    Bachelor's degree?
+*   What is the probability that a randomly chosen woman has at least a 
+    Bachelor's degree?
+*   What is the probability that a man and a woman getting married both have at 
+    least a Bachelor's degree? Note any assumptions made -- are they reasonable?
+END_PGML
+
+ENDDOCUMENT();
