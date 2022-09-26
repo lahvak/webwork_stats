@@ -1,0 +1,68 @@
+##DESCRIPTION
+## DBSubject(Probability)
+## DBchapter(Sample Space)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+BEGIN_PGML
+### ABO blood groups
+
+The ABO blood group system consists of four different blood groups, which
+describe whether an individual's red blood cells carry the A antigen, B
+antigen, both, or neither. The ABO gene has three alleles: [`{I}^{A}`],
+[`{I}^{B}`], and [`i`]. The [`i`] allele is recessive to both [`{I}^{A}`]
+    and [`{I}^{B}`], while the `[{I}^{A}`] and [`{I}^{B}`] allels are codominant.
+Individuals homozygous for the [`i`] allele are known as blood group O,
+with neither A nor B antigens.
+
+[@
+    DataTable(
+        [["Alleles inherited", headerrow=>1], "Blood type"],
+        ["\(I^A\) and \(I^A\)", "A"],
+        ["\(I^A\) and \(I^B\)", "AB"],
+        ["\(I^A\) and \(i\)", "A"],
+        ["\(I^B\) and \(I^B\)", "B"],
+        ["\(I^B\) and \(i\)", "B"],
+        ["\(i\) and \(i\)", "O"]
+        ], align="cc")
+@]***
+
+Blood group follows the rules of Mendelian single-gene inheritance - alleles are inherited independently from either parent, with probability 0.5.
+
+*   Suppose that both members of a couple have Group AB blood. What is the
+    probability that a child of this couple will have Group A blood?
+
+    [_______]{0.25}
+
+*   Suppose that one member of a couple is genotype [`I^{B}i`] and the other is
+    [`I^{A}i`]. What is the probability that their first child has Type O blood and
+    the next two do not?
+
+    [_______]{0.141}
+
+*   Suppose that one member of a couple is genotype [`I^{B}i`] and the other is
+    [`I^{A}i`]. Given that one child has Type O blood and two do not, what is the
+    probability of the first child having Type O blood?
+
+    [_______]{1/3}
+END_PGML
+
+ENDDOCUMENT();
