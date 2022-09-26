@@ -37,12 +37,12 @@ with neither A nor B antigens.
     DataTable(
         [
             [["Alleles inherited", headerrow=>1], "Blood type"],
-            ["`I^A` and [`I^A`]", "A"],
-            ["`I^A` and [`I^B`]", "AB"],
-            ["`I^A` and [`i`]", "A"],
-            ["`I^B` and [`I^B`]", "B"],
-            ["`I^B` and [`i`]", "B"],
-            ["`i` and [`i`]", "O"]
+            ["`I^A` and `I^A`", "A"],
+            ["`I^A` and `I^B`", "AB"],
+            ["`I^A` and `i`", "A"],
+            ["`I^B` and `I^B`", "B"],
+            ["`I^B` and `i`", "B"],
+            ["`i` and `i`", "O"]
         ], align=>"cc")
 @]***
 
