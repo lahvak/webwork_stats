@@ -1,0 +1,94 @@
+##DESCRIPTION
+## DBSubject(Probability)
+## DBchapter(Sample Space)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserPopUp.pl",
+           "contextPercent.pl",
+           "SVGDiagrams.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Percent");
+
+$popupT = PopUp(
+["choose one","True","False"],
+"True");
+
+$popupF = PopUp(
+["choose one","True","False"],
+"False");
+
+$venn = VennDiagram("Speak FL", "Below PL");
+
+$speakfl = Compute("20.7%");
+$belowpl = Compute("14.6%");
+$both = Compute("4.2%");
+
+$flonly = $speakfl - $both;
+$plonly = $belowpl - $both;
+
+$either = $speakfl + $belowpl - $both;
+$neither = Compute("100% - $either");
+
+$cite = "U.S. Census Bureau, 2010 American Community Survey 1-Year Estimates, Characteristics of People by Language Spoken at Home";
+
+BEGIN_PGML
+### Poverty and language
+
+The American Community 
+Survey is an ongoing survey that provides data every year to give communities the 
+current information they need to plan investments and services. The 2010 American 
+Community Survey estimates that 14.6% of Americans live below the poverty line, 
+20.7% speak a language other than English (foreign language) at home, and 4.2% 
+fall into both categories.
+
+([$cite]**)
+
+*   Are living below the poverty line and speaking a foreign language at home 
+    disjoint? [_]{$popupF}
+
+*   Draw a Venn diagram summarizing the variables and their associated 
+    probabilities.
+
+    [@ $venn @]*
+
+*   What percent of Americans live below the poverty line and only speak 
+    English at home?
+
+    [_______]{$plonly}
+
+*   What percent of Americans live below the poverty line or speak a foreign 
+    language at home?
+
+    [_______]{$either}
+
+*   What percent of Americans live above the poverty line and only speak 
+    English at home? 
+
+    [_______]{$neither}
+
+*   Is the event that someone lives below the poverty line independent of the 
+    event that the person speaks a foreign language at home?
+
+    [_______]{$popupF}
+END_PGML
+
+NAMED_ANS(left_area=>$flonly->cmp());
+NAMED_ANS(intersection=>$both->cmp());
+NAMED_ANS(right_area=>$plonly->cmp());
+
+ENDDOCUMENT();
