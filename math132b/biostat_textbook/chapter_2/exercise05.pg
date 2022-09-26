@@ -59,15 +59,15 @@ DataTable(
 
 *   What is the probability that a randomly chosen individual is a high school
     graduate? Assume that there is an equal proportion of males and females in the
-    population.
+    population. [______]{0.25
 *   Define Event [`A`] as having a graduate or professional degree.
-    Calculate the probability of the complement, [`A^c`].
+    Calculate the probability of the complement, [`A^c`]. [_____]{0.91}
 *   What is the probability that a randomly chosen man has at least a 
-    Bachelor's degree?
+    Bachelor's degree?  [_____]{0.25}
 *   What is the probability that a randomly chosen woman has at least a 
-    Bachelor's degree?
+    Bachelor's degree?  [_____]{0.26}
 *   What is the probability that a man and a woman getting married both have at 
-    least a Bachelor's degree? Note any assumptions made -- are they reasonable?
+    least a Bachelor's degree? Note any assumptions made - are they reasonable? [_____]{0.065}
 END_PGML
 
 ENDDOCUMENT();
