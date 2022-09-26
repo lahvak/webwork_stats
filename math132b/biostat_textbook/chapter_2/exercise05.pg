@@ -40,7 +40,7 @@ gender based on data collected during the 2010 American Community Survey.
 
 [@
 LayoutTable(
-    [["Highest education attained", i=>1],
+    [[["Highest education attained", i=>1],
     DataTable(
         [
             ["", ["Gender", colspan=>2, i=>1]],
@@ -53,7 +53,7 @@ LayoutTable(
             ["Bachelor's degree", 0.16  , 0.17 ],
             [["Graduate or professional degree", midrule=>1], 0.09  , 0.09 ],
             ["Total", 1.00  , 1.00]
-        ], align=>'lcc')],
+        ], align=>'lcc')]],
         align=>'p{1in} X')
 @]***
 
