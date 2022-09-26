@@ -53,7 +53,7 @@ LayoutTable(
             ["Bachelor's degree", 0.16  , 0.17 ],
             [["Graduate or professional degree", midrule=>1], 0.09  , 0.09 ],
             ["Total", 1.00  , 1.00]
-        ], align=>'lcc'])],
+        ], align=>'lcc')],
         align=>'p{1in} X')
 @]***
 
