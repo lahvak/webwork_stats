@@ -40,7 +40,7 @@ gender based on data collected during the 2010 American Community Survey.
 
 [@
 LayoutTable(
-    [[["Highest education attained", i=>1, cell_css=>"vertical-align:center;"],
+    [[["Highest education attained", i=>1, cell_css=>"vertical-align:middle;"],
     DataTable(
         [
             ["", ["Gender", colspan=>2, i=>1]],
