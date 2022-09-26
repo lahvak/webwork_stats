@@ -39,7 +39,7 @@ gender based on data collected during the 2010 American Community Survey.
 ([$cite]**)
 
 [@
-LayoutTable(
+DataTable(
     [[["Highest education attained", i=>1, cell_css=>"vertical-align:middle;"],
     [DataTable(
         [
