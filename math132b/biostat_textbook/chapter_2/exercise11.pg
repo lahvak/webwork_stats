@@ -1,0 +1,97 @@
+##DESCRIPTION
+## DBSubject(Probability)
+## DBchapter(Sample Space)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popupT = PopUp(
+["choose one","Yes","No"],
+"Yes");
+
+$popupF = PopUp(
+["choose one","Yes","No"],
+"No");
+
+$cite = "Pew Research Center, Majority of Republicans No Longer See Evidence of Global Warming, data collected on October 27, 2010";
+
+BEGIN_PGML
+### Global warming
+
+A Pew Research poll asked 
+1,306 Americans "From what you've read and heard, is there solid evidence that 
+the average temperature on earth has been getting warmer over the past few 
+decades, or not?". The table below shows the distribution of responses by party 
+and ideology, where the counts have been replaced with relative frequencies.
+
+([$cite]*)
+
+[@
+DataTable(
+    [[["Party and Ideology", i=>1, cell_css=>"vertical-align:middle;"],
+    [DataTable(
+        [
+            ["", ["Health Status", colspan=>3, align=>"c", i=>1], ""],
+            ["", ["Earth is", header=>"CH", align=>"c"], ["Not", header=>"CH", align=>"c"], ["Don't Know", header=>"CH", align=>"c"], ""],
+            [["", midrule=>1], ["warming", header=>"CH", align=>"c"], ["warming", header=>"CH", align=>"c"], ["Refuse", header=>"CH", align=>"c"], ["Total", header=>"CH", align=>"c"]],
+            ["Conservative Republican", 0.11, 0.20, 0.02, 0.33],
+            ["Mod/Lib Republican", 0.06, 0.06, 0.01, 0.13],
+            ["Mod/Cons Democrat", 0.25, 0.07, 0.02, 0.34],
+            [["Liberal Democrat", midrule=>1], 0.18, 0.01, 0.01, 0.20],
+            ["Total", 0.60, 0.34, 0.06, 1.00]
+        ], align=>"lrrrr"), cell_css=>"vertical-align:middle;"]]],
+        align=>"p{1in} X")
+@]***
+
+*   Are believing that the earth is warming and being a liberal Democrat mutually 
+    exclusive?
+
+    [_]{$popupF}
+
+*   What is the probability that a randomly chosen respondent believes the 
+    earth is warming or is a liberal Democrat?
+
+    [______]{0.62}
+
+*   What is the probability that a randomly chosen respondent believes the 
+    earth is warming given that he is a liberal Democrat?
+
+    [______]{0.9}
+
+*   What is the probability that a randomly chosen respondent believes the 
+    earth is warming given that he is a conservative Republican?
+
+    [______]{0.33}
+
+*   Does it appear that whether or not a respondent believes the earth is 
+    warming is independent of their party and ideology? Make sure you can explain your reasoning.
+
+    [_]{$popupF}
+
+*   What is the probability that a randomly chosen respondent is a 
+    moderate/liberal Republican given that he does not believe that the earth is 
+    warming? 
+
+    [______]{0.18}
+
+END_PGML
+
+ENDDOCUMENT();
