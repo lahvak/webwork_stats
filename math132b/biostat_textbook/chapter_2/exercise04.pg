@@ -1,7 +1,7 @@
 ##DESCRIPTION
-## DBsubject("Probability")
-## DBchapter("Sample Space")
-## DBsection("Probability: direct computation, inclusion/exclusion")
+## DBsubject(Probability)
+## DBchapter(Sample Space)
+## DBsection(Probability: direct computation, inclusion/exclusion)
 ## Institution(SVSU)
 ## Author(Jan Hlavacek)
 ## Level(2)
