@@ -1,0 +1,80 @@
+##DESCRIPTION
+## DBSubject(Probability)
+## DBchapter(Sample Space)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","Yes","No"],
+"No");
+
+$cite = "";
+
+BEGIN_PGML
+### Seat belts
+
+Seat belt use is the most effective way to save lives and reduce injuries in
+motor vehicle crashes. In a 2014 survey, respondents were asked, "How often do
+you use seat belts when you drive or ride in a car?". The following table shows
+the distribution of seat belt usage by sex.
+
+[@
+DataTable(
+    [["", ["Seat Belt Usage", i=>1]],
+    [["Sex", i=>1, cellcss=>"vertical-align:middle;"],
+    [DataTable(
+        [
+            [["", headerrow=>1, midrule=>1], "Always", "Nearly always", "Sometimes", "Seldom", "Never", "Total"],
+            [["Male", header=>"RH"], "146,018", "19,492", "7,614", "3,145", "4,719", "180,988"],
+            [["Female", header=>"RH", midrule=>1], "229,246", "16,695", "5,549", "1,815", "2,675", "255,980"],
+            [["Total", header=>"RH"], "375,264", "36,187", "13,163", "4,960", "7,394", "436,968"]
+        ], align=>"rrrrrrr")]]],
+        align=>"p{1in} c")
+@]***
+
+*   Calculate the marginal probability that a randomly chosen individual always wears seatbelts.
+
+    [___________________]{375264/436968}
+
+*   What is the probability that a randomly chosen female always wears seatbelts?
+
+    [___________________]{229246/255980}
+
+*   What is the conditional probability of a randomly chosen individual always wearing seatbelts, given that they are female? 
+
+    [___________________]{229246/255980}
+
+*   What is the conditional probability of a randomly chosen individual always wearing seatbelts, given that they are male?
+
+    [___________________]{146018/180988}
+
+*   Calculate the probability that an individual who never wears seatbelts is male.
+
+    [___________________]{4719/7394}
+
+*   Does gender seem independent of seat belt usage?
+
+    [_]{$popup}
+END_PGML
+
+ENDDOCUMENT();
