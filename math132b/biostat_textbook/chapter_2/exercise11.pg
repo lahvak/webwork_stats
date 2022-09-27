@@ -46,7 +46,7 @@ and ideology, where the counts have been replaced with relative frequencies.
 
 [@
 DataTable(
-    [[["$BR$BR Party and Ideology", i=>1, cell_css=>"vertical-align:middle;"],
+    [[["$BR$BR Party and$BR Ideology", i=>1, cell_css=>"vertical-align:middle;"],
     [DataTable(
         [
             ["", ["Health Status", colspan=>3, halign=>"c", i=>1], ""],
@@ -58,7 +58,7 @@ DataTable(
             [["Liberal Democrat", midrule=>1], 0.18, 0.01, 0.01, 0.20],
             ["Total", 0.60, 0.34, 0.06, 1.00]
         ], align=>"lrrrr"), cell_css=>"vertical-align:middle;"]]],
-        align=>"p{1in} X")
+        align=>"rc")
 @]***
 
 *   Are believing that the earth is warming and being a liberal Democrat mutually 
