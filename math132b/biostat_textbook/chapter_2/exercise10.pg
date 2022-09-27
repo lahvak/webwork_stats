@@ -41,7 +41,7 @@ health insurance.
 
 [@
 DataTable(
-    [[["Health Coverage", i=>1, cellcss=>"height:6em; vertical-align:80%;"],
+    [[["Health Coverage", i=>1, cellcss=>"vertical-align:-400%;"],
     [DataTable(
         [
             ["", ["Health Status", colspan=>5, halign=>"c", i=>1], ""],
