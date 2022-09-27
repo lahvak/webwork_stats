@@ -1,0 +1,77 @@
+##DESCRIPTION
+## DBSubject(Probability)
+## DBchapter(Sample Space)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "SVGDiagrams.pl",
+           "contextPercent.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Percent");
+
+$tree = BinaryTree("Infected", "Yes: ", "No: ", 150, "Test result", "Positive: ", "Negative: ", 150);
+
+$yes = Compute("25.9%");
+$pos_given_yes = Compute("99.7%");
+$neg_given_yes = Compute("100% - $pos_given_yes");
+$no = Compute("100% - $yes");
+$neg_given_no = Compute("92.6%");
+$pos_given_no = Compute("100% - $neg_given_no");
+$yes_and_pos = $yes*$pos_given_yes;
+$yes_and_neg = $yes*$neg_given_yes;
+$no_and_pos = $no*$pos_given_no;
+$no_and_neg = $no*$neg_given_no;
+
+$PPV = $yes_and_pos/($yes_and_pos + $no_and_pos);
+$NPV = $no_and_neg/($no_and_neg + $yes_and_neg);
+
+$cite = "Source: CIA Factbook, Country Comparison: HIV/AIDS - Adult Prevalence Rate.";
+
+BEGIN_PGML
+### HIV in Swaziland
+
+Swaziland has the highest 
+HIV prevalence in the world: 25.9% of this country's population is infected with 
+HIV. ([$cite]*)
+
+The ELISA test is one of the first and 
+most accurate tests for HIV. For those who carry HIV, the ELISA test is 99.7% 
+accurate. For those who do not carry HIV, the test is 92.6% accurate. 
+
+*   Fill in the tree diagram:
+
+    [@ $tree @]*
+
+*   Calculate the PPV and NPV of the test.
+
+    *   PPV: [_______________]{$PPV}
+    *   NPV: [_______________]{$NPV}
+END_PGML
+
+NAMED_ANS(first_yes=>$yes->cmp());
+NAMED_ANS(positive_given_yes=>$pos_given_yes->cmp());
+NAMED_ANS(negative_given_yes=>$neg_given_yes->cmp());
+NAMED_ANS(first_no=>$no->cmp());
+NAMED_ANS(positive_given_no=>$pos_given_no->cmp());
+NAMED_ANS(negative_given_no=>$neg_given_no->cmp());
+NAMED_ANS(positive_and_yes=>$yes_and_pos->cmp());
+NAMED_ANS(negative_and_yes=>$yes_and_neg->cmp());
+NAMED_ANS(positive_and_no=>$no_and_pos->cmp());
+NAMED_ANS(negative_and_no=>$no_and_neg->cmp());
+
+
+ENDDOCUMENT();
