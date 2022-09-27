@@ -1,0 +1,82 @@
+##DESCRIPTION
+## DBSubject(Probability)
+## DBchapter(Sample Space)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popupT = PopUp(
+["choose one","Yes","No"],
+"Yes");
+
+$popupF = PopUp(
+["choose one","Yes","No"],
+"No");
+
+$cite = "Office of Surveillance, Epidemiology, and Laboratory Services Behavioral Risk Factor Surveillance System, BRFSS 2010 Survey Data.";
+
+BEGIN_PGML
+### Health coverage, relative frequencies
+
+The Behavioral Risk Factor Surveillance System (BRFSS) is an annual telephone 
+survey designed to identify risk factors in the adult population and report 
+emerging health trends. The following table displays the distribution of health 
+status of respondents to this survey (excellent, very good, good, fair, poor) 
+conditional on whether or not they have health insurance.
+
+([$cite]*)
+
+[@
+DataTable(
+    [["", ["Health Status", i=>1]],
+    [["Health Coverage", i=>1, cellcss=>"vertical-align:middle;"],
+    [DataTable(
+        [
+            [["", midrule=>1], ["Excellent", header=>CH], ["Very good", header=>"CH"], ["Good", header=>"CH"], ["Fair", header=>"CH"], ["Poor", header=>"CH"], ["Total", header=>"CH"]],
+            [["No", header=>"RH"], "0.0230", "0.0364", "0.0427", "0.0192", "0.0050", "0.1262"],
+            [["Yes", header=>"RH", midrule=>1], "0.2099", "0.3123", "0.2410", "0.0817", "0.0289", "0.8738"],
+            [["Total", header=>"RH"], "0.2329", "0.3486", "0.2838", "0.1009", "0.0338", "1.0000"]
+        ], align=>"rrrrrrr")]]],
+        align=>"p{1in} c")
+@]***
+
+*   Are being in excellent health and having health coverage mutually exclusive?
+
+    [_]{$popupF}
+
+*   What is the probability that a randomly chosen individual has excellent health?
+
+    [_____________]{0.2329}
+
+*   What is the probability that a randomly chosen individual has excellent health given that he has health coverage?
+
+    [_____________]{0.2099/0.8738}
+
+*   What is the probability that a randomly chosen individual has excellent health given that he doesn't have health coverage?
+
+    [_____________]{0.0230/0.1262}
+
+*   Do having excellent health and having health coverage appear to be independent?
+
+    [_]{$popupF}
+END_PGML
+
+ENDDOCUMENT();
