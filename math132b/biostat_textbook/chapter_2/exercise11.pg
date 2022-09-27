@@ -46,7 +46,7 @@ and ideology, where the counts have been replaced with relative frequencies.
 
 [@
 DataTable(
-    [[["Party and Ideology", i=>1, cell_css=>"vertical-align:middle;"],
+    [[["<BR>Party and Ideology", i=>1, cell_css=>"vertical-align:middle;"],
     [DataTable(
         [
             ["", ["Health Status", colspan=>3, halign=>"c", i=>1], ""],
