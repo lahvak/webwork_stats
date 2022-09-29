@@ -22,8 +22,8 @@ $showPartialCorrectAnswers = 1;
 
 Context("Numeric");
 
-$prob1 = Compute("451/20000");
-$prob2 = Compute("6722/20000");
+$prob1 = Compute("459/20000");
+$prob2 = Compute("(4657 + 2524 - 459)/20000");
 
 $cite = "Office of Surveillance, Epidemiology, and Laboratory Services Behavioral Risk Factor Surveillance System, BRFSS 2010
 Survey Data.";
@@ -55,12 +55,12 @@ DataTable(
 
 
 *   If one individual is drawn at random, what is the probability that the 
-    respondent has excellent health and doesn't have health coverage?
+    respondent has excellent health *and* doesn't have health coverage?
 
     [_______]{$prob1}
 
 *   If one individual is drawn at random, what is the probability that the 
-    respondent has excellent health or doesn't have health coverage?
+    respondent has excellent health *or* doesn't have health coverage?
 
     [_______]{$prob2}
 
