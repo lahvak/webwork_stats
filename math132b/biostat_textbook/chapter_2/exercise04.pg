@@ -38,7 +38,7 @@ $perc_diab = Compute("9%");
 $perc_hyper = Compute("30%");
 $perc_both = Compute("6%");
 $perc_either = $perc_diab + $perc_hyper - $perc_both;
-$perc_neither = Compute("100% - $perc_both");
+$perc_neither = Compute("100% - $perc_either");
 $perc_only_diab = $perc_diab - $perc_both;
 $perc_only_hyper = $perc_hyper - $perc_both;
 
