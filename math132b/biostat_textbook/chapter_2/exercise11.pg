@@ -22,7 +22,7 @@ TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
 
 Context("Numeric");
-Context()->flags->set(tolType => 'digits', tolerance => 2, tolTruncation => 1);
+Context()->flags->set(tolType => 'digits', tolerance => 2, tolTruncation => 0);
 
 $popupT = PopUp(
 ["choose one","Yes","No"],
@@ -80,7 +80,7 @@ DataTable(
 *   What is the probability that a randomly chosen respondent believes the 
     earth is warming given that he is a conservative Republican?
 
-    [______]{0.33}
+    [______]{0.333333333333333333}
 
 *   Does it appear that whether or not a respondent believes the earth is 
     warming is independent of their party and ideology? Make sure you can explain your reasoning.
@@ -91,7 +91,7 @@ DataTable(
     moderate/liberal Republican given that he does not believe that the earth is 
     warming? 
 
-    [______]{0.18}
+    [______]{0.175}
 
 END_PGML
 
