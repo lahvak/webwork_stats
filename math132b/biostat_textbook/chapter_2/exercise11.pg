@@ -22,6 +22,7 @@ TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
 
 Context("Numeric");
+Context()->flags->set(tolType => 'digits', tolerance => 2, tolTruncation => 1);
 
 $popupT = PopUp(
 ["choose one","Yes","No"],
