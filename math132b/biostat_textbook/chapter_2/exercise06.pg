@@ -58,6 +58,8 @@ fall into both categories.
 
 ([$cite]**)
 
+(Enter the answers as decimals or as percents.)
+
 *   Are living below the poverty line and speaking a foreign language at home 
     disjoint? [_]{$popupF}
 
@@ -66,17 +68,17 @@ fall into both categories.
 
     [@ $venn @]*
 
-*   What percent of Americans live below the poverty line and only speak 
+*   What portion of Americans live below the poverty line and only speak 
     English at home?
 
     [_______]{$plonly}
 
-*   What percent of Americans live below the poverty line or speak a foreign 
+*   What portion of Americans live below the poverty line or speak a foreign 
     language at home?
 
     [_______]{$either}
 
-*   What percent of Americans live above the poverty line and only speak 
+*   What portion of Americans live above the poverty line and only speak 
     English at home? 
 
     [_______]{$neither}
