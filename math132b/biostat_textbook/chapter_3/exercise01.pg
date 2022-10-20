@@ -1,0 +1,53 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Discrete Distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserRadioButtons.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = RadioButtons(
+["yes, this is a random sample","yes, although this is not a random sample, there is no reason to expect a bias", "no, this sample is likely biased"],
+"no, this sample is likely biased");
+
+$percentage = random(7,19);
+$size = random(30,200);
+
+$expected = Compute("$percentage*$size/100");
+
+
+BEGIN_PGML
+### College smokers
+
+At a university, [$percentage]% of students smoke.
+
+*   Calculate the expected number of smokers in a random sample of [$size] students 
+    from this university.
+
+    [_________]{$expected}
+
+*   The university gym opens at 9 am on Saturday mornings. One Saturday morning 
+    at 8:55 am there are 27 students outside the gym waiting for it to open. Should 
+    you use the same approach from part (a) to calculate the expected number of 
+    smokers among these 27 students?
+
+    [_]{$popup}
+END_PGML
+
+ENDDOCUMENT();
