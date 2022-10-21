@@ -16,6 +16,7 @@ loadMacros("PGstandard.pl",
            "MathObjects.pl",
            "niceTables.pl",
            "PGML.pl",
+           "contextFraction.pl",
            "parserMultiAnswer.pl",
 );
 TEXT(beginproblem());
@@ -45,7 +46,7 @@ if ($case == 1) {
     $extraprob = 3;  # out of 52
 }
 
-Context("Fractions");
+Context("Fraction");
 
 $prob0 = Compute("1/2");
 $prob1 = Compute("1/4");
