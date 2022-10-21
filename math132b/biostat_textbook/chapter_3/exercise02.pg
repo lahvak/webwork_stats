@@ -109,14 +109,16 @@ Consider the following card game with a well-shuffled standard (52 cards) deck o
 
 *   Find the expected winnings for a single game:
 
-    [_________]{$EX}
+    [_________]
 
 *   Find the standard deviation of the winnings.
 
-    [_________]{$SD}
+    [_________]
 
 END_PGML
 
 ANS( $probtable->cmp() );
+ANS( $EX->cmp() );
+ANS( $SD->cmp() );
 
 ENDDOCUMENT();
