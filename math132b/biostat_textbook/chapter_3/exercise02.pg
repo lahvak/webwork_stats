@@ -57,7 +57,7 @@ Context(Numeric);
 
 $EX = $win0*$prob0 + $win1*$prob1 + $win2*$prob2 + $win3*$prob3;
 
-$VAR = ($win0 - $EX)^2*$prob0 + ($win1 - $EX)^2*$prob1 + ($win2 - $EX)^2*$prob2 + ($win3 - $EX)^2*$prob3;
+$VAR = ($win0 - $EX)**2*$prob0 + ($win1 - $EX)**2*$prob1 + ($win2 - $EX)**2*$prob2 + ($win3 - $EX)**2*$prob3;
 $SD = sqrt($VAR);
 
 $probtable = MultiAnswer($win0, $win1, $win2, $win3, $prob0, $prob1, $prob2, $prob3)->With(
