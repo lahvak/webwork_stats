@@ -1,0 +1,119 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Random variables)
+## DBsection(Expectation)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "niceTables.pl",
+           "PGML.pl",
+           "contextFraction.pl",
+           "parserMultiAnswer.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$base = random(2,9);
+
+$win0 = 0;
+$win1 = $base*random(2,4);
+$win2 = $base*random(5,10);
+
+$cost = $base*random(1,2);
+
+Context("Fraction");
+
+$prob1 = Compute("13/52 * 12/51 * 11/50");
+$prob2 = Compute("26/52 * 25/51 * 24/50");
+$prob0 = Compute("1 - $prob1 - $prob2");
+
+Context(Numeric);
+
+$EX = $win0*$prob0 + $win1*$prob1 + $win2*$prob2;
+
+$VAR = ($win0 - $EX)**2*$prob0 + ($win1 - $EX)**2*$prob1 + ($win2 - $EX)**2*$prob2;
+$SD = sqrt($VAR);
+
+$EP = $EX - $cost;
+
+$probtable = MultiAnswer($win0, $win1, $win2, $prob0, $prob1, $prob2)->with(
+    singleResult => 0,
+    checker => sub {
+        my ( $correct, $student, $self ) = @_;
+        my $ansnum = scalar(@{$correct});
+        my @correctwins = $correct->@[0..($ansnum/2-1)];
+        my @correctprobs = $correct->@[($ansnum/2)..($ansnum-1)];
+        my @studentwins = $student->@[0..($ansnum/2-1)];
+        my @studentprobs = $student->@[($ansnum/2)..($ansnum-1)];
+        my @winsflags = (0) x ($ansnum/2);
+        my @probsflags = (0) x ($ansnum/2);
+        CORRECT: for (my $i=0; $i<$ansnum/2; $i++) {
+            STUDENT: for (my $j=0; $j<$ansnum/2; $j++) {
+                if ($correctwins[$i] == $studentwins[$j]) {
+                    $winsflags[$j] = 1;
+                    if ($correctprobs[$i] == $studentprobs[$j]) {
+                        $probsflags[$j] = 1;
+                    }
+                    next CORRECT;
+                }
+            }
+        }
+        return (@winsflags, @probsflags);
+    },
+);
+
+
+BEGIN_PGML
+### Hearts win
+
+In a new card game, you start with a well-shuffled full 52 card deck and draw 3 cards _without replacement_.
+
+*   If you draw 3 hearts, you win $[$hearts].
+*   If you draw 3 black cards, you win $[$black].
+*   For any other draws, you win nothing.
+
+----
+
+*   Create a probability model for the amount you win at this game:
+
+    [@
+        DataTable(
+            [[["Winnings (in $):", midrule=>1], $probtable->ans_rule(10), $probtable->ans_rule(10), $probtable->ans_rule(10), $probtable->ans_rule(10)],
+             ["Probability:", $probtable->ans_rule(10), $probtable->ans_rule(10), $probtable->ans_rule(10), $probtable->ans_rule(10)]],
+            align => 'r|cccc')
+    @]***
+
+*   Find the expected winnings:
+
+    [_________]
+
+*   Compute the standard deviation of this distribution:
+
+    [_________]
+
+*   If the game costs $[$cost] to play, what would be the expected value and 
+    standard deviation of the net profit (or loss)?
+
+    *   [`EP = `][__________]
+    *   [`SD(P) = `][__________]
+
+END_PGML
+
+ANS( $probtable->cmp() );
+ANS( $EX->cmp() );
+ANS( $SD->cmp() );
+ANS( $EP->cmp() );
+ANS( $SD->cmp() );
+
+ENDDOCUMENT();
