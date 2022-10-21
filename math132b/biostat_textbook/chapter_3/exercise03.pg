@@ -34,8 +34,8 @@ $cost = $base*random(1,2);
 
 Context("Fraction");
 
-$prob1 = Compute("13/52 * 12/51 * 11/50");
-$prob2 = Compute("26/52 * 25/51 * 24/50");
+$prob1 = Compute("26/52 * 25/51 * 24/50");
+$prob2 = Compute("13/52 * 12/51 * 11/50");
 $prob0 = Compute("1 - $prob1 - $prob2");
 
 Context(Numeric);
@@ -69,7 +69,8 @@ $probtable = MultiAnswer($win0, $win1, $win2, $prob0, $prob1, $prob2)->with(
                 }
             }
         }
-        return (@winsflags, @probsflags);
+        push(@winsflags, @probsflags);
+        return ~~@winsflags;
     },
 );
 
