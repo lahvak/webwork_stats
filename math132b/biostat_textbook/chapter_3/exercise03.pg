@@ -49,6 +49,7 @@ $EP = $EX - $cost;
 
 $probtable = MultiAnswer($win0, $win1, $win2, $prob0, $prob1, $prob2)->with(
     singleResult => 0,
+    allowBlankAnswers=>1,
     checker => sub {
         my ( $correct, $student, $self ) = @_;
         my $ansnum = scalar(@{$correct});
