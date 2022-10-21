@@ -117,4 +117,6 @@ Consider the following card game with a well-shuffled standard (52 cards) deck o
 
 END_PGML
 
+ANS( $probtable->cmp() );
+
 ENDDOCUMENT();
