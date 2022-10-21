@@ -73,10 +73,10 @@ $probtable = MultiAnswer($win0, $win1, $win2, $win3, $prob0, $prob1, $prob2, $pr
         my @probsflags = (0) x ($ansnum/2);
         CORRECT: for (my $i=0; $i<$ansnum/2; $i++) {
             STUDENT: for (my $j=0; $j<$ansnum/2; $j++) {
-                if ($correctwins[i] == $studentwins[j]) {
-                    $winsflags[j] = 1;
-                    if ($correctprobs[i] == $studentprobs[j]) {
-                        $probsflags[j] = 1;
+                if ($correctwins[$i] == $studentwins[$j]) {
+                    $winsflags[$j] = 1;
+                    if ($correctprobs[$i] == $studentprobs[$j]) {
+                        $probsflags[$j] = 1;
                     }
                     next CORRECT;
                 }
