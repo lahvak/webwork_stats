@@ -102,7 +102,7 @@ Consider the following card game with a well-shuffled standard (52 cards) deck o
 
     [@
         DataTable(
-            [[["Winnings:", midrule=>1], $probtable->ans_rule(10), $probtable->ans_rule(10), $probtable->ans_rule(10), $probtable->ans_rule(10)],
+            [[["Winnings (in $):", midrule=>1], $probtable->ans_rule(10), $probtable->ans_rule(10), $probtable->ans_rule(10), $probtable->ans_rule(10)],
              ["Probability:", $probtable->ans_rule(10), $probtable->ans_rule(10), $probtable->ans_rule(10), $probtable->ans_rule(10)]],
             align => 'r|cccc')
     @]***
