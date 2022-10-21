@@ -79,8 +79,8 @@ BEGIN_PGML
 
 In a new card game, you start with a well-shuffled full 52 card deck and draw 3 cards _without replacement_.
 
-*   If you draw 3 hearts, you win $[$hearts].
-*   If you draw 3 black cards, you win $[$black].
+*   If you draw 3 hearts, you win $[$win2].
+*   If you draw 3 black cards, you win $[$win1].
 *   For any other draws, you win nothing.
 
 ----
@@ -89,8 +89,8 @@ In a new card game, you start with a well-shuffled full 52 card deck and draw 3 
 
     [@
         DataTable(
-            [[["Winnings (in $):", midrule=>1], $probtable->ans_rule(10), $probtable->ans_rule(10), $probtable->ans_rule(10), $probtable->ans_rule(10)],
-             ["Probability:", $probtable->ans_rule(10), $probtable->ans_rule(10), $probtable->ans_rule(10), $probtable->ans_rule(10)]],
+            [[["Winnings (in $):", midrule=>1], $probtable->ans_rule(10), $probtable->ans_rule(10), $probtable->ans_rule(10)],
+             ["Probability:", $probtable->ans_rule(10), $probtable->ans_rule(10), $probtable->ans_rule(10)]],
             align => 'r|cccc')
     @]***
 
