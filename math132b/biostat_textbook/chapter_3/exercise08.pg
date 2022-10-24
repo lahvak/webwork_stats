@@ -1,0 +1,78 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection(Binomial)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserRadioButtons.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$p = 0.9;
+$q = 1 - $p;
+
+$prob1 = C(100,97)*$p**(97)*$q**3;
+$prob2 = $prob1;
+
+$prob4 = $p**10 + 10*$q*$p**9 + C(10,2)*$q**2*$p**8 + C(10,3)*$q**3*$p**7;
+
+$prob3 = 1 - $q**10;
+
+$popup = RadioButtons(
+["Yes, binomial distribution can be used",
+ "No, the trials are not independent",
+ "No, there is not a fixed number of trials",
+ "No, some trials don't have exactly two outcomes",
+ "No, the probability of success changes from trial to trial"],
+"Yes, binomial distribution can be used");
+
+$cite = "";
+
+BEGIN_PGML
+### Chickenpox, Part I
+
+The US CDC estimates that 90% of Americans have had chickenpox by the time they reach adulthood.
+
+*   Suppose we take a random sample of 100 American adults. Is the use of 
+    the binomial distribution appropriate for calculating the probability that exactly 97 
+    out of 100 randomly sampled American adults had chickenpox during childhood? Explain.
+
+    [_]{$popup}
+
+*   Calculate the probability that exactly 97 out of 100 randomly sampled 
+    American adults had chickenpox during childhood.
+
+    [______________]{$prob1}
+
+*   What is the probability that exactly 3 out of a new sample of 100 
+    American adults have _not_ had chickenpox in their childhood?
+
+    [______________]{$prob2}
+
+*   What is the probability that at least 1 out of 10 randomly sampled 
+    American adults have had chickenpox?
+
+    [______________]{$prob3}
+
+*   What is the probability that at most 3 out of 10 randomly sampled 
+    American adults have _not_ had chickenpox?
+
+    [______________]{$prob3}
+
+END_PGML
+
+ENDDOCUMENT();
