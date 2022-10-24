@@ -33,7 +33,11 @@ $prob3 = $q^5 + 5*$p*$q^4 + C(5,2)*$p^2*$q^3;
 $prob4 = 1 - $q^5;
 
 $popup = RadioButtons(
-["Yes, binomial distribution can be used","No, the trials are not independent" "No, there is not a fixed number of trials", "No, some trials don't have exactly two outcomes","No, the probability of success changes from trial to trial"],
+["Yes, binomial distribution can be used",
+ "No, the trials are not independent",
+ "No, there is not a fixed number of trials",
+ "No, some trials don't have exactly two outcomes",
+ "No, the probability of success changes from trial to trial"],
 "Yes, binomial distribution can be used");
 
 $cite = "SAMHSA, Office of Applied Studies, _National Survey on Drug Use and Health_, 2007 and 2008.";
