@@ -1,0 +1,63 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Random variables)
+## DBsection(Expectation)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$split = random(30,40);
+$four = random(2,$split/4,1);
+$three = $split - $four;
+$one = random(20,(100 - $split)/2,1);
+$two = 100 - $split - $one;
+
+$sampsqrt = random(5,10);
+
+$samp = $sampsqrt**2;
+
+$EX = $one/100 + 2*$two/100 + 3*$three/100 + 4*$four/100;
+
+$Var = (1-$EX)**2*$one/100 + (2-$EX)**2*$two/100 + (3-$EX)**2*$three/100 + (4-$EX)**2*$four/100;
+
+$SD = sqrt($Var);
+
+$EXSamp = $samp*$EX;
+
+$SDsamp = $sampsqrt*$SD;
+
+BEGIN_PGML
+### Gull clutch size
+
+Large black-tailed gulls usually lay one to three eggs, and rarely have a
+fourth egg clutch. It is thought that clutch sizes are effectively limited by
+how effectively parents can incubate their eggs. Suppose that on average, gulls
+have a [$one]% chance of laying 1 egg, [$two]% chance of laying 2 eggs, [$three]% chance of laying 3
+eggs, and [$four]% chance of laying 4 eggs.
+
+*   Calculate the expected number of eggs laid by a random sample of [$samp] gulls. 
+
+    [_____________]{$EXSamp}
+
+*   Calculate the standard deviation of the number of eggs laid by a random sample of [$samp] gulls.
+
+    [_____________]{$SDsamp}
+
+END_PGML
+
+ENDDOCUMENT();
