@@ -71,7 +71,7 @@ The US CDC estimates that 90% of Americans have had chickenpox by the time they 
 *   What is the probability that at most 3 out of 10 randomly sampled 
     American adults have _not_ had chickenpox?
 
-    [______________]{$prob3}
+    [______________]{$prob4}
 
 END_PGML
 
