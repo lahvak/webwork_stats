@@ -1,0 +1,80 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserRadioButtons.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$p = 0.697;
+$q = 1 - $p;
+
+$prob1 = C(10,6)*$p^6*$q^4;
+$prob2 = $prob1;
+
+$prob3 = $q^5 + 5*$p*$q^4 + C(5,2)*$p^2*$q^3;
+
+$prob4 = 1 - $q^5;
+
+$popup = RadioButtons(
+["Yes, binomial distribution can be used","No, the trials are not independent" "No, there is not a fixed number of trials", "No, some trials don't have exactly two outcomes","No, the probability of success changes from trial to trial"],
+"Yes, binomial distribution can be used");
+
+$cite = "SAMHSA, Office of Applied Studies, _National Survey on Drug Use and Health_, 2007 and 2008.";
+
+BEGIN_PGML
+### Underage drinking, Part I
+
+Data collected by the Substance Abuse and Mental Health
+Services Administration (SAMSHA) suggests that 69.7% of
+18-20 year olds consumed alcoholic beverages in any given
+year.
+
+([$cite]**)
+
+*   Suppose a random sample of ten 18-20 year olds is taken. Is the use 
+    of the binomial distribution appropriate for calculating the probability that 
+    exactly six consumed alcoholic beverages?
+
+    [_]{$popup}
+
+
+*   Calculate the probability that exactly 6 out of 10 randomly sampled 18-
+    20 year olds consumed an alcoholic drink.
+
+    [_______________]{$prob1}
+
+*   What is the probability that exactly four out of ten 18-20 year 
+    olds have _not_ consumed an alcoholic beverage?
+
+    [_______________]{$prob2}
+
+*   What is the probability that at most 2 out of 5 randomly sampled 18-20 
+    year olds have consumed alcoholic beverages?
+
+    [_______________]{$prob3}
+
+*   What is the probability that at least 1 out of 5 randomly sampled 18-20 
+    year olds have consumed alcoholic beverages?
+
+    [_______________]{$prob4}
+
+END_PGML
+
+ENDDOCUMENT();
