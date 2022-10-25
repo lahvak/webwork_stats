@@ -33,7 +33,7 @@ $win2 = $base*random(5,10);
 $cost = $base*random(1,2);
 
 $prob1 = Compute("26*25*24/(52*51*50)");
-$prob2 = Compute("13/52 * 12/51 * 11/50");
+$prob2 = Compute("13*12*11/(52*51*50)");
 $prob0 = Compute("1 - $prob1 - $prob2");
 
 $EX = $win0*$prob0 + $win1*$prob1 + $win2*$prob2;
