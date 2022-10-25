@@ -1,0 +1,56 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection(Binomial)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$p = 0.697;
+$q = 1 - $p;
+$n = 50;
+
+$EX = $n*$p;
+$SD = sqrt($n*$p*$q);
+
+$cite = "SAMHSA, Office of Applied Studies, _National Survey on Drug Use and Health_, 2007 and 2008.";
+
+BEGIN_PGML
+### Underage drinking, Part II
+
+
+Data collected by the Substance Abuse and Mental Health
+Services Administration (SAMSHA) suggests that 69.7% of
+18-20 year olds consumed alcoholic beverages in any given
+year.
+
+([$cite]**)
+
+We now consider a random sample of fifty 18-20 year olds.
+
+*   How many people would you expect to have consumed alcoholic beverages? 
+
+    [_____________]{$EX}
+
+*   With what standard deviation?
+
+    [_____________]{$SD}
+
+END_PGML
+
+ENDDOCUMENT();
