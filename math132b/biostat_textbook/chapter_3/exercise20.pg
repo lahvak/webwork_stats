@@ -1,0 +1,35 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Continuous distributions)
+## DBsection(Gaussian normal)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+BEGIN_PGML
+### Area under the curve, Part II
+
+What percent of a standard normal distribution [`N(\mu=0, \sigma=1)`] is found in each region? 
+
+(Use the _standard normal distribution table_ in Appendix B1 in the textbook).
+
+*   [`Z > -1.13`] [________________]{1 - 0.1292}
+*   [`Z < 0.18`] [________________]{0.5714}
+*   [`Z > 8`] [________________]{0}
+*   [`|Z| < 0.5`] [________________]{0.9615 - 0.3085}
+END_PGML
+
+ENDDOCUMENT();
