@@ -1,0 +1,50 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection(Binomial)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$p = .9;
+$q = 1 - $p;
+
+$n = 120;
+
+$EX = $n*$p;
+
+$SD = sqrt($n*$p*$q);
+
+BEGIN_PGML
+### Chickenpox, Part II
+
+We learned in that about 90% of American adults had 
+chickenpox before adulthood. We now consider a random sample of 120 American adults.
+
+*   How many people in this sample would you expect to have had chickenpox 
+    in their childhood?
+
+    [_____________]{$EX}
+
+*   With what standard deviation?
+
+    [_____________]{$SD}
+
+END_PGML
+
+ENDDOCUMENT();
