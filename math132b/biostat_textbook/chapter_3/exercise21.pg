@@ -1,0 +1,53 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Continuous distributions)
+## DBsection(Gaussian normal)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+BEGIN_PGML
+### The standard normal distribution
+
+Consider the standard normal distribution with mean [`\mu = 0`] and standard deviation [`\sigma=1`]. 
+
+(Use the _standard normal distribution table_ in Appendix B1 in the textbook).
+
+*   What is the probability that an outcome [`Z`] is greater than 2.60?
+
+    [_______________]{1-0.9953}
+
+*   What is the probability that [`Z`] is less than 1.35?
+
+    [_______________]{0.9115}
+
+*   What is the probability that [`Z`] is between -1.70 and 3.10?
+
+    [_______________]{0.9990 - 0.0446}
+
+*   What value of [`Z`] cuts off the upper 1.5% of the distribution?
+
+    [_______________]{2.17}
+
+*   What value of [`Z`] marks off the lower 20.9% of the distribution?
+
+    [_______________]{-0.81}
+
+END_PGML
+
+ENDDOCUMENT();
