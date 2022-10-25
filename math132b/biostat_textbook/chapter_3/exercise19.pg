@@ -24,7 +24,7 @@ Context("Numeric");
 BEGIN_PGML
 ### Area under the curve, Part I
 
-What percent of a standard normal distribution $N(\mu=0, \sigma=1)$ is found in each region? 
+What percent of a standard normal distribution [`N(\mu=0, \sigma=1)`] is found in each region? 
 
 (Use the _standard normal distribution table_ in Appendix B1 in the textbook).
 
