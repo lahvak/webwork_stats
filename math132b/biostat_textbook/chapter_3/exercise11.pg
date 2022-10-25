@@ -1,0 +1,65 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection(Binomial)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$oplus = 0.37;
+$ominus = 0.08;
+
+$pplus = $oplus + $ominus;
+$qplus = 1 - $pplus;
+$n = 15;
+
+$EX = $n*$pplus;
+$SD = sqrt($n*$pplus*$qplus);
+
+$pminus = $ominus;
+$qminus = 1 - $pminus;
+
+$prob = 1 - ($qminus**(15) + 15*$pminus*$qminus**(14) + C(15,2)*$pminus**2*$qminus**(13));
+
+
+BEGIN_PGML
+### Donating blood
+
+When patients receive blood transfusions, it is critical that the blood type of the donor is compatible with the
+patients, or else an immune system response will be triggered. For example,
+a patient with Type O- blood can only receive Type O- blood,
+but a patient with Type O+ blood can receive either Type O+
+or Type O- . Furthermore, if a blood donor and recipient are of the same ethnic background,
+the chance of an adverse reaction may be reduced. According to a 10-year donor database, 0.37 of white,
+non-Hispanic donors are O+ and 0.08 are O-.
+
+*   Consider a random sample of 15 white, non-Hispanic donors. Calculate the expected number of
+    individuals who could be a donor to a patient with Type O+ blood.
+
+    [____________________]{$EX}
+
+*   With what standard deviation?
+
+    [____________________]{$SD}
+
+*   What is the probability that 3 or more of the people in this sample could donate blood to a patient with Type O- blood?
+
+    [____________________]{$prob}
+END_PGML
+
+ENDDOCUMENT();
