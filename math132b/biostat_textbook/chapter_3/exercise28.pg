@@ -35,7 +35,7 @@ and standard deviation [`\sigma = [$sigma]\ \mu\text{g}/\text{dl}`].
 
 What range of arsenic blood concentration defines the middle 95\% of this distribution?
 
-[__________________]{$lo}[\mu\text{g}/\text{dl}`] to [__________________]{$hi}[\mu\text{g}/\text{dl}`]
+[__________________]{$lo}[`\mu\text{g}/\text{dl}`] to [__________________]{$hi}[`\mu\text{g}/\text{dl}`]
 END_PGML
 
 ENDDOCUMENT();
