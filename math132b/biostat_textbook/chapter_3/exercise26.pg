@@ -28,7 +28,7 @@ $sigma = 380;
 $z1 = (700 - \mu)/$sigma;
 $z2 = (800 - \mu)/$sigma;
 
-$rstr = "round(pnorm(round(c($z1, $z2),2)),4)"
+$rstr = "round(pnorm(round(c($z1, $z2),2)),4)";
 
 @probs = rserve_eval($rstr);
 
