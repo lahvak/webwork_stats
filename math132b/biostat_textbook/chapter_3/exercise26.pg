@@ -42,7 +42,7 @@ $prob = OneOf($prob_rnd, $prob_exa);
 
 $cutoff = Compute(1.645*$sigma + $mu)->with(
     tolType => 'absolute',
-    tolerance => $sigma*0.005,
+    tolerance => $sigma*0.0051,
     );
 
 BEGIN_PGML
