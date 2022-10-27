@@ -40,7 +40,10 @@ $prob_exa = $probs_exa[1] - $probs_exa[0];
 
 $prob = OneOf($prob_rnd, $prob_exa);
 
-$cutoff = 1.645*$sigma + $mu;
+$cutoff = Compute(1.645*$sigma + $mu)->with(
+    tolType => 'absolute',
+    tolerance => $sigma*0.005,
+    );
 
 BEGIN_PGML
 ### Clutch volume
