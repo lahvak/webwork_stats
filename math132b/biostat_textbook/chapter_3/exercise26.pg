@@ -25,8 +25,8 @@ Context("Numeric");
 $mu = 882.5;
 $sigma = 380;
 
-$z1 = (700 - \mu)/$sigma;
-$z2 = (800 - \mu)/$sigma;
+$z1 = (700 - $mu)/$sigma;
+$z2 = (800 - $mu)/$sigma;
 
 $rstr = "round(pnorm(round(c($z1, $z2),2)),4)";
 
