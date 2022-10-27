@@ -1,0 +1,65 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Continuous distributions)
+## DBsection(Gaussian normal)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "RserveClient.pl",
+           "parserOneOf.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$mu = 85;
+$sigma = 7.5;
+
+$z1 = (100 - $mu)/$sigma;
+
+$rstr_rounded = "round(pnorm(round($z1,2)),4)";
+$rstr_exact = "pnorm($z1)";
+
+@probs_rnd = rserve_eval($rstr_rounded);
+@probs_exa = rserve_eval($rstr_exact);
+
+$prob_rnd = $probs_rnd[0];  # obtained from a table
+$prob_exa = $probs_exa[0];  # obtained using software
+
+$prob = OneOf($prob_rnd, $prob_exa);
+
+$cutoff = Compute(-1.645*$sigma + $mu)->with(
+    tolType => 'absolute',
+    tolerance => $sigma*0.0051,  # Allow z-score between -1.64 and -1.65
+    );
+
+BEGIN_PGML
+### Glucose levels
+
+Fasting blood glucose levels for normal non-diabetic individuals are normally
+distributed in the population, with mean [`\mu = [$mu]`] mg/dL and standard
+deviation [`\sigma = [$sigma]`] mg/dL.
+
+
+*   What is the probability that a randomly chosen member of the population has a fasting glucose level higher than 100 mg/dL?
+
+    [___________________]{$prob}
+
+*   What value of fasting glucose level defines the lower 5th percentile of the distribution?
+
+    [___________________]{$cutoff}
+
+END_PGML
+
+ENDDOCUMENT();
