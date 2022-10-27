@@ -34,8 +34,8 @@ $rstr_exact = "pnorm($z1)";
 @probs_rnd = rserve_eval($rstr_rounded);
 @probs_exa = rserve_eval($rstr_exact);
 
-$prob_rnd = $probs_rnd[0];  # obtained from a table
-$prob_exa = $probs_exa[0];  # obtained using software
+$prob_rnd = 1 - $probs_rnd[0];  # obtained from a table
+$prob_exa = 1 - $probs_exa[0];  # obtained using software
 
 $prob = OneOf($prob_rnd, $prob_exa);
 
