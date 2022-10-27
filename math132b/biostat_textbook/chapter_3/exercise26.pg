@@ -16,6 +16,7 @@ loadMacros("PGstandard.pl",
            "MathObjects.pl",
            "PGML.pl",
            "RserveClient.pl",
+           "parserOneOf.pl",
 );
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
@@ -28,11 +29,16 @@ $sigma = 380;
 $z1 = (700 - $mu)/$sigma;
 $z2 = (800 - $mu)/$sigma;
 
-$rstr = "round(pnorm(round(c($z1, $z2),2)),4)";
+$rstr_rounded = "round(pnorm(round(c($z1, $z2),2)),4)";
+$rstr_exact = "pnorm(c($z1, $z2))";
 
-@probs = rserve_eval($rstr);
+@probs_rnd = rserve_eval($rstr);
+@probs_exa = rserve_eval($rstr);
 
-$prob = $probs[1] - $probs[0];
+$prob_rnd = $probs_rnd[1] - $probs_rnd[0];
+$prob_exa = $probs_exa[1] - $probs_exa[0];
+
+$prob = OneOf($prob_rnd, $prob_exa);
 
 $cutoff = 1.645*$sigma + $mu;
 
@@ -43,8 +49,6 @@ A study investigating maternal investment in a frog species found on the
 Tibetan Plateau reported data on the volume of egg clutches measured across 11
 study sites. The distribution is roughly normal, with approximate distribution
 [`N([$mu], [$sigma]) \ \text{mm}^{3}`]. According to this mathematical model:
-
-[$rstr]
 
 *   What is the probability of observing an egg clutch with volume between 700 and 800 [`\text{mm}^{3}`]?
 
