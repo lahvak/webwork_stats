@@ -1,0 +1,56 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "RserveClient.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$mu = 882.5;
+$sigma = 380;
+
+$z1 = (700 - \mu)/$sigma;
+$z2 = (800 - \mu)/$sigma;
+
+@probs = rserve_eval("round(pnorm(round(c($z1, $z2),2)),4)");
+
+$prob = $probs[1] - $probs[0];
+
+$cutoff = 1.645*$sigma + $mu;
+
+BEGIN_PGML
+### Clutch volume
+
+A study investigating maternal investment in a frog species found on the
+Tibetan Plateau reported data on the volume of egg clutches measured across 11
+study sites. The distribution is roughly normal, with approximate distribution
+[`N([$mu], [$sigma]) \ \text{mm}^{3}`]. According to this mathematical model:
+
+*   What is the probability of observing an egg clutch with volume between 700 and 800 [`\text{mm}^{3}`]?
+
+    [___________________]{$prob}
+
+*   How large are the largest 5% of egg clutches?
+
+    Larger than [___________________]{$cutoff}
+
+_(Round all your z-scores to two decimal places and use the table in Appendix B1.)_
+END_PGML
+
+ENDDOCUMENT();
