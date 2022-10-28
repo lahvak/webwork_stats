@@ -21,7 +21,8 @@ $showPartialCorrectAnswers = 1;
 
 Context("Numeric");
 
-$histogram = image("blue_eggs_hist", width=>400, height=>300, tex_size=>800);
+$histogramhtml = image("blue_eggs_hist.svg", width=>400, height=>300, tex_size=>800);
+$histogramtex = image("blue_eggs_hist.pdf", width=>400, height=>300, tex_size=>800);
 
 @fshead = ("min", "Q1", "median", "Q3", "max", "mean", "sd", "n", "missing");
 @fsvals = ("0.5675", "0.597675", "0.60455", "0.61265", "0.6355", "0.6051614", "0.01309556", "70", "107");
@@ -37,7 +38,7 @@ blue-green pigment into eggshells instead of using it themselves as an
 antioxidant. Researchers measured the blue-green chroma (BGC) of 70 different
 collared flycatcher nests in an area of the Czech Republic.
 
-[@ [$histogram] @]*
+[@ MODES(HTML=>$histogramhtml, TeX=>$histogramtex) @]*
 
 [@
     DataTable([
