@@ -15,6 +15,7 @@ DOCUMENT();
 loadMacros("PGstandard.pl",  
            "MathObjects.pl",
            "PGML.pl",
+           "niceTables.pl",
 );
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
