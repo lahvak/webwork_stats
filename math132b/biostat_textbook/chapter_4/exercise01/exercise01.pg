@@ -16,6 +16,7 @@ loadMacros("PGstandard.pl",
            "MathObjects.pl",
            "PGML.pl",
            "niceTables.pl",
+           "parserRadioButtons.pl",
 );
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
@@ -28,6 +29,22 @@ $histogramtex = image("blue_eggs_hist.pdf", width=>400, height=>300, tex_size=>8
 $fshead = [ ["min", headerrow=>1], "Q1", "median", "Q3", "max", "mean", "sd", "n", "missing" ];
 $fsvals = [ "0.5675", "0.597675", "0.60455", "0.61265", "0.6355", "0.6051614", "0.01309556", "70", "107" ];
 
+$mean = 0.6051614;
+$sd = 0.01309556;
+
+$SE = $sd/sqrt(70);
+
+$diff = 0.63 - $mean;
+
+$z = $diff/$sd;
+
+$unusual = RadioButtons(
+    [
+        "Yes, this is unusually high because it is higher than the mean.",
+        "Yes, this is unusually high because it is higher than the third quartile.",
+        "Yes, the data is mostly bell-shaped and the number is more than 2 standard deviations above the mean.",
+        "No, the number is less than 2 standard deviations above the mean.",
+    ], 3);
 
 BEGIN_PGML
 ### Egg coloration
@@ -39,6 +56,8 @@ blue-green pigment into eggshells instead of using it themselves as an
 antioxidant. Researchers measured the blue-green chroma (BGC) of 70 different
 collared flycatcher nests in an area of the Czech Republic.
 
+The following is the histogram as well as the summary statistics of the BGC variable:
+
 >>[@ MODES(HTML=>$histogramhtml, TeX=>$histogramtex) @]*<<
 
 [@
@@ -48,9 +67,21 @@ collared flycatcher nests in an area of the Czech Republic.
 @]***
 
 *   What is the point estimate for the average BGC of nests?
+
+    [__________________]{0.6051614}
+
 *   What is the point estimate for the standard deviation of the BGC of eggs across nests?
+
+    [__________________]{0.01309556}
+
 *   Would a nest with average BGC of 0.63 be considered unusually high? Explain your reasoning.
-*   Compute the standard error of the sample mean using the summary statistics.
+
+    [_]{$unusual}
+
+*   Estimate the standard error of the sample mean using the summary statistics.
+
+    [__________________]{$SE}
+
 END_PGML
 
 ENDDOCUMENT();
