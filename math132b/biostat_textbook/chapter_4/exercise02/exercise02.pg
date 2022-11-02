@@ -65,7 +65,7 @@ $SEpop = PopUp(
     ["Choose one", ["Standard error", "IQR", "Sampling error", "Sample standard deviation", "Population standard deviation"]],
     "Standard error");
 
-$cite = "G. Heinz et al. _“Exploring relationships in body dimensions”_, In: Journal of Statistics Education 11.2 (2003).";
+$cite = "G. Heinz et al. “Exploring relationships in body dimensions”, In: Journal of Statistics Education 11.2 (2003).";
 
 BEGIN_PGML
 ### Heights of adults
@@ -86,7 +86,7 @@ histogram below shows the sample distribution of heights in centimeters.
 
 *   What is the point estimate for the average height of active individuals? 
 
-    ___________________]{$mean}
+    [___________________]{$mean}
 
 *   What is the point estimate for the standard deviation of the heights of 
     active individuals?
