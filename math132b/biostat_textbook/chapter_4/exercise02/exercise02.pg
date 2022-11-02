@@ -126,4 +126,4 @@ histogram below shows the sample distribution of heights in centimeters.
 
 END_PGML
 
-ENDDCUMENT();
+ENDDOCUMENT();
