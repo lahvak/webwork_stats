@@ -1,0 +1,129 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Discrete distributions)
+## DBsection(Sample means)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserRadioButtons.pl",
+           "parserPopUp.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$histogramhtml = image("adult_heights_hist.svg", width=>400, height=>300, tex_size=>800);
+$histogramtex = image("adult_heights_hist.pdf", width=>400, height=>300, tex_size=>800);
+
+$fshead = [ ["min", headerrow=>1], "Q1", "median", "Q3", "max", "mean", "sd", "n", "missing" ];
+$fsvals = [ "147.2", "163.8", "170.3", "177.8", "198.1", "171.1438", "9.407205", "507", "0" ];
+
+$mean = 171.1438;
+$sd = 9.407205;
+$n = 507;
+$IQR = 177.8 - 163.8;
+
+$SE = $sd/sqrt($n);
+
+$unusual1 = RadioButtons(
+    [
+        "Yes, this is unusually high because it is higher than the mean.",
+        "Yes, this is unusually high because it is higher than the third quartile.",
+        "Yes, the data is mostly bell-shaped and the number is more than 2 standard deviations above the mean.",
+        "No, the number is less than 2 standard deviations above the mean.",
+    ], 3);
+
+$unusual2 = RadioButtons(
+    [
+        "Yes, this is unusually low because it is lower than the mean.",
+        "Yes, this is unusually low because it is lower than the first quartile.",
+        "Yes, the data is mostly bell-shaped and the number is more than 2 standard deviations below the mean.",
+        "No, the number is less than 2 standard deviations below the mean.",
+    ], 3);
+
+$different = RadioButtons(
+    [
+        "Only if the sample size stays the same. All the samples of the same size will have the same mean and standard deviation.",
+        "The new sample will have the same mean, but may have different standard deviations.",
+        "All the samples of the same size will have the same standard deviation, but may have different means.",
+        "Due to sampling variation, the new sample will likely have different mean and different standard deviation."
+    ], 3);
+
+$SEpop = PopUp(
+    ["Choose one", ["Standard error", "IQR", "Sampling error", "Sample standard deviation", "Population standard deviation"]],
+    "Standard error");
+
+$cite = "G. Heinz et al. _“Exploring relationships in body dimensions”_, In: Journal of Statistics Education 11.2 (2003).";
+
+BEGIN_PGML
+### Heights of adults
+
+Researchers studying anthropometry collected body girth measurements and skeletal diameter measurements, as well as 
+age, weight, height and gender, for 507 physically active individuals. The 
+histogram below shows the sample distribution of heights in centimeters. 
+
+([@ $cite @]*)
+
+>>[@ MODES(HTML=>$histogramhtml, TeX=>$histogramtex) @]*<<
+
+[@
+    DataTable([
+       $fshead,
+       $fsvals]);
+@]***
+
+*   What is the point estimate for the average height of active individuals? 
+
+    ___________________]{$mean}
+
+*   What is the point estimate for the standard deviation of the heights of 
+    active individuals?
+
+    [___________________]{$sd}
+
+
+    What about the IQR?
+
+    [___________________]{$IQR}
+
+*   Is a person who is 1m 80cm (180 cm) tall considered unusually tall?
+
+    [_]{$unusual1}
+
+*   Is a person who is 1m 55cm (155cm) considered unusually short?
+
+    [_]{$unusual2}
+
+*   The researchers take another random sample of physically active 
+    individuals. Would you expect the mean and the standard deviation of this new 
+    sample to be the ones given above? Explain your reasoning.
+
+    [_]{$different}
+
+*   The sample means obtained are point estimates for the mean height of all 
+    active individuals, if the sample of individuals is equivalent to a simple 
+    random sample. What measure is used to quantify the variability of such an 
+    estimate?
+
+    [_]{$SEpop}
+
+*   Compute this quantity using the data from the original sample
+    under the condition that the data are a simple random sample. 
+
+    [___________________]{$SE}
+
+END_PGML
+
+ENDDCUMENT();
