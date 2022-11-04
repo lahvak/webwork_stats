@@ -62,7 +62,7 @@ $lower_confidence = RadioButtons(
     "With the lower confidence level, the margin of error would be smaller.",
 );
 
-$cite = "National Opinion Research Center, _General Social Survey_, 2010."
+$cite = "National Opinion Research Center, _General Social Survey_, 2010.";
 
 BEGIN_PGML
 ### Relaxing after work, Part I
