@@ -22,8 +22,8 @@ TEXT(beginproblem());
 
 Context("Numeric");
 
-$histogramhtml = image("adult_heights_hist.svg", width=>400, height=>300, tex_size=>800);
-$histogramtex = image("adult_heights_hist.pdf", width=>400, height=>300, tex_size=>800);
+$histogramhtml = image("thanksgiving_spending_intro_pop_hist.svg", width=>400, height=>300, tex_size=>800);
+$histogramtex = image("thanksgiving_spending_intro_pop_hist.pdf", width=>400, height=>300, tex_size=>800);
 
 $tf = new_select_list();
 $tf->rf_print_q(~~&pop_up_list_print_q);
