@@ -1,0 +1,89 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Confidence intervals)
+## DBsection(Concepts)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserRadioButtons.pl",
+           "parserPopUp.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$distname = PopUp(
+    ["Choose one", 
+     ["Sampling distribution", 
+      "Binomial distribution",
+      "Mean distribution",
+      "Secondary distribution",
+      "Population distribution",
+      ]],
+    "Sampling distribution");
+
+$interpret = RadioButtons(
+    [[
+        "We are 95% confident that the interval between $lbound and $ubound contains the mean number of days US adults experienced poor mental health during the past 30 days.",
+        "95% of US adults experienced poor mental health during the past 30 days on more than $lbound and less than $ubound days.",
+        "95% of of the days that US adults experienced poor mental health during the past 30 days were between $lbound and $ubound days.",
+        "Between $lbound and $ubound of US adults experienced poor mental health 95% of the time.",
+    ]], 
+    "We are 95% confident that the interval between $lbound and $ubound contains the mean number of days US adults experienced poor mental health during the past 30 days.",
+);
+
+$level = RadioButtons(
+    [[
+        "It means that 95% of all possible samples would produce an interval estimate that would contain the mean number of days US adults experienced poor mental health during the past 30 days.",
+        "It means that 95% of US adults experienced poor mental health during the past 30 days on more than $lbound and less than $ubound days.",
+        "It means that 95% of the mean number of days US adults experienced poor mental health during the past 30 days were between $lbound and $ubound.",
+        "It means that only 5% of US adults did not participate in the study.",
+    ]], 
+        "It means that 95% of all possible samples would produce an interval estimate that would contain the mean number of days US adults experienced poor mental health during the past 30 days.",
+);
+
+$newSE = RadioButtons(
+    [
+        "It will be smaller.",
+        "It will stay approximately the same.",
+        "It will be larger.",
+        "It is impossible to tell.",
+    ], "It will be larger.");
+
+$lbound = 3.40;
+$ubound = 4.24;
+
+BEGIN_PGML
+### Mental health, Part I
+
+The 2010 General Social Survey asked the question: _"For how many days during the past 30 days was your 
+mental health, which includes stress, depression, and problems with emotions, not good?"_
+Based on responses from 1,151 US residents, the survey reported a 95% confidence interval of [$lbound] to [$ubound] days in 2010.
+
+*   Interpret this interval in context of the data.
+
+    [_]{$Interpret}
+
+*   What does ``95\% confident" mean? Explain in the context of the application.
+
+    [$level]
+
+*   If a new survey were to be done with 500 Americans, would the standard 
+    error of the estimate be larger, smaller, or about the same? Assume the standard 
+    deviation has remained constant since 2010.
+
+    [_]{$newSE}
+END_PGML
+
+ENDDOCUMENT();
