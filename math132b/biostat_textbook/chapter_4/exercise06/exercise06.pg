@@ -37,18 +37,18 @@ $tf->ra_pop_up_list( [
 
 # Questions and answers
 $tf -> qa ( 
-"We are 95\% confident that the average spending of these 436 American adults is between \$80.31 and \$89.11.",
-"Incorrect",
-"This confidence interval is not valid since the distribution of spending in the sample is right skewed.",
-"Incorrect",
-"95\% of random samples have a sample mean between \$80.31 and \$89.11.",
-"Incorrect",
-"We are 95\% confident that the average spending of all American adults during the 2009 holiday retail season was between \$80.31 and \$89.11.",
-"Correct",
-"A 90\% confidence interval would be narrower than the 95\% confidence interval.",
-"Correct",
-"The margin of error is 4.4.",
-"Correct",
+'We are 95% confident that the average spending of these 436 American adults is between $80.31 and $89.11.',
+'Incorrect',
+'This confidence interval is not valid since the distribution of spending in the sample is right skewed.',
+'Incorrect',
+'95% of random samples have a sample mean between $80.31 and $89.11.',
+'Incorrect',
+'We are 95% confident that the average spending of all American adults during the 2009 holiday retail season was between $80.31 and $89.11.',
+'Correct',
+'A 90% confidence interval would be narrower than the 95% confidence interval.',
+'Correct',
+'The margin of error is $4.4.',
+'Correct',
 );
 
 # How many questions to use
