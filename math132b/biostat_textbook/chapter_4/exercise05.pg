@@ -1,0 +1,106 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Confidence intervals)
+## DBsection(Concepts)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserRadioButtons.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$lbound = 1.38;
+$ubound = 1.92;
+
+$interpret = RadioButtons(
+    [[
+        "We are 95% confident that the interval between $lbound and $ubound contains the mean number of hours Americans in 2010 had to relax or pursue activities that they enjoy.",
+        "In 2010, 95% of all Americans had more than $lbound and less than $ubound hours to relax or pursue activities that they enjoy.",
+        "In 2010, 95% of all activities that Americas enjoy were between $lbound and $ubound hours long.",
+        "On 95% of the days in 2010, Americans only had between $lbound and $ubound hours to relax or pursue activities that they enjoy.",
+    ]], 
+    "We are 95% confident that the interval between $lbound and $ubound contains the mean number of hours Americans in 2010 had to relax or pursue activities that they enjoy.",
+);
+
+$larger_error = RadioButtons(
+    [[
+        "To get larger margin of error from the same data, their confidence level must be larger.",
+        "To get larger margin of error from the same data, their confidence level must be smaller.",
+        "The confidence level have no effect on margin of error, they must have made a mistake in their calculation."
+    ]],
+    "To get larger margin of error from the same data, their confidence level must be larger.",
+);
+
+$larger_sample = RadioButtons(
+    [[
+        "With the larger sample, the margin of error would be smaller.",
+        "With the larger sample, the margin of error would be larger.",
+        "It would be about the same, sample size does not influence the margin of error."
+    ]],
+    "With the larger sample, the margin of error would be smaller.",
+);
+
+$lower_confidence = RadioButtons(
+    [[
+        "With the lower confidence level, the margin of error would be smaller.",
+        "With the lower confidence level, the margin of error would be larger.",
+        "It would be about the same, confidence level does not influence the margin of error."
+    ]],
+    "With the lower confidence level, the margin of error would be smaller.",
+);
+
+$cite = "National Opinion Research Center, _General Social Survey_, 2010."
+
+BEGIN_PGML
+### Relaxing after work, Part I
+
+The 2010 General Social Survey asked the question:
+"After an average work day, about how many hours do you have to relax or pursue 
+activities that you enjoy?" to a random sample of 1,155 Americans.
+
+A 95% confidence interval for the mean number of hours spent 
+relaxing or pursuing activities they enjoy was ([$lbound], [$ubound]).
+
+([$cite]*)
+
+*   Interpret this interval in context of the data.
+
+    [_]{$interpret}
+
+*   Suppose another set of researchers reported a confidence interval with a 
+    _larger margin of error_ based on the same sample of 1,155 Americans. How does 
+    their confidence level compare to the confidence level of the interval stated 
+    above?
+
+    [_]{$larger_error}
+
+*   Suppose next year a new survey asking the same question is conducted, and 
+    this time the sample size is 2,500. Assuming that the population 
+    characteristics, with respect to how much time people spend relaxing after work, 
+    have not changed much within a year. How will the margin of error of the new 95% 
+    confidence interval compare to the margin of error of the interval stated above?
+
+    [_]{$larger_sample}
+
+*   Suppose the researchers think that 90% confidence interval would be more
+    appropriate. Will this new interval be smaller or larger than the original 95%
+    confidence interval? Justify your answer. (Assume that the standard deviation
+    and the sample size remain constant).
+
+    [_]{$lower_confidence}
+END_PGML
+
+ENDDOCUMENT();
