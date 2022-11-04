@@ -1,0 +1,98 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Confidence intervals)
+## DBsection(Concepts)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "PGchoicemacros.pl",
+           "PGgraders.pl",
+);
+TEXT(beginproblem());
+
+Context("Numeric");
+
+$histogramhtml = image("adult_heights_hist.svg", width=>400, height=>300, tex_size=>800);
+$histogramtex = image("adult_heights_hist.pdf", width=>400, height=>300, tex_size=>800);
+
+$tf = new_select_list();
+$tf->rf_print_q(~~&pop_up_list_print_q);
+
+# Choices presented to students
+$tf->ra_pop_up_list( [ 
+"No answer" => "?", 
+"Correct"  => "Correct", 
+"Incorrect" => "Incorrect",
+]);
+
+# Questions and answers
+$tf -> qa ( 
+"We are 95\% confident that the average spending of these 436 American adults is between \$80.31 and \$89.11.",
+"Incorrect",
+"This confidence interval is not valid since the distribution of spending in the sample is right skewed.",
+"Incorrect",
+"95\% of random samples have a sample mean between \$80.31 and \$89.11.",
+"Incorrect",
+"We are 95\% confident that the average spending of all American adults during the 2009 holiday retail season was between \$80.31 and \$89.11.",
+"Correct",
+"A 90\% confidence interval would be narrower than the 95\% confidence interval.",
+"Correct",
+"The margin of error is 4.4.",
+"Correct",
+);
+
+# How many questions to use
+$tf->choose(6);
+
+BEGIN_PGML
+### Thanksgiving spending, Part I
+
+The 2009 holiday retail season, which kicked off on November 27, 2009 
+(the day after Thanksgiving), had been marked by somewhat lower 
+self-reported consumer spending than was seen during the comparable 
+period in 2008. To get an estimate of consumer spending, 436 randomly 
+sampled American adults were surveyed. Daily consumer spending for the 
+six-day period after Thanksgiving, spanning the Black Friday weekend and 
+Cyber Monday, averaged $84.71. A 95% confidence interval based on 
+this sample is ($80.31, $89.11). The histogram of the data is below.
+
+>>[@ MODES(HTML=>$histogramhtml, TeX=>$histogramtex) @]*<<
+
+Determine whether the following 
+statements are correct or incorrect.  Make sure you are able to explain your reasoning!
+
+[@ $tf -> print_q() @]*
+
+END_PGML
+
+
+############################
+#  Answer evaluation
+
+$showPartialCorrectAnswers = 1;
+
+#
+#  Incremental grader
+#
+install_problem_grader(~~&custom_problem_grader_fluid);
+$ENV{'grader_numright'} = [2,4,6];
+$ENV{'grader_scores'} = [0.3,0.6,1];
+$ENV{'grader_message'} = "You can earn " .
+"30% partial credit for 2 - 3 correct answers, and " .
+"60% partial credit for 4 - 5 correct answers.";
+
+
+ANS( str_cmp( $tf->ra_correct_ans() ) );
+
+
+ENDDOCUMENT();
