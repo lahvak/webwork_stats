@@ -1,0 +1,97 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Sampling distributions)
+## DBsection(Sample means)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserRadioButtons.pl",
+           "parserPopUp.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$distname = PopUp(
+    ["Choose one", 
+     ["Sampling distribution", 
+      "Binomial distribution",
+      "Mean distribution",
+      "Secondary distribution",
+      "Population distribution",
+      ]],
+    "Sampling distribution");
+
+$shape = RadioButtons(
+    [
+        "The distribution will be left skewed, because eggs are more pointy on one end than on the other.",
+        "The distribution will be right skewed, caused by few ultra competitive chickens that lay whole bunch of eggs.",
+        "The distribution will be symmetric, because distribution of sample means is always symmetric.",
+        "The distribution will be symmetric, because the sample size is large enough for the Central Limit Theorem to apply.",
+    ], 3);
+
+$SEpop = PopUp(
+    ["Choose one", ["Standard error", "Sampling error", "Sample standard deviation", "Population standard deviation", "Egg variation"]],
+    "Standard error");
+
+$newSE = RadioButtons(
+    [
+        "It will be smaller.",
+        "It will stay approximately the same.",
+        "It will be larger.",
+        "It is impossible to tell.",
+    ], "It will be larger.");
+
+$xbar = 35;
+$s = 18.2;
+$n1 = 45;
+$n2 = 10;
+
+$SE = Compute("$s/sqrt($n1)");
+
+BEGIN_PGML
+### Hen eggs
+
+The distribution of the number of eggs laid 
+by a certain species of hen during their breeding period is on average, 35 eggs,  
+with a standard deviation of 18.2. Suppose a group of researchers 
+randomly samples 45 hens of this species, counts the number of eggs laid 
+during their breeding period, and records the sample mean. They repeat 
+this 1,000 times, and build a distribution of sample means.
+ 
+*   What is this distribution called? 
+
+    [_]{$distname}
+
+*   Would you expect the shape of this distribution to be symmetric, right 
+    skewed, or left skewed? Explain your reasoning.
+
+    [_]{$shape}
+
+*   Calculate the variability of this distribution and state the appropriate 
+    term used to refer to this value.
+
+    The variability is [_____________]{$SE}, and the term used to refer to it is [_]{$SEpop}.
+
+*   Suppose the researchers' budget is reduced and they are only able to 
+    collect random samples of 10 hens. The sample mean of the number of eggs is 
+    recorded, and we repeat this 1,000 times, and build a new distribution of sample 
+    means. How will the variability of this new distribution compare to the 
+    variability of the original distribution?
+
+    [_]{$newSE}
+
+END_PGML
+
+ENDDOCUMENT();
