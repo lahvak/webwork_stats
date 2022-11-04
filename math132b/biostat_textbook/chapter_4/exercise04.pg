@@ -49,8 +49,8 @@ $level = RadioButtons(
         "It means that 95% of US adults experienced poor mental health during the past 30 days on more than $lbound and less than $ubound days.",
         "It means that 95% of the mean number of days US adults experienced poor mental health during the past 30 days were between $lbound and $ubound.",
         "It means that only 5% of US adults did not participate in the study.",
-    ]], 
-        "It means that 95% of all possible samples would produce an interval estimate that would contain the mean number of days US adults experienced poor mental health during the past 30 days.",
+    ]],
+    "It means that 95% of all possible samples would produce an interval estimate that would contain the mean number of days US adults experienced poor mental health during the past 30 days.",
 );
 
 $newSE = RadioButtons(
@@ -77,7 +77,7 @@ Based on responses from 1,151 US residents, the survey reported a 95% confidence
 
 *   What does ``95\% confident" mean? Explain in the context of the application.
 
-    [$level]
+    [_]{$level}
 
 *   If a new survey were to be done with 500 Americans, would the standard 
     error of the estimate be larger, smaller, or about the same? Assume the standard 
