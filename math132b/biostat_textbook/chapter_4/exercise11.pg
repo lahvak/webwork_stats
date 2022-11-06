@@ -50,8 +50,8 @@ situations.
     New Yorkers were asked how much sleep they get per night. Do these data provide 
     convincing evidence that New Yorkers on average sleep less than 8 hours a night?
 
-    *   [`H_0`]: The mean time [$h0parameter1] sleep each night [$h0relation1] [_____]{$h0value1} hours.
-    *   [`H_A`]: The mean time [$h1parameter1] sleep each night [$h1relation1] [_____]{$h1value1} hours.
+    *   [`H_0`]: The mean time [_]{$h0parameter1} sleep each night [_]{$h0relation1} [_____]{$h0value1} hours.
+    *   [`H_A`]: The mean time [_]{$h1parameter1} sleep each night [_]{$h1relation1} [_____]{$h1value1} hours.
 
 *   Employers at a firm are worried about the effect of March Madness, a 
     basketball championship held each spring in the US, on employee productivity. 
@@ -62,8 +62,8 @@ situations.
     provide convincing evidence that employee productivity decreases during March 
     Madness.
 
-    *   [`H_0`]: The mean time [$h0parameter2] spend on non-busines activities [$h0relation2] [_____]{$h0value2} minutes.
-    *   [`H_A`]: The mean time [$h1parameter2] spend on non-busines activities [$h1relation2] [_____]{$h1value2} minutes.
+    *   [`H_0`]: The mean time [_]{$h0parameter2} spend on non-busines activities [_]{$h0relation2} [_____]{$h0value2} minutes.
+    *   [`H_A`]: The mean time [_]{$h1parameter2} spend on non-busines activities [_]{$h1relation2} [_____]{$h1value2} minutes.
 
 END_PGML
 
