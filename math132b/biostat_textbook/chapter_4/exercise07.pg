@@ -62,7 +62,8 @@ room waiting time at her hospital. She collects a simple random sample
 of 64 patients and determines the time (in minutes) between when they 
 checked in to the ER until they were first seen by a doctor. A 95% 
 confidence interval based on this sample is (128 minutes, 147 minutes), 
-which is based on the normal model for the mean. Determine whether the 
+which is based on the normal model for the mean. The histogram of the sample
+exhibits some right skew, but is not extremely skewed. Determine whether the 
 following statements are true or false, and explain your reasoning.
 
 [@ $tf -> print_q() @]*
