@@ -1,0 +1,103 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Confidence intervals)
+## DBsection(One sample mean - t)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserRadioButtons.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$histogramhtml = image("adult_heights_hist.svg", width=>400, height=>300, tex_size=>800);
+$histogramtex = image("adult_heights_hist.pdf", width=>400, height=>300, tex_size=>800);
+
+$independence = RadioButtons(
+[[
+"The sample is a random sample, and the sample size is less than 10% of the population. The data can be regarded as independent.",
+"The sample is too large (more than 10% of the population), so the data cannot ge regarded as independent.",
+"The sample is not random, so the data may not be independent.",
+"The sample is random, but during the data collection, teh subjects were able to influence each other, so the data is not independent."
+]],
+"The sample is a random sample, and the sample size is less than 10% of the population. The data can be regarded as independent.",
+);
+
+$normality = RadioButtons(
+[[
+"The sample histogram does show that the data is nearly normal.",
+"The sample histogram does show slight right skew, but the sample size is large enough.",
+"The sample histogram shows that the data is skewed to the right, so the confidence interval will be invalid.",
+]],
+"The sample histogram does show slight right skew, but the sample size is large enough.",
+);
+
+$n = 5534;
+$xbar = 23.44;
+$s = 4.72;
+
+$t = 1.96;
+
+$SE = Compute("$s/sqrt($n)");
+
+$m = Compute("$t*$SE");
+
+$lower = Compute("$xbar - $m");
+$upper = Compute("$xbar + $m");
+
+$cite = "Centers for Disease Control and Prevention, _National Survey of Family Growth_, 2010.";
+
+BEGIN_PGML
+### Age at first marriage, Part I
+
+The National Survey of Family Growth conducted by the Centers for Disease 
+Control gathers information on family life, marriage and divorce, pregnancy, 
+infertility, use of contraception, and men's and women's health. One of the 
+variables collected on this survey is the age at first marriage. The histogram 
+below shows the distribution of ages at first marriage of 5,534 randomly sampled 
+women between 2006 and 2010. The average age at first marriage among these women 
+is 23.44 with a standard deviation of 4.72.
+
+([@ $cite @]*)
+
+>>[@ MODES(HTML=>$histogramhtml, TeX=>$histogramtex) @]*<<
+
+The goal is to estimate the average age at first marriage of women using a 95% confidence 
+interval.
+
+*   Is the _independence_ assumption satisfied for this data?
+
+    [_]{$independence}
+
+*   Is the _normality_ assumption satisfied for this data?
+
+    [_]{$normality}
+
+*   Calculate the _standard error_:
+
+    [_______________]{$SE}
+
+*   Calculate the _margin of error_, using [`t^\star = [$t]`]:
+
+    [_______________]{$m}
+
+---
+
+*Conclusion:* We are 95% confident that the interval between [_______________]{$lower} and [_______________]{$upper}
+contains the mean age of first marriage of all women in the United States.
+
+END_PGML
+
+ENDDOCUMENT();
