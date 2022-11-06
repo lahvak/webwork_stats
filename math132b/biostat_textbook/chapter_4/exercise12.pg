@@ -1,0 +1,68 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Hypothesis tests)
+## DBsection(Concepts)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserPopUp.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$h0parameter1 = PopUp(["Choose one", "x̅", "μ"],"μ");
+$h0relation1 = PopUp(["Choose one", "<", "=", ">", "≠"],"=");
+$h0value1 = 1100;
+
+$h1parameter1 = PopUp(["Choose one", "x̅", "μ"],"μ");
+$h1relation1 = PopUp(["Choose one", "<", "=", ">", "≠", "≤", "≥"],"≠");
+$h1value1 = 1100;
+
+$h0parameter2 = PopUp(["Choose one", "x̅", "μ"],"μ");
+$h0relation2 = PopUp(["Choose one", "<", "=", ">", "≠"],"=");
+$h0value2 = 462;
+
+$h1parameter2 = PopUp(["Choose one", "x̅", "μ"],"μ");
+$h1relation2 = PopUp(["Choose one", "<", "=", ">", "≠", "≤", "≥"],"≠");
+$h1value2 = 462;
+
+BEGIN_PGML
+### Identify hypotheses, Part II
+
+Write the null and alternative hypotheses using symbols 
+for each of the following situations.
+
+*   Since 2008, chain restaurants in California have been required to display 
+    calorie counts of each menu item. Prior to menus displaying calorie counts, the 
+    average calorie intake of diners at a restaurant was 1100 calories. After 
+    calorie counts started to be displayed on menus, a nutritionist collected data 
+    on the number of calories consumed at this restaurant from a random sample of 
+    diners. Do these data provide convincing evidence of a difference in the average 
+    calorie intake of a diners at this restaurant?
+
+    *   [`H_0`]: [_]{$h0parameter1} [_]{$h0relation1} [_______]{$h0value1}
+    *   [`H_A`]: [_]{$h1parameter1} [_]{$h1relation1} [_______]{$h1value1}
+
+*   Based on the performance of those who took the GRE exam between July 1, 
+    2004 and June 30, 2007, the average Verbal Reasoning score was calculated to be 
+    462. In 2011 the average verbal score was slightly higher. Do these data provide 
+    convincing evidence that the average GRE Verbal Reasoning score has changed since 2004?
+
+    *   [`H_0`]: [_]{$h0parameter2} [_]{$h0relation2} [_______]{$h0value2}
+    *   [`H_A`]: [_]{$h1parameter2} [_]{$h1relation2} [_______]{$h1value2}
+
+END_PGML
+
+ENDDOCUMENT();
