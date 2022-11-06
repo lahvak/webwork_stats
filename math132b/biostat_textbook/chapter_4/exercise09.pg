@@ -1,0 +1,87 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Confidence intervals)
+## DBsection(Concepts)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "PGchoicemacros.pl",
+           "PGgraders.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$tf = new_select_list();
+$tf->rf_print_q(~~&pop_up_list_print_q);
+
+# Choices presented to students
+$tf->ra_pop_up_list( [ 
+"No answer" => "?", 
+"Correct"  => "Correct", 
+"Incorrect" => "Incorrect",
+]);
+
+# Questions and answers
+$tf -> qa ( 
+'The confidence interval of (3.40, 4.24) contains the mean days out of the past 30 days that U.S. adults experienced poor mental health.',
+"Incorrect",
+'There is a 95% chance that the mean days out of the past 30 days that U.S. adults experienced poor mental health is within the confidence interval (3.40, 4.24).',
+"Incorrect",
+'If we repeated this survey 1,000 times and constructed a 95% confidence interval each time, then approximately 950 of those intervals would contain the true mean days out of the past 30 days that U.S. adults experienced poor mental health.',
+"Correct",
+'The survey provides statistically significant evidence at the \(\alpha = 0.05\) significance level that the mean days out of the past 30 days that U.S. adults experienced poor mental health is not 4.5 days.',
+"Correct",
+'We can be 95% confident that the mean days out of the past 30 days that U.S. adults experienced poor mental health is 3.82 days.',
+"Incorrect",
+'We can be 95% confident that the interval (3.40, 4.24) days contains the mean days out of the past 30 days that the sampled adults experienced poor mental health.',
+"Incorrect",
+'The 90\% confidence interval calculated from the same data would be to be larger than the 95% confidence interval.',
+"Incorrect"
+);
+
+BEGIN_PGML
+### Mental health, Part II
+
+The General Social Survey (GSS) is a sociological survey used to collect data
+on demographic characteristics and attitudes of residents of the United States.
+The 2010 General Social Survey asked the question, "For how many days during
+the past 30 days was your mental health not good?" Based on responses from
+1,151 US adults, the survey reported a 95% confidence interval of (3.40, 4.24)
+days. Assume that the sampled US adults are representative of all US adults.
+
+Identify each of the following statements as true or false. Justify your answers.
+
+[@ $tf -> print_q() @]*
+
+END_PGML
+
+############################
+#  Answer evaluation
+
+$showPartialCorrectAnswers = 1;
+
+#
+#  Incremental grader
+#
+install_problem_grader(~~&custom_problem_grader_fluid);
+$ENV{'grader_numright'} = [3,5,7];
+$ENV{'grader_scores'} = [0.4,0.7,1];
+$ENV{'grader_message'} = "You can earn " .
+"40% partial credit for 3 - 4 correct answers, and " .
+"70% partial credit for 5 - 6 correct answers.";
+
+ANS( str_cmp( $tf->ra_correct_ans() ) );
+
+ENDDOCUMENT();
