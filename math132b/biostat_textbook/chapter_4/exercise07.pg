@@ -39,7 +39,7 @@ $tf -> qa (
 'Incorrect',
 'We are 95% confident that the average waiting time of these 64 emergency room patients is between 128 and 147 minutes.',
 'Incorrect',
-'We are 95% confident that the average waiting time of all patients at this hospital\'s emergency room is between 128 and 147 minutes.',
+'We are 95% confident that the average waiting time of all patients at this hospital~~'s emergency room is between 128 and 147 minutes.',
 'Correct',
 '95% of random samples have a sample mean between 128 and 147 minutes.',
 'Incorrect',
