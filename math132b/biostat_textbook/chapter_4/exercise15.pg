@@ -38,7 +38,7 @@ $claim2 = RadioButtons(
 "Yes, this claim is consistent with the interval, 2.2 hours is not within the confidence interval.",
 "No, this claim is not consistent with the interval, 2.2 hours is within the confidence interval.",
 ]],
-"Yes, this claim is consistent, 2.2 hours is within the confidence interval.",
+"Yes, this claim is consistent with the interval, 2.2 hours is within the confidence interval.",
 );
 
 $newinterval = RadioButtons(
