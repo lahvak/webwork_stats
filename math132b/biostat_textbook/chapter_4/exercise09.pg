@@ -34,7 +34,7 @@ $tf->ra_pop_up_list( [
 ]);
 
 # Questions and answers
-$tf -> qa ( 
+$tf -> qa(
 'The confidence interval of (3.40, 4.24) contains the mean days out of the past 30 days that U.S. adults experienced poor mental health.',
 "Incorrect",
 'There is a 95% chance that the mean days out of the past 30 days that U.S. adults experienced poor mental health is within the confidence interval (3.40, 4.24).',
@@ -51,6 +51,9 @@ $tf -> qa (
 "Incorrect"
 );
 
+# How many questions to use
+$tf->choose(7);
+
 BEGIN_PGML
 ### Mental health, Part II
 
@@ -61,7 +64,7 @@ the past 30 days was your mental health not good?" Based on responses from
 1,151 US adults, the survey reported a 95% confidence interval of (3.40, 4.24)
 days. Assume that the sampled US adults are representative of all US adults.
 
-Identify each of the following statements as true or false. Justify your answers.
+Identify each of the following statements as true or false. Make sure you can justify your answers!
 
 [@ $tf -> print_q() @]*
 
