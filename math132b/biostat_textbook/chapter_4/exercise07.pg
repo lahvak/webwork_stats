@@ -1,0 +1,92 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Confidence intervals)
+## DBsection(Concepts)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "PGchoicemacros.pl",
+           "PGgraders.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$tf = new_select_list();
+$tf->rf_print_q(~~&pop_up_list_print_q);
+
+# Choices presented to students
+$tf->ra_pop_up_list( [ 
+"No answer" => "?", 
+"Correct"  => "Correct", 
+"Incorrect" => "Incorrect",
+]);
+
+# Questions and answers
+$tf -> qa ( 
+'This confidence interval is not valid since we do not know if the population distribution of the ER wait times is nearly Normal.',
+'Incorrect',
+'We are 95% confident that the average waiting time of these 64 emergency room patients is between 128 and 147 minutes.',
+'Incorrect',
+'We are 95% confident that the average waiting time of all patients at this hospital\'s emergency room is between 128 and 147 minutes.',
+'Correct',
+'95% of random samples have a sample mean between 128 and 147 minutes.',
+'Incorrect',
+'A 99% confidence interval would be narrower than the 95% confidence interval since we need to be more sure of our estimate.',
+'Incorrect',
+'The margin of error is 9.5 and the sample mean is 137.5.',
+'Correct',
+'Halving the margin of error of a 95% confidence interval requires doubling the sample size.'
+'Incorrect',
+);
+
+# How many questions to use
+$tf->choose(7);
+
+BEGIN_PGML
+### Waiting at an ER, Part I
+
+A hospital administrator hoping to improve wait times decides to estimate the average emergency 
+room waiting time at her hospital. She collects a simple random sample 
+of 64 patients and determines the time (in minutes) between when they 
+checked in to the ER until they were first seen by a doctor. A 95% 
+confidence interval based on this sample is (128 minutes, 147 minutes), 
+which is based on the normal model for the mean. Determine whether the 
+following statements are true or false, and explain your reasoning.
+
+[@ $tf -> print_q() @]*
+
+END_PGML
+
+############################
+#  Answer evaluation
+
+$showPartialCorrectAnswers = 1;
+
+#
+#  Incremental grader
+#
+install_problem_grader(~~&custom_problem_grader_fluid);
+$ENV{'grader_numright'} = [3,5,7];
+$ENV{'grader_scores'} = [0.4,0.7,1];
+$ENV{'grader_message'} = "You can earn " .
+"40% partial credit for 3 - 4 correct answers, and " .
+"70% partial credit for 5 - 6 correct answers.";
+
+
+ANS( str_cmp( $tf->ra_correct_ans() ) );
+
+
+
+ENDDOCUMENT();
