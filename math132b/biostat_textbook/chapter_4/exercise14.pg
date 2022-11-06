@@ -1,0 +1,70 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Hypothesis tests)
+## DBsection(Concepts)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGchoicemacros.pl",
+           "PGML.pl",
+);
+TEXT(beginproblem());
+
+Context("Numeric");
+
+$mc = new_checkbox_multiple_choice();
+
+$mc -> qa (
+"Select all errors in the above hypotheses:",
+"In \(H_0\), \(\bar{x}\) is incorrect.$BR",
+"In \(H_A\), \(\bar{x}\) is incorrect.$BR",
+"In \(H_A\), \(>\) is incorrect.$BR",
+);
+
+$mc -> extra(
+"In \(H_0\), \(=\) is incorrect.$BR",
+"In \(H_0\), \(23.44\) is incorrect.$BR",
+"In \(H_A\), \(23.44\) is incorrect.$BR",
+);
+
+$mc -> makeLast("There are no errors.");
+
+BEGIN_PGML
+### Age at first marriage, Part II
+
+The National Survey of Family Growth conducted by the Centers for Disease 
+Control gathers information on family life, marriage and divorce, pregnancy, 
+infertility, use of contraception, and men's and women's health. One of the 
+variables collected on this survey is the age at first marriage.
+Data from the 2006 - 2010 survey show that the average age of women at first marriage 
+is 23.44. Suppose a social scientist believes that this value has increased in 
+2012, but she would also be interested if she found a decrease. Below is how she 
+set up her hypotheses. Indicate any errors you see.
+
+[`
+\begin{align*}
+H_0&: \bar{x} = 23.44\text{ years} \\
+H_A&: \bar{x} > 23.44\text{ years}
+\end{align*}
+`]
+
+[@ $mc -> print_q() @]***
+[@ $mc -> print_a() @]***
+END_PGML
+
+############################
+#  Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( checkbox_cmp( $mc->correct_ans() ) );
+
+ENDDOCUMENT();
