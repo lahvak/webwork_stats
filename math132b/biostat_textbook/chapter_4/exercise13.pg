@@ -1,0 +1,70 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Hypothesis tests)
+## DBsection(Concepts)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGchoicemacros.pl",
+           "PGML.pl",
+);
+TEXT(beginproblem());
+
+Context("Numeric");
+
+$mc = new_checkbox_multiple_choice();
+
+$mc -> qa (
+"Select all errors in the above hypotheses:",
+"In \(H_0\), \(\bar{x}\) is incorrect.$BR",
+"In \(H_A\), \(\bar{x}\) is incorrect.$BR",
+"In \(H_0\), \(<\) is incorrect.$BR",
+"In \(H_A\), \(13.5\) is incorrect.$BR",
+);
+
+$mc -> extra(
+"In \(H_0\), \(10\) is incorrect.$BR",
+"In \(H_A\), \(<\) is incorrect.$BR",
+);
+
+$mc -> makeLast("There are no errors.");
+
+
+BEGIN_PGML
+### Online communication
+
+A study suggests that the 
+average college student spends 10 hours per week communicating with others 
+online. You believe that this is an underestimate and decide to collect your 
+own sample for a hypothesis test. You randomly sample 60 students from your 
+dorm and find that on average they spent 13.5 hours a week communicating with 
+others online. A friend of yours, who offers to help you with the hypothesis 
+test, comes up with the following set of hypotheses. Indicate any errors you see.
+
+[`
+\begin{align*}
+H_0&: \bar{x} < 10\text{ hours} \\
+H_A&: \bar{x} > 13.5\text{ hours}
+\end{align*}
+`]
+
+[@ $mc -> print_q() @]***
+[@ $mc -> print_a() @]***
+END_PGML
+
+############################
+#  Answer evaluation
+
+install_problem_grader(~~&std_problem_grader);
+
+$showPartialCorrectAnswers = 1;
+
+ANS( checkbox_cmp( $mc->correct_ans() ) );
+
+ENDDOCUMENT();
