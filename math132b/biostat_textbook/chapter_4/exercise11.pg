@@ -1,0 +1,70 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Hypothesis tests)
+## DBsection(Concepts)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserPopUp.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$h0parameter1 = PopUp(["Choose one", "all New Yorkers", "the 25 New Yorkers in the sample"],"all New Yorkers");
+$h0relation1 = PopUp(["Choose one", "is less than", "is equal", "is larger than", "is not equal"],"is equal");
+$h0value1 = 8;
+
+$h1parameter1 = PopUp(["Choose one", "all New Yorkers", "the 25 New Yorkers in the sample"],"all New Yorkers");
+$h1relation1 = PopUp(["Choose one", "is less than", "is equal", "is larger than", "is not equal", "is less than or equal", "is larger than or equal"],"is less than");
+$h1value1 = 8;
+
+$h0parameter2 = PopUp(["Choose one", "all company employees on any March Madness day", "selected company employees on any March Madness day", "all company employees on selected March Madness days", "selected company employees on selected March Madness days"],"all company employees on any March Madness day");
+$h0relation2 = PopUp(["Choose one", "is less than", "is equal", "is larger than", "is not equal"],"is equal");
+$h0value2 = 15;
+
+$h1parameter2 = PopUp(["Choose one", "all company employees on any March Madness day", "selected company employees on any March Madness day", "all company employees on selected March Madness days", "selected company employees on selected March Madness days"],"all company employees on any March Madness day");
+$h1relation2 = PopUp(["Choose one", "is less than", "is equal", "is larger than", "is not equal", "is less than or equal", "is larger than or equal"],"is larger than");
+$h1value2 = 15;
+
+
+BEGIN_PGML
+### Identify hypotheses, Part I
+
+Write the null 
+and alternative hypotheses in words for each of the following 
+situations.
+
+*   New York is known as "the city that never sleeps". A random sample of 25 
+    New Yorkers were asked how much sleep they get per night. Do these data provide 
+    convincing evidence that New Yorkers on average sleep less than 8 hours a night?
+
+    *   [`H_0`]: The mean time [$h0parameter1] sleep each night [$h0relation1] [_____]{$h0value1} hours.
+    *   [`H_A`]: The mean time [$h1parameter1] sleep each night [$h1relation1] [_____]{$h1value1} hours.
+
+*   Employers at a firm are worried about the effect of March Madness, a 
+    basketball championship held each spring in the US, on employee productivity. 
+    They estimate that on a regular business day employees spend on average 15 
+    minutes of company time checking personal email, making personal phone calls, 
+    etc. They also collect data on how much company time employees spend on such non-
+    business activities during March Madness. They want to determine if these data 
+    provide convincing evidence that employee productivity decreases during March 
+    Madness.
+
+    *   [`H_0`]: The mean time [$h0parameter2] spend on non-busines activities [$h0relation2] [_____]{$h0value2} minutes.
+    *   [`H_A`]: The mean time [$h1parameter2] spend on non-busines activities [$h1relation2] [_____]{$h1value2} minutes.
+
+END_PGML
+
+ENDDOCUMENT();
