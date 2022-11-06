@@ -22,8 +22,8 @@ $showPartialCorrectAnswers = 1;
 
 Context("Numeric");
 
-$histogramhtml = image("adult_heights_hist.svg", width=>400, height=>300, tex_size=>800);
-$histogramtex = image("adult_heights_hist.pdf", width=>400, height=>300, tex_size=>800);
+$histogramhtml = image("age_at_first_marriage_intro_hist.svg", width=>400, height=>300, tex_size=>800);
+$histogramtex = image("age_at_first_marriage_intro_hist.pdf", width=>400, height=>300, tex_size=>800);
 
 $independence = RadioButtons(
 [[
