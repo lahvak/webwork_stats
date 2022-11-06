@@ -49,7 +49,7 @@ $newinterval = RadioButtons(
 "Yes, this claim will be consistent with the new interval. The 2.2 hours was the point estimate, so it will be within any confidence interval, regardless of the confidence level.",
 "It is impossible to tell without actually calculating the 99% confidence interval."
 ]],
-"Yes, this claim will still be consistent, since the 99% interval will be wider than the 95% one, so it will still contain 2.2 hours.",
+"Yes, this claim will be consistent with the new interval, since the 99% interval will be wider than the 95% one, so it will still contain 2.2 hours.",
 );
 
 BEGIN_PGML
