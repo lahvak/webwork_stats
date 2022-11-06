@@ -1,0 +1,87 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Confidence intervals)
+## DBsection(Concepts)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "PGchoicemacros.pl",
+           "PGgraders.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$tf = new_select_list();
+$tf->rf_print_q(~~&pop_up_list_print_q);
+
+# Choices presented to students
+$tf->ra_pop_up_list( [ 
+"No answer" => "?", 
+"Correct"  => "Correct", 
+"Incorrect" => "Incorrect",
+]);
+
+# Questions and answers
+$tf -> qa(
+'If the researchers wanted to report a confidence interval with a smaller margin of error based on the same sample of 1,154 Americans, the confidence interval would be larger.',
+'Incorrect',
+'We can be 95% confident that the interval (3.53, 3.83) hours contains the mean hours that the sampled adults have for leisure time after an average workday.',
+'Incorrect',
+'The confidence interval of (3.53, 3.83) hours contains the mean hours that U.S. adults have for leisure time after an average workday.',
+'Incorrect',
+'The survey provides statistically significant evidence at the \(\alpha = 0.05\) significance level that the mean hours U.S. adults have for leisure time after the average workday is 3.6 hours.',
+'Incorrect',
+'There is a 5% chance that the interval (3.53, 3.83) hours does not contain the mean hours that U.S. adults have for leisure time after an average workday.',
+'Correct',
+'The interval (3.53, 3.83) hours provides evidence at the \(\alpha = 0.05\) significance level that U.S. adults, on average, have fewer than 3.9 hours of leisure time after a typical workday.',
+'Correct'
+);
+
+# How many questions to use
+$tf->choose(6);
+
+BEGIN_PGML
+### Leisure time, Part III
+
+In 2010, the General Social Survey collected responses from 1,154 US residents.
+The survey is conducted face-to-face with an in-person interview of a randomly
+selected sample of adults. One of the questions on the survey is "After an average
+workday, about how many hours do you have to relax or pursue activities that you enjoy?"
+A 95% confidence interval from the 2010 GSS survey for the collected answers is
+3.53 to 3.83 hours. Identify each of the following statements as true or false.
+Make sure you can explain your answers.
+
+[@ $tf -> print_q() @]*
+
+END_PGML
+
+############################
+#  Answer evaluation
+
+$showPartialCorrectAnswers = 1;
+
+#
+#  Incremental grader
+#
+install_problem_grader(~~&custom_problem_grader_fluid);
+$ENV{'grader_numright'} = [2,4,6];
+$ENV{'grader_scores'} = [0.3,0.6,1];
+$ENV{'grader_message'} = "You can earn " .
+"30% partial credit for 2 - 3 correct answers, and " .
+"60% partial credit for 4 - 5 correct answers.";
+
+ANS( str_cmp( $tf->ra_correct_ans() ) );
+
+ENDDOCUMENT();
