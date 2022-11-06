@@ -47,7 +47,7 @@ $tf -> qa (
 'Incorrect',
 'The margin of error is 9.5 and the sample mean is 137.5.',
 'Correct',
-'Halving the margin of error of a 95% confidence interval requires doubling the sample size.'
+'Halving the margin of error of a 95% confidence interval requires doubling the sample size.',
 'Incorrect',
 );
 
