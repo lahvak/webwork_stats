@@ -47,7 +47,7 @@ $tf -> qa(
 "Incorrect",
 'We can be 95% confident that the interval (3.40, 4.24) days contains the mean days out of the past 30 days that the sampled adults experienced poor mental health.',
 "Incorrect",
-'The 90\% confidence interval calculated from the same data would be to be larger than the 95% confidence interval.',
+'The 90% confidence interval calculated from the same data would be larger than the 95% confidence interval.',
 "Incorrect"
 );
 
