@@ -1,0 +1,81 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection(Binomial)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserRadioButtons.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$claim1 = RadioButtons(
+[[
+"Yes, this claim is supported, 3 hours is larger than all the values in the confidence interval.",
+"Yes, this claim is supported, 3 hours is smaller than all the values in the confidence interval.",
+"No, this claim is not supported, 3 hours is not smaller than all the values in the confidence interval.",
+]],
+"No, this claim is not supported, 3 hours is not smaller than all the values in the confidence interval.",
+);
+
+$claim2 = RadioButtons(
+[[
+"Yes, this claim is consistent with the interval, 2.2 hours is within the confidence interval.",
+"No, this claim is not consistent with the interval, 2.2 hours is not within the confidence interval.",
+"Yes, this claim is consistent with the interval, 2.2 hours is not within the confidence interval.",
+"No, this claim is not consistent with the interval, 2.2 hours is within the confidence interval.",
+]],
+"Yes, this claim is consistent, 2.2 hours is within the confidence interval.",
+);
+
+$newinterval = RadioButtons(
+[[
+"Yes, this claim will be consistent with the new interval, since the 99% interval will be wider than the 95% one, so it will still contain 2.2 hours.",
+"Yes, this claim will be consistent with the new interval. Even though the 99% interval will be tiny bit narrower than the 95% one, it will still contain 2.2 hours.",
+"No, this claim will not be consistent with the new interval, The 99% interval will be quite a bit narrower than the 95% one, so it will no longer contain 2.2 hours.",
+"Yes, this claim will be consistent with the new interval. The 2.2 hours was the point estimate, so it will be within any confidence interval, regardless of the confidence level.",
+"It is impossible to tell without actually calculating the 99% confidence interval."
+]],
+"Yes, this claim will still be consistent, since the 99% interval will be wider than the 95% one, so it will still contain 2.2 hours.",
+);
+
+BEGIN_PGML
+### Waiting at an ER, Part II
+
+According to another exercise, a 95% confidence interval for the mean waiting time at an emergency 
+room was (128 minutes, 147 minutes). Answer the following questions based on
+this interval.
+
+1.  A local newspaper claims that the average waiting time at this ER exceeds 
+    3 hours. Is this claim supported by the confidence interval? Explain your 
+    reasoning.
+
+    [_]{$claim1}
+
+2.  The Dean of Medicine at this hospital claims the average wait time is 2.2 
+    hours. Is this claim consistent with the confidence interval? Explain your 
+    reasoning.
+
+    [_]{$claim2}
+
+3.  Without actually calculating the interval, determine if the claim of the 
+    Dean from part (2) would be consistent with a 99% confidence interval?
+
+    [_]{$newinterval}
+
+END_PGML
+
+ENDDOCUMENT();
