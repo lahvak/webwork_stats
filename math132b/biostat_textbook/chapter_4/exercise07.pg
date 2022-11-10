@@ -70,6 +70,7 @@ following statements are true or false, and explain your reasoning.
 
 END_PGML
 
+
 ############################
 #  Answer evaluation
 
@@ -87,6 +88,7 @@ $ENV{'grader_message'} = "You can earn " .
 
 
 ANS( str_cmp( $tf->ra_correct_ans() ) );
+
 
 
 
