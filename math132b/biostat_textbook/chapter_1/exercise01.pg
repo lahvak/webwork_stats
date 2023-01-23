@@ -23,6 +23,11 @@ TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
 
 Context("Numeric");
+Context()->flags->set(
+  tolerance => 0.5,
+  tolType => "absolute",
+);
+
 
 $popup = PopUp(
 ["choose one","control","treatment"],
