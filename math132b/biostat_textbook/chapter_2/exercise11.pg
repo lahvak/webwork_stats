@@ -50,7 +50,7 @@ DataTable(
     [[["$BR$BR Party and$BR Ideology", i=>1, cell_css=>"vertical-align:middle;"],
     [DataTable(
         [
-            ["", ["Health Status", colspan=>3, halign=>"c", i=>1], ""],
+            ["", ["Response", colspan=>3, halign=>"c", i=>1], ""],
             ["", ["Earth is", header=>"CH", halign=>"c"], ["Not", header=>"CH", halign=>"c"], ["Don't Know", header=>"CH", halign=>"c"], ""],
             [["", midrule=>1], ["warming", header=>"CH", halign=>"c"], ["warming", header=>"CH", halign=>"c"], ["Refuse", header=>"CH", halign=>"c"], ["Total", header=>"CH", halign=>"c"]],
             ["Conservative Republican", 0.11, 0.20, 0.02, 0.33],
@@ -75,12 +75,12 @@ DataTable(
 *   What is the probability that a randomly chosen respondent believes the 
     earth is warming given that he is a liberal Democrat?
 
-    [______]{0.9}
+    [______]{0.18/0.2}
 
 *   What is the probability that a randomly chosen respondent believes the 
     earth is warming given that he is a conservative Republican?
 
-    [______]{0.333333333333333333}
+    [______]{.11/.33}
 
 *   Does it appear that whether or not a respondent believes the earth is 
     warming is independent of their party and ideology? Make sure you can explain your reasoning.
@@ -91,7 +91,7 @@ DataTable(
     moderate/liberal Republican given that he does not believe that the earth is 
     warming? 
 
-    [______]{0.175}
+    [______]{.06/.34}
 
 END_PGML
 
