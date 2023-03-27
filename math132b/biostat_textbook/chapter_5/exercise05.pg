@@ -34,7 +34,7 @@ $tstar = $tstars[$index];
 $xbar = random(10,40,.01);
 $s = random(5,15,0.1);
 
-$SE = $s/sqrt($n);
+$SE = $s/sqrt($ssize);
 
 $m = $tstar*$SE;
 
