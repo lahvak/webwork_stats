@@ -36,11 +36,13 @@ $s = random(5,15,0.1);
 
 $SE = $s/sqrt($ssize);
 
-$m = $tstar*$SE;
+$m = round(100*($tstar*$SE))/100;
 
 $upper = $xbar + $m;
 $lower = $xbar - $m;
 
+$calculatedSE = $m/$tstar;
+$calculateds = $calculatedSE*sqrt($ssize);
 
 BEGIN_PGML
 ### Working backwards, Part I.
@@ -51,7 +53,7 @@ Calculate the sample mean and standard deviation. Assume that all conditions
 necessary for inference are satisfied. Use [$tstar] for the critical t-score.
 
 *   [`\overline{x} = `][____________]{$xbar}
-*   [`s = `][____________]{$s}
+*   [`s = `][____________]{$calculateds}
 
 END_PGML
 
@@ -74,12 +76,12 @@ To find the margin of error, we simply subtract the lower end from the upper end
 
 We also know that [`m = t^\star \cdot SE`]. That means we can get the standard error by *dividing* [`m`] by [`t^\star`]:
 
-[```SE = \frac{m}{t^\star} = \frac{[$m]}{[$tstar]} = [$SE].```]
+[```SE = \frac{m}{t^\star} = \frac{[$m]}{[$tstar]} = [$calculatedSE].```]
 
 Finally, to get the *sample standard deviation* [`s`], we use the fact that [`SE = \frac{s}{\sqrt{n}}`]: we can get [`s`] by
 *multiplying* the standard error by the square root of the sample size.
 
-[```s = SE\cdot\sqrt{n} = [$SE]\cdot\sqrt{[$ssize]} = [$s].```]
+[```s = SE\cdot\sqrt{n} = [$calculatedSE]\cdot\sqrt{[$ssize]} = [$calculateds].```]
 
 END_PGML_SOLUTION
 ENDDOCUMENT();
