@@ -21,17 +21,17 @@ $showPartialCorrectAnswers = 1;
 
 Context("Numeric");
 
-$L = 95;
+$L = 90;
 
 $index = random(0,4);
 
 @sizes = (16, 25, 49, 64, 81);
-@tstars = (2.1314, 2.0639, 2.0106, 1.9983, 1.9901);
+@tstars = (1.7459, 1.7081, 1.6766, 1.669, 1.6639);
 
 $ssize = $sizes[$index];
 $tstar = $tstars[$index];
 
-$xbar = random(10,40,.01);
+$xbar = random(10,90,1);
 $s = random(5,15,0.1);
 
 $SE = $s/sqrt($ssize);
@@ -45,14 +45,16 @@ $calculatedSE = $m/$tstar;
 $calculateds = $calculatedSE*sqrt($ssize);
 
 BEGIN_PGML
-### Working backwards, Part I.
+### Working backwards, Part II.
 
-A [$L]% confidence interval for a population mean, [`\mu`], is given as ([$lower], [$upper]). This 
+A [$L]% confidence interval for a population mean is [`([$lower], [$upper])`]. The population distribution is 
+approximately normal and the population standard deviation is unknown. This 
 confidence interval is based on a simple random sample of [$ssize] observations. 
-Calculate the sample mean and standard deviation. Assume that all conditions 
-necessary for inference are satisfied. Use [$tstar] for the critical t-score.
+Calculate the sample mean, the margin of error, and the sample standard deviation.
+Use [$tstar] for the critical t-score.
 
 *   [`\overline{x} = `][____________]{$xbar}
+*   [`m = `][___________]{$m}
 *   [`s = `][____________]{$calculateds}
 
 END_PGML
