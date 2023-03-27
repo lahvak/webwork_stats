@@ -1,0 +1,85 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Confidence intervals)
+## DBsection(Concepts)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$L = 95;
+
+$index = random(0,4);
+
+@sizes = [16, 25, 49, 64, 81];
+@tstars = [2.1314, 2.0639, 2.0106, 1.9983, 1.9901];
+
+$ssize = $sizes[$index];
+$tstar = $tstars[$index];
+
+$xbar = random(10,40,.01);
+$s = random(5,15,0.1);
+
+$SE = $s/sqrt($n);
+
+$m = $tstar*$SE;
+
+$upper = $xbar + $m;
+$lower = $xbar - $m;
+
+
+BEGIN_PGML
+### Working backwards, Part I.
+
+ A 95\% confidence interval for a population mean, $\mu$, is given as ([$lower], [$upper]). This 
+confidence interval is based on a simple random sample of [$ssize] observations. 
+Calculate the sample mean and standard deviation. Assume that all conditions 
+necessary for inference are satisfied. Use [$tstar] for the critical t-score.
+
+*   [`\overline{x} = `][____________]{$xbar}
+*   [`s = `][____________]{$s}
+
+END_PGML
+
+BEGIN_PGML_SOLUTION
+
+The confidence interval is in the form
+[```\left(\overline{x} - m, \overline{x} + m\right)```]
+where [`\overline{x}`] is the *sample mean* and [`m`] is the *margin of error*.
+
+The *point estimate* [`\overline{x}`] is the *center* of the interval. The *margin of error* [`m`] is the *distance* from the center to
+either of the two end-points.  You can also think about it as the *half of the length* of the interval.
+
+To find a center of an interval, we need to calculate the *average* or *mean* of the end-points:
+
+[```\overline{x} = \frac{\text{right end} + \text{left end}}{2} = \frac{[$upper] + [$lower]}{2} = [$xbar].```]
+
+To find the margin of error, we simply subtract the lower end from the upper end and divide the result by 2:
+
+[```m = \frac{\text{right end} - \text{left end}}{2} = \frac{[$upper] - [$lower]}{2} = [$m].```]
+
+We also know that [`m = t^\star \cdot SE`]. That means we can get the standard error by *dividing* [`m`] by [`t^\star`]:
+
+[```SE = \frac{m}{t^\star} = \frac{[$m]}{[$tstar]} = [$SE].```]
+
+Finally, to get the *sample standard deviation* [`s`], we use the fact that [`SE = \frac{s}{\sqrt{n}}`]: we can get [`s`] by
+*multiplying* the standard error by the square root of the sample size.
+
+[```s = SE\cdot\sqrt{n} = [$SE]\cdot\sqrt{[$ssize]} = [$s].```]
+
+END_PGML_SOLUTION
+ENDDOCUMENT();
