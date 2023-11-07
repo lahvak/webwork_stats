@@ -47,20 +47,20 @@ rserve_eval("data <- c(data1, data2)");
 @sum1res = rserve_eval("format(sum(data1), scientific=FALSE)");
 @sum2res = rserve_eval("format(sum(data2), scientific=FALSE)");
 $lhat = $mleres[0];
-$lhat1 = $mleres1[0];
-$lhat2 = $mleres2[0];
+$lhat1 = $mle1res[0];
+$lhat2 = $mle2res[0];
 $sum = $sumres[0];
-$sum1 = $sumres1[0];
-$sum2 = $sumres2[0];
+$sum1 = $sum1res[0];
+$sum2 = $sum2res[0];
 $datatxt = join ", ", @data;
 
 $lambdahat = Compute("$lhat");
 $lambdahat1 = Compute("$lhat1");
 $lambdahat2 = Compute("$lhat2");
 
-$denominator = Compute("($lhat)^8 * exp(-$lhat*$sum)");
-$numerator1 = Compute("($lhat1)^4 * exp(-$lhat1*$sum1)");
-$numerator2 = Compute("($lhat2)^4 * exp(-$lhat2*$sum2)");
+$denominator = Compute("$lhat^8 * exp(-$lhat*$sum)");
+$numerator1 = Compute("$lhat1^4 * exp(-$lhat1*$sum1)");
+$numerator2 = Compute("$lhat2^4 * exp(-$lhat2*$sum2)");
 
 $ratio = $numerator1*$numerator2/$denominator;
 
