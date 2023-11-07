@@ -87,7 +87,7 @@ Let [`X_i`], for [`i = 1, 2, \dots, 8`] are the random variables denoting the su
 
     Find the _likelihood_ function [`\ell(\lambda)`] using the eight survival times.
 
-    Them find the _maximum likelihood estimate_ for [`\lambda`]:
+    Then find the _maximum likelihood estimate_ for [`\lambda`]:
 
     [`\hat \lambda`] = [____________]{$lambdahat}
 
@@ -96,18 +96,18 @@ Let [`X_i`], for [`i = 1, 2, \dots, 8`] are the random variables denoting the su
     design 1, while the last four came from probes following design 2.  That
     prompted the engineers to consider another model, with two parameters
     [`\lambda_1`] and [`\lambda_2`], where
-    [``X_i \overset{\text{iid}}{\sim} \operatorname{Exp}(\lambda1)``] for [`i = 1, 2, 3, 4`] and
-    [``X_i \overset{\text{iid}}{\sim} \operatorname{Exp}(\lambda2)``] for [`i = 5, 6, 7, 8`].
+    [``X_i \overset{\text{iid}}{\sim} \operatorname{Exp}(\lambda_1)``] for [`i = 1, 2, 3, 4`] and
+    [``X_i \overset{\text{iid}}{\sim} \operatorname{Exp}(\lambda_2)``] for [`i = 5, 6, 7, 8`].
 
     Find the _likelihood_ function [`\ell(\lambda_1)`] using the first four survival times.
 
     Find the _likelihood_ function [`\ell(\lambda_2)`] using the last four survival times.
 
-    Them find the _maximum likelihood estimate_ for [`\lambda1`]:
+    Then find the _maximum likelihood estimate_ for [`\lambda_1`]:
 
     [`\hat \lambda_1`] = [____________]{$lambdahat1},
 
-    and the _maximum likelihood estimate_ for [`\lambda2`]:
+    and the _maximum likelihood estimate_ for [`\lambda_2`]:
 
     [`\hat \lambda_2`] = [____________]{$lambdahat2}
 
