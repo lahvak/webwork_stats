@@ -1,0 +1,155 @@
+## DESCRIPTION
+## Statistics
+## ENDDESCRIPTION
+
+## KEYWORDS('Statistical inference; The exponential distribution, maximum
+## likelihood estimation)
+
+## DBsubject(Statistics)
+## DBchapter(Point estimation)
+## DBsection(Maximum likelihood estimation)
+## Date(2023-11-6)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(4)
+## TitleText1('No Text')
+## AuthorText1('?')
+## EditionText1('?')
+## Section1('.')
+## Problem1('')
+
+########################################################################
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGML.pl",
+  "RserveClient.pl",
+  "PGcourse.pl"
+);
+
+TEXT(beginproblem());
+
+Context("Numeric");
+
+$l1 = random(1,10,1);
+$l2 = random(20,30,1);
+rserve_eval("data1 <- round(rexp(4, $l1), 4)");
+rserve_eval("data2 <- round(rexp(4, $l2), 4)");
+rserve_eval("data <- c(data1, data2)");
+@data = rserve_eval("format(data, scientific=FALSE)");
+@mleres = rserve_eval("format(1/mean(data), scientific=FALSE)");
+@mle1res = rserve_eval("format(1/mean(data1), scientific=FALSE)");
+@mle2res = rserve_eval("format(1/mean(data2), scientific=FALSE)");
+@sumres = rserve_eval("format(sum(data), scientific=FALSE)");
+@sum1res = rserve_eval("format(sum(data1), scientific=FALSE)");
+@sum2res = rserve_eval("format(sum(data2), scientific=FALSE)");
+$lhat = $mleres[0];
+$lhat1 = $mleres1[0];
+$lhat2 = $mleres2[0];
+$sum = $sumres[0];
+$sum1 = $sumres1[0];
+$sum2 = $sumres2[0];
+$datatxt = join ", ", @data;
+
+$lambdahat = Compute("$lhat");
+$lambdahat1 = Compute("$lhat1");
+$lambdahat2 = Compute("$lhat2");
+
+$denominator = Compute("($lhat)^8 * exp(-$lhat*$sum)");
+$numerator1 = Compute("($lhat1)^4 * exp(-$lhat1*$sum1)");
+$numerator2 = Compute("($lhat2)^4 * exp(-$lhat2*$sum2)");
+
+$ratio = $numerator1*$numerator2/$denominator;
+
+
+BEGIN_PGML
+## Model comparison
+
+
+A team of engineers worked on designing a probe to monitor extremely harsh
+conditions inside a reaction chamber.  Because of the extreme conditions inside
+the chamber, they designed a disposable probe that would be destroyed shortly
+after entering the chamber. The probe would transmit some useful information
+before its destruction.
+
+They tested 8 probes. The following data are the survival times of each of the probes:
+
+[```[$datatxt]```]
+
+We can assume that survival times of the probes are independent of each other.
+
+Let [`X_i`], for [`i = 1, 2, \dots, 8`] are the random variables denoting the survival times of the 8 probes.
+
+1.  The team initially decided to model these as [``X_i \overset{\text{iid}}{\sim} \operatorname{Exp}(\lambda)``] for [`i = 1, 2, \dots, 8`].
+
+    Find the _likelihood_ function [`\ell(\lambda)`] using the eight survival times.
+
+    Them find the _maximum likelihood estimate_ for [`\lambda`]:
+
+    [`\hat \lambda`] = [____________]{$lambdahat}
+
+2.  Later someone realized that two different probe designs were used: the
+    first four survival times come from probes built according to 
+    design 1, while the last four came from probes following design 2.  That
+    prompted the engineers to consider another model, with two parameters
+    [`\lambda_1`] and [`\lambda_2`], where
+    [``X_i \overset{\text{iid}}{\sim} \operatorname{Exp}(\lambda1)``] for [`i = 1, 2, 3, 4`] and
+    [``X_i \overset{\text{iid}}{\sim} \operatorname{Exp}(\lambda2)``] for [`i = 5, 6, 7, 8`].
+
+    Find the _likelihood_ function [`\ell(\lambda_1)`] using the first four survival times.
+
+    Find the _likelihood_ function [`\ell(\lambda_2)`] using the last four survival times.
+
+    Them find the _maximum likelihood estimate_ for [`\lambda1`]:
+
+    [`\hat \lambda_1`] = [____________]{$lambdahat1},
+
+    and the _maximum likelihood estimate_ for [`\lambda2`]:
+
+    [`\hat \lambda_2`] = [____________]{$lambdahat2}
+
+    Using the fact that all the times are independent, find the likelihood function for both parameters, [`\ell(\lambda_1, \lambda_2)`].
+
+3.  To compare the two models, calculate the ratio
+
+    [``\frac{\ell(\hat\lambda_1, \hat\lambda_2)}{\ell(\hat\lambda)}=``] = [________________]{$ratio}.
+
+END_PGML
+
+BEGIN_PGML_SOLUTION
+The likelihood function for the rate parameter [`\lambda`] for Exponential distribution is
+
+[```\ell(\lambda) = \lambda^n e^{-\lambda\sum x_i}```]
+
+Using all 8 times, we get
+
+[```\ell(\lambda) = \lambda^8 e^{-\lambda\cdot [$sum]}```]
+
+The MLE for [`\lambda`] is [``\hat\lambda = \frac{n}{\sum x_i} = \frac{8}{[$sum]} = [$lambdahat]``].
+
+Using the first four times, we get
+
+[```\ell(\lambda_1) = \lambda_1^4 e^{-\lambda_1\cdot [$sum1]}```]
+
+The MLE for [`\lambda_1`] is [``\hat\lambda_1 = \frac{n}{\sum x_i} = \frac{4}{[$sum1]} = [$lambdahat1]``].
+
+Using the last four times, we get
+
+[```\ell(\lambda_2) = \lambda_2^4 e^{-\lambda_2\cdot [$sum2]}```]
+
+The MLE for [`\lambda_2`] is [``\hat\lambda_2 = \frac{n}{\sum x_i} = \frac{4}{[$sum2]} = [$lambdahat2]``].
+
+Because the times for the two designs are independent, the likelihood function for the two-parameter model is simply the product
+of the likelihood functions for the individual parameters:
+
+[```\ell(\lambda_1, \lambda_2) = \ell(\lambda_1)\ell(\lambda_2)```]
+
+To compare the two models, we calculate the ratio
+
+[```\frac{\ell(\hat\lambda_1, \hat\lambda_2)}{\ell(\hat\lambda)}=\frac{\ell([$lambdahat1], [$lambdahat2])}{\ell(\hat\lambda)}=
+    \frac{[$numerator1]\cdot[$numerator2]}{[$denominator]} = [$ratio]```]
+END_PGML_SOLUTION
+ENDDOCUMENT();
