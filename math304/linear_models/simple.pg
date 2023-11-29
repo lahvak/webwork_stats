@@ -33,7 +33,7 @@ loadMacros(
 TEXT(beginproblem());
 
 Context("Numeric");
-Context()->variables->add(x=>"Real");
+#Context()->variables->add(x=>"Real");
 
 $n = random(20,100,1);
 $beta0 = random(-3.5,3.5,1);
@@ -61,11 +61,12 @@ $image_path = rserve_finish_plot($img);
 
 my ($intercept, $slope) = rserve_eval("coef(model)");
 rserve_eval("sry <- summary(model)");
-my ($sigmahat) = rserve_eval('sry$sigma');
+my @sigmahatans = rserve_eval('sry$sigma');
 rserve_eval('modsum <- Filter(function(s) {!startsWith(s, "Signif")}, capture.output(sry))');
 my @summary = rserve_eval("paste0(modsum, collapse = '\n')");
 
 $summary_code = $summary[0];
+$sigmahat = $sigmahatans[0];
 
 $slope_ans = Compute("$slope");
 $inter_ans = Compute("$intercept");
