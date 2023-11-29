@@ -35,9 +35,9 @@ TEXT(beginproblem());
 Context("Numeric");
 #Context()->variables->add(x=>"Real");
 
-$n = random(20,100,1);
-$beta0 = random(-3.5,3.5,1);
-$beta1 = random(1.5,2.2,0.1);
+$n = random(100,200,1);
+$beta0 = random(10,20,1);
+$beta1 = random(2,5,0.1);
 $beta2 = random(1.8,2.5,0.1);
 $sigmax = random(1, 2, 0.1);
 $mux = random(3*$sigmax, 5*$sigmax, 0.1);
