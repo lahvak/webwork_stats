@@ -1,0 +1,124 @@
+## DESCRIPTION
+## Statistics
+## ENDDESCRIPTION
+
+## KEYWORDS('Statistical inference; Linear models')
+
+## DBsubject(Statistics)
+## DBchapter(Linear models)
+## DBsection(Multiple linear regression)
+## Date(2023-11-28)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## TitleText1('No Text')
+## AuthorText1('?')
+## EditionText1('?')
+## Section1('.')
+## Problem1('')
+
+
+########################################################################
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGML.pl",
+  "RserveClient.pl",
+  "PGcourse.pl"
+);
+
+TEXT(beginproblem());
+
+Context("Numeric");
+#Context()->variables->add(x=>"Real");
+
+$n = random(20,100,1);
+$beta0 = random(-3.5,3.5,1);
+$beta1 = random(0.3,1.5,0.1);
+$beta2 = random(1.7,2.5,0.1);
+$sigmax = random(10, 30, 1);
+$mux = random(4*$sigmax, 8*$sigmax, 0.1);
+$sigmay = random(0.3, 3.5, 0.1);
+$muy = random(4*$sigmay, 6*$sigmay, 0.1);
+$sigma = random(0.2, 0.8, 0.1) * sqrt($beta1^2 * $sigmax^2 + $beta2^2*$sigmay^2);
+rserve_eval("x <- rnorm($n,$mux,$sigmax)");
+rserve_eval("y <- rnorm($n,$muy,$sigmay)");
+rserve_eval("e <- rnorm($n,0,$sigma)");
+rserve_eval("z <- $beta0 + $beta1*x + $beta2*y + e");
+rserve_eval("dataset <- data.frame(x = x, y = y, z = z)");
+rserve_eval("model <- lm(z ~ x + y, data = dataset)");
+
+
+my ($intercept, $slopex, $slopey) = rserve_eval("coef(model)");
+rserve_eval("sry <- summary(model)");
+my @sigmahatans = rserve_eval('sry$sigma');
+rserve_eval('modsum <- Filter(function(s) {!startsWith(s, "Signif")}, capture.output(sry))');
+my @summary = rserve_eval("paste0(modsum, collapse = '\n')");
+
+$summary_code = $summary[0];
+$sigmahat = $sigmahatans[0];
+
+$slopex_ans = Compute("$slopex");
+$slopey_ans = Compute("$slopey");
+$inter_ans = Compute("$intercept");
+
+$xval = (rserve_eval('round(sample(x, 1), 2)'))[0];
+$yval = (rserve_eval('round(sample(y, 1), 2)'))[0];
+
+$zval = Compute("$inter_ans + $slopex_ans*($xval) + $slopey_ans*($yval)");
+
+$model = Formula("$inter_ans + $slopex_ans*x + $slopey_ans*y");
+
+BEGIN_PGML
+The random variable [`Z`] seems to be linearly related to
+random variables [`X`] and [`Y`].
+
+In this exercise you will explore a _linear model_
+[`Z \sim X + Y`].  In other words, we will model
+[```Z \mid (X,Y) \sim \operatorname{Norm}(\beta_0 + \beta_1X + \beta_2Y, \sigma)```]
+for some parameters [`\beta_0`], [`\beta_1`], [`\beta_2`] and [`\sigma`].
+
+Data set of [$n] values has been sampled from the three variables.
+A linear model has been constructed from the data using the `lm()` function in R.
+The following is the summary of the model:
+
+:   [@ $summary_code @]
+
+Answer the following questions.  Make sure you use enough decimal places in your answers and calculations.
+
+1.  According to the summary, what are the _maximum likelihood estimates_ for the four parameters?
+
+    [`\hat\beta_0 = `][_______________]{$inter_ans}
+
+    [`\hat\beta_1 = `][_______________]{$slopex_ans}
+
+    [`\hat\beta_2 = `][_______________]{$slopey_ans}
+
+    [`\hat\sigma = `][_______________]{$sigmahat}
+
+2.  What is the equation for the predicted value [`\hat z`] in terms of [`x`] and [`y`]?
+
+    [`\hat y = `][________________________]{$model}
+
+3.  Use the equation to predict the value of [`y`] if [`x = [$xval]`] and [`y = [$yval]`]:
+
+    [____________]{$yval}
+
+END_PGML
+
+BEGIN_PGML_SOLUTION
+
+1.  The maximum likelihood estimate for [`\beta_0`] is the "intercept" coefficient, which is [$inter_ans].
+    The maximum likelihood estimate for [`\beta_1`] is the "x" coefficient, [$slopex_ans].
+    The maximum likelihood estimate for [`\beta_2`] is the "y" coefficient, [$slopey_ans].
+    The maximum likelihood estimate for [`\sigma`] is the "Residual standard error", [$sigmahat].
+
+2.  The equation is [`\hat y = [$model]`].
+
+3.  Substituting [`x = [$xval]`] and [`y = [$yval]`] in the equation gives us [$zval].
+
+END_PGML_SOLUTION
+ENDDOCUMENT();
