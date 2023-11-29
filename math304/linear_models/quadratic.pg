@@ -120,14 +120,12 @@ BEGIN_PGML_SOLUTION
 
 1.  The maximum likelihood estimate for [`\beta_0`] is the "intercept" coefficient, which is [$inter_ans].
     The maximum likelihood estimate for [`\beta_1`] is the "x" coefficient, [$slope_ans].
+    The maximum likelihood estimate for [`\beta_2`] is the "I(x^2)" coefficient, [$quad_ans].
     The maximum likelihood estimate for [`\sigma`] is the "Residual standard error", [$sigmahat].
 
 2.  The equation is [`\hat y = [$model]`].
 
 3.  Substituting [`x = [$xval]`] in the equation gives us [$yval].
 
-4.  According to the 68-95-99.7 rule, approximately 95% of the values of a normally distributed variable are within 2 standard deviations
-    from the mean.  Since our estimate for the mean is [$yval] and our estimate for the standard deviation is [$sigmahat], we get the
-    interval [```([$yval] - 2\cdot[$sigmahat], [$yval] + 2\cdot[$sigmahat])```]
 END_PGML_SOLUTION
 ENDDOCUMENT();
