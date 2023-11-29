@@ -101,11 +101,11 @@ Answer the following questions.  Make sure you use enough decimal places in your
 
 2.  What is the equation for the predicted value [`\hat z`] in terms of [`x`] and [`y`]?
 
-    [`\hat y = `][________________________]{$model}
+    [`\hat z = `][________________________]{$model}
 
-3.  Use the equation to predict the value of [`y`] if [`x = [$xval]`] and [`y = [$yval]`]:
+3.  Use the equation to predict the value of [`z`] if [`x = [$xval]`] and [`y = [$yval]`]:
 
-    [____________]{$yval}
+    [____________]{$zval}
 
 END_PGML
 
