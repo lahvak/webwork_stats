@@ -1,0 +1,124 @@
+## DESCRIPTION
+## Statistics
+## ENDDESCRIPTION
+
+## KEYWORDS('Statistical inference; Linear models')
+
+## DBsubject(Statistics)
+## DBchapter(Linear models)
+## DBsection(Simple linear regression)
+## Date(2023-11-28)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## TitleText1('No Text')
+## AuthorText1('?')
+## EditionText1('?')
+## Section1('.')
+## Problem1('')
+
+
+########################################################################
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGML.pl",
+  "RserveClient.pl",
+  "PGcourse.pl"
+);
+
+TEXT(beginproblem());
+
+Context("Numeric");
+Context()->variables->add(x=>"Real");
+
+$n = random(20,100,1);
+$beta0 = random(-3.5,3.5,1);
+$beta1 = random(0.3,1.5,0.1);
+$sigma = random(0.2, 1.2, 0.1);
+$sigmax = random(10, 30, 1);
+$mux = random(4*$sigmax, 8*$sigmax, 0.1);
+rserve_eval("library(ggplot2)");
+rserve_eval("x <- rnorm($n,$mux,$sigmax)");
+rserve_eval("e <- rnorm($n,0,$sigma)");
+rserve_eval("y <- $beta0 + $beta1*x + e");
+rserve_eval("dataset <- data.frame(x = x, y = y)");
+rserve_eval("model <- lm(y ~ x, data = dataset)");
+
+
+$ggcmd = <<'GG_END';
+ggplot(dataset, aes(x=x, y=y)) + 
+    geom_point() +
+    theme_grey(base_size = 12)
+GG_END
+
+$img = rserve_start_plot('png', 500, 300);
+rserve_eval("print($ggcmd)");
+$image_path = rserve_finish_plot($img);
+
+my ($intercept, $slope) = rserve_eval("coef(model)");
+rserve_eval("sry <- summary(model)")
+my ($sigmahat) = rserve_eval("sry\$sigma");
+rserve_eval("modsum <- Filter(function(s) {!startsWith(s, "Signif")}, capture.output(sry))");
+my @summary = rserve_eval("paste0(modsum, collapse = '\n')");
+
+$summary_code = $summary[0];
+
+$slope_ans = Compute("$slope");
+$inter_ans = Compute("$intercept");
+
+$xval = (rserve_eval('round(sample(x, 1), 2)'))[0];
+
+$yval = Compute("$inter_ans + $slope_ans*($xval)");
+
+$model = Formula("$inter_ans + $slope_ans*x");
+
+Context("Interval");
+
+$interval = Compute("($yval - 2*$sigmahat, $yval + 2*$sigmahat)");
+
+BEGIN_PGML
+The following is a scatterplot of [$n] pairs sampled from the random variables ['X'] and ['Y']:
+
+[@ image($image_path, width=>500, height=>300) @]*
+
+This plot suggests that there is a linear relationship between the two variables, and therefore a _linear model_
+[`Y \sim X`] may be appropriate.  In other words, we can model
+[```Y \mid X \sim \operatorname{Norm}(\beta_0 + \beta_1X, \sigma)```]
+for some parameters $\beta_0$, $\beta_1$ and $\sigma$.
+
+A linear model has been constructed from the data using the `lm()` function in
+R.  The following is the summary of the model:
+
+:   [@ $summary_code @]
+
+1.  According to the summary, what are the _maximum likelihood estimates_ for the three parameters?
+
+    [`\hat\beta_0 = `][_______________]{$inter_ans}
+
+    [`\hat\beta_1 = `][_______________]{$slope_ans}
+
+    [`\hat\sigma = `][_______________]{$sigmahat}
+
+2.  What is the equation for the predicted value [`\hat y`] in terms of [`x`]?
+
+    [`\hat y = `][________________________]{$model}
+
+3.  Use the equation to predict the value of [`y`] if [`x = [$xval]`]:
+
+    [____________]{$yval}
+
+4.  If [`X = [$xval]`], then, according to out model, the values of [`Y`] will be
+    _normally distributed_ with mean estimated by [`\hat y`] and standard deviation
+    estimated by [`\hat \sigma`]. According to the 68-95-99.7 rule for normal distribution,
+    approximately what interval will contain the middle 95% of the [`Y`] values?
+
+    [______________________]{$interval->cmp(requireParenMatch => 0)}
+END_PGML
+
+BEGIN_PGML_SOLUTION
+END_PGML_SOLUTION
+ENDDOCUMENT();
