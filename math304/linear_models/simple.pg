@@ -82,7 +82,7 @@ Context("Interval");
 $interval = Compute("($yval - 2*$sigmahat, $yval + 2*$sigmahat)");
 
 BEGIN_PGML
-The following is a scatterplot of [$n] pairs sampled from the random variables ['X'] and ['Y']:
+The following is a scatterplot of [$n] pairs sampled from the random variables [`X`] and [`Y`]:
 
 [@ image($image_path, width=>500, height=>300) @]*
 
