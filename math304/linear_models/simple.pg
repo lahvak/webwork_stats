@@ -96,6 +96,8 @@ The following is the summary of the model:
 
 :   [@ $summary_code @]
 
+Answer the following questions.  Make sure you use enough decimal places in your answers and calculations.
+
 1.  According to the summary, what are the _maximum likelihood estimates_ for the three parameters?
 
     [`\hat\beta_0 = `][_______________]{$inter_ans}
@@ -121,5 +123,17 @@ The following is the summary of the model:
 END_PGML
 
 BEGIN_PGML_SOLUTION
+
+1.  The maximum likelihood estimate for [`\beta_0`] is the "intercept" coefficient, which is [$inter_ans].
+    The maximum likelihood estimate for [`\beta_1`] is the "x" coefficient, [$slope_ans].
+    The maximum likelihood estimate for [`\sigma`] is the "Residual standard error", [$sigmahat].
+
+2.  The equation is [`\hat y = [$model]`].
+
+3.  Substituting [`x = [$xval]`] in the equation gives us [$yval].
+
+4.  According to the 68-95-99.7 rule, approximately 95% of the values of a normally distributed variable are within 2 standard deviations
+    from the mean.  Since our estimate for the mean is [$yval] and our estimate for the standard deviation is [$sigmahat], we get the
+    interval [```([$yval] - 2\cdot[$sigmahat], [$yval] + 2\cdot[$sigmahat])```]
 END_PGML_SOLUTION
 ENDDOCUMENT();
