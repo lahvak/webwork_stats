@@ -89,10 +89,10 @@ The following is a scatterplot of [$n] pairs sampled from the random variables [
 This plot suggests that there is a linear relationship between the two variables, and therefore a _linear model_
 [`Y \sim X`] may be appropriate.  In other words, we can model
 [```Y \mid X \sim \operatorname{Norm}(\beta_0 + \beta_1X, \sigma)```]
-for some parameters $\beta_0$, $\beta_1$ and $\sigma$.
+for some parameters [`\beta_0`], [`\beta_1`] and [`\sigma`].
 
-A linear model has been constructed from the data using the `lm()` function in
-R.  The following is the summary of the model:
+A linear model has been constructed from the data using the `lm()` function in R.
+The following is the summary of the model:
 
 :   [@ $summary_code @]
 
