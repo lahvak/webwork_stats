@@ -47,7 +47,7 @@ rserve_eval("x <- rnorm($n,$mux,$sigmax)");
 rserve_eval("e <- rnorm($n,0,$sigma)");
 rserve_eval("y <- $beta0 + $beta1*x + $beta2*x^2 + e");
 rserve_eval("dataset <- data.frame(x = x, y = y)");
-rserve_eval("model <- lm(y ~ x + x^2, data = dataset)");
+rserve_eval("model <- lm(y ~ x + I(x^2), data = dataset)");
 
 
 $ggcmd = <<'GG_END';
@@ -75,7 +75,7 @@ $inter_ans = Compute("$intercept");
 
 $xval = (rserve_eval('round(sample(x, 1), 2)'))[0];
 
-$yval = Compute("$inter_ans + $slope_ans*($xval) + $quad_ans*($xval^2)");
+$yval = Compute("$inter_ans + $slope_ans*($xval) + $quad_ans*($xval)^2");
 
 $model = Formula("$inter_ans + $slope_ans*x + $quad_ans*x^2");
 
