@@ -33,7 +33,7 @@ loadMacros(
 TEXT(beginproblem());
 
 Context("Numeric");
-#Context()->variables->add(x=>"Real");
+Context()->variables->add(y=>"Real");
 
 $n = random(20,100,1);
 $beta0 = random(-3.5,3.5,1);
