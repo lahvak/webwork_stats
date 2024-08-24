@@ -1,0 +1,54 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Serving in volleyball\label{serving_volleyball}} A not-so-skilled 
+volleyball player has a 15\% chance of making the serve, which involves 
+hitting the ball so it passes over the net on a trajectory such that it will 
+land in the opposing team's court. Suppose that serves are independent of 
+each other.
+\begin{parts}
+\item What is the probability that on the $10^{th}$ try, the player makes their $3^{rd}$ successful serve?
+\item Suppose that the player has made two successful serves in nine attempts. What is the probability that their $10^{th}$ serve will be successful?
+\item Even though parts (a) and (b) discuss the same scenario, explain the reason for the discrepancy in probabilities.
+\end{parts}
+}{}
+
+\textD{\newpage}
+
+%% hypergeometric problems
+
+% 55 oi_biostat
+
+END_PGML
+
+ENDDOCUMENT();

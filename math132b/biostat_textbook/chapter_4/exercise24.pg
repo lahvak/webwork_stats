@@ -1,0 +1,55 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection(Binomial)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserRadioButtons.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = RadioButtons(
+["yes, this is a random sample","yes, although this is not a random sample, there is no reason to expect a bias", "no, this sample is likely biased"],
+"no, this sample is likely biased");
+
+$percentage = random(7,19);
+$size = random(30,200);
+
+$expected = Compute("$percentage*$size/100");
+
+
+BEGIN_PGML
+\eoce{\qt{True or false\label{tf_found_inf}} Determine if the following statements are true or false, and 
+explain your reasoning. If false, state how it could be corrected.
+\begin{parts}
+\item If a given value (for example, the null hypothesized value of a parameter) 
+is within a 95\% confidence interval, it will also be within a 99\% confidence 
+interval.
+\item Decreasing the significance level ($\alpha$) will increase the probability 
+of making a Type~1 Error.
+\item Suppose the null hypothesis is $\mu = 5$ and we fail to reject $H_0$. 
+Under this scenario, the true population mean is 5.
+\item If the alternative hypothesis is true, then the probability of making a 
+Type~2 Error and the power of a test add up to 1.
+\item With large sample sizes, even small differences between the null value and 
+the true value of the parameter, a difference often called the effect size
+\index{effect size}, will be identified as statistically significant.
+\end{parts}
+}{}
+END_PGML
+
+ENDDOCUMENT();

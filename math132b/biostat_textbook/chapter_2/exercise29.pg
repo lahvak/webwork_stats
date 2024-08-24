@@ -1,0 +1,74 @@
+##DESCRIPTION
+## DBSubject(Probability)
+## DBchapter(Sample Space)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Genetics of Australian cattle dogs\label{acd_genetics}} Australian cattle dogs are known to have a high prevalence of congenital deafness. Deafness in both ears is referred to as bilateral deafness, while deafness in one ear is referred to as unilateral deafness.
+
+Deafness in dogs is associated with the white spotting gene $S$ that controls the expression of coat and eye pigmentation. The dominant allele $S$ produces solid color, while the three recessive alleles contribute to increasing amounts of white in coat pigmentation: Irish spotting ($s^i$), piebald ($s^p$), and extreme white piebald ($s^w$). The $s^p$ and $s^w$ alleles are responsible for the distinctive Australian cattle dog coat pattern of white hair evenly speckled throughout either a predominantly red or black coat. The dogs are born with white coats, and the speckled pattern develops as they age. 
+
+While all Australian cattle dogs have some combination of the $s^p$ and $s^w$ alleles, the gene displays incomplete penetrance such that individuals show some variation in phenotype despite having the same genotype. Individuals with low penetrance of the alleles tend to have additional patterns on their coat, such as a dark "mask" around one or both eyes (in other words, a unilateral mask or a bilateral mask). High penetrance of the piebald alleles is associated with deafness.
+
+Suppose that 40\% of Australian cattle dogs have black coats; these individuals are commonly referred to as "Blue Heelers" as opposed to "Red Heelers". Among Blue Heelers, 35\% of individuals have bilateral masks and 25\% have unilateral masks. About 50\% of Red Heelers exhibit no eye masking and 10\% have bilateral masks. 
+
+Let $M$ represent the event that an Australian cattle dog has a facial mask, where $M_2$ represents a bilateral mask, $M_1$ represents a unilateral mask, and $M_0$ indicates lack of a mask.
+
+	\begin{parts}
+		
+		\item Calculate the probability an Australian cattle dog has a facial mask and a black coat.
+		
+		\item Calculate the prevalence of bilateral masks in Australian cattle dogs.
+		
+		\item Among Australian cattle dogs with bilateral facial masks, what is the probability of being a Red Heeler?
+		
+		\item Unilateral deafness occurs in Red Heelers with probability 0.15, in both dogs that either lack facial masking or exhibit a unilateral mask; for both unmasked and unilaterally masked Red Heelers, 60\% of dogs are not deaf. The overall prevalence of bilaterally masked Australian cattle dogs with bilateral deafness and red coats is 1.2\% and the overall prevalence of bilaterally masked Australian cattle dogs with unilateral deafness and red coats is 4.5\%; these prevalences are the same for Australian cattle dogs with black coats. Among Blue Heelers with either no facial masking or a unilateral mask, the probability of unilateral deafness is 0.05 and the probability of bilateral deafness is 0.01. 
+		
+		Let $D$ represent the event that an Australian cattle dog is deaf (i.e., deaf in at least one ear), where $D_2$ represents bilateral deafness and $D_1$ represents unilateral deafness. 
+		
+		\begin{subparts}
+			
+			\item What is the probability that an Australian cattle dog has a bilateral mask, no hearing deficits, and a red coat?
+			
+			\item Calculate the proportion of bilaterally masked Blue Heelers without hearing deficits.
+			
+			\item Compare the prevalence of deafness between Red Heelers and Blue Heelers.
+			
+			\item If a dog is known to have no hearing deficits, what is the probability it is a Blue Heeler?
+			
+		\end{subparts}
+		
+	\end{parts}
+
+}{}
+
+END_PGML
+
+ENDDOCUMENT();

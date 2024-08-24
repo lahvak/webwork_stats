@@ -1,0 +1,55 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Sickle cell anemia\label{sickle_cell_anemia}} Sickle cell anemia is a 
+	genetic blood disorder where red blood cells lose their flexibility and 
+	assume an abnormal, rigid, ``sickle" shape, which results in a risk of 
+	various complications. If both parents are carriers of the disease, then a 
+	child has a 25\% chance of having the disease, 50\% chance of being a 
+	carrier, and 25\% chance of neither having the disease nor being a carrier. 
+	If two parents who are carriers of the disease have 3 children, what is the 
+	probability that 
+	\begin{parts}
+		\item two will have the disease?
+		\item none will have the disease?
+		\item at least one will neither have the disease nor be a carrier?
+		\item the first child with the disease will the be $3^{rd}$ child?
+	\end{parts}
+}{}
+
+
+% 13 oi_biostat, 2016 midterm question 1c
+
+END_PGML
+
+ENDDOCUMENT();

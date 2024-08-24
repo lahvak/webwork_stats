@@ -1,0 +1,72 @@
+##DESCRIPTION
+## DBSubject(Probability)
+## DBchapter(Sample Space)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Prostate-specific antigen\label{psa_test}} Prostate-specific antigen (PSA) is a protein produced by the cells of the prostate gland. Blood PSA level is often elevated in men with prostate cancer, but a number of benign (not cancerous) conditions can also cause a man's PSA level to rise. The PSA test for prostate cancer is a laboratory test that measures PSA levels from a blood sample. The test measures the amount of PSA in ng/ml (nanograms per milliliter of blood).
+	
+	The sensitivity and specificity of the PSA test depend on the cutoff value used to label a PSA level as abnormally high. In the last decade, 4.0 ng/ml has been considered the upper limit of normal, and values 4.1 and higher were used to classify a PSA test as positive.  Using this value, the sensitivity of the PSA test is 20\% and the specificity is 94\%.
+	
+	The likelihood that a man has undetected prostate cancer depends on his age.  This likelihood is also called the prevalence of undetected cancer in the male population.  The following table shows the prevalence of undetected prostate cancer by age group.
+	
+	\begin{table}[htb!]
+		\centering
+		\small
+		\begin{tabular}{l|l|l|l}
+			\textbf{Age Group}  & \textbf{Prevalence} & \textbf{PPV} & \textbf{NPV}\\ \hline
+			$<$ 50 years &       0.001 &               &                         \\
+			50 - 60 years &      0.020 &               &                         \\
+			61 - 70 years &      0.060  &              &                         \\
+			71 - 80 years &       0.100 &               &                        \\ \hline
+		\end{tabular}
+	\end{table}
+	
+	\begin{parts}
+		\item Calculate the missing PPV and NPV values.
+		\item Describe any trends you see in the PPV and NPV values.
+		\item Explain the reason for the trends in part b), in language that someone who has not taken a statistics course would understand.
+		\item The cutoff for a positive test is somewhat controversial. Explain, in your own words, how lowering the cutoff for a positive test from 4.1 ng/ml to 2.5 ng/ml would affect sensitivity and specificity.
+	\end{parts}
+	
+	}{}
+
+
+\textD{\newpage}
+
+
+%_______________
+\subsection{Extended example}
+
+% 26 oi_biostat
+
+END_PGML
+
+ENDDOCUMENT();

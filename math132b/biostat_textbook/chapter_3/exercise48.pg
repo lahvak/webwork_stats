@@ -1,0 +1,54 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{With and without replacement\label{with_without_replacement}} In the 
+	following situations assume that half of the specified population is male and 
+	the other half is female.
+	\begin{parts}
+		\item Suppose you're sampling from a room with 10 people. What is the 
+		probability of sampling two females in a row when sampling with replacement? 
+		What is the probability when sampling without replacement?
+		\item Now suppose you're sampling from a stadium with 10,000 people. What is 
+		the probability of sampling two females in a row when sampling with 
+		replacement? What is the probability when sampling without replacement?
+		\item We often treat individuals who are sampled from a large population as 
+		independent. Using your findings from parts~(a) and~(b), explain whether or 
+		not this assumption is reasonable.
+	\end{parts}
+}{}
+
+% 49 ODD (OI4, 4.13) edited 
+
+END_PGML
+
+ENDDOCUMENT();

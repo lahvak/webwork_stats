@@ -1,0 +1,56 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Male children\label{male_children}} While it is often assumed that the 
+	probabilities of having a boy or a girl are the same, the actual probability 
+	of having a boy is slightly higher at 0.51. Suppose a couple plans to have 3 
+	kids. 
+	\begin{parts}
+		\item Use the binomial model to calculate the probability that two of them 
+		will be boys.
+		\item Write out all possible orderings of 3 children, 2 of whom are boys. Use 
+		these scenarios to calculate the same probability from part (a) but using the 
+		addition rule for disjoint outcomes. Confirm that your answers from parts (a) 
+		and (b) match.
+		\item If we wanted to calculate the probability that a couple who plans to 
+		have 8 kids will have 3 boys, briefly describe why the approach from part (b) 
+		would be more tedious than the approach from part (a).
+	\end{parts}
+}{}
+
+
+% 17 oi_biostat, from unit 3 lecture (2016), slide 26
+
+END_PGML
+
+ENDDOCUMENT();

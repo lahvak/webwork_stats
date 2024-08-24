@@ -1,0 +1,60 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Sleep deprivation\label{sleep_exam}} Consider a senior Statistics concentrator with a packed extracurricular schedule, taking five classes, and writing a thesis. Each time she takes an exam, she either scores very well (at least two standard deviations above the mean) or does not. Her performance on any given exam depends on whether she is operating on a reasonable amount of sleep the night before (more than 7 hours), relatively little sleep (between 4 - 7 hours, inclusive), or practically no sleep (less than 4 hours). 
+	
+	When she has had practically no sleep, she scores very well about 30\% of the time. When she has had relatively little sleep, she scores very well 40\% of the time. When she has had a reasonable amount of sleep, she scores very well 42\% of the time. Over the course of a semester, she has a reasonable amount of sleep 50\% of nights, and practically no sleep 30\% of nights.
+	
+	\begin{parts}
+		\item What is her overall probability of scoring very well on an exam?
+		
+		\item What is the probability she had practically no sleep the night before an exam where she scored very well?
+		
+		\item Suppose that one day she has three exams scheduled. What is the probability that she scores very well on exactly two of the exams, under the assumption that her performance on each exam is independent of her performance on another exam?
+		
+		\item What is the probability that she had practically no sleep the night prior to a day when she scored very well on exactly two out of three exams?
+	\end{parts}
+}{}	
+
+
+\textD{\newpage}
+
+
+%_______________
+\subsection{Normal distribution}
+
+% 19 ODD (OI4, 4.1)
+
+END_PGML
+
+ENDDOCUMENT();

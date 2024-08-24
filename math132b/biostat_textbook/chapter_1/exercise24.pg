@@ -1,0 +1,49 @@
+##DESCRIPTION
+## DBsubject(Biostatistics)
+## DBchapter(Data)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+BEGIN_PGML
+\eoce{\qt{Income and education in US counties\label{income_education_county}} 
+	The scatterplot below shows the relationship between per capita income 
+	(in thousands of dollars) and percent of population with a bachelor's 
+	degree in 3,143 counties in the US in 2010.
+	
+	\noindent\begin{minipage}[c]{0.44\textwidth}
+		\begin{parts}
+			\item What are the explanatory and response variables?
+			\item Describe the relationship between the two variables. Make sure to discuss 
+			unusual observations, if any.
+			\item Can we conclude that having a bachelor's degree increases one's income?
+		\end{parts}\vspace{8mm}
+	\end{minipage}
+	\begin{minipage}[c]{0.55\textwidth}
+		\begin{center}
+			\includegraphics[width = 0.78\textwidth]{ch_intro_to_data_oi_biostat/figures/eoce/county_income_education/county_income_education_scatterplot.pdf}
+		\end{center}
+	\end{minipage}
+}{}
+
+% 25 ODD (OI4, 1.41)
+
+END_PGML
+
+ENDDOCUMENT();

@@ -1,0 +1,56 @@
+##DESCRIPTION
+## DBsubject(Biostatistics)
+## DBchapter(Data)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+BEGIN_PGML
+\eoce{\qt{Anger and cardiovascular health\label{anger_chd}}
+	Trait anger is defined as a relatively stable personality trait that is manifested in the frequency, intensity, and duration of feelings associated with anger. People with high trait anger have rage and fury more often, more intensely, and with long-laster episodes than people with low trait anger. It is thought that people with high trait anger might be particularly susceptible to coronary heart disease; 12,986 participants were recruited for a study examining this hypothesis. Participants were followed for five years. The following table shows data for the participants identified as having normal blood pressure (normotensives).
+	
+	\begin{center}
+		\begin{tabular}{l l c c c c}
+			&                           & \multicolumn{3}{c}{\textit{Trait Anger Score}} \\
+			\cline{3-5}
+			&                           & Low  & Moderate  & High   & Total \\
+			\cline{2-6}
+			& Yes & 53            & 110     & 27       & 190 \\
+			\raisebox{1.5ex}[0pt]{\emph{CHD Event}} & No    & 3057       & 4704      & 606       & 8284 \\ 
+			& Total                     & 3110           & 4731     & 633      & 8474
+		\end{tabular}
+	\end{center}
+	
+	\begin{parts}
+		\item What percentage of participants have moderate anger scores?
+		\item What percentage of individuals who experienced a CHD event have moderate anger scores?
+		\item What percentage of participants with high trait anger scores experienced a CHD event (i.e., heart attack)?
+		\item What percentage of participants with low trait anger scores experienced a CHD event?
+		\item Are individuals with high trait anger more likely to experience a CHD event than individuals with low trait anger? Calculate the relative risk of a CHD event for individuals with high trait anger compared to low trait anger.
+		\item Researchers also collected data on various participant traits, such as level of blood cholesterol (measured in mg/dL). What graphical summary might be useful for examining how blood cholesterol level differs between anger groups?
+	\end{parts}
+}{}
+
+
+%_______________
+\subsection{Exploratory data analysis}
+
+Since exploratory data analysis relies heavily on the use of computation, refer to the labs for exercises related to this section, which are free and may be found at \oiRedirect{biostat}{\textbf{\color{black}openintro.org/book/biostat}}.END_PGML
+
+ENDDOCUMENT();

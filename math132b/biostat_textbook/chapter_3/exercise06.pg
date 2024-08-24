@@ -1,0 +1,69 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Scooping ice cream\label{scoop_ice_cream}} Ice cream usually comes in 1.5 quart boxes (48 fluid ounces), and ice cream scoops hold about 2 ounces. 
+	However, there is some variability in the amount of ice cream in a box as well as 
+	the amount of ice cream scooped out. We represent the amount of ice cream in the 
+	box as $X$ and the amount scooped out as $Y$. Suppose these random variables have 
+	the following means, standard deviations, and variances:
+	\begin{center}
+		\begin{tabular}{l ccc}
+			\hline
+			& mean & SD & variance \\
+			\hline
+			$X$ & 48       & 1      & 1     \\
+			$Y$ & 2    & 0.25   & 0.0625    \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\begin{parts}
+		\item An entire box of ice cream, plus 3 scoops from a second box is served at a 
+		party. How much ice cream do you expect to have been served at this party? What 
+		is the standard deviation of the amount of ice cream served?
+		\item How much ice cream would you expect to be left in the box after scooping 
+		out one scoop of ice cream? That is, find the expected value of $X-Y$. What is 
+		the standard deviation of the amount left in the box?
+		\item Using the context of this exercise, explain why we add variances when we 
+		subtract one random variable from another.
+	\end{parts}
+}{}
+
+
+%_______________
+\subsection{Binomial distribution}
+
+% 7 ODD (OI4, 4.17)
+
+END_PGML
+
+ENDDOCUMENT();

@@ -1,0 +1,54 @@
+##DESCRIPTION
+## DBsubject(Biostatistics)
+## DBchapter(Data)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+BEGIN_PGML
+\eoce{\qt{Air quality\label{air_quality_durham}} Daily air quality is measured by the air 
+quality index (AQI) reported by the Environmental Protection Agency. This index reports 
+the pollution level and what associated health effects might be a concern. The index is 
+calculated for five major air pollutants regulated by the Clean Air Act and takes values 
+from 0 to 300, where a higher value indicates lower air quality. AQI was reported for a 
+sample of 91 days in 2011 in Durham, NC. The relative frequency histogram below shows 
+the distribution of the AQI values on these days. \footfullcite{data:durhamAQI:2011}
+
+\begin{minipage}[c]{0.55\textwidth}
+\begin{parts}
+\item Based on the histogram, describe the distribution of daily AQI. 
+\item Estimate the median AQI value of this sample.
+\item Would you expect the mean AQI value of this sample to be higher or lower than the 
+median? Explain your reasoning.
+\end{parts}
+\end{minipage}
+\begin{minipage}[c]{0.45\textwidth}
+\begin{center}
+\includegraphics[width = \textwidth]{ch_intro_to_data_oi_biostat/figures/eoce/air_quality_durham/air_quality_durham_rel_freq_hist.pdf} 
+\end{center}
+\end{minipage}
+}{}
+
+\textD{\newpage}
+
+% 30 oi_biostat, nursing home data, Pset 1, Q1
+
+END_PGML
+
+ENDDOCUMENT();

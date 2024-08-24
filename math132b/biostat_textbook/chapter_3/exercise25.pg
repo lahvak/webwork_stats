@@ -1,0 +1,49 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{LA weather\label{la_weather_intro}} The average daily high 
+	temperature in June in LA is 77\degree F with a standard deviation of 
+	5\degree F. Suppose that the temperatures in June closely follow a normal 
+	distribution. 
+	\begin{parts}
+		\item What is the probability of observing an 83\degree F temperature or 
+		higher in LA during a randomly chosen day in June?
+		\item How cold are the coldest 10\% of the days during June in LA?
+	\end{parts}
+}{}
+
+% 26 oi_biostat, clutch_volume
+
+END_PGML
+
+ENDDOCUMENT();

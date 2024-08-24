@@ -1,0 +1,59 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Arachnophobia\label{arachnophobia}}
+	A Gallup Poll found that 7\% of teenagers (ages 13 to 17)
+	suffer from arachnophobia and are extremely afraid of spiders.
+	At a summer camp there are 10 teenagers sleeping in each tent.
+	Assume that these 10 teenagers are independent of each other.%
+	\footfullcite{webpage:spiders}
+	\begin{parts}
+		\item Calculate the probability that at least one of them suffers from 
+		arachnophobia.
+		\item Calculate the probability that exactly 2 of them suffer from 
+		arachnophobia.
+		\item Calculate the probability that at most 1 of them suffers from 
+		arachnophobia. 
+		\item If the camp counselor wants to make sure no more than 1 teenager in 
+		each tent is afraid of spiders, does it seem reasonable for him to randomly 
+		assign teenagers to tents?
+	\end{parts}
+}{}
+
+\textD{\newpage}
+
+% 15 oi_biostat, wolbachia_prevalence
+
+END_PGML
+
+ENDDOCUMENT();

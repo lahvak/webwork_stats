@@ -1,0 +1,49 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Donating blood, Part II\label{abo_blood_geometric}} Recall from Problem~\ref{abo_blood} that a patient with Type O+ blood can receive either Type O+ or Type O- blood, while a patient with Type O- blood can only receive Type O- blood. According to data collected from blood donors, 0.37 of white, non-Hispanic donors are Type O+ and 0.08 are Type O-. For the following questions, assume that only white, non-Hispanic donors are being tested.
+\begin{parts}
+\item On average, how many donors would need to be randomly sampled for a Type O+ donor to be identified? With what standard deviation?
+\item What is the probability that 4 donors must be sampled to identify a Type O+ donor?
+\item What is the probability that more than 4 donors must be sampled to identify a Type O+ donor?
+\item What is the probability of the first Type O- donor being found within the first 4 people?
+\item On average, how many donors would need to be randomly sampled for a Type O- donor to be identified? With what standard deviation?
+\item What is the probability that fewer than 4 donors must be tested before a Type O- donor is found?
+\end{parts}	
+}{}
+
+% 47 oi_biostat, wolbachia_prevalence
+
+END_PGML
+
+ENDDOCUMENT();

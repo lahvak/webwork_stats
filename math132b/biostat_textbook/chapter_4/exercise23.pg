@@ -1,0 +1,54 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection(Binomial)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserRadioButtons.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = RadioButtons(
+["yes, this is a random sample","yes, although this is not a random sample, there is no reason to expect a bias", "no, this sample is likely biased"],
+"no, this sample is likely biased");
+
+$percentage = random(7,19);
+$size = random(30,200);
+
+$expected = Compute("$percentage*$size/100");
+
+
+BEGIN_PGML
+\eoce{\qtq{Which is higher\label{which_higher_found_inf}} In each part below, there is a value of interest and two 
+scenarios (I and II). For each part, report if the value of interest is larger 
+under scenario I, scenario II, or whether the value is equal under the scenarios.
+\begin{parts}
+\item The standard error of $\bar{x}$ when $s = 120$ and 
+(I) n = 25 or (II) n = 125.
+\item The margin of error of a confidence interval when the confidence level is 
+(I) 90\% or (II) 80\%.
+\item The p-value for a Z-statistic of 2.5 when (I) n = 500 or (II) n = 1000.
+\item The probability of making a Type~2 Error when the alternative hypothesis 
+is true and the significance level is (I) 0.05 or (II) 0.10.
+\end{parts}
+}{}
+
+% 24 EVEN (OI3, 4.32)
+
+END_PGML
+
+ENDDOCUMENT();

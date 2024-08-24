@@ -1,0 +1,51 @@
+##DESCRIPTION
+## DBsubject(Biostatistics)
+## DBchapter(Data)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+BEGIN_PGML
+\eoce{\qt{Smoking and stenosis\label{smoking_and_stenosis_intro}}
+	Researchers collected data from an observational study to investigate the association between smoking status and the presence of aortic stenosis, a narrowing of the aorta that impedes blood flow to the body.
+	\begin{center}
+		\begin{tabular}{ll  cc c} 
+			&			& \multicolumn{2}{c}{\textit{Smoking Status}} \\
+			\cline{3-4}
+			&			& Non-smoker 	& Smoker	& Total	\\
+			\cline{2-5}
+			& Absent & 67	& 43	& 110\\
+			\raisebox{1.5ex}[0pt]{\emph{Disease Status}}	& Present	& 54	& 51 	& 105 \\
+			\cline{2-5}
+			& Total		& 121	& 94	& 215
+		\end{tabular}
+	\end{center}
+	\begin{parts}
+		\item What percentage of the 215 participants were both smokers and had aortic stenosis? This percentage is one component of the \textit{joint distribution} of smoking and stenosis; what are the other three numbers of the joint distribution?
+		\item Among the smokers, what proportion have aortic stenosis? This number is a component of the conditional distribution of stenosis for the two categories of smokers. What proportion of non-smokers have aortic stenosis?
+		\item In this context, relative risk is the ratio of the proportion of smokers with stenosis to the proportion of non-smokers with stenosis. Relative risks greater than 1 indicate that smokers are at a higher risk for aortic stenosis than non-smokers; relative risks of 1.2 or higher are generally considered cause for alarm. Calculate the relative risk for the 215 participants, comparing smokers to non-smokers. Does there seem to be evidence that smoking is associated with an increased probability of stenosis?
+	\end{parts}
+}{}
+
+
+% 39 oi_biostat, cite anger_chd paper
+
+END_PGML
+
+ENDDOCUMENT();

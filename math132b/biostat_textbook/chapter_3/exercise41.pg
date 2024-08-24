@@ -1,0 +1,61 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qtq{How many cars show up\label{cars_in_parking_lot}}
+	For Monday through Thursday when there isn't a holiday,
+	the average number of vehicles that visit a particular
+	retailer between 2pm and 3pm each afternoon is 6.5,
+	and the number of cars that show up on any given day
+	follows a Poisson distribution.
+	\begin{parts}
+		\item
+		What is the probability that exactly
+		5 cars will show up next Monday?
+		\item
+		What is the probability that
+		0, 1, or 2 cars will show up next Monday
+		between 2pm and 3pm?
+		\item
+		There is an average of 11.7 people who visit during
+		those same hours from vehicles.
+		Is it likely that the number of people visiting
+		by car during this hour is also Poisson?
+		Explain.
+	\end{parts}
+}{}
+
+% 42 EVEN (OI4, 4.34)
+
+END_PGML
+
+ENDDOCUMENT();

@@ -1,0 +1,48 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Cilantro preference\label{cilantro_pref}}
+Cilantro leaves are widely used in many world cuisines. While some people enjoy it, others claim that it has a soapy, pungent aroma. A recent study conducted on participants of European ancestry identified a genetic variant that is associated with soapy-taste detection. In the initial questionnaire, 1,994 respondents out of 14,604 reported that they thought cilantro tasted like soap. Suppose that participants are randomly selected one by one. 
+\begin{parts}
+\item What is the probability that the first soapy-taste detector is the third person selected?
+\item What is the probability that in a sample of ten people, no more than two are soapy-taste detectors?
+\item What is the probability that three soapy-taste detectors are identified from sampling ten people?
+\item What is the mean and standard deviation of the number of people that must be sampled if the goal is to identify four soapy-taste detectors?
+\end{parts}
+}{}
+
+% 54 EVEN (OI4, 4.30) edited
+
+END_PGML
+
+ENDDOCUMENT();

@@ -1,0 +1,46 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Underage drinking, Part III\label{underage_drinking_normal_approx_p3}} As first referenced in Exercise~\ref{underage_drinking_intro}, about 70\% of 18-20 year olds consumed alcoholic beverages in 2008. Consider a random sample of fifty 18-20 year olds.
+	\begin{parts}
+		\item Of these fifty people, how many would be expected to have consumed alcoholic beverages? With what standard deviation?
+		\item Evaluate the conditions for using the normal approximation to the binomial. What is the probability that 45 or more people in this sample have 
+		consumed alcoholic beverages?
+	\end{parts}
+}{}
+
+% 32 EVEN (OI4, 3.28) edited
+
+END_PGML
+
+ENDDOCUMENT();

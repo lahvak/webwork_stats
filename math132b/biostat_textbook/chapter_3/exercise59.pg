@@ -1,0 +1,64 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Joint distributions, Part III\label{joint_num_three}} Consider the following joint probability distribution:
+	
+	\begin{center}
+		\begin{tabular}{c|ccc}
+			&    &   Y     & \\ \hline
+			X    & -1 &   0     &  1\\ \hline
+			-1   & 0.10 & 0 & 0.35 \\
+			0    & 0 &  0.10 & 0.10 \\
+			1    & 0.15 & 0.10 & 0.10
+		\end{tabular}
+	\end{center}
+	
+	\begin{parts}
+		
+		\item Calculate the marginal distributions.
+		
+		\item Compute $\mu_X$.
+		
+		\item Compute $\sigma^2_Y$.
+		
+		\item Calculate the conditional distribution of $X$, given $Y = 0$.
+		
+	\end{parts}
+}{}
+
+
+% 60 oi_biostat
+
+END_PGML
+
+ENDDOCUMENT();

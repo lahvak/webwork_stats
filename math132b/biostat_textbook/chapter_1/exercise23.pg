@@ -1,0 +1,35 @@
+##DESCRIPTION
+## DBsubject(Biostatistics)
+## DBchapter(Data)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+BEGIN_PGML
+\eoce{\qt{Alcohol consumption and STIs\label{alcohol_STIs}}
+An observational study published last year in \textit{The American Journal of Preventive Medicine} investigated the effects of an increased alcohol sales tax in Maryland on the rates of gonorrhea and chlamydia.\footnote{S. Staras, et al., 2015. Maryland Alcohol Sales Tax and Sexually Transmitted Infections. The American Journal of Preventive Medicine 50: e73-e80.} After a tax increase from 6\% to 9\% in 2011, the statewide gonorrhea rate declined by 24\%, the equivalent of 1,600 cases per year. In a statement to the \textit{New York Times}, the lead author of the paper was quoted saying, "Policy makers should consider raising liquor taxes if they're looking for ways to prevent sexually transmitted infections. In the year and a half following the alcohol tax rise in Maryland, this prevented 2,400 cases of gonorrhea and saved half a million dollars in health care costs." Explain whether the lead author's statement is accurate.
+}{}
+
+\textD{\newpage}
+
+% 24 EVEN (OI4, 1.40)
+
+END_PGML
+
+ENDDOCUMENT();

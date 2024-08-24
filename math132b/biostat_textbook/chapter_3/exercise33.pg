@@ -1,0 +1,48 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{University admissions\label{university_admissions}} Suppose a university 
+	announced that it admitted 2,500 students for the following year's freshman 
+	class. However, the university has dorm room spots for only 1,786 freshman 
+	students. If there is a 70\% chance that an admitted student will decide to 
+	accept the offer and attend this university, what is the approximate 
+	probability that the university will not have enough dormitory room spots for 
+	the freshman class?
+}{}	
+	
+	
+% 34 EVEN (OI3, 3.16)
+
+END_PGML
+
+ENDDOCUMENT();

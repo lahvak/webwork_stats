@@ -1,0 +1,80 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection(Binomial)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserRadioButtons.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = RadioButtons(
+["yes, this is a random sample","yes, although this is not a random sample, there is no reason to expect a bias", "no, this sample is likely biased"],
+"no, this sample is likely biased");
+
+$percentage = random(7,19);
+$size = random(30,200);
+
+$expected = Compute("$percentage*$size/100");
+
+
+BEGIN_PGML
+\eoce{\qt{Gifted children, Part I\label{gifted_children_intro}} Researchers 
+investigating characteristics of gifted children collected data from schools 
+in a large city on a random sample of thirty-six children who were identified 
+as gifted children soon after they reached the age of four. The following 
+histogram shows the distribution of the ages (in months) at which these 
+children first counted to 10 successfully. Also provided are some sample 
+statistics.\footfullcite{Graybill:1994}
+
+\begin{center}
+\begin{minipage}[c]{0.6\textwidth}
+\begin{center}
+\includegraphics[width=\textwidth]{ch_inference_foundations_oi_biostat/figures/eoce/gifted_children_intro/gifted_children_ht_count_hist.pdf} 
+\end{center}
+\end{minipage}
+\begin{minipage}[c]{0.1\textwidth}
+\begin{tabular}{r | l}
+n   & 36 \\
+min & 21 \\
+mean    & 30.69 \\
+sd  & 4.31 \\
+max & 39 
+\end{tabular}
+\end{minipage}
+\end{center}
+
+\begin{parts}
+\item Are conditions for inference satisfied?
+\item Suppose an online survey reports that children first count to 10 successfully when 
+they are 32 months old, on average. Perform a hypothesis test to evaluate if 
+these data provide convincing evidence that the average age at which gifted 
+children first count to 10 successfully is less than the general average of 32 
+months. Use a significance level of 0.10.
+\item Interpret the p-value in context of the hypothesis test and the data. 
+\item Calculate a 90\% confidence interval for the average age at which gifted children first count to 10 successfully.
+\item Do your results from the hypothesis test and the confidence interval agree? Explain.
+\end{parts}
+}{}
+
+\textD{\newpage}
+
+% 17 ODD (OI3, 4.23)
+
+END_PGML
+
+ENDDOCUMENT();

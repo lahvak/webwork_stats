@@ -1,0 +1,52 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Dice rolls and coin tosses\label{joint_dice_coin}} Let $X$ represent the outcome from a roll of a fair six-sided die. Then, toss a fair coin $X$ times and let $Y$ denote the number of tails observed.
+	
+	\begin{parts}
+		
+		\item Consider the joint probability table of $X$ and $Y$. How many entries are in the table for the joint distribution of $X$ and $Y$?  How many entries equal 0?
+		
+		\item Compute the joint probability $P(X = 1, Y = 0)$.
+		
+		\item Compute the joint probability $P(X = 1, Y = 2)$.
+		
+		\item Compute the joint probability $P(X = 6, Y = 3)$.
+		
+	\end{parts}
+
+}{}
+
+END_PGML
+
+ENDDOCUMENT();

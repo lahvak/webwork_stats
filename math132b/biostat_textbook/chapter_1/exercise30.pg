@@ -1,0 +1,53 @@
+##DESCRIPTION
+## DBsubject(Biostatistics)
+## DBchapter(Data)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+BEGIN_PGML
+\eoce{\qt{Nursing home residents\label{nursing_homes}}
+Since states with larger numbers of elderly residents would naturally have more nursing home residents, the number of nursing home residents in a state is often adjusted for the number of people 65 years of age or order (65+). That adjustment is usually given as the number of nursing home residents age 65+ per 1,000 members of the population age 65+. For example, a hypothetical state with 200 nursing home residents age 65+ and 50,000 people age 65+ would have the same adjusted number of residents as a state with 400 residents and a total age 65+ population of 100,000 residents: 4 residents per 1,000. 
+
+Use the two plots below to answer the following questions. Both plots show the distribution of the number of nursing home residents per 1,000 members of the population 65+ (in each state). 
+
+\begin{minipage}[c]{0.55\textwidth}
+\begin{center}
+	\includegraphics[width = \textwidth]{ch_intro_to_data_oi_biostat/figures/eoce/nursing_home/nursing_home_hist.pdf} 
+\end{center}	
+\end{minipage}
+\begin{minipage}[c]{0.45\textwidth}
+\begin{center}
+	\includegraphics[width = \textwidth]{ch_intro_to_data_oi_biostat/figures/eoce/nursing_home/nursing_home_boxplot.pdf} 
+\end{center}	
+\end{minipage}
+\begin{parts}
+\item Is the distribution of adjusted number of nursing home residents symmetric or skewed? Are there any states that could be considered outliers?
+
+\item Which plot is more informative: the histogram or the boxplot? Explain your answer.
+
+\item What factors might influence the substantial amount of variability among different states? This question cannot be answered from the data; speculate using what you know about the demographics of the United States.
+\end{parts}
+}{}
+
+% 31 ODD (OI4, 2.17)
+
+END_PGML
+
+ENDDOCUMENT();

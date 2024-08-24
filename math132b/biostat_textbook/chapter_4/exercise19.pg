@@ -1,0 +1,47 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection(Binomial)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserRadioButtons.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = RadioButtons(
+["yes, this is a random sample","yes, although this is not a random sample, there is no reason to expect a bias", "no, this sample is likely biased"],
+"no, this sample is likely biased");
+
+$percentage = random(7,19);
+$size = random(30,200);
+
+$expected = Compute("$percentage*$size/100");
+
+
+BEGIN_PGML
+\eoce{\qt{Birth weights\label{birth_weights}} Suppose an investigator takes a random sample of $n = 50$ birth weights from several teaching hospitals located in an inner-city neighborhood. In her random sample, the sample mean $\overline{x}$ is 3,150 grams and the standard deviation is 250 grams.
+	\begin{parts}
+		\item Calculate a 95\% confidence interval for the population mean birth weight in these hospitals.
+		\item The typical weight of a baby at birth for the US population is 3,250 grams. The investigator suspects that the birth weights of babies in these teaching hospitals is different than 3,250 grams, but she is not sure if it is smaller (from malnutrition) or larger (because of obesity prevalence in mothers giving birth at these hospitals). Carry out the hypothesis test that she would conduct.
+	\end{parts}	
+}{}
+
+% 20 EVEN (OI3, 4.26)
+
+END_PGML
+
+ENDDOCUMENT();

@@ -1,0 +1,48 @@
+##DESCRIPTION
+## DBSubject(Probability)
+## DBchapter(Sample Space)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Rapid feathering\label{rapid_feathering}} Sex linkage refers to the inheritance pattern that results from a mutation occurring on a gene located on a sex chromosome. A classic example of a sex-linked trait in humans is red-green color blindness; females can only be red-green colorblind if they have two copies of the mutation (one on each X chromosome), while a single copy of the mutation is sufficient to confer colorblindness in males (since males only have one X chromosome).  
+	
+	In birds, females are the heterogametic sex (with sex chromosomes ZW) and males are the homogametic sex (with sex chromosomes ZZ). A commonly known sex-linked trait in domestic chickens is the rapid feathering trait, which is carried on the Z chromosome. Chickens with the rapid feathering trait grow feathers at a faster rate; this difference is especially pronounced within the first few days from hatching. The wild-type allele $K^-$ is dominant to the mutant alelle $K^+$; presence of the $K^-$ allele produces slow feathering. Females can be either genotype $Z^{K^+}W$ or $Z^{K^-}W$. Males can be either heterozygous ($Z^{K^+}Z^{K^-}$), homozygous for slow feathering ($Z^{K^-}Z^{K^-}$), or homozygous for rapid feathering ($Z^{K^+}Z^{K^+}$).
+	
+	In a population of chickens, 9\% of males are rapid feathering and 16\% of females are rapid feathering. Suppose that slow feathering chickens are mated. What is the probability that out of their 12 offspring, at least two are rapid feathering? 
+	
+}{}
+
+\textD{\newpage}
+
+% 29 oi_biostat, 2020 midterm exam
+
+END_PGML
+
+ENDDOCUMENT();

@@ -1,0 +1,45 @@
+##DESCRIPTION
+## DBsubject(Biostatistics)
+## DBchapter(Data)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+BEGIN_PGML
+\eoce{\qt{Adolescent fertility\label{adol_fertility}}
+	Data are available on the number of children born to women aged 15-19 from 189 countries in the world for the years 1997, 2000, 2002, 2005, and 2006. The data are defined using a scaling similar to that used for the nursing home data in Exercise~\ref{nursing_homes}. The values for the annual adolescent fertility rates represent the number of live births among women aged 15-19 per 1,000 female members of the population of that age.
+	
+	\begin{center}
+		\includegraphics[width=0.7\textwidth]{ch_intro_to_data_oi_biostat/figures/eoce/adolescent_fertility/adol_fertility_boxplot.pdf}
+	\end{center}
+	
+	\begin{parts}
+		\item In 2006, the standard deviation of the distribution of adolescent fertility is 75.73. Write a sentence explaining the 75$^{th}$ percentile in the context of this data.
+		\item For the years 2000-2006, data are not available for Iraq. Why might those observations be missing? Would the five-number summary have been affected very much if the values had been available?
+		\item From the side-by-side boxplots shown above, describe how the distribution of fertility rates changes over time. Is there a trend?
+	\end{parts}	
+}{}
+
+\textD{\newpage}
+
+% 38 oi_biostat, citation: stenosis data
+
+END_PGML
+
+ENDDOCUMENT();

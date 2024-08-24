@@ -1,0 +1,50 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection(Binomial)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserRadioButtons.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = RadioButtons(
+["yes, this is a random sample","yes, although this is not a random sample, there is no reason to expect a bias", "no, this sample is likely biased"],
+"no, this sample is likely biased");
+
+$percentage = random(7,19);
+$size = random(30,200);
+
+$expected = Compute("$percentage*$size/100");
+
+
+BEGIN_PGML
+\eoce{\qt{Nutrition labels\label{nutrition_labels}} The nutrition label on a bag of 
+	potato chips says that a one ounce (28~gram) serving of potato chips has 130 
+	calories and contains ten grams of fat, with three grams of saturated fat. A 
+	random sample of 35 bags yielded a sample mean of 134 calories with a standard 
+	deviation of 17 calories. Is there evidence that the nutrition label does not 
+	provide an accurate measure of calories in the bags of potato chips? We have 
+	verified the independence, sample size, and skew conditions are satisfied.
+}{}
+
+
+% 18 EVEN (OI3, 4.25) edited
+
+END_PGML
+
+ENDDOCUMENT();

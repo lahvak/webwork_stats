@@ -1,0 +1,48 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Playing darts\label{play_darts}} Calculate the following probabilities 
+and indicate which probability distribution model is appropriate in each 
+case. A very good darts player can hit the direct center of the board 65\% of the time. What is the probability that a player:
+\begin{parts}
+\item hits the bullseye for the $10^{th}$ time on the $15^{th}$ try?
+\item hits the bullseye 10 times in 15 tries?
+\item hits the first bullseye on the third try?
+\end{parts}
+}{}
+
+% 53 oi_biostat, cilantro_pref
+
+END_PGML
+
+ENDDOCUMENT();

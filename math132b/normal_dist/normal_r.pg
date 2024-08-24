@@ -1,0 +1,66 @@
+##DESCRIPTION
+## DBsubject(Statistics)
+## DBchapter(Normal distribution)
+## DBsection(Other normal distribution)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## MLT(CI_1p_03)
+## MLTleader(1)
+## Level(3)
+## KEYWORDS('normal distribution')
+##ENDDESCRIPTION
+
+# File Created: 10/24/2017
+# Location: SVSU
+# Course: General Statistics
+
+DOCUMENT();     
+loadMacros("PGstandard.pl",  
+           "PGauxiliaryFunctions.pl",
+           "MathObjects.pl",
+           "PGML.pl",
+           "RserveClient.pl",
+           "contextArbitraryString.pl",
+);     
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("ArbitraryString");
+
+$pnorm = Compute("pnorm")->cmp(
+    noLaTeXresults=>1,
+    checker => sub {
+        my ($correct,$student,$ans) = @_;
+        $correct = $correct->string;
+        $student = $student->string;
+        $student =~ s/^ *| *$//g;   # strip spaces
+        return $correct eq $student;
+      }
+);
+
+Context("Numeric");
+
+$n = random(40,150,1);
+$p = random(.2,.8,.01);
+$mu = $n*$p;
+@sigs = rserve_eval("round(sqrt($n*$p*(1-$p)),3)");
+$sig = $sigs[0];
+$xmin = floor($mu - 3*$sig) + .5;
+$xmax = ceil($mu + 3*$sig) - .5;
+
+$x = random($xmin, $xmax, 1);
+
+BEGIN_PGML
+To find the area under the normal curve with mean [` \mu = [$mu] `] and standard deviation [` \sigma = [$sig] `] to the left of [` x = [$x] `] using R, you would type the following code (fill in the blanks):
+
+[_____]{$pnorm}[|(|][________]{$x}[|, mean = |][________]{$mu}[|, sd = |][_________]{$sig}[|)|]
+
+END_PGML
+
+BEGIN_PGML_SOLUTION
+Use [|pnorm|] to find the area under a normal curve.  It will give you the area to the left.
+
+:   pnorm([$x], mean = [$mu], sd = [$sig])
+
+END_PGML_SOLUTION
+ENDDOCUMENT();

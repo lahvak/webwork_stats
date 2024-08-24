@@ -1,0 +1,50 @@
+##DESCRIPTION
+## DBSubject(Probability)
+## DBchapter(Sample Space)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{It's never lupus\label{tree_lupus}} Lupus is a medical phenomenon where 
+	antibodies that are supposed to attack foreign cells to prevent infections 
+	instead see plasma proteins as foreign bodies, leading to a high risk of blood 
+	clotting. It is believed that 2\% of the population suffer from this disease. The 
+	test is 98\% accurate if a person actually has the disease. The test is 74\% 
+	accurate if a person does not have the disease. There is a line from the Fox 
+	television show \emph{House} that is often used after a patient tests positive 
+	for lupus: ``It's never lupus." Do you think there is truth to this statement? 
+	Use appropriate probabilities to support your answer.
+}{}
+
+
+% 18 EVEN (OI4, 3.20) edited
+
+END_PGML
+
+ENDDOCUMENT();

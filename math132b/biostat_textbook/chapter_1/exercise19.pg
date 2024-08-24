@@ -15,7 +15,7 @@ DOCUMENT();
 loadMacros("PGstandard.pl",  
            "MathObjects.pl",
            "PGML.pl",
-           "parserRadioButtons.pl",
+           "parserPopUp.pl",
            "PGessaymacros.pl",
 );
 TEXT(beginproblem());

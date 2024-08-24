@@ -1,0 +1,46 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Wolbachia infection, Part II\label{wolbachia_infection_geometric}} Recall from Problem~\ref{wolbachia_infection} that 30\% of the \textit{Drosophila} stocks at the BDSC are infected with Wolbachia. Suppose a research assistant randomly samples a stock one at a time until identifying an infected stock.
+\begin{parts}
+\item Calculate the probability that an infected stock is found within the first 5 stocks sampled.
+\item What is the probability that no more than 5 stocks must be tested before an infected one is found?
+\item Calculate the probability that at least 3 stocks must be tested for an infected one to be found.	
+\end{parts}
+}{}
+
+% 48 EVEN (OI4, 4.12)
+
+END_PGML
+
+ENDDOCUMENT();

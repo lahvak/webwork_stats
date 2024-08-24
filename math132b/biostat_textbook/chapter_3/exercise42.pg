@@ -1,0 +1,63 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Lost baggage\label{lost_baggage}}
+	Occasionally an airline will lose a bag.
+	Suppose a small airline has found it can reasonably
+	model the number of bags lost each weekday using a
+	Poisson model with a mean of 2.2 bags.
+	\begin{parts}
+		\item
+		What is the probability that the airline
+		will lose no bags next Monday?
+		\item
+		What is the probability that the airline
+		will lose 0, 1, or 2 bags on next Monday?
+		\item
+		Suppose the airline expands over the course
+		of the next 3 years, doubling the number of
+		flights it makes, and the CEO asks you if
+		it's reasonable for them to continue
+		using the Poisson model with a mean of~2.2.
+		What is an appropriate recommendation?
+		Explain.
+	\end{parts}
+}{}
+
+\textD{\newpage}
+
+% 43 oi_biostat
+
+END_PGML
+
+ENDDOCUMENT();

@@ -1,0 +1,70 @@
+##DESCRIPTION
+## DBsubject(Biostatistics)
+## DBchapter(Data)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+BEGIN_PGML
+\eoce{\qt{Eat better, feel better\label{eat_better_feel_better}}
+	In a public health 
+	study on the effects of consumption of fruits and vegetables on psychological 
+	well-being in young adults, participants were randomly assigned to three 
+	groups: (1) diet-as-usual, (2) an ecological momentary intervention involving 
+	text message reminders to increase their fruits and vegetable consumption plus 
+	a voucher to purchase them, or (3) a fruit and vegetable intervention in 
+	which participants were given two additional daily servings of fresh fruits and 
+	vegetables to consume on top of their normal diet. Participants were asked to 
+	take a nightly survey on their smartphones.
+	Participants were student volunteers at the University of 
+	Otago, New Zealand.
+	At the end of the 14-day study, only participants in the third
+	group showed improvements to their psychological well-being across
+	the 14-days relative to the other groups.\footfullcite{conner2017let}
+	\begin{parts}
+		\item
+		What type of study is this?
+		\item
+		Identify the explanatory and response variables.
+		\item
+		Comment on whether the results of the study can be generalized to
+		the population.
+		\item
+		Comment on whether the results of the study can be used to establish
+		causal relationships.
+		\item
+		A newspaper article reporting on the study states,
+		``The results of this study provide proof that giving young adults
+		fresh fruits and vegetables to eat can have psychological benefits,
+		even over a brief period of time.''
+		How would you suggest revising this statement so that it can be
+		supported by the study?
+	\end{parts}
+}{}
+
+
+
+%_______________
+\subsection{Numerical data}
+
+% 26 EVEN (OI4, 2.8)
+
+END_PGML
+
+ENDDOCUMENT();

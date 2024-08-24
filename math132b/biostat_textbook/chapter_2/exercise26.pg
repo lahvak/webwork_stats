@@ -1,0 +1,50 @@
+##DESCRIPTION
+## DBSubject(Probability)
+## DBchapter(Sample Space)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Eye color\label{eye_color}}  One of the earliest models for the genetics of eye color was developed in 1907, and proposed a single-gene inheritance model, for which brown eye color is always dominant over blue eye color. Suppose that in the population, 25\% of individuals are homozygous dominant ($BB$), 50\% are heterozygous ($Bb$), and 25\% are homozygous recessive ($bb$).
+	\begin{parts}
+		\item Suppose that two parents have brown eyes. What is the probability that their first child has blue eyes?
+		
+		\item Does the probability change if it is now known that the paternal grandfather had blue eyes? Justify your answer.
+		
+		\item Given that their first child has brown eyes, what is the probability that their second child has blue eyes? Ignore the condition given in part (b). 
+		
+	\end{parts}
+	
+}{}
+
+% 27 oi_biostat
+
+END_PGML
+
+ENDDOCUMENT();

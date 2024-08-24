@@ -1,0 +1,49 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Cilantro preference, Part II\label{cilantro_pref_hypergeometric}}
+	Recall from Problem~\ref{cilantro_pref} that in a questionnaire, 1,994 respondents out of 14,604 reported that they thought cilantro tasted like soap. Suppose that a random sample of 15 individuals are selected for further study. 
+	\begin{parts}
+		\item What is the mean and variance of the number of people sampled that are soapy-taste detectors?
+		\item What is the probability that 4 of the people sampled are soapy-taste detectors?
+		\item What is the probability that at most 2 of the people sampled are soapy-taste detectors?
+		\item Suppose that the 15 individuals were sampled with replacement. What is the probability of selecting 4 soapy-taste detectors?
+		\item Compare the answers from parts (b) and (d). Explain why the answers are essentially the same.
+	\end{parts}
+}{}
+
+% 56 oi_biostat, flanders_caries
+
+END_PGML
+
+ENDDOCUMENT();

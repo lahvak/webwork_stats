@@ -1,0 +1,56 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection(Binomial)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserRadioButtons.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = RadioButtons(
+["yes, this is a random sample","yes, although this is not a random sample, there is no reason to expect a bias", "no, this sample is likely biased"],
+"no, this sample is likely biased");
+
+$percentage = random(7,19);
+$size = random(30,200);
+
+$expected = Compute("$percentage*$size/100");
+
+
+BEGIN_PGML
+\eoce{\qt{Waiting at an ER, Part III\label{er_wait_ht}} The hospital administrator 
+mentioned in Exercise~\ref{er_wait_intro} randomly selected 64 patients and 
+measured the time (in minutes) between when they checked in to the ER and the 
+time they were first seen by a doctor. The average time is 137.5 minutes and 
+the standard deviation is 39 minutes. She is getting grief from her supervisor 
+on the basis that the wait times in the ER has increased greatly from last 
+year's average of 127 minutes. However, she claims that the increase is 
+probably just due to chance. 
+\begin{parts}
+\item Calculate a 95\% confidence interval. Is the change in wait times statistically significant at the $\alpha = 0.05$ level?
+\item Would the conclusion in part (a) change if the significance 
+level were changed to $\alpha = 0.01$?
+\item Is the supervisor justified in criticizing the hospital administrator regarding the change in ER wait times? How might you present an argument in favor of the administrator?
+\end{parts}
+}{}
+
+% 19 oi_biostat, pset_04, spring 2016
+
+END_PGML
+
+ENDDOCUMENT();

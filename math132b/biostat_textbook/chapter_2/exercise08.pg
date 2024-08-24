@@ -1,0 +1,56 @@
+##DESCRIPTION
+## DBSubject(Probability)
+## DBchapter(Sample Space)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{School absences\label{school_absences}} Data collected at elementary 
+schools in DeKalb County, GA suggest that each year roughly 25\% of students miss 
+exactly one day of school, 15\% miss 2 days, and 28\% miss 3 or more days due to 
+sickness. \footfullcite{Mizan:2011}
+\begin{parts}
+\item What is the probability that a student chosen at random doesn't miss any 
+days of school due to sickness this year?
+\item What is the probability that a student chosen at random misses no more than 
+one day?
+\item What is the probability that a student chosen at random misses at least one 
+day?
+\item If a parent has two kids at a DeKalb County elementary school, what is the 
+probability that neither kid will miss any school? Note any assumptions made and evaluate how reasonable they are.
+\item If a parent has two kids at a DeKalb County elementary school, what is the 
+probability that both kids will miss some school, i.e. at least one day? Note any assumptions made and evaluate how reasonable they are.
+\end{parts}
+}{}
+
+% 9 ODD (OI4, 3.9)
+
+END_PGML
+
+ENDDOCUMENT();

@@ -1,0 +1,48 @@
+##DESCRIPTION
+## DBsubject(Biostatistics)
+## DBchapter(Data)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+BEGIN_PGML
+\eoce{\qt{Mammal life spans\label{mammal_life_spans}} Data were collected on life spans (in 
+	years) and gestation lengths (in days) for 62 mammals. A scatterplot of life span versus 
+	length of gestation is shown below. \footfullcite{Allison+Cicchetti:1975}
+	
+	\noindent\begin{minipage}[c]{0.44\textwidth}
+		\begin{parts}
+			\item Does there seem to be an association between length of gestation and life span? If so, what type of association? Explain your reasoning.
+			\item What type of an association would you expect to see if the axes of the plot were reversed, i.e. if we plotted length of gestation versus life span?
+		\end{parts}\vspace{6mm}
+	\end{minipage}
+	\begin{minipage}[c]{0.55\textwidth}
+		\begin{center}
+			\includegraphics[width = 0.86\textwidth]{ch_intro_to_data_oi_biostat/figures/eoce/mammal_life_spans/mammal_life_spans_scatterplot.pdf}
+		\end{center}
+	\end{minipage}
+}{}
+
+\textD{\newpage}
+
+% 36 EVEN (OI4, 2.2)
+
+END_PGML
+
+ENDDOCUMENT();

@@ -1,0 +1,67 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Joint distributions, Part II\label{joint_num_two}} Suppose $X$ and $Y$ have the following joint distribution.
+	
+	% latex table generated in R 3.6.2 by xtable 1.8-4 package
+	% Sun Jun  7 17:14:30 2020
+	\begin{center}
+		\begin{tabular}{r|rr}
+			\hline
+			& Y = -1 & Y = 1 \\ 
+			\hline
+			X = 0 & 0.25 & 0.25 \\ 
+			X = 1 & 0.25 & 0.25 \\ 
+			\hline
+		\end{tabular}
+	\end{center}
+
+	\begin{parts}
+		
+		\item Are $X$ and $Y$ independent?
+		
+		\item Calculate the correlation between $X$ and $Y$.
+		
+		\item Are your answers to parts (a) and (b) consistent? Explain your answer.
+		
+	\end{parts}
+
+}{}
+
+\newpage
+
+% 59 oi_biostat
+
+END_PGML
+
+ENDDOCUMENT();

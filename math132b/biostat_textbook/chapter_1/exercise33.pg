@@ -1,0 +1,36 @@
+##DESCRIPTION
+## DBsubject(Biostatistics)
+## DBchapter(Data)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+BEGIN_PGML
+\eoce{\qt{Flossing habits\label{flossing_habits}} Suppose that an anonymous questionnaire is given to patients at a dentist's office once they arrive for an appointment. One of the questions asks "How often do you floss?", and four answer options are provided: a) at least twice a day, b) at least once a day, c) a few times a week, and d) a few times a month. At the end of a week, the answers are tabulated: 31 individuals chose answer a), 55 chose b), 39 chose c), and 12 chose d). 
+	\begin{parts}
+		\item Describe how these data could be numerically and graphically summarized.
+		\item Assess whether the results of this survey can be generalized to provide information about flossing habits in the general population. 
+	\end{parts}
+}{}
+
+% 34 EVEN (OI4, 2.22)
+
+END_PGML
+
+ENDDOCUMENT();

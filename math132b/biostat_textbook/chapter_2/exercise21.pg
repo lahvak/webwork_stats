@@ -1,0 +1,41 @@
+##DESCRIPTION
+## DBSubject(Probability)
+## DBchapter(Sample Space)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Mumps\label{mumps}} Mumps is a highly contagious viral infection that most often occurs in children, but can affect adults, particularly if they are living in shared living spaces such as college dormitories. It is most recognizable by the swelling of salivary glands at the side of the face under the ears, but earlier symptoms include headaches, fever, and joint pain. Suppose a college student at a university presents to a physician with symptoms of headaches, fever, and joint pain. Let $A$ = \{headaches, fever, and joint pain\}, and suppose that the possible disease state of the patient can be partitioned into: $B_1$ = normal, $B_2$ = common cold, $B_3$ = mumps. From clinical experience, the physician estimates $P(A|B_i)$: $P(A|B_1) = 0.001$, $P(A|B_2) = 0.70$, $P(A|B_3) = 0.95$. The physician, aware that some students have contracted the mumps, then estimates that for students at this university, $P(B_1) = 0.95$, $P(B_2) = 0.025$, and $P(B_3) = 0.025$. Given the previous symptoms, which of the disease states is most likely?}{}
+
+
+% 22 EVEN (OI3, 2.26)
+
+END_PGML
+
+ENDDOCUMENT();

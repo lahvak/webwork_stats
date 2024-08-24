@@ -1,0 +1,50 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Hemophilia\label{hemophilia}}
+	Hemophilia is a sex-linked bleeding disorder that slows the blood clotting process. In severe cases of hemophilia, continued bleeding occurs after minor trauma or even in the absence of injury. Hemophilia affects 1 in 5,000 male births. In the United States, about 400 males are born with hemophilia each year; there are approximately 4,000,000 births per year. \textit{Note: this problem is best done using statistical software.}
+	\begin{parts}
+		\item What is the probability that at most 380 newborns in a year are born with hemophilia?
+		\item What is the probability that 450 or more newborns in a year are born with hemophilia?
+		\item Consider a hypothetical country in which there are approximately 1.5 million births per year. If the incidence rate of hemophilia is equal to that in the US, how many newborns are expected to have hemophilia in a year, with what standard deviation?
+	\end{parts}	
+}{}
+
+% from http://www.cdc.gov/ncbddd/hemophilia/data.html
+% from http://www.cdc.gov/nchs/fastats/births.htm
+
+% 44 oi_biostat, 2016 midterm, question 3
+
+END_PGML
+
+ENDDOCUMENT();

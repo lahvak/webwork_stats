@@ -1,0 +1,68 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Health insurance claims\label{joint_insurance}} In the health insurance example introduced in Example~\ref{example:healthCareCosts}, the largest annual expense for the annual employee (\$1,108) was caused by 8 visits to a provider for a knee injury requiring physical therapy.  The couple has confidence that this or a similar injury will not happen again in the coming year, and wonders about the effect of reduced visits on expected total health care costs and its variability.
+	
+	A new joint distribution of health care cost for the couple is shown in the following table:
+	
+	\begin{center}
+		\begin{tabular}{crr}
+			\hline
+			&   \multicolumn{2}{c}{\textbf{Partner costs, $Y$}} \\
+			\textbf{Employee costs, $X$} & \textbf{\$968} & \textbf{\$988} \\ 
+			\hline
+			\textbf{\$968} & 0.18 & 0.12 \\ 
+			\textbf{\$1,008} & 0.15 & 0.25 \\ 
+			\textbf{\$1,028}  & 0.07 & 0.23 \\ 
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\begin{parts}
+		
+		\item For the partner, will there be a change to the expected cost and its standard deviation?
+		
+		\item Calculated the expected value and standard deviation for the employee's costs.
+		
+		\item Calculate the expected total cost for the couple.
+		
+		\item Calculate the new correlation for employee and partner costs.  
+		
+		\item Calculate the standard deviation of the total cost. 
+		
+	\end{parts}
+
+}{}
+END_PGML
+
+ENDDOCUMENT();

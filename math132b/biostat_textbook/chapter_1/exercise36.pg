@@ -1,0 +1,44 @@
+##DESCRIPTION
+## DBsubject(Biostatistics)
+## DBchapter(Data)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+BEGIN_PGML
+\eoce{\qt{Associations\label{association_plots}} Indicate which of the plots show a \\[1mm]
+	\noindent\begin{minipage}[b]{0.35\textwidth}
+		\begin{parts}
+			\item positive association
+			\item negative association
+			\item no association
+		\end{parts}
+		Also determine if the positive and negative associations are linear or nonlinear. Each 
+		part may refer to more than one plot. \vspace{30mm}
+	\end{minipage}
+	\begin{minipage}[b]{0.62\textwidth}
+		\hfill\includegraphics[width = 0.95\textwidth]{ch_intro_to_data_oi_biostat/figures/eoce/association_plots/association_plots.pdf}
+	\end{minipage}
+}{}
+
+% 37 oi_biostat
+
+END_PGML
+
+ENDDOCUMENT();

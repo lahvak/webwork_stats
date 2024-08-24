@@ -1,0 +1,38 @@
+##DESCRIPTION
+## DBsubject(Biostatistics)
+## DBchapter(Data)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+BEGIN_PGML
+\eoce{\qt{Midrange\label{midrange}} The \textit{midrange} of a distribution is defined as 
+the average of the maximum and the minimum of that distribution. Is this statistic 
+robust to outliers and extreme skew? Explain your reasoning.
+}{}
+
+
+%_______________
+\subsection{Categorical data}
+
+% 33 oi_biostat
+
+END_PGML
+
+ENDDOCUMENT();

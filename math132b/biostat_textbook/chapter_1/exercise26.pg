@@ -1,0 +1,46 @@
+##DESCRIPTION
+## DBsubject(Biostatistics)
+## DBchapter(Data)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+BEGIN_PGML
+\eoce{\qt{Means and SDs} For each part, compare distributions (1) and (2) based on their means and standard deviations. You do not need to calculate these statistics; simply state how the means and the standard deviations compare. Make sure to explain your reasoning. \textit{Hint:} It may be useful to sketch dot plots of the distributions.
+	\begin{multicols}{2}
+		\begin{parts}
+			\item (1) 3, 5, 5, 5, 8, 11, 11, 11, 13 \\
+			(2) 3, 5, 5, 5, 8, 11, 11, 11, 20 \\
+			\item (1) -20, 0, 0, 0, 15, 25, 30, 30 \\
+			(2) -40, 0, 0, 0, 15, 25, 30, 30
+			\item (1) 0, 2, 4, 6, 8, 10 \\
+			(2) 20, 22, 24, 26, 28, 30
+			\item (1) 100, 200, 300, 400, 500 \\
+			(2) 0, 50, 300, 550, 600
+		\end{parts}
+	\end{multicols}
+}{}
+
+\textD{\newpage}
+
+% 27 ODD (OI4, 2.7)
+
+END_PGML
+
+ENDDOCUMENT();

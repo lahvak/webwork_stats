@@ -1,0 +1,51 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Stenographer's typos\label{stenographer_typos}} A very skilled 
+	court stenographer makes one typographical error (typo) per hour on average.
+	\begin{parts}
+		\item What are the mean and the standard deviation of the number of typos 
+		this stenographer makes in an hour?
+		\item Calculate the probability that this stenographer makes at most 3 typos 
+		in a given hour.
+		\item Calculate the probability that this stenographer makes at least 5 typos over 3 hours.
+	\end{parts}
+}{}
+
+\textD{\newpage}
+
+% 39 ODD (OI4, 4.31) edited
+
+END_PGML
+
+ENDDOCUMENT();

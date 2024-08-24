@@ -1,0 +1,56 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection(Binomial)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserRadioButtons.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = RadioButtons(
+["yes, this is a random sample","yes, although this is not a random sample, there is no reason to expect a bias", "no, this sample is likely biased"],
+"no, this sample is likely biased");
+
+$percentage = random(7,19);
+$size = random(30,200);
+
+$expected = Compute("$percentage*$size/100");
+
+
+BEGIN_PGML
+\eoce{\qt{Testing for fibromyalgia\label{errors_fibromyalgia}} A patient named Diana 
+was diagnosed with fibromyalgia, a long-term syndrome of body pain, and was 
+prescribed anti-depressants. Being the skeptic that she is, Diana didn't 
+initially believe that anti-depressants would help her symptoms. However after 
+a couple months of being on the medication she decides that the 
+anti-depressants are working, because she feels like her symptoms are in fact 
+getting better.
+\begin{parts}
+\item Write the hypotheses in words for Diana's skeptical position when she 
+started taking the anti-depressants.
+\item What is a Type~1 Error in this context?
+\item What is a Type~2 Error in this context?
+\end{parts}
+}{}
+
+
+% 22 EVEN (OI3, 4.30)
+
+END_PGML
+
+ENDDOCUMENT();

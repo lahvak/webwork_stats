@@ -1,0 +1,77 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection(Binomial)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserRadioButtons.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = RadioButtons(
+["yes, this is a random sample","yes, although this is not a random sample, there is no reason to expect a bias", "no, this sample is likely biased"],
+"no, this sample is likely biased");
+
+$percentage = random(7,19);
+$size = random(30,200);
+
+$expected = Compute("$percentage*$size/100");
+
+
+BEGIN_PGML
+\eoce{\qt{Gifted children, Part II\label{gifted_children_ht}} Exercise~\ref{gifted_children_intro} describes a study on gifted 
+children. In this study, along with variables on the children, the researchers 
+also collected data on the mother's and father's IQ of the 36 randomly sampled 
+gifted children. The histogram below shows the distribution of mother's IQ.  
+Also provided are some sample statistics.
+
+\begin{center}
+\begin{minipage}[c]{0.6\textwidth}
+\begin{center}
+\includegraphics[width=\textwidth]{ch_inference_foundations_oi_biostat/figures/eoce/gifted_children_ht/gifted_children_ht_momIQ_hist.pdf} 
+\end{center}
+\end{minipage}
+\begin{minipage}[c]{0.1\textwidth}
+\begin{tabular}{r | l}
+n   & 36 \\
+min & 101 \\
+mean    & 118.2 \\
+sd  & 6.5 \\
+max & 131 
+\end{tabular}
+\end{minipage}
+\end{center}
+
+\begin{parts}
+\item Perform a hypothesis test to evaluate if these data provide convincing 
+evidence that the average IQ of mothers of gifted children is different than the 
+average IQ for the population at large, which is 100. Use a significance level 
+of 0.10.
+\item Calculate a 90\% confidence interval for the average IQ of mothers of 
+gifted children.
+\item Do your results from the hypothesis test and the confidence interval 
+agree? Explain.
+\end{parts}
+}{}
+
+\textD{\newpage}
+
+% 21 ODD (OI3, 4.29)
+
+END_PGML
+
+ENDDOCUMENT();

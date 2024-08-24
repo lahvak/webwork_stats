@@ -1,0 +1,52 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Married women} \label{married_women} The 2010 American Community Survey 
+estimates that 47.1\% of women ages 15 years and over are married. Suppose that a random sample of women in this age group are selected for a research study.
+\footfullcite{marWomenACS}
+\begin{parts}
+\item On average, how many women would need to be sampled in order to select 
+a married woman? What is the standard deviation?
+\item If the proportion of married women were actually 30\%, what would be the new mean and standard deviation?
+\item Based on the answers to parts (a) and (b), how does decreasing the 
+probability of an event affect the mean and standard deviation of the wait time until success?
+\end{parts}
+}{}
+
+\textD{\newpage}
+
+% 46 oi_biostat, abo_blood
+
+END_PGML
+
+ENDDOCUMENT();

@@ -1,0 +1,48 @@
+##DESCRIPTION
+## DBSubject(Probability)
+## DBchapter(Sample Space)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Views on evolution\label{views_evolution}} A 2013 analysis conducted by the Pew Research Center found that 60\% of survey respondents agree with the statement "humans and other living things have evolved over time" while 33\% say that "humans and other living things have existed in their present form since the beginning of time" (7\% responded "don't know"). They also found that there are differences among partisan groups in beliefs about evolution. While roughly two-thirds of Democrats (67\%) and independents (65\%) say that humans and other living things have evolved over time, 48\% of Republicans reject the idea of evolution. Suppose that 45\% of respondents identified as Democrats, 40\% identified as Republicans, and 15\% identified as political independents. The survey was conducted among a national sample of 1,983 adults.
+\begin{parts}
+\item Suppose that a person is randomly selected from the population and found to identify as a Democrat. What is the probability that this person does not agree with the idea of evolution?
+\item Suppose that a political independent is randomly selected from the population. What is the probability that this person does not agree with the idea of evolution?
+\item Suppose that a person is randomly selected from the population and found to identify as a Republican. What is the probability that this person agrees with the idea of evolution?
+\item Suppose that a person is randomly selected from the population and found to support the idea of evolution. What is the probability that this person identifies as a Republican?
+\end{parts}
+}{}
+
+
+% 20 oi_biostat, from 2016 final exam
+
+END_PGML
+
+ENDDOCUMENT();

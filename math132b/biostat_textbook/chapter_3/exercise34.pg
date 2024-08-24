@@ -1,0 +1,47 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{SAT scores\label{sat_scores}} SAT scores (out of 2400) are distributed 
+	normally with a mean of 1500 and a standard deviation of 300. Suppose a 
+	school council awards a certificate of excellence to all students who score 
+	at least 1900 on the SAT, and suppose we pick one of the recognized students 
+	at random. What is the probability this student's score will be at least 
+	2100? (The material covered in Section~\ref{conditionalProbabilitySection} 
+	would be useful for this question.)
+}{}	
+	
+% 35 ODD (OI3, 3.17) edited
+	
+END_PGML
+
+ENDDOCUMENT();

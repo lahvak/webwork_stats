@@ -1,0 +1,52 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Dental caries\label{dental_caries}}
+	A study to examine oral health of schoolchildren in Belgium found that of the 4,351 children examined, 44\% were caries free (i.e., free of decay, restorations, and missing teeth). Suppose that children are sampled one by one.
+	\begin{parts}
+		\item What is the probability that at least three caries free children are identified from sampling seven children?
+		\item What is the probability that the first caries free child is the second one selected?
+		\item Suppose that in a single school of 350 children, the incidence rate of caries equals the national rate. If 10 schoolchildren are selected at random, what is the probability that at most 2 have caries?
+		\item What is the probability that in a sample of 50 children, no more than 15 are caries free?
+	\end{parts}
+}{}\textD{\vspace{10mm}}
+
+
+%_______________
+\subsection{Distributions for pairs of random variables}
+
+% 57 oi_biostat
+
+END_PGML
+
+ENDDOCUMENT();

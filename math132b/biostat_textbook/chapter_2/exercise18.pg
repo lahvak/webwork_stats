@@ -1,0 +1,58 @@
+##DESCRIPTION
+## DBSubject(Probability)
+## DBchapter(Sample Space)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Predisposition for thrombosis\label{tree_thrombosis}} A genetic test is 
+used to determine if people have a predisposition for \textit{thrombosis}, which 
+is the formation of a blood clot inside a blood vessel that obstructs the flow of 
+blood through the circulatory system. It is believed that 3\% of people actually 
+have this predisposition. The genetic test is 99\% accurate if a person actually 
+has the predisposition, meaning that the probability of a positive test result 
+when a person actually has the predisposition is 0.99. The test is 98\% accurate 
+if a person does not have the predisposition. 
+\begin{parts}
+\item What is the probability that a 
+randomly selected person who tests positive for the predisposition by the test 
+actually has the predisposition?
+\item What is the probability that a randomly selected person who tests negative for the predisposition by the test actually does not have the predisposition?
+\end{parts}
+}{}
+
+\textD{\newpage}
+
+% 19 oi_biostat
+
+% http://www.pewforum.org/2013/12/30/publics-views-on-human-evolution/
+
+END_PGML
+
+ENDDOCUMENT();

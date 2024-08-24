@@ -1,0 +1,45 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Scores on stats final\label{stats_scores}} The final exam scores of 20 introductory statistics students are plotted below. Do these data appear to follow a normal distribution? Explain your reasoning.
+		\begin{center}
+			\includegraphics[width=0.46\textwidth]{ch_distributions_oi_biostat/figures/eoce/stats_scores/stats_scores_hist.pdf}\ \ \ \ 
+			\includegraphics[width= 0.46\textwidth]{ch_distributions_oi_biostat/figures/eoce/stats_scores/stats_scores_qq.pdf}
+		\end{center}
+}{}	
+	
+% 36 EVEN (OI3, 3.18) edited
+
+END_PGML
+
+ENDDOCUMENT();

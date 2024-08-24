@@ -1,0 +1,65 @@
+##DESCRIPTION
+## DBsubject(Biostatistics)
+## DBchapter(Data)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+BEGIN_PGML
+\eoce{\qt{Income at the coffee shop\label{income_coffee_shop}} The first histogram 
+	below shows the distribution of the yearly incomes of 40 patrons at a college 
+	coffee shop. Suppose two new people walk into the coffee shop: one making 
+	\$225,000 and the other \$250,000. The second histogram shows the new income 
+	distribution. Summary statistics are also provided. \\
+	\begin{minipage}[c]{0.5\textwidth}
+		\includegraphics[width=\textwidth]{ch_intro_to_data_oi_biostat/figures/eoce/income_coffee_shop/income_coffee_shop.pdf}
+	\end{minipage}
+	\begin{minipage}[c]{0.4\textwidth}
+		\begin{center}
+			\begin{tabular}{rrr}
+				\hline
+				& (1)       & (2) \\ 
+				\hline
+				n       & 40        & 42 \\ 
+				Min.    & 60,680    & 60,680 \\ 
+				1st Qu. & 63,620    & 63,710 \\ 
+				Median  & 65,240    & 65,350 \\ 
+				Mean    & 65,090    & 73,300 \\ 
+				3rd Qu. & 66,160    & 66,540 \\ 
+				Max.    & 69,890    & 250,000 \\ 
+				SD      & 2,122     & 37,321 \\ 
+				\hline
+			\end{tabular}
+		\end{center}
+	\end{minipage}
+	\begin{parts}
+		\item Would the mean or the median best represent what we might think of as a 
+		typical income for the 42 patrons at this coffee shop? What does this say about 
+		the robustness of the two measures?
+		\item Would the standard deviation or the IQR best represent the amount of 
+		variability in the incomes of the 42 patrons at this coffee shop? What does 
+		this say about the robustness of the two measures?
+	\end{parts}
+}{}
+
+% 32 EVEN (OI4, 2.18)
+
+END_PGML
+
+ENDDOCUMENT();

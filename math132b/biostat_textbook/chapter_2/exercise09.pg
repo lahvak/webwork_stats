@@ -1,0 +1,50 @@
+##DESCRIPTION
+## DBSubject(Probability)
+## DBchapter(Sample Space)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Disjoint vs. independent\label{disjoint_indep}} In parts~(a) and~(b), 
+	identify whether the events are disjoint, independent, or neither (events cannot 
+	be both disjoint and independent).
+	\begin{parts}
+		\item You and a randomly selected student from your class both earn A's in this 
+		course. 
+		\item You and your class study partner both earn A's in this course.
+		\item If two events can occur at the same time, must they be dependent?
+	\end{parts}
+}{}
+
+
+% 10 EVEN (OI3, 2.18) edited
+
+END_PGML
+
+ENDDOCUMENT();

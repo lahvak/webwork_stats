@@ -1,0 +1,63 @@
+##DESCRIPTION
+## DBSubject(Probability)
+## DBchapter(Sample Space)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Breast cancer and age\label{breast_cancer_age}} The strongest risk factor for breast cancer is age; as a woman gets older, her risk of developing breast cancer increases. The following table shows the average percentage of American women in each age group who develop breast cancer, according to statistics from the National Cancer Institute. For example, approximately 3.56\% of women in their 60's get breast cancer. 
+	
+	\begin{table}[htb!]
+		\centering
+		\small
+		\begin{tabular}{l|l}
+			\textbf{Age Group}  & \textbf{Prevalence} \\ \hline
+			30 - 40 &     0.0044                        \\
+			40 - 50 &      0.0147                          \\
+			50 - 60 &      0.0238                          \\
+			60 - 70 &      0.0356                         \\
+			70 - 80 &       0.0382                        \\ \hline
+		\end{tabular}
+	\end{table}
+	
+	A mammogram typically identifies a breast cancer about 85\% of the time, and is correct 95\% of the time when a woman does not have breast cancer. 
+	
+	\begin{parts}
+		\item Calculate the PPV for each age group. Describe any trend(s) you see in the PPV values as prevalence changes. Explain the reason for the trend(s) in language that someone who has not taken a statistics course would understand.
+		\item Suppose that two new mammogram imaging technologies have been developed which can improve the PPV associated with mammograms; one improves sensitivity to 99\% (but specificity remains at 95\%), while the other improves specificity to 99\% (while sensitivity remains at 85\%). Which technology offers a higher increase in PPV? Explain why.
+	\end{parts}
+	}{}
+
+\textD{\newpage}
+
+% 25 oi_biostat
+
+END_PGML
+
+ENDDOCUMENT();

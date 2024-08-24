@@ -1,0 +1,65 @@
+##DESCRIPTION
+## DBsubject(Biostatistics)
+## DBchapter(Data)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+BEGIN_PGML
+\eoce{\qt{Views on immigration\label{immigration}} 910 randomly sampled registered 
+voters from Tampa, FL were asked if they thought workers who have illegally 
+entered the US should be (i) allowed to keep their jobs and apply for 
+US citizenship, (ii) allowed to keep their jobs as temporary guest workers 
+but not allowed to apply for US citizenship, or (iii) lose their jobs and 
+have to leave the country. The results of the survey by political ideology 
+are shown below.\footfullcite{survey:immigFL:2012}
+\begin{center}
+\begin{tabular}{l l c c c c}
+                        &                           & \multicolumn{3}{c}{\textit{Political ideology}} \\
+\cline{3-5}
+                        &                           & Conservative  & Moderate  & Liberal   & Total \\
+\cline{2-6}
+                        & (i) Apply for citizenship & 57            & 120       & 101       & 278 \\
+                        & (ii) Guest worker         & 121           & 113       & 28        & 262 \\
+\raisebox{1.5ex}[0pt]{\emph{Response}} & (iii) Leave the country    & 179       & 126       & 45        & 350 \\ 
+                        & (iv) Not sure             & 15            & 4         & 1         & 20\\
+\cline{2-6}
+                        & Total                     & 372           & 363       & 175       & 910
+\end{tabular}
+\end{center}
+\begin{parts}
+\item What percent of these Tampa, FL voters identify themselves as conservatives?
+\item What percent of these Tampa, FL voters are in favor of the citizenship option?
+\item What percent of these Tampa, FL voters identify themselves as conservatives 
+and are in favor of the citizenship option?
+\item What percent of these Tampa, FL voters who identify themselves as 
+conservatives are also in favor of the citizenship option? What percent of 
+moderates share this view? What percent of liberals share this view?
+\end{parts}
+}{}
+
+
+%_______________
+\subsection{Relationships between two variables}
+
+% 35 ODD (OI4, 2.1) edited
+
+END_PGML
+
+ENDDOCUMENT();

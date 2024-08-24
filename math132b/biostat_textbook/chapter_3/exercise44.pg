@@ -1,0 +1,53 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection()
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "niceTables.pl",
+           "parserPopUp.pl",
+           "PGessaymacros.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = PopUp(
+["choose one","control","treatment"],
+"treatment");
+
+$cite = "";
+
+BEGIN_PGML
+\eoce{\qt{Opioid overdose\label{opioid_overdose}}
+The US Centers for Disease Control (CDC) has been monitoring the rate of deaths from opioid overdoses for at least the last 15 years. In 2013, the rate of opioid-related deaths has risen to 6.8 deaths per year per 100,000 non-Hispanic white members. In 2014-2015, the population of Essex County, MA, was approximately 769,000, of whom 73\% are non-Hispanic white. Assume that incidence rate of opioid deaths in Essex County is the same as the 2013 national rate. \textit{Note: this problem is best done using statistical software.}
+\begin{parts}
+\item In 2014, Essex County reported 146 overdose fatalities from opioids. Assume that all of these deaths occurred in the non-Hispanic white members of the population. What is the probability of 146 or more such events a year?
+\item What was the observed rate of opioid-related deaths in Essex County in 2014, stated in terms of deaths per 100,000 non-Hispanic white members of the population?
+\item In 2015, Essex County reported 165 opioid-related deaths in its non-Hispanic white population. Using the rate from part (b), calculate the probability of 165 or more such events.
+\end{parts}	
+}{}\textD{\vspace{10mm}}
+
+
+%_______________
+\subsection{Distributions related to Bernoulli trials}
+
+%%geometric distribution
+
+% 45 ODD (OI3, 3.21)
+
+END_PGML
+
+ENDDOCUMENT();

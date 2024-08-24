@@ -1,0 +1,57 @@
+##DESCRIPTION
+## DBsubject(Probability)
+## DBchapter(Discrete distributions)
+## DBsection(Binomial)
+## Institution(SVSU)
+## Author(Jan Hlavacek)
+## Level(2)
+## KEYWORDS()
+##ENDDESCRIPTION
+
+# Location: SVSU
+# Course: Biostatistics
+
+DOCUMENT();
+loadMacros("PGstandard.pl",  
+           "MathObjects.pl",
+           "PGML.pl",
+           "parserRadioButtons.pl",
+);
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 1;
+
+Context("Numeric");
+
+$popup = RadioButtons(
+["yes, this is a random sample","yes, although this is not a random sample, there is no reason to expect a bias", "no, this sample is likely biased"],
+"no, this sample is likely biased");
+
+$percentage = random(7,19);
+$size = random(30,200);
+
+$expected = Compute("$percentage*$size/100");
+
+
+BEGIN_PGML
+\eoce{\qt{Testing for food safety\label{errors_food_safety}} A food safety inspector 
+is called upon to investigate a restaurant with a few customer reports of poor 
+sanitation practices. The food safety inspector uses a hypothesis testing 
+framework to evaluate whether regulations are not being met. If he decides 
+the restaurant is in gross violation, its license to serve food will be revoked.
+\begin{parts}
+\item Write the hypotheses in words.
+\item What is a Type~1 Error in this context?
+\item What is a Type~2 Error in this context?
+\item Which error is more problematic for the restaurant owner? Why?
+\item Which error is more problematic for the diners? Why?
+\item As a diner, would you prefer that the food safety inspector requires 
+strong evidence or very strong evidence of health concerns before revoking a 
+restaurant's license? Explain your reasoning.
+\end{parts}
+}{}
+
+% 23 ODD (OI3, 4.31)
+
+END_PGML
+
+ENDDOCUMENT();
