@@ -2,19 +2,15 @@
 ## Probability spaces: Find conditional probability from pmf
 ## ENDDESCRIPTION
 
-## KEYWORDS('probability', 'random variable', 'pmf', 'conditional probability')
 
 ## DBsubject(Probability)
-## DBchapter(Random Variables)
-## DBsection(Discrete random variables)
+## DBchapter(Random variables)
+## DBsection(Discrete: probability mass function)
 ## Date(11/11/2018)
 ## Institution(SVSU)
 ## Author(Jan Hlavacek)
-## TitleText1('')
-## EditionText1('')
-## AuthorText1('')
-## Section1('')
-## Problem1('')
+## Level(3)
+## KEYWORDS('probability', 'random variable', 'pmf', 'conditional probability')
 
 
 ###########################
