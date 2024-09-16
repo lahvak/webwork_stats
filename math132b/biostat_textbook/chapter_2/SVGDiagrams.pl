@@ -28,7 +28,9 @@ sub BinaryTree {
     my $label2end = $branch2end + $label2width;
 
     my $diagram = "
-<svg xmlns = 'http://www.w3.org/2000/svg' width='520' height='220' overflow='auto'>
+<div style='position:relative;height:220px;padding:0;margin:0;'>
+<div style='position:absolute;width:100%;height:auto;top:0;left:0;padding:0;margin:0;'>
+<svg xmlns = 'http://www.w3.org/2000/svg' width='520px' height='220px' overflow='auto' viewBox='0 0 520 220'>
     <path d='M $root 130 l $branch1 -50' stroke='black'/>
     <path d='M $branch1end 80 h $label1width' stroke-dasharray='4' stroke='black'/>
     <path d='M $label1end 80 l $branch2 -25' stroke='black'/>
@@ -43,57 +45,39 @@ sub BinaryTree {
     <path d='M $branch2end 205 h $label2width' stroke-dasharray='4' stroke='black'/>
     <text x='$label1mid' y='10' font-size='14' text-anchor='middle' stroke='blue'>$label1</text>
     <text x='$label2mid' y='10' font-size='14' text-anchor='middle' stroke='blue'>$label2</text>
-    <foreignObject x='$branch1end' y='50' width='$label1width' height='30'>
-        <body xmlns='http://www.w3.org/1999/xhtml'>
+</svg>
+</div>
+    <div style='position:absolute;left:${branch1end}px;top:50px;right:0;padding:0;margin:0'>
             $pos1 " . NAMED_ANS_RULE("first_yes",5) . "
-        </body>
-    </foreignObject>
-    <foreignObject x='$branch2end' y='25' width='$label2width' height='30'>
-        <body xmlns='http://www.w3.org/1999/xhtml'>
+    </div>
+    <div style='position:absolute;left:${branch2end}px;top:25px;right:0;padding:0;margin:0'>
         $pos2 " . NAMED_ANS_RULE("positive_given_yes",5) . "
-        </body>
-    </foreignObject>
-    <foreignObject x='$branch2end' y='75' width='$label2width' height='30'>
-        <body xmlns='http://www.w3.org/1999/xhtml'>
+    </div>
+    <div style='position:absolute;left:${branch2end}px;top:75px;right:0;padding:0;margin:0'>
         $neg2 " . NAMED_ANS_RULE("negative_given_yes",5) . "
-        </body>
-    </foreignObject>
-    <foreignObject x='$branch1end' y='150' width='$label1width' height='30'>
-        <body xmlns='http://www.w3.org/1999/xhtml'>
+    </div>
+    <div style='position:absolute;left:${branch1end}px;top:150px;right:0;padding:0;margin:0'>
             $neg1 " . NAMED_ANS_RULE("first_no",5) . "
-        </body>
     </foreignObject>
-    <foreignObject x='$branch2end' y='125' width='$label2width' height='30'>
-        <body xmlns='http://www.w3.org/1999/xhtml'>
+    <div style='position:absolute;left:${branch2end}px;top:125px;right:0;padding:0;margin:0'>
         $pos2 " . NAMED_ANS_RULE("positive_given_no",5) . "
-        </body>
-    </foreignObject>
-    <foreignObject x='$branch2end' y='175' width='$label2width' height='30'>
-        <body xmlns='http://www.w3.org/1999/xhtml'>
+    </div>
+    <div style='position:absolute;left:${branch2end}px;top:175px;right:0;padding:0;margin:0'>
         $neg2 " . NAMED_ANS_RULE("negative_given_no",5) . "
-        </body>
-    </foreignObject>
-    <foreignObject x='$label2end' y='40' width='$label2width' height='30'>
-        <body xmlns='http://www.w3.org/1999/xhtml'>
+    </div>
+    <div style='position:absolute;left:${label2end}px;top:40px;right:0;padding:0;margin:0'>
         &nbsp;" . NAMED_ANS_RULE("positive_and_yes",8) . "
-        </body>
-    </foreignObject>
-    <foreignObject x='$label2end' y='90' width='$label2width' height='30'>
-        <body xmlns='http://www.w3.org/1999/xhtml'>
+    </div>
+    <div style='position:absolute;left:${label2end}px;top:90px;right:0;padding:0;margin:0'>
         &nbsp;" . NAMED_ANS_RULE("negative_and_yes",8) . "
-        </body>
-    </foreignObject>
-    <foreignObject x='$label2end' y='140' width='$label2width' height='30'>
-        <body xmlns='http://www.w3.org/1999/xhtml'>
+    </div>
+    <div style='position:absolute;left:${label2end}px;top:140px;right:0;padding:0;margin:0'>
         &nbsp;" . NAMED_ANS_RULE("positive_and_no",8) . "
-        </body>
-    </foreignObject>
-    <foreignObject x='$label2end' y='190' width='$label2width' height='30'>
-        <body xmlns='http://www.w3.org/1999/xhtml'>
+    </div>
+    <div style='position:absolute;left:${label2end}px;top:190px;right:0;padding:0;margin:0'>
         &nbsp;" . NAMED_ANS_RULE("negative_and_no",8) . "
-        </body>
-    </foreignObject>
-</svg>";
+    </div>
+</div>";
 
     return $diagram;
 }
@@ -103,27 +87,23 @@ sub VennDiagram {
     my $rightlabel = shift;
 
     return "
-<svg xmlns = 'http://www.w3.org/2000/svg' width='550' height='200' overflow='auto'>
+<div style='position:relative;height:200px;padding:0;margin:0;'>
+<div style='position:absolute;width:100%;height:auto;top:0;left:0;padding:0;margin:0;'>
+<svg xmlns = 'http://www.w3.org/2000/svg' width='520px' height='200px' overflow='auto' viewBox='0 0 520 200'>
     <ellipse cx='170' cy='95' rx='150' ry='75' fill='transparent' stroke='#000000'/>
     <ellipse cx='350' cy='95' rx='150' ry='75' fill='transparent' stroke='#000000'/>
     <text x='70' y='30' font-size='12' text-anchor='end'>$leftlabel</text>
     <text x='450' y='30' font-size='12' text-anchor='start'>$rightlabel</text>
-    <foreignObject x='75' y='80' width='75' height='30'>
-        <body xmlns='http://www.w3.org/1999/xhtml'>
+</svg>
+</div>
+<div style='position:absolute;left:100px;top:80px;right:0;padding:0;margin:0'>
 " . NAMED_ANS_RULE('left_area',5) . "
-        </body>
-    </foreignObject>
-    <foreignObject x='220' y='80' width='75' height='30'>
-        <body xmlns='http://www.w3.org/1999/xhtml'>
+        </div>
+<div style='position:absolute;left:220px;top:80px;right:0;padding:0;margin:0'>
 " . NAMED_ANS_RULE('intersection',5) . "
-        </body>
-    </foreignObject>
-    <foreignObject x='350' y='80' width='75' height='30'>
-        <body xmlns='http://www.w3.org/1999/xhtml'>
+        </div>
+<div style='position:absolute;left:350px;top:80px;right:0;padding:0;margin:0'>
 " . NAMED_ANS_RULE('right_area',5) . "
-        </body>
-    </foreignObject>
-</svg>";
+</div>
+</div>";
 }
-
-1;
