@@ -58,7 +58,7 @@ sub BinaryTree {
     </div>
     <div style='position:absolute;left:${branch1end}px;top:150px;right:0;padding:0;margin:0'>
             $neg1 " . NAMED_ANS_RULE("first_no",5) . "
-    </foreignObject>
+    </div>
     <div style='position:absolute;left:${branch2end}px;top:125px;right:0;padding:0;margin:0'>
         $pos2 " . NAMED_ANS_RULE("positive_given_no",5) . "
     </div>
