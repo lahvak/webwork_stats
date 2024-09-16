@@ -15,7 +15,6 @@ DOCUMENT();
 loadMacros("PGstandard.pl",  
            "MathObjects.pl",
            "PGML.pl",
-           "niceTables.pl",
            "parserPopUp.pl",
            "PGessaymacros.pl",
 );
@@ -25,47 +24,43 @@ $showPartialCorrectAnswers = 1;
 Context("Numeric");
 
 $popup = PopUp(
-["choose one","control","treatment"],
-"treatment");
+["choose one","yes","no"],
+"no");
 
-$cite = "";
+$cite = 'B. Laeng et al. “Why do blue-eyed men prefer women with the same eye color?” In: _Behavioral Ecology and Sociobiology_ 61.3 (2007), pp. 371–384.';
 
 BEGIN_PGML
-\eoce{\qt{Assortative mating\label{assortative_mating}} Assortative mating is a 
+### Assortative mating
+
+Assortative mating is a 
 nonrandom mating pattern where individuals with similar genotypes and/or 
 phenotypes mate with one another more frequently than what would be expected 
 under a random mating pattern. Researchers studying this topic collected data on 
 eye colors of 204 Scandinavian men and their female partners. The table below 
 summarizes the results. For simplicity, we only include heterosexual 
-relationships in this exercise. \footfullcite{Laeng:2007}
-\begin{center}
-\begin{tabular}{ll  ccc c} 
-                                        &           & \multicolumn{3}{c}{\textit{Partner (female)}} \\
-\cline{3-5}
-                                        &           & Blue  & Brown     & Green     & Total \\
-\cline{2-6}
-                                        & Blue      & 78    & 23        & 13        & 114 \\
-\multirow{2}{*}{\textit{Self (male)}}   & Brown     & 19    & 23        & 12        & 54 \\
-                                        & Green     & 11    & 9         & 16        & 36 \\
-\cline{2-6}  
-                                        & Total     & 108   & 55        & 41        & 204
-\end{tabular}
-\end{center}
-\begin{parts}
-\item What is the probability that a randomly chosen male respondent or his 
-partner has blue eyes?
-\item What is the probability that a randomly chosen male respondent with blue 
-eyes has a partner with blue eyes? 
-\item What is the probability that a randomly chosen male respondent with brown 
-eyes has a partner with blue eyes? What about the probability of a randomly 
-chosen male respondent with green eyes having a partner with blue eyes?
-\item Does it appear that the eye colors of male respondents and their partners 
-are independent? Explain your reasoning.
-\end{parts}
-}{}
+relationships in this exercise.
 
-% 17 ODD (OI4, 3.21)
+([$cite]**)
 
+[#
+    [. .] [. .] [. _Partner (female)_ .]{colspan => 3, halign=>'c', bottom=>1} [. .]*
+    [. .] [. .]{bottom=>1} [. Blue .]{header=>'ch', bottom=>1} [. Brown .]{header=>'ch', bottom=>1} [. Green .]{header=>'ch', bottom=>1} [. Total .]{header=>'ch', bottom=>1}*
+    [. .] [. Blue .]{header=>'rh'} [. 78 .] [. 23 .] [. 13 .] [. 114 .]*
+    [. _Self (male)_ .] [. Brown .]{header=>'rh'} [. 19 .] [. 23 .] [. 12 .] [. 54 .]*
+    [. .] [. Green .]{header=>'rh', bottom=>1} [. 11 .]{bottom=>1} [. 9 .]{bottom=>1} [. 16 .]{bottom=>1} [. 36 .]{bottom=>1}*
+    [. .] [. Total .]{header=>'rh'} [. 108 .] [. 55 .] [. 41 .] [. 204 .]*
+#]{align=>"llcccc"}
+
+*   What is the probability that a randomly chosen male respondent or his 
+    partner has blue eyes? [___________]{0.7059}
+*   What is the probability that a randomly chosen male respondent with blue 
+    eyes has a partner with blue eyes? [___________]{0.6842}
+*   What is the probability that a randomly chosen male respondent with brown 
+    eyes has a partner with blue eyes? [___________]{0.3519}
+*   What about the probability of a randomly 
+    chosen male respondent with green eyes having a partner with blue eyes? [___________]{0.3056}
+*   Does it appear that the eye colors of male respondents and their partners 
+    are independent? Make sure you are able to explain your reasoning. [_]{$popup}
 END_PGML
 
 ENDDOCUMENT();
