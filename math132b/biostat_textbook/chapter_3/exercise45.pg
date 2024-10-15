@@ -1,7 +1,7 @@
 ##DESCRIPTION
 ## DBsubject(Probability)
 ## DBchapter(Discrete distributions)
-## DBsection()
+## DBsection(Geometric)
 ## Institution(SVSU)
 ## Author(Jan Hlavacek)
 ## Level(2)
@@ -15,37 +15,86 @@ DOCUMENT();
 loadMacros("PGstandard.pl",  
            "MathObjects.pl",
            "PGML.pl",
-           "niceTables.pl",
-           "parserPopUp.pl",
-           "PGessaymacros.pl",
+           "parserRadioButtons.pl",
 );
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
 
 Context("Numeric");
 
-$popup = PopUp(
-["choose one","control","treatment"],
-"treatment");
+$p = Compute(.471);
+$mean = (1 - $p)/$p;
+$sd = sqrt((1-$p)/($p**2));
 
-$cite = "";
+$newp = Compute(.3);
+$newmean = (1 - $newp)/$newp;
+$newsd = sqrt((1-$newp)/($newp**2));
+
+$select = RadioButtons([[
+            { "both increase" => [
+                    "The mean and the standard deviation are both higher.",
+                    "both increase"
+                ]},
+            { "both decrease" => [
+                    "The mean and the standard deviation are both lower.",
+                    "both decrease"
+                ]},
+            { "both unchanged" => [
+                    "The mean and the standard deviation both stay the same.",
+                    "both unchanged"
+                ]},
+            { "mean increases, st. dev. decreases" => [
+                    "The mean is higher and the standard deviation is lower.",
+                    "mean increases, st. dev. decreases"
+                ]},
+            { "mean decreases, st. dev. increases" => [
+                    "The mean is lower and the standard deviation is higher.",
+                    "mean decreases, st. dev. increases"
+                ]},
+            { "mean unchanged, st. dev. increases" => [
+                    "The mean stays the same and the standard deviation is higher.",
+                    "mean unchanged, st. dev. increases"
+                ]},
+            { "mean unchanged, st. dev. decreases" => [
+                    "The mean stays the same and the standard deviation is lower.",
+                    "mean unchanged, st. dev. decreases"
+                ]},
+            { "mean increases, st. dev. unchanged" => [
+                    "The mean is higher and the standard deviation stays the same.",
+                    "mean increases, st. dev. unchanged"
+                ]},
+            { "mean decreases, st. dev. unchanged" => [
+                    "The mean is lower and the standard deviation stays the same.",
+                    "mean decreases, st. dev. unchanged"
+                ]},
+        ]], 0, displayLabels => 0,
+);
+
+$cite = "U.S. Census Bureau, _2010 American Community Survey_, Marital Status.";
 
 BEGIN_PGML
-\eoce{\qt{Married women} \label{married_women} The 2010 American Community Survey 
-estimates that 47.1\% of women ages 15 years and over are married. Suppose that a random sample of women in this age group are selected for a research study.
-\footfullcite{marWomenACS}
-\begin{parts}
-\item On average, how many women would need to be sampled in order to select 
-a married woman? What is the standard deviation?
-\item If the proportion of married women were actually 30\%, what would be the new mean and standard deviation?
-\item Based on the answers to parts (a) and (b), how does decreasing the 
-probability of an event affect the mean and standard deviation of the wait time until success?
-\end{parts}
-}{}
+### Married women
 
-\textD{\newpage}
+The 2010 American Community Survey estimates that 47.1% of women ages 15 years and over are married.
+Suppose that a random sample of women in this age group are selected for a research study.
 
-% 46 oi_biostat, abo_blood
+([$cite]**)
+
+a) On average, how many _single_ women would need to be sampled first in order to select 
+    one married woman? [_________]{$mean}
+
+    What is the standard deviation?  [_________]{$sd}
+
+b) If the proportion of married women were actually 30%, what would be the new mean and standard deviation?
+
+    Mean: [_]{$newmean}
+
+    Standard deviation: [_]{$newsd}
+
+c) Based on the answers to parts a) and b), how does decreasing the 
+    probability of an event affect the mean and standard deviation of the wait time until success?
+
+    [_]{$select}
 
 END_PGML
 

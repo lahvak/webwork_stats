@@ -1,7 +1,7 @@
 ##DESCRIPTION
 ## DBsubject(Probability)
-## DBchapter(Discrete distributions)
-## DBsection()
+## DBchapter(Continuous distributions)
+## DBsection(Gaussian normal)
 ## Institution(SVSU)
 ## Author(Jan Hlavacek)
 ## Level(2)
@@ -15,31 +15,28 @@ DOCUMENT();
 loadMacros("PGstandard.pl",  
            "MathObjects.pl",
            "PGML.pl",
-           "niceTables.pl",
-           "parserPopUp.pl",
-           "PGessaymacros.pl",
+           "contextPercent.pl",
 );
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
 
+Context("Percent");
+
+$prop = Percent("82.4%");
+
 Context("Numeric");
 
-$popup = PopUp(
-["choose one","control","treatment"],
-"treatment");
-
-$cite = "";
+$quantile = 38;
 
 BEGIN_PGML
-\eoce{\qt{Age at childbirth\label{age_childbirth}}
-	In the last decade, the average age of a mother at childbirth is 26.4 years, with standard deviation 5.8 years. The distribution of age at childbirth is approximately normal.
-	\begin{parts}
-		\item What proportion of women who give birth are 21 years of age or older?
-		\item Giving birth at what age puts a woman in the upper 2.5\% of the age distribution?
-	\end{parts}
-}{}
+### Age at childbirth
 
-% 30 EVEN (OI3, 3.14)
+In the last decade, the average age of a mother at childbirth is 26.4 years,
+with standard deviation 5.8 years.
+The distribution of age at childbirth is approximately normal.
+
+*   What proportion of women who give birth are 21 years of age or older? [_________]{$prop}
+*   Giving birth at what age puts a woman in the upper 2.5% of the age distribution? (Round to the nearest year.) [_________]{$quantile}
 
 END_PGML
 

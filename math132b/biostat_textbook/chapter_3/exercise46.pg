@@ -1,7 +1,7 @@
 ##DESCRIPTION
 ## DBsubject(Probability)
 ## DBchapter(Discrete distributions)
-## DBsection()
+## DBsection(Geometric)
 ## Institution(SVSU)
 ## Author(Jan Hlavacek)
 ## Level(2)
@@ -15,34 +15,107 @@ DOCUMENT();
 loadMacros("PGstandard.pl",  
            "MathObjects.pl",
            "PGML.pl",
-           "niceTables.pl",
            "parserPopUp.pl",
-           "PGessaymacros.pl",
 );
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
 
 Context("Numeric");
+Context()->flags->set(
+    tolType => absolute,
+    tolerance => 0.0005
+);
 
-$popup = PopUp(
-["choose one","control","treatment"],
-"treatment");
+$pplus = Real(0.37);
+$pminus = Real(0.08);
 
-$cite = "";
+$meanplus = ((1 - $pplus)/$pplus)->cmp(
+    tolType => absolute,
+    tolerance => 0.005
+);
+$meanminus = ((1 - $pminus)/$pminus)->cmp(
+    tolType => absolute,
+    tolerance => 0.005
+    );
+
+$sdplus = (sqrt(1 - $pplus)/$pplus)->cmp(
+    tolType => absolute,
+    tolerance => 0.005
+);
+$sdminus = (sqrt(1 - $pminus)/$pminus)->cmp(
+    tolType => absolute,
+    tolerance => 0.005
+);
+
+$threeplus = (1 - $pplus)**3*$pplus;
+$most3plus = $pplus + (1 - $pplus)*$pplus + (1 - $pplus)**2*$pplus + $threeplus;
+
+$threeminus = (1 - $pminus)**3*$pminus;
+$most2minus = $pminus + (1 - $pminus)*$pminus + (1 - $pminus)**2*$pminus;
+$most3minus = $most2minus + $threeminus;
+
+$pgeom = DropDown(
+[["pgeom", "dgeom", "rgeom", "qgeom"]],
+"pgeom");
+
+$dgeom = DropDown(
+[["pgeom", "dgeom", "rgeom", "qgeom"]],
+"dgeom");
 
 BEGIN_PGML
-\eoce{\qt{Donating blood, Part II\label{abo_blood_geometric}} Recall from Problem~\ref{abo_blood} that a patient with Type O+ blood can receive either Type O+ or Type O- blood, while a patient with Type O- blood can only receive Type O- blood. According to data collected from blood donors, 0.37 of white, non-Hispanic donors are Type O+ and 0.08 are Type O-. For the following questions, assume that only white, non-Hispanic donors are being tested.
-\begin{parts}
-\item On average, how many donors would need to be randomly sampled for a Type O+ donor to be identified? With what standard deviation?
-\item What is the probability that 4 donors must be sampled to identify a Type O+ donor?
-\item What is the probability that more than 4 donors must be sampled to identify a Type O+ donor?
-\item What is the probability of the first Type O- donor being found within the first 4 people?
-\item On average, how many donors would need to be randomly sampled for a Type O- donor to be identified? With what standard deviation?
-\item What is the probability that fewer than 4 donors must be tested before a Type O- donor is found?
-\end{parts}	
-}{}
+### Donating blood, Part II
 
-% 47 oi_biostat, wolbachia_prevalence
+A patient with Type O+ blood can receive either Type O+ or Type O− blood, while a patient with Type O− blood can only receive Type O− blood.
+According to data collected from blood donors, 0.37 of white, non-Hispanic donors are Type O+ and 0.08 are Type O−.
+For the following questions, assume that only white, non-Hispanic donors are being tested.
+
+a) On average, how many non-Type O+ donors would need to be randomly sampled before a Type O+ donor is identified?
+
+    [__________]{$meanplus}
+
+    With what standard deviation?
+
+    [__________]{$sdplus}
+
+a) What is the probability that 3 non-Type O+ donors must be sampled before identifying a Type O+ donor?
+
+    [__________]{$threeplus}
+
+    In order to calculate this probability using R, what would you enter?
+
+    :   [_]{$dgeom}([___]{3}, prob = [__________]{$pplus})
+
+a) What is the probability that more than 3 non-Type O+ donors must be sampled before identifying a Type O+ donor?
+
+    [__________]{1 - $most3plus}
+
+    In order to calculate this probability using R, what would you enter?
+
+    :   1 - [_]{$pgeom}([___]{3}, prob = [__________]{$pplus})
+
+a) What is the probability of the first Type O− donor being found within the first 4 people?
+
+    [__________]{$most3minus}
+
+    In order to calculate this probability using R, what would you enter?
+
+    :   [_]{$pgeom}([___]{3}, prob = [__________]{$pminus})
+
+a) On average, how many non-Type O− donors would need to be randomly sampled before a Type O− donor is identified?
+
+    [__________]{$meanminus}
+
+    With what standard deviation?
+
+    [__________]{$sdminus}
+
+a) What is the probability that fewer than 3 non-Type O− donors must be tested before a Type O− donor is found?
+
+    [__________]{$most2minus}
+
+    In order to calculate this probability using R, what would you enter?
+
+    :   [_]{$pgeom}([___]{2}, prob = [__________]{$pminus})
 
 END_PGML
 

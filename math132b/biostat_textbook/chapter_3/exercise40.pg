@@ -1,7 +1,7 @@
 ##DESCRIPTION
 ## DBsubject(Probability)
 ## DBchapter(Discrete distributions)
-## DBsection()
+## DBsection(Poisson)
 ## Institution(SVSU)
 ## Author(Jan Hlavacek)
 ## Level(2)
@@ -15,34 +15,86 @@ DOCUMENT();
 loadMacros("PGstandard.pl",  
            "MathObjects.pl",
            "PGML.pl",
-           "niceTables.pl",
-           "parserPopUp.pl",
-           "PGessaymacros.pl",
+           "parserMultipleChoice.pl",
 );
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
 
 Context("Numeric");
 
-$popup = PopUp(
-["choose one","control","treatment"],
-"treatment");
+$lambda1 = Real("8e-6");
+$pop1 = Real("1.4e6");
 
-$cite = "";
+$lambda2 = $lambda1 * $pop1;
+
+$pop2 = Real("4.5e5");
+
+$lambda3 = $lambda1 * $pop2;
+
+$popup = DropDown(
+[["ppois", "dpois", "rpois", "qpois"]],
+"ppois");
+
+$multi = RadioButtons([[
+            { "correct" => [
+                    "The official is correct.",
+                    "correct"
+                ]},
+            { "incorrect, must be multilied by probability of 0 cases in other boroughs" => [
+                    "The official is not correct, the correct probability is \(\operatorname{P}(\text{10 or more cases in Brooklyn})\cdot\operatorname{P}(\text{0 cases in other boroughs})\).",
+                    "incorrect, must be multilied by probability of 0 cases in other boroughs"
+                ]},
+            { "incorrect, must be multilied by the number of boroughs" => [
+                    "The official is not correct, the correct probability is \(5\cdot\operatorname{P}(\text{10 or more cases in Brooklyn})\).",
+                    "incorrect, must be multilied by the number of boroughs"
+                ]}
+        ]], 1, displayLabels => 0,
+);
+
+$prob = 0.004;
+$binomprob = Compute("5*$prob*(1 - $prob)^4")->cmp(
+    tolType => 'absolute',
+    tolerance => 0.0005
+);
 
 BEGIN_PGML
-\eoce{\qt{Osteosarcoma in NYC\label{osteosarcoma_nyc}}
-Osteosarcoma is a relatively rare type of bone cancer.  It occurs most often in young adults, age 10 - 19; it is diagnosed in approximately 8 per 1,000,000 individuals per year in that age group. In New York City (including all five boroughs), the number of young adults in this age range is approximately 1,400,000.
-\begin{parts}	
-\item What is the expected number of cases of osteosarcoma in NYC in a given year?
-\item What is the probability that 15 or more cases will be diagnosed in a given year?
-\item The largest concentration of young adults in NYC is in the borough of Brooklyn, where the population in that age range is approximately 450,000. What is the probability of 10 or more cases in Brooklyn in a given year?	
-\item Suppose that in a given year, 10 cases of osteosarcoma were observed in NYC, with all 10 cases occurring among young adults living in Brooklyn. An official from the NYC Public Health Department claims that the probability of this event (that is, the probability of 10 or more cases being observed, and all of them occurring in Brooklyn) is what was calculated in part c). Is the official correct? Explain your answer. You may assume that your answer to part c) is correct. This question can be answered without doing any calculations. 
-\item Suppose that over five years, there was one year in which 10 or more cases of osteosarcoma were observed in Brooklyn. Is the probability of this event equal to the probability calculated in part c)? Explain your answer.
-\end{parts}
-}{}
+### Osteosarcoma in NYC
 
-% 41 ODD (OI4, 4.33)
+Osteosarcoma is a relatively rare type of bone cancer.
+It occurs most often in young adults, age 10 - 19;
+it is diagnosed in approximately 8 per 1,000,000 individuals per year in that age group.
+In New York City (including all five boroughs), the number of young adults in this age range is approximately 1,400,000.
+
+a) What is the expected number of cases of osteosarcoma in NYC in a given year?
+
+    [_______]{$lambda2}
+
+b) To calculate the probability that 15 or more cases will be diagnosed in NYC in a given year, one has to enter
+   the following into R:
+
+    :   1 - [_]{$popup}([_______]{14}, lambda = [_______]{$lambda2})
+
+c) The largest concentration of young adults in NYC is in the borough of Brooklyn,
+   where the population in that age range is approximately 450,000.
+   To calculate the probability of 10 or more cases in Brooklyn in a given year, what would you
+   enter in R?
+
+    :   1 - [_]{$popup}([_______]{9}, lambda = [_______]{$lambda3})
+
+d) Suppose that in a given year, 10 cases of osteosarcoma were observed in NYC,
+   with all 10 cases occurring among young adults living in Brooklyn.
+   An official from the NYC Public Health Department claims that the probability of this event
+   (that is, the probability of 10 or more cases being observed,
+   and all of them occurring in Brooklyn) is what was calculated in part c).
+   Is the official correct?
+
+    [_]{$multi}
+
+e) Suppose that over five years, there was one year in which 10 or more cases of osteosarcoma were observed in Brooklyn.
+   If the probability calculate in part c) is 0.004, calculate the probability that there is exactly one year in a
+   5 year period with 10 or more cases observed in Brooklyn.
+
+    [_______]{$binomprob}
 
 END_PGML
 

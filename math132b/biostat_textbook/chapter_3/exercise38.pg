@@ -1,7 +1,7 @@
 ##DESCRIPTION
 ## DBsubject(Probability)
 ## DBchapter(Discrete distributions)
-## DBsection()
+## DBsection(Poisson)
 ## Institution(SVSU)
 ## Author(Jan Hlavacek)
 ## Level(2)
@@ -15,36 +15,40 @@ DOCUMENT();
 loadMacros("PGstandard.pl",  
            "MathObjects.pl",
            "PGML.pl",
-           "niceTables.pl",
            "parserPopUp.pl",
-           "PGessaymacros.pl",
 );
 TEXT(beginproblem());
 $showPartialCorrectAnswers = 1;
 
 Context("Numeric");
 
-$popup = PopUp(
-["choose one","control","treatment"],
-"treatment");
+$lambda1 = Real(1);
+$lambda2 = 3*$lambda1;
+$sd = sqrt($lambda1);
 
-$cite = "";
+$popup = DropDown(
+[["ppois", "dpois", "rpois", "qpois"]],
+"ppois");
 
 BEGIN_PGML
-\eoce{\qt{Stenographer's typos\label{stenographer_typos}} A very skilled 
-	court stenographer makes one typographical error (typo) per hour on average.
-	\begin{parts}
-		\item What are the mean and the standard deviation of the number of typos 
-		this stenographer makes in an hour?
-		\item Calculate the probability that this stenographer makes at most 3 typos 
-		in a given hour.
-		\item Calculate the probability that this stenographer makes at least 5 typos over 3 hours.
-	\end{parts}
-}{}
+### Stenographer's typos
 
-\textD{\newpage}
+A very skilled court stenographer makes one typographical error (typo) per hour on average.  The number of
+errors the stenographer makes per a period of time can be modeled using a Poisson distribution.
 
-% 39 ODD (OI4, 4.31) edited
+*   What are the mean and the standard deviation of the number of typos this stenographer makes in an hour?
+
+    *  Mean: [________]{$lambda1}
+    *  Standard deviation: [________]{$sd}
+
+*   To calculate the probability that this stenographer makes at most 3 typos in a given hour using R,
+    one would enter:
+
+    :   [_]{$popup}([___]{3}, lambda = [________]{$lambda1})
+
+*   To calculate the probability that this stenographer makes at least 5 typos over 3 hours using R, one would enter:
+
+    :   1 - [_]{$popup}([___]{4}, lambda = [________]{$lambda2})
 
 END_PGML
 
