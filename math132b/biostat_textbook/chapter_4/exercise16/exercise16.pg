@@ -33,13 +33,16 @@ $expected = Compute("$percentage*$size/100");
 
 
 BEGIN_PGML
-\eoce{\qt{Gifted children, Part I\label{gifted_children_intro}} Researchers 
-investigating characteristics of gifted children collected data from schools 
+### Gifted children, Part I
+
+Researchers investigating characteristics of gifted children collected data from schools 
 in a large city on a random sample of thirty-six children who were identified 
 as gifted children soon after they reached the age of four. The following 
 histogram shows the distribution of the ages (in months) at which these 
 children first counted to 10 successfully. Also provided are some sample 
-statistics.\footfullcite{Graybill:1994}
+statistics.
+
+[$cite]*
 
 \begin{center}
 \begin{minipage}[c]{0.6\textwidth}
